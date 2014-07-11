@@ -1,0 +1,24 @@
+##Changelog
+
+#### V 0.4 Mon Jul  2 16:25:53 COT 2012
+- Added image preview assets
+- Added image processing assets
+- Added the ability to specify upload, download, and form views
+
+#### V 0.3a Sun Mon Apr  2 21:43:38 COT 2012
+- Fixed missing dependencies
+
+#### V 0.3 Sun Apr  1 18:35:23 COT 2012
+- Updated to the new jquery plugin version
+
+#### V 0.2 Sun May 8 19:28:43 COT 2011
+
+- Added Multiple file uploading functionality
+- Integrated XUploadAction with a few changes
+- Moved XUploadForm to the extension folder
+
+
+#### v 0.1 Mon Mar 21 14:51:13 COT 2011
+
+- First release
+

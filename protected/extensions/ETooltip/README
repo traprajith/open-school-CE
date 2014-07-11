@@ -1,0 +1,76 @@
+ETooltip
+--------
+- Version: 0.1
+- Author:  [Dimitrios Mengidis](http://www.github.com/dmtrs/)
+- jQuery:  [Tooltip](http://flowplayer.org/tools/demos/tooltip/index.html) 
+
+###Install
+
+Extract the zip file under the extension folder and should look like.
+~~~
+    ./webapp/protected/extension/ETooltip
+~~~
+
+###Use
+
+In your view file add your images
+~~~
+[html]
+<div id="demo">
+    <img src="http://static.flowplayer.org/tools/img/photos/1.jpg"
+         title="A must have tool for designing better layouts and more intuitive user-interfaces."/>
+    <img src="http://static.flowplayer.org/tools/img/photos/2.jpg"
+         title="Tooltips can be positioned anywhere relative to the trigger element."/>
+    <img src="http://static.flowplayer.org/tools/img/photos/3.jpg"
+         title="Tooltips can contain any HTML such as links, images, forms, tables, etc."/>
+    <img src="http://static.flowplayer.org/tools/img/photos/4.jpg" style="margin-right:0px"
+         title="There are many built-in show/hide effects and you can also make your own."/>
+</div>
+~~~
+
+And initialize the ETooltip widget
+
+~~~
+[php]
+<?php
+    $this->widget('ETooltip', array("selector"=>"#demo img[title]"));
+?>
+~~~
+
+###Notice 
+
+The only required options is the "selector" which is a string of a jquery selector.
+###Properties
+
+Available options of extensions:
+
+- selector, string, the jquery selector. **Required**
+- tooltip,  array,  the jquery tooltip plugin options. Optional
+- image,    string, the image file name for the backround (default: black\_arrow.png ). Optional
+
+####**tooltip** property
+
+The [tooltip configuration](http://flowplayer.org/tools/tooltip/index.html#configuration) can be initialized by tooltip attribute like:
+
+~~~
+[php]
+<?php
+    $this->widget('ETooltip', array("selector"=>"#demo img[title]",
+        "tooltip"=>array(
+            "opacity"=>1,
+            "position"=>"bottom center",
+        ),
+    ));
+?>    
+~~~
+
+####**image** property
+
+Image is the file name of the background image of the tooltip, as mentioned before. The image must be under the 
+~~~
+    ./webapp/protected/extension/ETooltip/images/
+~~~
+where are all available images you can use.
+
+
+

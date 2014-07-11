@@ -1,0 +1,37 @@
+
+This is a simple Yii extension for the miniColors jQuery color picker plugin:
+
+http://abeautifulsite.net/blog/2011/02/jquery-minicolors-a-color-selector-for-input-controls/
+http://plugins.jquery.com/project/jQueryMiniColors
+
+Installation:
+
+Extract / checkout these files into the SMiniColors directory under <code>protected/extensions</code> in your Yii project
+
+Usage:
+
+This extension contains two classes:
+
+SColorPicker Widget - Generates a standard HTML input tag with the ID you specify
+
+$this->widget('ext.SMiniColors.SColorPicker', array(
+    'id' => 'myInputId',
+    'defaultValue'=>'#000000',
+    'hidden'=>false, // defaults to false - can be set to hide the textarea with the hex
+    'options' => array(), // jQuery plugin options
+    'htmlOptions' => array(), // html attributes
+));
+
+SActiveColorPicker Widget - Generates an "Active" HTML input for the CActiveRecord model you specify
+
+$this->widget('ext.SMiniColors.SActiveColorPicker', array(
+    'id' => 'myInputId',
+    'defaultValue'=>'#000000',
+    'hidden'=>false, // defaults to false - can be set to hide the textarea with the hex
+    'options' => array(), // jQuery plugin options
+    'htmlOptions' => array(), // html attributes
+));
+
+This extension was created by Evan Johnson for http://splashlabsocial.com.
+
+It is released under the GNU General Public License, version 2 http://www.gnu.org/licenses/gpl-2.0.html

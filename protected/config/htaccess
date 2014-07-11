@@ -1,0 +1,17 @@
+Options +FollowSymLinks
+IndexIgnore */*
+RewriteEngine on
+RewriteBase @base@
+
+#Admin
+Rewriterule ^admin$ index.php?r=Cms/admin/home
+#Install
+Rewriterule ^install$ install.php?r=Install/default
+
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !\.(js|ico|gif|jpg|png|css)$
+
+# otherwise forward it to index.php
+RewriteRule . index.php

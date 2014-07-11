@@ -1,0 +1,193 @@
+/* 
+    Document   : client_val_form.css
+    Created on : August  28th 2011, 11:20:07 am
+    Author     : Spiros Kabasakalis
+    Description:css for Client Validation Form
+*/
+/********************************     General     ********************************/
+root { 
+    display: block;
+}
+
+.hid{
+    display: none;
+}
+
+
+.client-val-form textarea {
+    width: 88% !important;
+      border-radius: 6px 6px 6px 6px;
+}
+
+
+.client-val-form input{
+/*     background: url("../images/bg-form-field.gif") repeat-x scroll left top #FFFFFF;*/
+    border: 1px solid #D5D5D5;
+    border-radius: 4px 4px 4px 4px;
+    color: #333333;
+    font-size: 13px;
+    padding: 6px;
+    width: 85%;
+      display: block;
+}
+
+     /*************** Notifications ***************/
+
+.notification {
+                position: relative;
+                margin: 0 0 15px 0;
+                padding: 0;
+                border: 1px solid;
+                background-position: 10px 11px !important;
+                background-repeat: no-repeat !important;
+                font-size: 13px;
+                width: 98.8%;
+                 border-radius: 6px 6px 6px 6px;
+                }
+
+
+.attention {
+                background: #fffbcc url('images/icons/exclamation.png') 10px 11px no-repeat;
+                border-color: #e6db55;
+                color: #666452;
+                }
+
+.information {
+                background: #dbe3ff url('images/icons/information.png');
+                border-color: #a2b4ee;
+                color: #585b66;
+                }
+
+.success  {
+                background: no-repeat  url('images/icons/tick_circle.png')!important ;
+                border-color: #9adf8f;
+                color: #556652;
+				-webkit-border-top-right-radius: 3px;
+				-webkit-border-bottom-right-radius: 3px;
+				-moz-border-radius-topright: 3px;
+				-moz-border-radius-bottomright: 3px;
+				border-top-right-radius: 3px;
+				border-bottom-right-radius: 3px;
+				
+                }
+
+.errorshow {
+                background: #ffcece url("images/icons/cross_circle.png");
+                border-color: #df8f8f;
+                color: #665252;
+                  width: 98%;
+                }
+
+
+
+.notification div {
+                display:block;
+                font-style:normal;
+                padding: 10px;
+                line-height: 1.5em;
+                margin-left: 25px;
+                }
+
+   .errorsum ul{
+  margin: 0 0 10px 38px;
+  padding: 0 !important;
+}
+
+  .errorsum li{
+
+}
+
+.notification .close {
+                color:#990000;
+                font-size:9px;
+                position:absolute;
+                right:5px;
+                top:5px;
+                }
+
+/* Notification for form inputs */
+  .error-simple {
+     background: url("images/icons/cross_circle.png") repeat scroll 0 0 #FFCECE;
+    border: medium none;
+    color: #FC1818  !important;
+                }
+
+                .err input, .err textarea {
+    border: 2px solid #EBA5A5 !important;
+}
+
+         .suc input, .suc textarea {
+    border: 2px solid #A1EDA0 !important;
+}
+
+.input-notification-error {
+				 background-color: transparent;
+                              background-repeat: no-repeat;
+                            padding: 2px 0 2px 22px;
+				}
+
+.input-notification-success {
+				 background-color: transparent;
+                              background-repeat: no-repeat;
+                            margin-left: 10px;
+                            padding: 2px 0 2px 22px;
+                       height: 12px;
+				}
+
+ .row {
+    margin-bottom: 20px!important;
+}
+
+div.form .note
+{
+	font-style: italic;
+}
+
+div.form span.required
+{
+	color: red;
+}
+
+div.form label
+{
+	font-weight: bold;
+	font-size: 0.9em;
+	display:inline;
+}
+
+.button {
+    background:  #004A95 ;
+    border-color: #004994 !important;
+    color:#FFFFFF!important;
+}
+
+.button:hover {
+       background:    #54A7FF;
+           border-color: #54A7FF;
+                }
+
+.button:active {
+                padding: 5px 7px 3px 7px !important;
+                }
+
+
+div.ajax-sending {
+
+    background-image: url('images/icons/loading.gif')!important;
+    background-position:  center center!important;
+    background-repeat: no-repeat!important;
+    opacity: 1;
+}
+div.ajax-sending * {
+    opacity: .8;
+}
+
+.row label{
+
+    
+}
+
+.row input .row textarea{
+
+    
+}
