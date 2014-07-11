@@ -1,0 +1,23 @@
+.list-event { 
+    margin: 5px 0;
+    padding: 2px 2px;
+    background: #3377CC;
+    color: #fff;
+    font-size: .85em;
+    cursor: pointer;
+}
+
+#event-scrooler {
+    height: 200px;
+    overflow: auto;
+}
+
+#changeUser {
+    float: right;
+    border: solid;
+    border-width: 1px;
+    width: 200px;
+    text-align: center;
+    z-index: 55;
+    position: relative;
+}

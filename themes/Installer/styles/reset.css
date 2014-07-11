@@ -1,0 +1,10 @@
+/* reset */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, code, a, abbr, acronym, address, big, small, cite, ins, del, em, img, strike, strong, sub, sup, dl, dt, dd, ol, ul, li, form, fieldset, legend, label, input, select, textarea, table, caption, thead, tbody, tfoot, tr, th, td { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+img { border: none; vertical-align: top; }
+:focus { outline: none; }
+body { color: #808080; font: normal normal 100% "Trebuchet MS", Arial, Helvetica, sans-serif; }
+fieldset { border: none; }
+input, select, textarea { color: #808080; font: normal normal 1em Arial, Helvetica, sans-serif; }
+a:link, a:visited { color: #29ABE2; text-decoration: none; }
+a:hover { text-decoration: underline; }

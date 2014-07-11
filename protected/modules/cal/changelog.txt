@@ -1,0 +1,8 @@
+ver 1.1
+fixed bug in url routing
+User Id store in session state
+added public property "layout"
+added public property "cronPeriod"
+
+ver 1.0
+initial relis

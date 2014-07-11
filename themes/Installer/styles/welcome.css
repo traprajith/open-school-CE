@@ -1,0 +1,14 @@
+body { background: #3e3e3e; }
+
+/* login */
+#welcome { background: url(../images/bg-login.png) no-repeat; color: #000; font-size: .8em; height: 520px; margin: 80px auto 0; position: relative; width: 901px; }
+#welcome a:link, #welcome a:visited { color: #fff; }
+#welcome h1 { background: url(../images/logo-admin.gif) no-repeat; height: 181px; left: 190px; position: absolute; text-indent: -1984em; top: 161px; width: 232px; }
+#welcome fieldset { position: absolute; top: 160px; right: 80px; width: 370px; }
+#welcome fieldset h2 { font-size: 1.8em; padding-bottom:10px; color:#f38d15; }
+#welcome fieldset .text { background: url(../images/bg-text-login.png) no-repeat; padding: 4px; width: 175px; }
+#welcome fieldset .button { background: url(../images/bg-sign-in.png) no-repeat; height: 30px; text-align: left; text-transform: uppercase; width: 93px; padding-left:15px; font-weight:bold; cursor:pointer;}
+#welcome fieldset .user { font-style: italic; margin-top: 20px; }
+#welcome fieldset .user label, #welcome fieldset .user input, #welcome fieldset .user a { margin-top: 0; margin-right: 5px; vertical-align: middle; }
+#welcome fieldset .user label { margin-right: 20px; }
+#welcome fieldset em.error { display: block; color: #fbfe03; }

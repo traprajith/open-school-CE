@@ -1,0 +1,92 @@
+body { background: #5D5A5B }/*url(../images/bottombg.jpg) repeat-x left bottom; */
+#container { font-size: .75em; margin: 40px auto 0; width: 910px; }
+.clear { clear: both; }
+.emphasize { font-style: italic; font-weight: bolder; }
+
+/* header */
+#header { background: url(../images/headbg.png) no-repeat; padding: 20px 45px 0; position: relative; height: 80px; }
+#header h1 a { background: url(../images/logo-openschool.png) no-repeat; top: 12px; display: block; height: 59px; left: 30px; position: absolute; text-indent: -1984em; width: 50px; }
+#header a:link, #header a:visited { color: #808080; }
+#header .user { float: right; font-weight: bolder; line-height: 37px; text-align: right; width: 350px; }
+#header .search { float: right; margin-top: -30px; }
+#header .search .text { background: url(../images/search.png) no-repeat; border: none; padding: 5px 2px 5px 28px; width: 118px; }
+
+/* menu */
+#menu { clear: both; font-size: 1.1em; height: 36px; line-height: 36px; background:url(../images/mnu-bg.png) no-repeat 160px 30px; height:400px; }
+#menu li { padding:20px 0px; background:url(../images/libg.png) no-repeat 151px 25px;}
+
+#menu li.current{background:url(../images/first.png) no-repeat 146px 18px;}
+#menu li.current a:link span{ font-size:16px; color:#FFF;position:absolute;right:29px; top:1px;}
+#menu li.firstfinish{background:url(../images/firstfinish.png) no-repeat 151px 23px;}
+#menu li.firstfinish a:link span{ font-size:14px; color:#FFF;position:absolute;right:29px; top:1px;}
+#menu li.finish{background:url(../images/finish.png) no-repeat 151px 23px;}
+#menu li.finish a:link span{ font-size:14px; color:#FFF;position:absolute;right:29px; top:1px;}
+#menu a:link, #menu a:visited { position:relative;color: #000; display: block; padding: 0 0px; text-align:right; padding-right:60px; }
+#menu a:link span{position:absolute; right:29px; top:3px; color:#000; font-size:14px;}
+#menu li a:hover, #menu li.active a {  text-decoration: none; color:#F90; }
+
+/* footer */
+#footer { color: #fff; font-size: .9em; font-style: italic; overflow: hidden; padding: 20px 45px 30px; }
+* html #footer { height: 1%; }
+#footer a:link, #footer a:visited { color: #fff; }
+#footer a:hover { text-decoration: underline; }
+#footer .copy { float: right; width: 300px; }
+#footer .info { float: left; width: 620px; }
+#footer .info h3 { font-size: 1.1em; margin-bottom: 10px; }
+#footer .info ul { float: left; margin-right: 10px; width: 130px; }
+#footer .info ul li { margin-top: 2px; }
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.6em; font-style: italic; margin-top: 15px; }
+h3 { font-size: 1.6em; }
+h4 { font-size: 1.4em; }
+h5 { font-size: 1.2em; }
+h6 { font-size: 1em; }
+
+/* button */
+.button-1 { background: url(../images/bg-button-1.jpg) no-repeat; border: none; color: #fff; font-size: .9em; height: 24px; margin-top: 10px; padding-bottom: 3px; text-align: center; width: 53px; }
+.button-2 { background: url(../images/bg-sign-in.png) no-repeat; border: none; color: #fff; font-size: 13px; height: 30px; margin-top: 10px; margin-bottom:10px; padding-bottom: 3px; text-align: left; width: 93px; padding-left:15px; padding-top:3px; font-weight:bold; cursor:pointer;}
+
+/* main */
+#main { background: url(../images/mainBottom.png) no-repeat left bottom; padding-bottom: 42px; }
+#main .main-wrapper { background: url(../images/mainFill.png) repeat-y; overflow: hidden; padding: 0 45px 0 30px; }
+* html #main .main-wrapper { height: 1%; }
+
+/* aside */
+.aside { float: left; width: 200px;}
+.aside p { margin-top: 15px; }
+.aside .welcome { padding-right: 15px; text-align: right; }
+.aside .list-1 { font-style: italic; overflow: hidden; }
+* html .aside .list-1 { height: 1%; }
+.aside .list-1 dt { color: #8CC63F; font-weight: bolder; }
+.aside .list-1 dd { float: left; width: 185px; }
+.aside .list-1 dd span { float: left; width: 80px; }
+.aside .list-1 dd strong { font-weight: normal; float : right; text-align: right; }
+.aside .list-2 { margin-top: 15px; }
+.aside .list-2 li { margin-top: 4px; }
+.aside .list-3 { margin-top: 15px; text-align: right }
+.aside .list-3 li { border-bottom: #ccc solid 1px; font-style: italic; padding: 5px 15px; }
+.aside .list-3 li a:link, .aside .list-3 li a:visited { color: #000; }
+.aside .option { margin-top: 15px; position: relative; }
+.aside .section { border-top: #ccc dashed 1px; margin-top: 15px; padding: 20px 15px; }
+.aside .section h3 { background: url(../images/arrow.jpg) no-repeat right 5px; font-size: 1.1em; font-weight: normal; padding-right: 15px; text-align: right; }
+
+/* main-content */
+.main-content { float: right; width: 595px; margin-top:10px; }
+.main-content .title { border-bottom: #ccc solid 1px; padding-bottom: 10px; }
+.main-content .user { float: right; font-size: .9em; font-weight: bolder; margin-top: -28px; }
+.main-content .banner { background: url(../images/bluebanner.jpg) no-repeat; color: #fff; height: 133px; margin-top: 15px; position: relative; }
+.main-content .banner p { bottom: 20px; left: 20px; position: absolute; }
+.main-content .banner strong { font-size: 1.8em; }
+.main-content p { margin-top: 15px; }
+
+.main-content .list-1 { overflow: hidden; }
+* html .main-content list-1 { height: 1%; }
+.main-content .list-1 li { float: left; margin-top: 15px; margin-right: 30px; width: 200px; }
+
+a.view-all:link, a.view-all:visited  { color: #497525; }
+
+/* message */
+.message-conf, .message-error, .message-info { background: url(../images/bg-conf.jpg) no-repeat; color: #fff; font-style: italic; margin-top: 10px; padding: 10px 15px; }
+.message-error { background-image: url(../images/bg-error.jpg); }
+.message-info { background-image: url(../images/bg-info.jpg); }

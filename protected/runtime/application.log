@@ -1,0 +1,1568 @@
+2013/10/09 08:46:57 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\osinstall\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\osinstall\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\osinstall\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\osinstall\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\osinstall\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\osinstall\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\osinstall\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\osinstall\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\osinstall\core\web\CWebApplication.php(277): CController->run('create')
+#8 C:\wamp\www\osinstall\core\web\CWebApplication.php(136): CWebApplication->runController('students/guardi...')
+#9 C:\wamp\www\osinstall\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\osinstall\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/osinstall/index.php?r=students/guardians/create&id=55
+2013/10/09 08:47:00 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\osinstall\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\osinstall\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\osinstall\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\osinstall\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\osinstall\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\osinstall\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\osinstall\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\osinstall\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\osinstall\core\web\CWebApplication.php(277): CController->run('create')
+#8 C:\wamp\www\osinstall\core\web\CWebApplication.php(136): CWebApplication->runController('students/guardi...')
+#9 C:\wamp\www\osinstall\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\osinstall\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/osinstall/index.php?r=students/guardians/create&id=55
+2013/10/09 08:53:56 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\osinstall\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\osinstall\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\osinstall\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\osinstall\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\osinstall\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\osinstall\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\osinstall\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\osinstall\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\osinstall\core\web\CWebApplication.php(277): CController->run('create')
+#8 C:\wamp\www\osinstall\core\web\CWebApplication.php(136): CWebApplication->runController('students/guardi...')
+#9 C:\wamp\www\osinstall\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\osinstall\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/osinstall/index.php?r=students/guardians/create&id=55
+2013/10/09 08:53:57 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\osinstall\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\osinstall\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\osinstall\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\osinstall\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\osinstall\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\osinstall\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\osinstall\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\osinstall\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\osinstall\core\web\CWebApplication.php(277): CController->run('create')
+#8 C:\wamp\www\osinstall\core\web\CWebApplication.php(136): CWebApplication->runController('students/guardi...')
+#9 C:\wamp\www\osinstall\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\osinstall\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/osinstall/index.php?r=students/guardians/create&id=55
+2013/10/09 08:54:09 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\osinstall\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\osinstall\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\osinstall\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\osinstall\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\osinstall\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\osinstall\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\osinstall\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\osinstall\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\osinstall\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\osinstall\core\web\CWebApplication.php(136): CWebApplication->runController('')
+#9 C:\wamp\www\osinstall\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\osinstall\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/osinstall/
+2013/10/09 08:54:12 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\osinstall\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\osinstall\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\osinstall\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\osinstall\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\osinstall\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\osinstall\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\osinstall\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\osinstall\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\osinstall\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\osinstall\core\web\CWebApplication.php(136): CWebApplication->runController('')
+#9 C:\wamp\www\osinstall\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\osinstall\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/osinstall/
+2013/10/09 08:54:20 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\osinstall\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\osinstall\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\osinstall\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\osinstall\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\osinstall\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\osinstall\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\osinstall\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\osinstall\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\osinstall\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\osinstall\core\web\CWebApplication.php(136): CWebApplication->runController('')
+#9 C:\wamp\www\osinstall\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\osinstall\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/osinstall/
+2013/10/09 08:54:23 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\osinstall\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\osinstall\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\osinstall\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\osinstall\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\osinstall\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\osinstall\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\osinstall\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\osinstall\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\osinstall\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\osinstall\core\web\CWebApplication.php(136): CWebApplication->runController('')
+#9 C:\wamp\www\osinstall\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\osinstall\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/osinstall/
+2013/10/09 08:54:25 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\osinstall\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\osinstall\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\osinstall\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\osinstall\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\osinstall\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\osinstall\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\osinstall\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\osinstall\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\osinstall\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\osinstall\core\web\CWebApplication.php(136): CWebApplication->runController('')
+#9 C:\wamp\www\osinstall\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\osinstall\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/osinstall/
+2013/10/09 08:54:49 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\osinstall\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\osinstall\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\osinstall\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\osinstall\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\osinstall\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\osinstall\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\osinstall\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\osinstall\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\osinstall\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\osinstall\core\web\CWebApplication.php(136): CWebApplication->runController('message/index')
+#9 C:\wamp\www\osinstall\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\osinstall\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/osinstall/index.php?r=message/index
+2013/10/09 08:55:17 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\osinstall\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\osinstall\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\osinstall\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\osinstall\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\osinstall\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\osinstall\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\osinstall\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\osinstall\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\osinstall\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\osinstall\core\web\CWebApplication.php(136): CWebApplication->runController('message/index')
+#9 C:\wamp\www\osinstall\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\osinstall\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/osinstall/index.php?r=message/index
+2013/10/10 06:44:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "attendance/employeeAttendances".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('attendance/empl...')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=attendance/employeeAttendances
+2013/10/10 06:48:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "downloads".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('downloads')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=downloads
+2013/10/10 06:49:20 [error] [exception.CException] exception 'CException' with message 'Filter "rights" is invalid. Controller "DefaultController" does not have the filter method "filterrights".' in C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php:47
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(73): CInlineFilter::create(Object(DefaultController), 'rights')
+#1 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain::create(Object(DefaultController), Object(CInlineAction), Array)
+#2 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#4 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('downloads')
+#5 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#6 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#7 {main} REQUEST_URI=/oscenew/index.php?r=downloads
+2013/10/10 06:49:35 [error] [exception.CException] exception 'CException' with message 'XUpload must specify "model" and "attribute" or "name" property values.' in C:\wamp\www\oscenew\core\zii\widgets\jui\CJuiInputWidget.php:54
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\extensions\xupload\XUpload.php(90): CJuiInputWidget->resolveNameID()
+#1 C:\wamp\www\oscenew\core\web\CBaseController.php(166): XUpload->run()
+#2 C:\wamp\www\oscenew\protected\modules\downloads\views\default\index.php(8): CBaseController->widget('xupload.XUpload', Array)
+#3 C:\wamp\www\oscenew\core\web\CBaseController.php(119): require('C:\wamp\www\osc...')
+#4 C:\wamp\www\oscenew\core\web\CBaseController.php(88): CBaseController->renderInternal('C:\wamp\www\osc...', NULL, true)
+#5 C:\wamp\www\oscenew\core\web\CController.php(866): CBaseController->renderFile('C:\wamp\www\osc...', NULL, true)
+#6 C:\wamp\www\oscenew\core\web\CController.php(779): CController->renderPartial('index', NULL, true)
+#7 C:\wamp\www\oscenew\protected\modules\downloads\controllers\DefaultController.php(14): CController->render('index')
+#8 C:\wamp\www\oscenew\core\web\actions\CInlineAction.php(50): DefaultController->actionIndex()
+#9 C:\wamp\www\oscenew\core\web\CController.php(300): CInlineAction->runWithParams(Array)
+#10 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#11 C:\wamp\www\oscenew\core\web\filters\CFilter.php(41): CFilterChain->run()
+#12 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#13 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#14 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#15 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#16 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#17 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#18 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('downloads')
+#19 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#20 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#21 {main} REQUEST_URI=/oscenew/index.php?r=downloads
+2013/10/10 06:52:21 [error] [exception.CException] exception 'CException' with message 'DefaultController cannot find the requested view "left_side".' in C:\wamp\www\oscenew\core\web\CController.php:875
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\examination\views\default\index.php(102): CController->renderPartial('left_side')
+#1 C:\wamp\www\oscenew\core\web\CBaseController.php(119): require('C:\wamp\www\osc...')
+#2 C:\wamp\www\oscenew\core\web\CBaseController.php(88): CBaseController->renderInternal('C:\wamp\www\osc...', NULL, true)
+#3 C:\wamp\www\oscenew\core\web\CController.php(866): CBaseController->renderFile('C:\wamp\www\osc...', NULL, true)
+#4 C:\wamp\www\oscenew\core\web\CController.php(779): CController->renderPartial('index', NULL, true)
+#5 C:\wamp\www\oscenew\protected\modules\examination\controllers\DefaultController.php(14): CController->render('index')
+#6 C:\wamp\www\oscenew\core\web\actions\CInlineAction.php(50): DefaultController->actionIndex()
+#7 C:\wamp\www\oscenew\core\web\CController.php(300): CInlineAction->runWithParams(Array)
+#8 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#9 C:\wamp\www\oscenew\core\web\filters\CFilter.php(41): CFilterChain->run()
+#10 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#11 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#12 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#13 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#14 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#16 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('examination')
+#17 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#18 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#19 {main} REQUEST_URI=/oscenew/index.php?r=examination
+2013/10/28 05:54:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "translate/edit/missing".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('translate/edit/...')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=translate/edit/missing
+2013/10/28 05:54:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "translate".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('translate')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=translate
+2013/10/28 05:55:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "translate".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('translate')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=translate
+2013/10/28 05:55:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "translate".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('translate')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=translate
+2013/10/28 05:55:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "translate/edit/missing".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('translate/edit/...')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=translate/edit/missing
+2013/10/28 06:53:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "fees/financeFeeCategories".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('fees/financeFee...')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=fees/financeFeeCategories
+2013/10/28 07:24:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "create".' in C:\wamp\www\oscenew\core\web\CController.php:477
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CController.php(262): CController->missingAction('create')
+#1 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('create')
+#2 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('smsSettings/cre...')
+#3 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#4 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#5 {main} REQUEST_URI=/oscenew/index.php?r=smsSettings/create
+2013/10/28 07:28:07 [error] [exception.CException] exception 'CException' with message 'Property "SmsSettingsController.contoller" is not defined.' in C:\wamp\www\oscenew\core\base\CComponent.php:131
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\views\smsSettings\index.php(5): CComponent->__get('contoller')
+#1 C:\wamp\www\oscenew\core\web\CBaseController.php(119): require('C:\wamp\www\osc...')
+#2 C:\wamp\www\oscenew\core\web\CBaseController.php(88): CBaseController->renderInternal('C:\wamp\www\osc...', NULL, true)
+#3 C:\wamp\www\oscenew\core\web\CController.php(866): CBaseController->renderFile('C:\wamp\www\osc...', NULL, true)
+#4 C:\wamp\www\oscenew\core\web\CController.php(779): CController->renderPartial('index', NULL, true)
+#5 C:\wamp\www\oscenew\protected\controllers\SmsSettingsController.php(30): CController->render('index')
+#6 C:\wamp\www\oscenew\core\web\actions\CInlineAction.php(50): SmsSettingsController->actionIndex()
+#7 C:\wamp\www\oscenew\core\web\CController.php(300): CInlineAction->runWithParams(Array)
+#8 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#9 C:\wamp\www\oscenew\core\web\filters\CFilter.php(41): CFilterChain->run()
+#10 C:\wamp\www\oscenew\core\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
+#11 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#12 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#13 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#14 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#16 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('smsSettings')
+#17 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#18 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#19 {main} REQUEST_URI=/oscenew/index.php?r=smsSettings
+2013/10/28 07:28:08 [error] [exception.CException] exception 'CException' with message 'Property "SmsSettingsController.contoller" is not defined.' in C:\wamp\www\oscenew\core\base\CComponent.php:131
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\views\smsSettings\index.php(5): CComponent->__get('contoller')
+#1 C:\wamp\www\oscenew\core\web\CBaseController.php(119): require('C:\wamp\www\osc...')
+#2 C:\wamp\www\oscenew\core\web\CBaseController.php(88): CBaseController->renderInternal('C:\wamp\www\osc...', NULL, true)
+#3 C:\wamp\www\oscenew\core\web\CController.php(866): CBaseController->renderFile('C:\wamp\www\osc...', NULL, true)
+#4 C:\wamp\www\oscenew\core\web\CController.php(779): CController->renderPartial('index', NULL, true)
+#5 C:\wamp\www\oscenew\protected\controllers\SmsSettingsController.php(30): CController->render('index')
+#6 C:\wamp\www\oscenew\core\web\actions\CInlineAction.php(50): SmsSettingsController->actionIndex()
+#7 C:\wamp\www\oscenew\core\web\CController.php(300): CInlineAction->runWithParams(Array)
+#8 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#9 C:\wamp\www\oscenew\core\web\filters\CFilter.php(41): CFilterChain->run()
+#10 C:\wamp\www\oscenew\core\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
+#11 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#12 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#13 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#14 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#16 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('smsSettings')
+#17 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#18 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#19 {main} REQUEST_URI=/oscenew/index.php?r=smsSettings
+2013/10/28 07:30:45 [error] [exception.CException] exception 'CException' with message 'Property "SmsSettingsController.controller" is not defined.' in C:\wamp\www\oscenew\core\base\CComponent.php:131
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\views\smsSettings\index.php(5): CComponent->__get('controller')
+#1 C:\wamp\www\oscenew\core\web\CBaseController.php(119): require('C:\wamp\www\osc...')
+#2 C:\wamp\www\oscenew\core\web\CBaseController.php(88): CBaseController->renderInternal('C:\wamp\www\osc...', NULL, true)
+#3 C:\wamp\www\oscenew\core\web\CController.php(866): CBaseController->renderFile('C:\wamp\www\osc...', NULL, true)
+#4 C:\wamp\www\oscenew\core\web\CController.php(779): CController->renderPartial('index', NULL, true)
+#5 C:\wamp\www\oscenew\protected\controllers\SmsSettingsController.php(30): CController->render('index')
+#6 C:\wamp\www\oscenew\core\web\actions\CInlineAction.php(50): SmsSettingsController->actionIndex()
+#7 C:\wamp\www\oscenew\core\web\CController.php(300): CInlineAction->runWithParams(Array)
+#8 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#9 C:\wamp\www\oscenew\core\web\filters\CFilter.php(41): CFilterChain->run()
+#10 C:\wamp\www\oscenew\core\web\CController.php(1144): CFilter->filter(Object(CFilterChain))
+#11 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#12 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#13 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#14 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#16 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('smsSettings')
+#17 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#18 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#19 {main} REQUEST_URI=/oscenew/index.php?r=smsSettings
+2013/10/28 07:35:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "translate/edit/missing".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('translate/edit/...')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=translate/edit/missing
+2013/10/28 07:38:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "translate/edit/missing".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('translate/edit/...')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=translate/edit/missing
+2013/10/28 07:38:24 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "translate/edit/missing".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('translate/edit/...')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=translate/edit/missing
+2013/10/28 07:38:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "translate/edit/missing".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('translate/edit/...')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=translate/edit/missing
+2013/10/28 07:38:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "translate/edit/missing".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('translate/edit/...')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=translate/edit/missing
+2013/10/28 11:40:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "attendance/studentAttentance/sendSms".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('attendance/stud...')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=attendance/studentAttentance/sendSms&batch_id=1&flag=1
+2013/10/30 06:52:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "fees/financeFeeCategories".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('fees/financeFee...')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=fees/financeFeeCategories
+2013/11/04 09:44:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "fees/financeFeeCategories".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('fees/financeFee...')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=fees/financeFeeCategories
+2013/11/11 09:35:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "defaultff".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('defaultff')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=defaultff
+2013/11/11 09:37:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "defaultff".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('defaultff')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=defaultff
+2013/11/11 10:51:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "default33".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('default33')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=default33
+2013/11/11 10:52:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "defaultff".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('defaultff')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=defaultff
+2013/11/11 10:52:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "defaultff".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('defaultff')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=defaultff
+2013/11/11 10:53:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "defaultff".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('defaultff')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=defaultff
+2013/11/11 11:49:28 [error] [exception.CException] exception 'CException' with message 'Alias "teachersportal.TeachersportalModule" is invalid. Make sure it points to an existing PHP file.' in C:\wamp\www\oscenew\core\YiiBase.php:321
+Stack trace:
+#0 C:\wamp\www\oscenew\core\YiiBase.php(201): YiiBase::import('teachersportal....', true)
+#1 C:\wamp\www\oscenew\core\base\CModule.php(266): YiiBase::createComponent('teachersportal....', 'teachersportal', NULL, Array)
+#2 C:\wamp\www\oscenew\core\web\CWebApplication.php(332): CModule->getModule('teachersportal')
+#3 C:\wamp\www\oscenew\core\web\CWebApplication.php(271): CWebApplication->createController('teachersportal/...')
+#4 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('teachersportal/...')
+#5 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#6 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#7 {main} REQUEST_URI=/oscenew/index.php?r=teachersportal/default/eventlist
+2013/11/11 11:54:49 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/11 11:54:50 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/11 11:57:37 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/11 11:57:37 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/11 11:57:41 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/11 11:57:42 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/11 11:57:43 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/11 11:57:43 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/11 11:57:44 [error] [exception.CException] exception 'CException' with message 'Alias "teachersportal.TeachersportalModule" is invalid. Make sure it points to an existing PHP file.' in C:\wamp\www\oscenew\core\YiiBase.php:321
+Stack trace:
+#0 C:\wamp\www\oscenew\core\YiiBase.php(201): YiiBase::import('teachersportal....', true)
+#1 C:\wamp\www\oscenew\core\base\CModule.php(266): YiiBase::createComponent('teachersportal....', 'teachersportal', NULL, Array)
+#2 C:\wamp\www\oscenew\core\web\CWebApplication.php(332): CModule->getModule('teachersportal')
+#3 C:\wamp\www\oscenew\core\web\CWebApplication.php(271): CWebApplication->createController('teachersportal/...')
+#4 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('teachersportal/...')
+#5 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#6 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#7 {main} REQUEST_URI=/oscenew/index.php?r=teachersportal/default/eventlist
+2013/11/11 11:57:47 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/11 11:57:47 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/11 11:58:14 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/11 11:58:14 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/12 06:43:23 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/12 06:43:32 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/12 06:43:34 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/12 06:43:35 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('cal')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=cal
+2013/11/12 06:43:39 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/12 06:43:41 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/12 06:45:07 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/12 06:45:07 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/12 06:45:12 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('students')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=students
+2013/11/12 06:45:14 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/12 06:45:17 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/12 06:47:17 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('students')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=students
+2013/11/12 06:47:20 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/12 06:47:46 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('configurations')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=configurations
+2013/11/12 06:47:48 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/12 06:47:49 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('students')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=students
+2013/11/12 06:47:50 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/12 06:47:58 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/12 06:57:42 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('portal')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=portal
+2013/11/12 06:58:35 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/12 06:58:35 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/12 07:03:06 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/12 07:12:33 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/12 07:50:17 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php
+2013/11/12 07:50:23 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/12 10:03:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/lgjgjgj".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('user/lgjgjgj')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=user/lgjgjgj
+2013/11/12 10:06:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/lgjgjgj".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('user/lgjgjgj')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=user/lgjgjgj
+2013/11/12 10:06:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/lgjgjgj".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('user/lgjgjgj')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=user/lgjgjgj
+2013/11/12 10:06:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/lgjgjgj".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('user/lgjgjgj')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=user/lgjgjgj
+2013/11/12 10:07:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/lgjgjgj".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('user/lgjgjgj')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=user/lgjgjgj
+2013/11/12 10:08:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/lgjgjgj".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('user/lgjgjgj')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=user/lgjgjgj
+2013/11/12 10:09:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/lgjgjgj".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('user/lgjgjgj')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=user/lgjgjgj
+2013/11/12 10:09:23 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/logimbmbmbmn".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('user/logimbmbmb...')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=user/logimbmbmbmn
+2013/11/12 10:09:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "mailboxgg".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('mailboxgg')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=mailboxgg
+2013/11/12 10:09:50 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/12 10:09:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "mailboxgg".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('mailboxgg')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=mailboxgg
+2013/11/12 10:10:11 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('students')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=students
+2013/11/12 10:10:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/loginjjljl".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('user/loginjjljl')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=user/loginjjljl
+2013/11/12 10:10:56 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('students')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=students
+2013/11/12 10:16:02 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('message/index')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=message/index
+2013/11/12 10:16:06 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('message/index')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=message/index
+2013/11/12 10:16:27 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('message/index')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=message/index
+2013/11/12 10:16:37 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('message/index')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=message/index
+2013/11/12 10:17:15 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('message/index')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=message/index
+2013/11/12 10:17:17 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('message/index')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=message/index
+2013/11/12 10:18:19 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('message/index')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=message/index
+2013/11/12 10:18:34 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('message/index')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=message/index
+2013/11/12 10:18:59 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('message/index')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=message/index
+2013/11/12 10:19:06 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('students')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=students
+2013/11/12 10:19:22 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('students')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=students
+2013/11/12 10:19:24 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('students')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=students
+2013/11/12 10:19:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "mailboxgg".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('mailboxgg')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=mailboxgg
+2013/11/12 10:19:27 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('DisplaySavedIma...')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('Configurations/...')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=Configurations/DisplaySavedImage&id=21
+2013/11/12 10:41:29 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('message/index')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=message/index
+2013/11/12 10:41:41 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('message/index')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=message/index
+2013/11/12 10:41:43 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('message/index')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=message/index
+2013/11/12 10:41:44 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('message/index')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=message/index
+2013/11/12 10:41:45 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('message/index')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/index.php?r=message/index
+2013/11/12 10:42:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "mailboxff".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('mailboxff')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=mailboxff
+2013/11/12 10:43:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "mailboxff".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('mailboxff')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=mailboxff
+2013/11/12 10:43:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/loginhh".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('user/loginhh')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=user/loginhh
+2013/11/12 10:44:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/loginhh".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('user/loginhh')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=user/loginhh
+2013/11/12 10:44:35 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/
+2013/11/12 10:44:43 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/
+2013/11/12 10:44:53 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in C:\wamp\www\oscenew\protected\modules\rights\components\RController.php:62
+Stack trace:
+#0 C:\wamp\www\oscenew\protected\modules\rights\components\RightsFilter.php(57): RController->accessDenied()
+#1 C:\wamp\www\oscenew\core\web\filters\CFilter.php(39): RightsFilter->preFilter(Object(CFilterChain))
+#2 C:\wamp\www\oscenew\protected\modules\rights\components\RController.php(36): CFilter->filter(Object(CFilterChain))
+#3 C:\wamp\www\oscenew\core\web\filters\CInlineFilter.php(59): RController->filterRights(Object(CFilterChain))
+#4 C:\wamp\www\oscenew\core\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#5 C:\wamp\www\oscenew\core\web\CController.php(283): CFilterChain->run()
+#6 C:\wamp\www\oscenew\core\web\CController.php(257): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('')
+#8 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('')
+#9 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#10 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#11 {main} REQUEST_URI=/oscenew/
+2013/11/12 12:53:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/logingjjfj".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('user/logingjjfj')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=user/logingjjfj
+2013/11/12 12:53:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/logingjgj".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('user/logingjgj')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=user/logingjgj
+2013/11/12 12:53:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "user/loginb".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('user/loginb')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=user/loginb
+2013/11/22 06:46:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "coures/batches/settings".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('coures/batches/...')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=coures/batches/settings&id=1
+2013/11/22 06:46:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "coures/weekdays/timetable".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('coures/weekdays...')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=coures/weekdays/timetable&id=1
+2013/11/22 06:47:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "courses/weays/timetable".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('courses/weays/t...')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=courses/weays/timetable&id=1
+2013/11/22 06:48:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "timable".' in C:\wamp\www\oscenew\core\web\CController.php:477
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CController.php(262): CController->missingAction('timable')
+#1 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('timable')
+#2 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('courses/weekday...')
+#3 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#4 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#5 {main} REQUEST_URI=/oscenew/index.php?r=courses/weekdays/timable&id=1
+2013/11/22 06:58:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "students/stents/manage".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('students/stents...')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=students/stents/manage
+2013/11/22 06:58:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "students/stents/manage".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('students/stents...')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=students/stents/manage
+2013/11/22 06:58:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "students/stents/manage".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('students/stents...')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=students/stents/manage
+2013/11/22 06:58:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "students/stents/manage".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('students/stents...')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=students/stents/manage
+2013/11/22 06:58:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "students/stents/manage".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('students/stents...')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=students/stents/manage
+2013/11/22 06:58:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "students/stents/manage".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('students/stents...')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=students/stents/manage
+2013/11/22 06:58:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "mnage".' in C:\wamp\www\oscenew\core\web\CController.php:477
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CController.php(262): CController->missingAction('mnage')
+#1 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('mnage')
+#2 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('students/studen...')
+#3 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#4 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#5 {main} REQUEST_URI=/oscenew/index.php?r=students/students/mnage
+2013/11/22 07:00:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "examinationdd".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('examinationdd')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=examinationdd
+2013/11/22 07:01:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "examinationff".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('examinationff')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=examinationff
+2013/11/22 07:01:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "examinationff".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('examinationff')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=examinationff
+2013/11/22 07:01:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "examinationff".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('examinationff')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=examinationff
+2013/11/22 07:01:50 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "examinationff".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('examinationff')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=examinationff
+2013/11/22 07:01:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "attendancegg".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('attendancegg')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=attendancegg
+2013/11/22 07:04:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "attendancegg".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('attendancegg')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=attendancegg
+2013/11/22 07:04:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "attendancegg".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('attendancegg')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=attendancegg
+2013/11/22 07:06:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "attendancegg".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('attendancegg')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=attendancegg
+2013/11/22 07:06:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "attendancegg".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('attendancegg')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=attendancegg
+2013/11/22 07:06:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "attendanceh".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('attendanceh')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=attendanceh
+2013/11/22 07:07:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "attendanceff".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('attendanceff')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=attendanceff
+2013/11/22 07:08:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "examinationll".' in C:\wamp\www\oscenew\core\web\CWebApplication.php:281
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('examinationll')
+#1 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#2 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#3 {main} REQUEST_URI=/oscenew/index.php?r=examinationll
+2013/11/22 07:08:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "managgge".' in C:\wamp\www\oscenew\core\web\CController.php:477
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CController.php(262): CController->missingAction('managgge')
+#1 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('managgge')
+#2 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('students/studen...')
+#3 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#4 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#5 {main} REQUEST_URI=/oscenew/index.php?r=students/students/managgge
+2013/11/22 07:08:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "manhhhage".' in C:\wamp\www\oscenew\core\web\CController.php:477
+Stack trace:
+#0 C:\wamp\www\oscenew\core\web\CController.php(262): CController->missingAction('manhhhage')
+#1 C:\wamp\www\oscenew\core\web\CWebApplication.php(277): CController->run('manhhhage')
+#2 C:\wamp\www\oscenew\core\web\CWebApplication.php(136): CWebApplication->runController('students/studen...')
+#3 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
+#4 C:\wamp\www\oscenew\index.php(51): CApplication->run()
+#5 {main} REQUEST_URI=/oscenew/index.php?r=students/students/manhhhage

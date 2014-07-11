@@ -1,0 +1,555 @@
+/* 
+    Document   : mailbox
+    Created on : Apr 12, 2012, 10:16:09 AM
+    Author     : derek
+    Description:
+        Mailbox styles.
+*/
+/*
+#content{
+	
+	overflow-x: hidden;
+}*/
+.mail_head{
+	height:46px;
+	font-size:18px;
+	font-weight:bold;
+	border-bottom:1px #d9d9d9 solid;
+	color:#333;
+	padding:15px 0 0 15px;
+	background:#f4f4f4 url(../../../images/portal/m-h-bg.png) repeat-x bottom;
+}
+.mail_head span{font-size:12px; color:#666; display:block; font-weight:normal;}
+.mailbox-items-tbl{
+	display: inline-table;
+	margin-top:5px;
+	margin-bottom:5px;
+	width:100% !important;
+}
+#mailbox-items{
+	width:auto;
+}
+#mailbox-list{
+	 padding:0px;
+	 margin-top:0px;
+	 table-layout: auto;
+	 clear:both;
+}
+.mailbox-message-list{
+	margin-top:20px;
+}
+.mailbox-compose{
+	margin-top:20px;
+}
+.mailbox-pager{
+	float:right;
+	white-space: nowrap;
+}
+.mailbox-item td{
+	border-bottom:1px solid #ccc;
+	padding:0px;
+	width:70%;
+	overflow:hidden;
+	white-space: nowrap;
+}
+tr.mailbox-item:first-child td{
+	border-top:1px solid #ddd;
+}
+tr.mailbox-item > td > div{
+	padding:12px 4px 12px 4px;
+	display: block;
+	width:auto;
+	height: 1em;
+}
+.mailbox-subject{
+	min-width: 100px;
+	max-width: 100%;
+	width:auto;
+	height:auto;
+}
+.mailbox-item-even{
+	background-color: #f9f9f9;
+}
+.mailbox-item-odd{
+	background-color: #efefef;
+}
+.mailbox-item-hover{
+	background-image: url('../img/grippy.png');
+	background-position: 10px , 5px;
+	background-repeat: no-repeat;
+	cursor:grab;
+	cursor: url(../img/openhand.cur), move;
+}
+.mailbox-drag{
+	width:12px;
+}
+.mailbox-dragger{
+	cursor:grabber;
+	cursor: url(../img/closedhand.cur), move;
+	position:relative;
+	opacity: .8;
+}
+#mailbox-trash-tinydesc{
+	font-size: .7em;
+}
+.mailbox-subject-brief{
+	cursor:pointer;
+	vertical-align: top;
+}
+.mailbox-sorter{
+	float:right;
+}
+.mailbox-sorter ul{
+	margin: 0px;
+	list-style:none;
+}
+.mailbox-sorter li a{
+	padding:6px 20px !important;
+	/*margin-bottom: 15px;
+	background-color: #f9f9f9;
+	font-size: 1.2em;*/
+	text-align:center;
+	margin-right:5px;
+	margin-top:10px;
+	margin-left:5px;
+	float:left;
+	font-weight:bold;
+	cursor:pointer;
+	text-align: left;
+	
+}
+.mailbox-received{
+	width:250px !important;
+	white-space: nowrap;
+}
+.mailbox-right-col{
+	width:150px;
+}
+
+.msg-new .mailbox-from, 
+.msg-new .mailbox-subject .mailbox-subject-text,
+.msg-new .mailbox-received{
+	font-weight:bold;
+}
+.msg-new .mailbox-subject a{
+	color:#F60;
+}
+.msg-new .mailbox-from{
+	background:transparent url('../img/email.png') no-repeat 0 70%;
+}
+.msg-new .mailbox-from a{
+	color:#333;
+}
+.msg-deliver .mailbox-from{
+	background:transparent url('../img/email_deliver.png') no-repeat 0 70%;
+}
+.msg-read .mailbox-from{
+	background:transparent url('../img/email_open.png') no-repeat 0 70%;
+}
+.msg-read .mailbox-from a{
+	color:#333;
+}
+.msg-read .mailbox-subject a{
+	color:#333;
+}
+/* If recipientRead is disabled then use the below default class for sent message list */
+.msg-sent .mailbox-from{
+	background:transparent url('../img/arrow_right.png') no-repeat 0 70%;
+}
+.msg-read .mailbox-from .mailbox-subject{
+	font-weight: normal;
+	font-style: italic;
+}
+div.mailbox-replied{
+	width:20px;
+	float:left;
+	background: url('../img/arrow_back.png') no-repeat center center;
+}
+.mailbox-msg-brief{
+	color:#666;
+}
+div.mailbox-from{
+	padding-left: 20px !important;
+}
+.mailbox-from{
+	width:120px;
+}
+.mailbox-input{
+	-webkit-border-radius: 2px !important;
+	-moz-border-radius: 2px !important;
+	border-radius: 2px !important;
+	border:1px #c2cfd8 solid;
+	padding:5px 3px !important;
+	background:#fff;
+	-moz-box-shadow:inset -1px 1px 2px #d5dbe0;
+  	-webkit-box-shadow:inset -1px 1px 2px #d5dbe0;
+  	box-shadow:inset -1px 1px 2px #d5dbe0;
+	width:300px
+}
+
+.mailbox-deleted-user{
+	color:#c00;
+	font-weight: normal;
+	font-family: "Courier",monospace;
+}
+.mailbox-menu{
+	padding:0px 0 0 6px;
+	margin:0px 0px 0px 0px;
+	height:40px;
+	background:#f8f8f8;
+	border-bottom:1px #d9d9d9 solid;
+}
+.mailbox-menu-newmsg{
+	float:right;
+}
+.mailbox-menu-newgrpmsg{
+	float:center;
+}
+.mailbox-menu-item{
+	
+	/*margin-bottom: 15px;
+	background-color: #f9f9f9;
+	font-size: 1.2em;*/
+	text-align:center;
+	margin-right:5px;
+	margin-top:0px;
+	margin-left:5px;
+	float:left;
+	font-weight:bold;
+	cursor:pointer;
+	text-align: left;
+	border-right:1px #cbcbcb solid !important;
+	background:none !important;
+	
+}
+.mailbox-menu-item a{
+	padding:13px 20px 13px 25px !important;
+	display:block;
+}
+.mailbox-menu-item a:hover{
+	padding:13px 20px 13px 25px !important;
+	font-size:12px;
+	color:#F30 !important;
+}
+.ui-state-hover{font-size:12px;}
+#mailbox-inbox{
+	background:url(../../../images/portal/inbox_ico.png) no-repeat left !important;
+}
+#mailbox-sent{
+	background:url(../../../images/portal/sent_ico.png) no-repeat left !important;
+}
+#mailbox-trash{
+	background:url(../../../images/portal/trash_ico.png) no-repeat left !important;
+}
+.mailbox-menu-item:last-child{
+	margin-right:0px;
+}
+.mailbox-menu-hover{
+	background-color:#C9E0ED !important;
+}
+.mailbox-menu-current{
+	color:#c00;
+	font-weight:bold;
+}
+.mailbox-menu-new{
+	font-weight:bold;
+	margin: 2px;
+	padding:5px;
+}
+
+.mailbox-trash-active{
+	border: 3px solid #d00 !important;
+}
+.mailbox-trash-hover{
+	background-color:#ddb1b1;
+	border: 3px solid #c99;
+}
+.mailbox-menu-folders{
+	float:left;
+}
+
+.mailbox-message-header{
+	background-color:#FFF;
+	padding:8px;
+	display:block;
+	color:#39C;
+	border-bottom:1px #CCCCCC dotted;
+}
+.mailbox-message-subject{
+	font-size: 1.8em;
+	padding:0px;
+	color:#526067;
+}
+.message-sender{
+	float:left;
+	font-weight:bold;
+}
+.message-date{
+	float:right;
+}
+.mailbox-message-text{
+	padding:15px;
+	font-size:1.1em;
+	text-wrap:normal;
+	word-wrap:break-word;
+	word-break:break-all;
+	color:#557782;
+}
+.mailbox-message-reply textarea,
+.mailbox-compose textarea{
+	width:100%;
+	padding:.8em;
+	float:left;
+}
+.mailbox-textarea-wrap{
+	margin-right:1.8em;
+}
+.mailbox-message-reply{
+	margin-bottom: 10px;
+}
+.mailbox-message-reply .mailbox-textarea-wrap{
+	margin-bottom: 10px;
+}
+.mailbox-message-reply label{
+	padding-top: 6px;
+	font-weight:bold;
+}
+.mailbox-input-row{
+	margin-bottom: 12px;
+}
+
+.mailbox-checkall-buttons{
+	float:left;
+	width:180px;
+	margin-left:10px;
+}
+.mailbox-empty{
+	padding:20px;
+	background-color: #eee;
+	text-align: center;
+	font-size:1.4em;
+}
+div.mailbox-loading  {
+    opacity: .8;
+    z-index: 999;
+}
+.mailbox-summary{
+	float:left; padding-left:30px;
+	position:absolute;
+	top:75px;
+	right:30px;
+}
+.mailbox-ellipsis {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+	-ms-text-overflow: ellipsis;
+	-moz-binding: url("../xml/ellipsis.xml#ellipsis");
+}
+.flash-message .flash-error
+{
+	color:#F00;
+}
+
+.flash-msg-wrapper{
+	position: relative;
+	
+}
+.flash-success{
+	position:absolute;
+	top:25px;
+	right:120px;
+	width:300px;
+	opacity: .9;
+	color:#F00;
+} 
+.flash-notice{
+	position:absolute;
+	top:20px;
+	right:30%;
+	width:300px;
+	opacity: .9;
+	color:#F00;
+} 
+.mailbox-growls{
+	margin-right:30px;
+}
+/* JUI Combobox/Autocomplete Widget */
+.ui-combobox {
+	position: relative;
+	display: inline-block;
+}
+.ui-combobox-btn {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin-left: -1px;
+	padding: 0;
+	/* adjust styles for IE 6/7 */
+	*height: 1.7em;
+	*top: 0.1em;
+}
+.ui-autocomplete-input {
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	border:1px #c2cfd8 solid;
+	padding:5px 3px !important;
+	background:#fff ;
+	-moz-box-shadow:inset -1px 1px 2px #d5dbe0;
+  	-webkit-box-shadow:inset -1px 1px 2px #d5dbe0;
+  	box-shadow:inset -1px 1px 2px #d5dbe0;
+	width:285px;
+}
+.ui-autocomplete{
+	padding:0px;
+	margin:0px;
+	list-style:none;
+	background:#FFF;
+	-moz-box-shadow:0px 0px 6px #d6d6d6;
+  	-webkit-box-shadow: 0px 0px 6px #d6d6d6;
+  	box-shadow: 0px 0px 6px #d6d6d6;
+	border:1px solid #cccccc;
+	width:200px;
+}
+.ui-menu .ui-menu-item a{
+	padding:8px 10px ;
+	border-bottom: 1px solid #cccccc;
+	border-top: 1px solid #fff;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	display:block;
+	margin:0px 0 0 0px;
+	color:#333;
+	text-decoration:none;
+}
+.ui-menu .ui-menu-item a.ui-state-hover, .ui-menu .ui-menu-item a.ui-state-active {
+    font-weight: normal;
+	 background:#4e4e4e url(../../../images/autodrop-bg.png) repeat-x top !important;
+	 -webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	color:#FFF;
+	display:block;
+	margin:-1px 0 0 0px;
+	padding:8px 10px ; !important;
+	
+}
+.mailbox-menu .ui-widget{
+	border:none;
+	padding:0px;
+}
+.mailbox-item-outer{
+	position:relative;
+	height:100%;
+}
+.mailbox-item-inner{
+	width: 100% !important;
+	position:absolute;
+	overflow:hidden;
+}
+.ui-corner-all{
+	-moz-border-radius:3px;
+-webkit-border-radius: 3px;
+border-radius: 3px;
+
+}
+.ui-widget-content {
+color: #222;
+}
+.ui-button-text-icon-primary .ui-button-text, .ui-button-text-icons .ui-button-text {
+padding: 0px;
+}
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited {
+color: #000;
+text-decoration: none;
+}
+
+/* not used 
+.mailbox-item-background{
+	position: absolute;
+	top:0;
+	left:0;
+}
+.mailbox-item-content{
+	position: absolute;
+	top:0;
+	left:0;
+} */
+table {
+border-collapse: separate;
+border-spacing: 0px;
+border-color: gray;
+}
+.mailbox-trash-active{
+	border-right:1px #CCCCCC solid!important ;
+	border-left:0px!important ;
+	border-bottom:0px!important ;
+	border-top:0px!important ;
+	padding:0px;
+}
+.mailbox-trash-active a{
+	color:#F00 !important;
+	background:url(../../../images/portal/trash_ico_drag.png) no-repeat left !important;
+	
+}
+.m-toplink{
+	width:300px;
+	float:left;
+}
+#mform{
+	padding-top:10px;
+	padding-right:0px;
+}
+
+#mform button{
+	padding:5px 10px !important;
+	margin:0px;
+	background:url(../../../images/fbut-bg.png) repeat-x  !important;
+	height:30px;
+	-webkit-border-radius: 4px !important;
+	-moz-border-radius: 4px !important;
+	border-radius: 4px !important;
+	border:1px #b58530 solid !important;
+	color:#633c15;
+	font-size:12px;
+	cursor:pointer;
+	text-shadow: 0.1em 0.1em #fdbd59;
+	font-weight:bold;
+	font-family:Arial, Helvetica, sans-serif;
+}
+#mform button:hover{background:url(../images/fbut-bg-h.png) repeat-x;}
+
+
+.cke_skin_kama .cke_wrapper {
+    background: none repeat scroll 0 0 #FAFAFA;
+    border-radius: 5px 5px 5px 5px;
+    display: block;
+    padding: 5px;
+	border:1px #c2cfd8 solid;
+	width:104% !important;
+}
+.msgfeed{
+	padding:1px;
+	margin:0px 0px 0px 0px;
+	-webkit-border-radius: 4px ;
+	-moz-border-radius: 4px ;
+	border-radius: 4px;
+	border:1px #CCCCCC solid;
+	background:url(../../../images/portal/msg-bg.png) repeat-x bottom;
+}
+
+
+.chkbox{
+	margin:15px 0px 0px 13px;
+}
+
+.btn-group{
+	font-weight:bold;
+}
+
+.btm-mailbox-btns{
+	margin-left:30px;
+}

@@ -1,0 +1,22 @@
+/* reset */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, code, a, abbr, acronym, address, big, small, cite, ins, del, em, img, strike, strong, sub, sup, dl, dt, dd, ol, ul, li, form, fieldset, legend, label, input, select, textarea, table, caption, thead, tbody, tfoot, tr, th, td { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+fieldset, a img { border: none; }
+:focus { outline: none; }
+body { background: #7fc2d8; color: #666; font: normal normal 100%/1.125em Tahoma, Arial, Helvetica, sans-serif; }
+input, select, textarea { color: #333; font: normal normal 1em Arial, Helvetica, sans-serif; }
+
+/* common */
+#container { font-size: .75em; margin: 0 auto; width: 1000px; }
+a:link, a:visited { color: #00744d; }
+a:hover { text-decoration: none; }
+
+/* container */
+#container { background: url(../images/bg-offline-banner.jpg) no-repeat; font-size: .75em; height: 420px; margin: 60px auto 0; padding-left: 250px; padding-top: 100px; width: 730px; }
+#container .content { position: relative; }
+#container .emphasize { background: url(../images/ico-star.gif) no-repeat; color: #00457e; font-size: 1.6em; padding-left: 30px; padding-top: 4px; position: absolute; top: 0px; left: 0; }
+#container h1 a { background: url(../images/logo.gif) no-repeat; display: block; height: 53px; position: absolute; top: 65px; left: 50px; text-indent: -1984em; width: 289px; }
+#container h2 { display: none; }
+#container .info { border-left: #759ab9 solid 6px; font-size: .9em; top: 160px; padding-left: 10px; position: absolute; left: 187px; width: 330px; }
+#container .info h3 { color: #96d8e8; font-size: 1.1em; }
+#container .info p { line-height: normal; }

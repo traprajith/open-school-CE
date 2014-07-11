@@ -1,0 +1,22 @@
+/* section */
+.main-content .form { margin-top: 15px; }
+.main-content .form h3 { color: #fff; font-size: 1em; padding: 7px 20px; }/*background: url(../images/bg-section-bot.gif) no-repeat left bottom; background: #fff url(../images/bg-title-1.png) repeat-x;*/
+.main-content .form .content {  padding-bottom: 15px;
+
+ }
+.main-content .form .content fieldset {background: #fff url(../images/ttbg.png) repeat-x; border: #ced9df solid 1px; padding: 30px 20px 5px; -webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;}
+.main-content .form .content fieldset .input { float: left; padding: 5px 0; width: 550px; }
+.main-content .form .content fieldset .input label { float: left; width: 140px; text-align: right; padding-right: 10px; }
+.main-content .form .content fieldset .input .note { padding-left: 150px; }
+.main-content .form .content fieldset .input .text1, .main-content .form .content fieldset .input .text2, .main-content .form .content fieldset .input .text3 { border: #d9d9d9 solid 1px; padding: 2px; width: 200px; }
+.main-content .form .content fieldset .input .text2 { width: 300px; }
+.main-content .form .content fieldset .input .text3 { width: 400px; }
+.main-content .form .content fieldset .input textarea { overflow: auto; }
+.main-content .form .content fieldset .output { padding-left: 150px; }
+.main-content .form .content ol,
+.main-content .form .content ul {padding-left: 15px;}
+.main-content .form .content div.error p {color: red; font-weight: bold;}
+.main-content .form .content div.error ul {color: red; padding-left: 150px;}
+.main-content .form .content label.error {color: red;}
