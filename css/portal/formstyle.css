@@ -1,0 +1,108 @@
+label {
+    display: inline;
+}
+.regular-checkbox {
+    display: none;
+}
+.regular-checkbox + label {
+    background-color: #fafafa;
+    border: 1px solid #cacece;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+    padding: 6px;
+    border-radius: 3px;
+    display: inline-block;
+    position: relative;
+}
+.regular-checkbox + label:active, .regular-checkbox:checked + label:active {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+.regular-checkbox:checked + label {
+    background-color: #e9ecee;
+    border: 1px solid #adb8c0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+    color: #99a1a7;
+}
+.regular-checkbox:checked + label:after {
+    content: '\2714';
+    font-size: 12px;
+    position: absolute;
+    top: -4px;
+    left: 2px;
+    color: #99a1a7;
+	font-family:Arial, Helvetica, sans-serif
+}
+
+.form_wrapper{
+	padding:20px;
+	margin:0px;
+	width:816px;
+	color:#000;
+	font-size:13px;
+	position:relative;
+}
+.form_wrapper input[type="text"], input[type="password"], textArea, select{
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	border:1px #c2cfd8 solid;
+	padding:6px 3px;
+	background:#fff;
+	-moz-box-shadow:inset 0px 0px 8px #e7e5e5;
+  	-webkit-box-shadow:inset 0px 0px 8px #e7e5e5;
+  	box-shadow:inset -1px 1px 2px #d5dbe0;
+}
+.formbut{
+	padding:0px 10px;
+	margin:0px;
+	background:url(../../images/portal/fbut-bg.png) repeat-x;
+	height:30px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	border:1px #b58530 solid;
+	color:#633c15;
+	font-size:12px;
+	cursor:pointer;
+	text-shadow: 0.1em 0.1em #fdbd59;
+	font-weight:bold;
+	font-family:Arial, Helvetica, sans-serif;
+}
+.formbut:hover{background:url(../../images/portal/fbut-bg-h.png) repeat-x;}
+
+.sub_h{
+	font-size:18px;
+	font-weight:bold
+}
+.small_h{color:#666;}
+
+/*timetable*/
+.portal_timetable{
+	padding:0px;
+	margin:0px;
+	line-height:normal;
+	/*-moz-box-shadow:0px 0px 3px #e2e3e3;
+  -webkit-box-shadow:0px 0px 3px #e2e3e3;
+  box-shadow:0px 0px 15px #ebebeb;*/
+}
+.portal_timetable table{
+	 border-left:1px #aec3d3 solid;
+	  border-top:1px #aec3d3 solid;
+}
+.portal_timetable .td{
+	 background-color:#f8fafb;
+	 border-right:1px #aec3d3 solid;
+	  border-bottom:1px #aec3d3 solid;
+	 padding:12px 0px;
+	 font-size:10px;
+	 font-weight:bold;
+	 text-align:center;
+}
+.blank{background-color:#aec3d3}
+.name{padding:10px 10px;}
+.td-blank{background-color:#aec3d3; width:5px;}
+.tt-subject{padding:10px 0px; min-height:50px;}
+.subject{color:#393; font-size:12px; padding:10px 0px 0px 0px; font-weight:bold; text-align:center;}
+.employee{font-size:11px; color:#666;}
+.portal_timetable a.delete{position:absolute; width:13px; height:12px; background:url(../images/tb-del.png) no-repeat; right:5px; top:5px;}
+.loader{ background-color:#aec3d3; width:100px;}
+

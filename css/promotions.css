@@ -1,0 +1,76 @@
+.promo_bx
+{
+	
+	padding:0px;
+	margin:0px 0px 0px 0px;
+	width:960px;
+	border:1px #eede9c solid;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	background:#fffcd9 url(../images/promobg.png ) no-repeat;
+	position:relative;
+	min-height:602px;
+}
+a img {outline : none;}
+img {border : 0;}
+a {outline : none;}
+
+.promo_txtbx
+{
+	position:absolute;
+	bottom:95px;
+	left:42px;
+	width:280px;
+}
+.promo_txtbx h1
+{
+	font-family: 'Open Sans', sans-serif;
+	font-size:29px;
+	font-weight:700;
+	color:#393532;
+	margin:0px;
+	padding:0px;
+	line-height:38px;
+	
+}
+.promo_txtbx p
+{
+	font-family: 'Open Sans', sans-serif;
+	font-size:15px;
+	font-weight:400;
+	color:#414549;
+	margin:10px 0px;
+	padding:0px;
+	line-height:20px;
+	
+}
+.promo_txtbx a
+{
+	font-family: 'Open Sans', sans-serif;
+	font-size:12px;
+	font-weight:400;
+	color:#e3472f;
+	margin:10px 0px;
+	padding:0px;
+	line-height:20px;
+	text-decoration:none;
+}
+.o-s_logo img
+{
+	position:absolute;
+	bottom:8px;
+	right:5px;
+	display:block;
+}
+.fourth_ad
+{
+	margin:0px;
+	padding:20px 0px 0px 0px;
+}
+.fourth_ad a
+{
+	display:block;
+	margin:0px;
+	padding:0px;
+}

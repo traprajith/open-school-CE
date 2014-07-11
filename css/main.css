@@ -1,0 +1,352 @@
+body
+{
+	margin: 0;
+	padding: 0;
+	color: #555;
+	font: normal 10pt Arial,Helvetica,sans-serif;
+	background: #EFEFEF;
+}
+
+#page
+{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	background: white;
+	border: 1px solid #C9E0ED;
+}
+
+#header
+{
+	margin: 0;
+	padding: 0;
+	border-top: 3px solid #C9E0ED;
+}
+
+#content
+{
+    padding: 20px;
+}
+
+#sidebar
+{
+	padding: 20px 20px 20px 0;
+}
+
+#footer
+{
+	padding: 10px;
+	margin: 10px 20px;
+	font-size: 0.8em;
+	text-align: center;
+	border-top: 1px solid #C9E0ED;
+}
+
+#logo
+{
+	padding: 10px 20px;
+	font-size: 200%;
+}
+
+#mainmenu
+{
+	background:white url(bg.gif) repeat-x left top;
+}
+
+#mainmenu ul
+{
+	padding:6px 20px 5px 20px;
+	margin:0px;
+}
+
+#mainmenu ul li
+{
+	display: inline;
+}
+
+#mainmenu ul li a
+{
+	color:#ffffff;
+	background-color:transparent;
+	font-size:12px;
+	font-weight:bold;
+	text-decoration:none;
+	padding:5px 8px;
+}
+
+#mainmenu ul li a:hover, #mainmenu ul li.active a
+{
+	color: #6399cd;
+	background-color:#EFF4FA;
+	text-decoration:none;
+}
+
+div.flash-error, div.flash-notice, div.flash-success
+{
+	padding:.8em;
+	margin-bottom:1em;
+	border:2px solid #ddd;
+}
+
+div.flash-error
+{
+	background:#FBE3E4;
+	color:#8a1f11;
+	border-color:#FBC2C4;
+}
+
+div.flash-notice
+{
+	background:#FFF6BF;
+	color:#514721;
+	border-color:#FFD324;
+}
+
+div.flash-success
+{
+	background:#E6EFC2;
+	color:#264409;
+	border-color:#C6D880;
+}
+
+div.flash-error a
+{
+	color:#8a1f11;
+}
+
+div.flash-notice a
+{
+	color:#514721;
+}
+
+div.flash-success a
+{
+	color:#264409;
+}
+
+div.form .rememberMe label
+{
+	display: inline;
+}
+
+div.view
+{
+	padding: 10px;
+	margin: 10px 0;
+	border: 1px solid #C9E0ED;
+}
+
+div.breadcrumbs
+{
+	font-size: 0.9em;
+	padding: 5px 20px;
+}
+
+div.breadcrumbs span
+{
+	font-weight: bold;
+}
+
+div.search-form
+{
+	padding: 10px;
+	margin: 10px 0;
+	background: #eee;
+}
+
+.portlet
+{
+
+}
+
+.portlet-decoration
+{
+	padding: 3px 8px;
+	background: #B7D6E7;
+	border-left: 5px solid #6FACCF;
+}
+
+.portlet-title
+{
+	font-size: 12px;
+	font-weight: bold;
+	padding: 0;
+	margin: 0;
+	color: #298dcd;
+}
+
+.portlet-content
+{
+	font-size:0.9em;
+	margin: 0 0 15px 0;
+	padding: 5px 8px;
+	background:#EFFDFF;
+}
+
+.portlet-content ul
+{
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+	margin: 0;
+	padding: 0;
+}
+
+.portlet-content li
+{
+	padding: 2px 0 4px 0px;
+}
+
+.operations
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.operations li
+{
+	padding-bottom: 2px;
+}
+
+.operations li a
+{
+	font: bold 12px Arial;
+	color: #0066A4;
+	display: block;
+	padding: 2px 0 2px 8px;
+	line-height: 15px;
+	text-decoration: none;
+}
+
+.operations li a:visited
+{
+	color: #0066A4;
+}
+
+.operations li a:hover
+{
+	background: #80CFFF;
+}
+
+
+<!--//The Drop/Process Manager-->
+.dropp_left
+{
+	padding:10px 30px;
+	margin:0px;
+	width:260px;
+}
+.droppbox
+{
+	margin:0px 0px 10px 0px;
+	padding:10px 10px ;
+	width:180px;
+	height:15px;
+	background: #fff url(../images/droppbox_bg.png) repeat-x bottom;
+	border:#d6d6d6 solid 1px;
+	color:#3880a4;
+	text-shadow: 0.1em 0.1em #fff;
+	
+	
+}
+.droppbox ul
+{
+	margin:0px;
+	padding:0px;
+	list-style:none;
+}
+.droppbox li
+{
+	margin:0px;
+	padding:0 5px 0 8px;
+	float:left;
+	display:block;
+}
+	
+.dbactive
+{
+	background: #51aad2 url(../images/droppbox_bg_bl.png) repeat-x bottom;
+	color:#FFF;
+	border:#23536a solid 1px;
+	text-shadow: 0.1em 0.1em #4090b5;
+	font-weight:bold;
+}
+
+.dropp_right
+{
+	padding:0px;
+	margin:0px;
+	background:url(../images/school_m_righrbg.png) repeat;
+}
+.dropp_mid
+{
+	margin:0 35px;
+	padding:10px;
+	width:801px;
+}
+.dropp_mid_top
+{
+	margin:0px;
+	padding:0px;
+	height:400px;
+}
+.dropp_mid_bot
+{
+	margin:0px;
+	padding:0px;
+	border-top:#dedede solid 1px;
+	
+}
+.drop_main_bx
+{
+	margin:0px;
+	padding:0px;
+}
+.drop_main_cntntbx
+{
+	margin:0px;
+	padding:0px 4px;
+	float:left;
+}
+.drop_main_cntntbxtop
+{
+	margin:0px;
+	padding:0px;
+}
+.drop_main_cntntbxtop ul
+{
+	margin:0px;
+	padding:0px;
+	list-style:none;
+}
+.drop_main_cntntbxtop li
+{
+	margin:0px;
+	padding:0px;
+}
+.drop_main_cntntbxbtm
+{
+	margin:0px;
+	padding:0px;
+}
+	
+.drop_main_cntntbxtop li.dropslot
+{
+	margin:0px;
+	padding:0px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	border:dashed 2px #d4d4d4;
+	width:202px;
+	height:37px;
+	
+}
+.drop_main_cntntbxtop li.droptext
+{
+	font-size:11px;
+	color:#4296be;
+	margin:0px;
+	padding:5px 8px 0px 8px;
+	line-height:9px;
+}

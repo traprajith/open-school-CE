@@ -1,0 +1,171 @@
+.rights_right
+{
+	margin:0px;
+	padding:15px 20px 20px 20px;
+	width:712px;
+	position:relative;
+	font-size:12px;
+
+}
+.rights_right p{font-size:12px;}
+.rights_formWrapper{
+	/*background:#FFF url(../images/form-pattern.png);*/
+	background:#FFF ;
+	font-size:12px;
+}
+
+#rights-sidebar{
+width: 247px;
+margin-top: 0px;
+min-height: 0px;
+margin-left:0px;
+
+}
+#rights-sidebar h1{
+	padding:3px 0px 0px 20px;
+	margin:0px;
+	height:19px;
+	font-size:12px;
+	color:#58656e;
+	text-shadow: 0.1em 0.1em #fff;
+	width:225px;
+	background:url(../images/leftnav-head-bg.png) repeat-x;
+	border-bottom:1px #b9c7d0 solid;
+	border-top:1px #b9c7d0 solid;
+}
+#rights-sidebar ul{
+margin:0px;
+padding:0px 0px 0px 0px;
+width: 245px;
+list-style:none;
+}
+
+#rights-sidebar li:hover , #othleft-sidebar li.list_active{
+
+border:0px;
+}
+#rights-sidebar ul li{
+
+display:block;
+margin-bottom:0px;
+}
+#rights-sidebar ul li a{
+color:#666;
+display: block;
+font-family: arial,sans-serif;
+font-size: 12px;
+line-height: 29px;
+padding-left: 45px;
+padding-right: 15px;
+padding-top: 3px;
+padding-bottom: 3px;
+text-decoration: none;
+margin-bottom:0px;
+/*height:43px;
+font-weight:bold;*/
+/*text-transform:uppercase;*/
+border-bottom:1px #eaeef1 solid;
+border-top:1px #fff solid;
+background:url(../images/arrow_medium.png) no-repeat 8px 9px;
+}
+/*#othleft-sidebar ul li a.mail_ico{background:url(../images/mail-ico.png) no-repeat 13px 18px}
+#othleft-sidebar ul li a.event_ico{background:url(../images/event-ico.png) no-repeat 13px 18px}*/
+#rights-sidebar ul li a.studlist_ico{background:url(../images/stud_icons.png) no-repeat 18px 10px}
+#rights-sidebar ul li a.studnew_ico{background:url(../images/stud_icons.png) no-repeat 18px -26px}
+#rights-sidebar ul li a.mangur_ico{background:url(../images/stud_icons.png) no-repeat 18px -63px}
+#rights-sidebar ul li a.studsett_ico{background:url(../images/stud_icons.png) no-repeat 18px -100px}
+#rights-sidebar ul li a:hover{color:#F90;}
+#rights-sidebar ul li a span{
+	display:block;
+	font-size:9px;
+	color:#8f8e8e;
+	margin:0px;
+	padding:0px;
+	line-height:0px;
+	text-transform:none;
+}
+#rights-sidebar ul li ul{	
+
+margin:0 0 0px 0;
+padding:8px 0px;
+/*box-shadow:inset 0px 8px 15px #1d1d1d;
+    -moz-box-shadow:inset 0px 8px 15px #1d1d1d;
+    -webkit-box-shadow:inset 0px 8px 13px #1d1d1d;
+background:url(../images/fake_brick.jpg) repeat;*/
+position:relative;
+
+}
+#rights-sidebar .sub_arrow{
+	position:absolute;
+	width:21px;
+	height:10px;
+	top:-20px;
+	right:0px;
+	background:url(../images/l-sub-arrow.png) no-repeat;
+}
+#rights-sidebar ul li ul li{
+box-shadow: 0px 0px 0px #fff;
+    -moz-box-shadow: 0px 0px 0px #fff;
+    -webkit-box-shadow: 0px 0px 0px #fff;
+	
+	}
+#rights-sidebar ul li ul li a{
+color:#666;
+display: block;
+font-family: arial,sans-serif;
+font-size: 11px;
+text-decoration: none;
+/*background:#545454 url(../images/subnavarrow.png) no-repeat right;*/
+padding:3px 0 3px 50px;
+height:30px;
+margin-bottom:0px;
+border-bottom:0px #c2ced6 solid;
+border-left:0px #e4e4e4 solid;
+border-right:0px #e4e4e4 solid;
+/*background:#424141;*/
+
+}
+
+#rights-sidebar ul li ul li a:hover{
+color:#F90;
+text-decoration: none;
+border:0;
+padding:3px 0 3px 50px;
+height:30px;
+border-bottom:0px #545454 solid;
+border-left:0px #e4e4e4 solid;
+border-right:0px #e4e4e4 solid;
+}
+#rights-sidebar ul li ul li.list_active a{color:#F90;}
+
+.rights_formWrapper .grid-view{
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	border:1px #eaeef1 solid;
+	padding:10px;
+	margin-top:10px;
+	-moz-box-shadow:0px 0px 0px #e7e5e5;
+  	-webkit-box-shadow: 0px 0px 0px #e7e5e5;
+  	box-shadow: 0px 0px 0px #e7e5e5;
+}
+
+.rights_formWrapper .grid-view table.items {
+background: white;
+border-collapse: collapse;
+width: 100%;
+border-left: 1px #dddddd solid;
+border-top: 1px #dddddd solid;
+margin-top:10px;
+}
+.rights_formWrapper .grid-view table tr.odd{background:#f8fafb !important;}
+.rights_formWrapper .grid-view table tr.even{background:#ffffff !important;}
+.rights_formWrapper .grid-view table.items td{ font-size:12px;padding:5px 5px;border-bottom:1px #eaeef1 solid;}
+.rights_formWrapper .grid-view table.items th {
+border-bottom:1px #eaeef1 solid;
+background:#dae3e7;
+text-align: center;
+color:#58656e;
+font-size:12px;
+padding:5px 0px;
+}
