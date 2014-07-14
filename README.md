@@ -38,19 +38,25 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with Open-School.  If not, see <http://www.gnu.org/licenses/>.*/
+along with Open-School.  If not, see http://www.gnu.org/licenses
 
 
  
  * @author Open-School team <contact@Open-School.org>
  * @link http://www.Open-School.org/
- * @copyright Copyright &copy; 2009-2013 wiwo inc.
+ * @copyright Copyright &copy; 2009-2014 wiwo inc.
 
  * Matthew George
  * Rajith Ramachandran
  * Arun Kumar
  * Anupama
  * Laijesh V Kumar
- * Tanuja.
+ * MGK Vishnu
+ * Sherin Jose
+ * Tanuja
+ * Naveen George
+ * Rahul Viswanath
+ * Sajith Varghese
+ * Aju Pulikal
 
  * @license http://www.Open-School.org/
