@@ -1,0 +1,59 @@
+body {
+	
+	background:url(../images/404bg.png) repeat;
+    margin: 0;
+    padding: 0;
+	width:100%;
+}
+a img {border:none;}
+.clear
+{
+	clear:both;
+}
+.f_wrapper 
+{
+	margin:100px auto;
+	padding:0px;
+	width:545px;
+}
+
+.f_image
+{
+	background:url(../images/logo_txt.png);
+	width:559px;
+	height:392px;
+	margin:0px auto;
+	padding:0px;
+}
+.f_txt
+{
+
+	padding:10px 0px 0px 0px;
+	text-align:left;
+}
+.f_txt h1
+{
+	color:#565656;
+	font-family: 'Open Sans', sans-serif;
+	font-weight:500;
+	font-size:20px;
+	line-height:32px;
+}
+.f_txt p
+{
+	font-family: 'Open Sans', sans-serif;
+	font-weight:400;
+	font-size:14px;
+	line-height:10px;
+	color:#565656;
+}
+.f_txt a
+{
+	font-family: 'Open Sans', sans-serif;
+	font-weight:700;
+	font-size:30px;
+	color:#fcb617;
+	text-decoration:none;
+	margin:0px;
+	padding:0px 5px;
+}

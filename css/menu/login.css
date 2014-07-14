@@ -1,0 +1,41 @@
+@import url("reset.css");
+
+body {
+	color: #555;
+	background: #fff;
+	font: 11px/1.8 Arial, sans-serif;
+}
+h1 {
+	font-size: 16px;
+	position: absolute;
+	top: 160px;
+	left: 35%;
+}
+#login {
+	border: 1px solid #ccc;
+	width: 250px;
+	padding: 20px;
+	position: absolute;
+	top: 200px;
+	left: 35%;
+}
+#login p {
+	padding: 5px 0;
+}
+#login label {
+	display: block;
+}
+#login input {
+	border: 1px solid #bbb;
+	padding: 3px;
+	width: 240px;
+}
+#login button {
+	border: 1px solid #999;
+	background: #ddd;
+	padding: 5px;
+	cursor: pointer;
+}
+.error {
+	color: red;
+}

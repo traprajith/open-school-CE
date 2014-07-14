@@ -1,0 +1,49 @@
+div#importCsvSteps{
+    background-color: #fff;
+    border:1px solid #CCCCCC;
+    padding:12px;
+}
+
+div#importCsvSteps *{
+    font-family:Arial, Tahoma;
+    font-size:12px;
+    line-height: 14px;
+    color: #000;
+}
+
+div#importCsvSteps h1{
+    font-size: 15px;
+}
+
+div#importCsvSteps a{
+    text-decoration: underline;
+    color: #0066cc;
+}
+
+div#importCsvSteps a:hover{
+    text-decoration: none;
+}
+
+div#importCsvSteps span.require{
+    color:#ff0404;
+}
+
+div#importCsvSecondStep, div#importCsvThirdStep, span#importCsvBread1, span#importCsvBread2{
+    display: none;
+}
+
+div#importCsvSteps span.importCsvError{
+    color:#ff0404;
+}
+
+div#importCsvSteps span.importCsvNoError{
+    color: #60BF60;
+}
+
+table.importCsvTable{
+    background-color: #f4f3f2;
+}
+
+table.importCsvTable td{
+    background-color: #fff;
+}

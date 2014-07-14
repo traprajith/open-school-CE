@@ -1,0 +1,93 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	padding:0px;
+	margin:0px;
+	background:url(../images/bg.png) repeat-x top;
+	font-size:16px;
+	font-family:Arial, Helvetica, sans-serif;
+	
+}
+a{text-decoration:none;}
+.loginimg{
+	position:absolute;
+	bottom:0px;
+	left:0px;
+	width:445px;
+	height:523px;
+	background:url(../images/loginimg.png) no-repeat;
+}
+input[type="text"],input[type="password"]{
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	border:0px #dddddd solid;
+	padding:8px 10px;
+	color:#333;
+	width:200px;
+	font-size:12px;
+	background:url(../images/logintxt-bg.png);
+	-moz-box-shadow:inset 0px 0px 3px #747474;
+  -webkit-box-shadow:inset 0px 0px 3px #747474;
+  box-shadow:inset 0px 1px 3px #cacaca;
+  outline:none;
+}
+.loginbut{
+	padding:0px 20px;
+	background:url(../images/fbut-bg.png) repeat-x;
+	height:37px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	border:1px #b58530 solid;
+	color:#633c15;
+	font-size:15px;
+	cursor:pointer;
+	text-shadow: 0.1em 0.1em #fdbd59;
+	font-weight:bold;
+}
+.loginboxWrapper{
+	margin:180px auto 0 auto; width:718px; height:295px; color:#3e3d3d; font-size:12px; background:url(../images/login_bg.png) repeat-x bottom;-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-moz-box-shadow:0px 0px 3px #747474;
+  -webkit-box-shadow:0px 0px 3px #747474;
+  box-shadow:0px 0px 8px #272626;
+	}
+.loginboxWrapper h1{font-family:Arial, Helvetica, sans-serif; font-size:18px; color:#000; font-weight:lighter; margin:0px; padding:0px;}
+.loginboxWrapper a{color:#09F; text-decoration:none;}
+.loginboxWrapper a:hover{text-decoration:underline;}
+.lw_left{
+	width:325px;
+	height:295px;
+	position:relative;
+	float:left;
+	border-right:1px #F5F5F5 solid;
+}
+.lw_right{
+	width:350px;
+	height:255px;
+	position:relative;
+	float:left;
+	padding:20px;
+}
+.lw_right p{padding:12px 0px 8px 0px; margin:0px;}
+.lw_right td{
+	padding:5px 0px;
+}
+.lw_logo{
+	position:absolute;
+	top:60px;
+	left:65px;
+	width:171px;
+	height:161px;
+}
+.loginrow{position:relative;}
+.errorSummary{
+	font-size:11px;
+	color:#F00;
+	padding:5px 0 5px 30px;
+	display:block;
+	background:url(../images/alert-triangle-red.png) no-repeat left top;
+}
+

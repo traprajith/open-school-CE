@@ -1,0 +1,60 @@
+
+
+.checkbox, .radio {
+	width: 24px;
+	height: 25px;
+	padding: 0 5px 0 0;
+	background: url(../images/nschkb.png) no-repeat;
+	display: block;
+	clear: left;
+	float: left;
+}
+#yellowchk .checkbox, .radio {
+	width: 19px;
+	height: 20px;
+	padding: 0 5px 0 0;
+	background: url(../images/check_yellow.png) no-repeat;
+	display: block;
+	clear: left;
+	float: left;
+}
+#greenchk .checkbox, .radio {
+	width: 19px;
+	height: 20px;
+	padding: 0 5px 0 0;
+	background: url(../images/check_green.png) no-repeat;
+	display: block;
+	clear: left;
+	float: left;
+}
+#redchk .checkbox, .radio {
+	width: 19px;
+	height: 20px;
+	padding: 0 5px 0 0;
+	background: url(../images/check_red.png) no-repeat;
+	display: block;
+	clear: left;
+	float: left;
+}
+#bluechk .checkbox, .radio {
+	width: 19px;
+	height: 20px;
+	padding: 0 5px 0 0;
+	background: url(../images/check_blue.png) no-repeat;
+	display: block;
+	clear: left;
+	float: left;
+}
+.radio {
+	background: url(radio.png) no-repeat;
+}
+.select {
+	position: absolute;
+	width: 158px; /* With the padding included, the width is 190 pixels: the actual width of the image. */
+	height: 21px;
+	padding: 0 24px 0 8px;
+	color: #fff;
+	font: 12px/21px arial,sans-serif;
+	background: url(select.png) no-repeat;
+	overflow: hidden;
+}

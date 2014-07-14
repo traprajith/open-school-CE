@@ -1,0 +1,85 @@
+
+
+.code
+{
+	background-color: #cdf;
+	color: #024;
+	font-family: Consolas, "Courier New", "DejaVu Sans Mono", monospace;
+	font-size: 12px;
+	line-height:1.5em;
+	margin:10px 28px;
+	padding: 4px;
+}
+
+
+
+#main
+{
+	width: 800px;
+	margin: 20px auto;
+}
+
+#header
+{
+	background-color: #024;
+	width: 100%;
+	padding: 5px;
+}
+
+#title
+{
+	margin: 20px auto;
+	width: 800px;
+}
+
+#title img
+{
+	margin: 0 20px;
+}
+
+div.buttons
+{
+	background-color: #efefef;
+	margin: 10px 20px;
+	border: solid 1px #ddd;
+}
+
+div.buttons a
+{
+	background-color: #fff;
+	display: block;
+	float: left;
+	font-size: 12px;
+	border: 1px solid #888;
+	padding: 2px 4px;
+	margin: 4px;
+	text-decoration: none;
+	text-align: center;
+	width: 50px;
+}
+
+div.buttons a:hover
+{
+	background-color: #cef;
+}
+
+div.break
+{
+	clear: both;
+}
+
+
+
+
+#noscript-warning
+{
+	background-color: #ff0000;
+	border-bottom: 1px solid #e00;
+	height: 17px;
+	left: 0;
+	position: fixed;
+	text-align: center;
+	top: 0;
+	width: 100%;
+	z-index: 2000;
+}

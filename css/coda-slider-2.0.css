@@ -1,0 +1,328 @@
+/*
+	jQuery Coda-Slider v2.0 - http://www.ndoherty.biz/coda-slider
+	Copyright (c) 2009 Niall Doherty
+	This plugin available for use in all personal or commercial projects under both MIT and GPL licenses.
+*/
+
+/* Insignificant stuff, for demo purposes */
+
+	.panel h2.title { margin-bottom: 10px;display: none ; }
+	.panel h2.caption{display:none;}
+	noscript div { background: #ccc; border: 1px solid #900; margin: 20px 0; padding: 15px }
+
+/* Most common stuff you'll need to change */
+
+	.coda-slider-wrapper { padding: 0px}
+	.coda-slider { background:#fdfdfd;-webkit-border-radius: 2px;-moz-border-radius: 2px;border-radius: 2px; border:1px #cfcfcf solid;
+	background: -moz-linear-gradient(top, #fdfdfd, #f8f8f8);
+	background: -webkit-gradient(linear, left top, left bottom, from(#fdfdfd), to(#f8f8f8));
+	
+	}
+	
+	/* Use this to keep the slider content contained in a box even when JavaScript is disabled */
+	.coda-slider-no-js .coda-slider { height: 200px; overflow: auto !important; padding-right: 20px; }
+	
+	/* Change the width of the entire slider (without dynamic arrows) */
+	.coda-slider, .coda-slider .panel { width: 545px ; height:390px;} 
+	
+	/* Change margin and width of the slider (with dynamic arrows) */
+	.coda-slider-wrapper.arrows .coda-slider, .coda-slider-wrapper.arrows .coda-slider .panel { width: 600px }
+	.coda-slider-wrapper.arrows .coda-slider { margin: 0 10px }
+	
+	/* Arrow styling */
+	.coda-nav-left a, .coda-nav-right a { background: #000; color: #fff; padding: 5px; width: 100px;  }
+	
+	/* Tab nav */
+	.coda-nav ul li a.current { background: #F0F0F0; color:#000; border-bottom:1px #FFF; height:32px; border-right:1px #cfcfcf solid; border-left:1px #cfcfcf solid; border-top:1px #cfcfcf solid;-moz-border-radius-bottomleft: 0px; -webkit-border-bottom-left-radius: 0px; border-bottom-left-radius: 0px;-moz-border-radius-bottomright: 0px; -webkit-border-bottom-right-radius: 0px; border-bottom-right-radius: 0px;
+	background: -moz-linear-gradient(top, #ffffff, #fefefe);
+	background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#fefefe)); }
+	
+	/* Panel padding */
+	.coda-slider .panel-wrapper { padding: 10px 10px 10px 10px ; overflow:scroll;resize:both;height:390px;}
+	/* Panel inner divs */
+	.panel-wrapper-left{ padding:0px; margin:0px; width:497px; float:left;min-height:363px; padding:20px; background:url(../images/panel-wrapper-left-bg.jpg) repeat-y right;}
+	.panel-wrapper-right{ padding:0px; margin:0px; width:223px; min-height:350px; float:left; background:#dcdcdc; padding:20px;-moz-border-radius-topright: 2px; -webkit-border-top-right-radius: 2px; border-top-right-radius: 2px;-moz-border-radius-bottomright: 2px; -webkit-border-bottom-right-radius: 2px; border-bottom-right-radius: 2px;}
+		.panel-wrapper-left-bx{ width:193px; height:53px; padding:6px 15px 18px 15px; margin:0px 0px 10px 0px; background:#FFF;-webkit-border-radius: 4px;-moz-border-radius: 4px;border-radius: 4px;}
+	/*	.panel-wrapper-left-bx:hover{background:#666; cursor:pointer;}*/
+		.panel-wrapper-left-bx h1{ font-size:36px; color:#c9c9c9; padding:0px; margin:0px; position:relative;}
+		.panel-wrapper-left-bx h1 span{font-size:14px; color:#929292; position:absolute; top:12px; left:50px; }
+		.panel-wrapper-left-bx p{font-size:10px; color:#a09f9f;}
+	/* Preloader */
+	.coda-slider p.loading { padding: 20px; text-align: center }
+
+/* Don't change anything below here unless you know what you're doing */
+
+	/* Tabbed nav */
+	.coda-nav{position:relative; height:70px;}
+	.coda-nav ul { clear: both; display: block; margin:0; overflow: hidden;  position:absolute; top:10px; left:0px; z-index:100 !important; margin-left:-40px;  }
+	.coda-nav ul li { display: inline }
+	.coda-nav ul li a {  color:#666; display: block; float: left; margin-right: 8px; padding: 14px 20px; text-decoration: none;
+	background:#F5F5F5;-webkit-border-radius: 2px;-moz-border-radius: 2px;border-radius: 2px; border:1px #E6E6E6 solid; text-transform:uppercase;
+	font-size:11px; font-weight:bold;
+	background: -moz-linear-gradient(top, #fdfdfd, #f8f8f8);
+	background: -webkit-gradient(linear, left top, left bottom, from(#fdfdfd), to(#f8f8f8));
+   }
+   /*
+   -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px; border-top-left-radius: 4px;-moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px; border-top-right-radius: 4px; 
+   
+    background: -moz-linear-gradient(top, #686767, #424242);
+	background: -webkit-gradient(linear, left top, left bottom, from(#686767), to(#424242));*/
+	
+	/* Miscellaneous */
+	.coda-slider-wrapper { clear: both; }/*overflow: auto */
+	.coda-slider { float: left; overflow: hidden; position: relative;}
+	.coda-slider .panel { display: block; float: left;}
+	.coda-slider .panel-container { position: relative; }
+	.coda-nav-left, .coda-nav-right { float: left }
+	.coda-nav-left a, .coda-nav-right a { display: block; text-align: center; text-decoration: none }
+	
+/*	other css*/
+.sd_search_area{
+	padding:0px;
+	margin:0px;
+	width:210px;
+	float:right;
+}
+.sd_search{
+	padding:0px 10px 0px 10px;
+	margin:0px;
+	width:155px;
+	height:21px;
+	border-left:1px #c7d1d9 solid;
+	border-top:1px #c7d1d9 solid;
+	border-bottom:1px #c7d1d9 solid;
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-bottom-left-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-bottomleft: 10px;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	color:#9ca6b0;
+	font-size:11px;
+	float:left;
+}
+.sd_but{
+	width:27px;
+	height:23px;
+	cursor:pointer;
+	float:left;
+	padding:0px;
+	margin:0px 0px 0px -2px;
+	border:none;
+	background:url(../images/sd_search_but_bg.png) no-repeat left;
+}
+.sd_tablelist{
+	padding:0px;
+	margin:10px 0px 20px 0px;
+}
+.sd_tablelist table{
+	border-left:1px #dddddd solid;
+	border-top:1px #dddddd solid;
+}
+.sd_tablelist table th{
+	background:#ebebeb; 
+	padding:4px 0px;
+	border-right:1px #dddddd solid;
+	border-bottom:1px #dddddd solid;
+}
+.sd_tablelist table td{
+	padding:4px 0px;
+	border-right:1px #dddddd solid;
+	border-bottom:1px #dddddd solid;
+	text-align:center;
+	color:#666;
+	font-size:11px;
+}
+.filter_con{
+	padding:6px 0px 3px 0px;
+	margin:10px 0px 0px 0px;
+	border:1px #dddddd solid;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background:#F9F9F9;
+}
+.sd_links{
+	padding:0px;
+	margin:0px;
+	width:525px;
+	position:relative;
+}
+.sd_links ul{
+	padding:0px;
+	margin:0px;
+	list-style:none;
+}
+.sd_links li{
+	padding:0px;
+	margin:0px;
+	float:left;
+	color:#999;
+}
+.sd_links li a{
+	padding:2px 5px;
+	margin:0px;
+	display:block;
+	color:#09C;
+	font-size:10px;
+	text-transform:uppercase;
+}
+.sd_links li a:hover{text-decoration:underline;}
+/*sd_letternav*/
+.sd_letternav{
+	padding:0px;
+	margin:10px 0px 0px 0px;
+	width:525px;
+}
+.sd_letternav ul{
+	padding:0px;
+	margin:0px;
+	list-style:none;
+}
+.sd_letternav li{
+	padding:0px;
+	margin:0px;
+	float:left;
+	color:#999;
+}
+.sd_letternav li a{
+	padding:2px 6px;
+	margin:0px;
+	display:block;
+	color:#000;
+	font-size:10px;
+	text-transform:uppercase;
+}
+.sd_letternav li a:hover{text-decoration:underline;}
+.sd_letternav li.active a{color:#06C; font-weight:bold;}
+.sd_action_con{
+	padding:0px;
+	margin:0px;
+	position:relative;
+}
+.sd_act_arrow{
+	position:absolute;
+	top:-7px;
+	right:13px;
+	width:14px;
+	height:7px;
+	background:url(../images/sd_act_arrow.png) no-repeat;
+}
+.sd_action_but{
+	width:17px;
+	height:16px;
+	background:url(../images/sd_action_but.png) no-repeat 0px 0px;
+	display:block;
+	margin:0 auto;
+}
+.sd_action_but_active{
+	width:17px;
+	height:16px;
+	background:url(../images/sd_action_but.png) no-repeat 0px -17px;
+	display:block;
+}
+
+.sd_actions{
+	padding:5px;
+	margin:0px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background:#464646;
+	width:105px;
+	position:absolute;
+	top:10px;
+	right:10px;
+	display:none;
+}
+.sd_actions_inner{
+	width:104px;
+	background:#1c2125;
+	padding:1px;
+}
+.sd_actions ul{
+	padding:0px;
+	margin:0px;
+	list-style:none;
+}
+.sd_actions li{
+	padding:0px;
+	margin:0px;
+}
+.sd_actions li a{
+	padding:5px 10px;
+	margin:0px;
+	background:url(../images/sd_act_bg.png) repeat-x;
+	height:12px;
+	color:#CCC;
+	font-size:11px;
+	display:block;
+	text-align:left;
+}
+.sd_actions li a.active, .sd_actions li a:hover{
+	background:url(../images/sd_act_bg_active.png) repeat-x;
+	color:#333;
+}
+.sd_filter_box{
+	padding:10px;
+	margin:10px 0px 0px 0px;
+	position:relative;
+	width:485px;
+	border:1px #dddddd solid;
+	color:#535252;
+	font-size:11px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	display:none;
+}
+.sd_filter_box_arrow{
+	position:absolute;
+	top:-10px;
+	left:30px;
+	width:17px;
+	height:11px;
+	background:url(../images/sd_filter_arrow.png) no-repeat;
+}
+.sd_form_row{
+	padding:10px 0px 10px 20px;
+	margin:0px;
+	width:465px;
+	border-bottom:1px #dddddd dotted;
+}
+.sd_form_row input[type="text"], textArea, select{
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	border:1px #c2cfd8 solid;
+	padding:3px 3px;
+	background:#fff;
+	-moz-box-shadow:inset 0px 0px 8px #e7e5e5;
+  	-webkit-box-shadow:inset 0px 0px 8px #e7e5e5;
+  	box-shadow:inset -1px 1px 2px #d5dbe0;
+}
+.sd_form_row input[type="button"]{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #ffffff;
+	padding: 4px 10px 4px 10px;
+	background: -moz-linear-gradient(
+		top,
+		#58cc1e 0%,
+		#5ec40a 25%,
+		#438a0a);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#58cc1e),
+		color-stop(0.25, #5ec40a),
+		to(#438a0a));
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	border:none;
+	text-shadow:
+		0px -1px 0px rgba(000,000,000,0.2),
+		0px 1px 0px rgba(255,255,255,0.3);
+		cursor:pointer;
+}
+.sd_form_row input[type="button"]:hover{background:#393;}
