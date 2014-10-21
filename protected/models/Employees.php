@@ -91,14 +91,14 @@ class Employees extends CActiveRecord
 		if(Yii::app()->controller->action->id=='create2' or Yii::app()->controller->action->id=='update2'){
 			return array(
 				array('home_address_line1, home_city, home_state, home_country_id, home_pin_code, email, mobile_phone','required'),
-				array('home_pin_code, office_pin_code, mobile_phone','numerical', 'integerOnly'=>true),
-				array('home_pin_code,office_pin_code','length', 'max'=>6),
+				array('mobile_phone','numerical', 'integerOnly'=>true),
+				//array('home_pin_code,office_pin_code','length', 'max'=>6),
 				array('email','email'),
 			);
 		}
 		
 		return array(
-			array('employee_category_id, employee_position_id, employee_department_id, reporting_manager_id, employee_grade_id, experience_year, experience_month, children_count, nationality_id, home_country_id, home_pin_code, office_country_id, office_pin_code, photo_file_size, is_deleted, user_id, uid', 'numerical', 'integerOnly'=>true),
+			array('employee_category_id, employee_position_id, employee_department_id, reporting_manager_id, employee_grade_id, experience_year, experience_month, children_count, nationality_id, home_country_id, office_country_id, photo_file_size, is_deleted, user_id, uid', 'numerical', 'integerOnly'=>true),
 			array('employee_number, gender, first_name, middle_name, last_name, job_title, qualification, status_description, marital_status, father_name, mother_name, husband_name, blood_group, home_address_line1, home_address_line2, home_city, home_state, home_pin_code, office_address_line1, office_address_line2, office_city, office_state, office_pin_code, office_phone1, office_phone2, mobile_phone, home_phone, email, fax, photo_file_name, photo_content_type', 'length', 'max'=>255),
 			array('joining_date, experience_detail, date_of_birth, created_at, updated_at', 'safe'),
 			array('employee_number, first_name, last_name, gender, date_of_birth, employee_department_id', 'required'),
@@ -166,13 +166,13 @@ class Employees extends CActiveRecord
 			'home_city' => 'Home City',
 			'home_state' => 'Home State',
 			'home_country_id' => 'Home Country',
-			'home_pin_code' => 'Home Pin Code',
+			'home_pin_code' => 'Home Post Code',
 			'office_address_line1' => 'Office Address Line1',
 			'office_address_line2' => 'Office Address Line2',
 			'office_city' => 'Office City',
 			'office_state' => 'Office State',
 			'office_country_id' => 'Office Country',
-			'office_pin_code' => 'Office Pin Code',
+			'office_pin_code' => 'Office Post Code',
 			'office_phone1' => 'Office Phone1',
 			'office_phone2' => 'Office Phone2',
 			'mobile_phone' => 'Mobile Phone',

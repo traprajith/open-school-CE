@@ -75,7 +75,7 @@ class Students extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('admission_no, parent_id, batch_id, nationality_id, student_category_id, country_id, immediate_contact_id, is_sms_enabled, is_active, is_deleted, has_paid_fees, photo_file_size, pin_code, phone1, phone2, user_id, uid', 'numerical', 'integerOnly'=>true),
+			array('admission_no, parent_id, batch_id, nationality_id, student_category_id, country_id, immediate_contact_id, is_sms_enabled, is_active, is_deleted, has_paid_fees, photo_file_size, phone1, phone2, user_id, uid', 'numerical', 'integerOnly'=>true),
 			array('admission_no, admission_date, first_name, last_name, gender, date_of_birth, address_line1, address_line2, city, state, pin_code, country_id, phone1, email,nationality_id', 'required',),
 			array('admission_no','unique'),
 			array('email','check'),
@@ -148,7 +148,7 @@ class Students extends CActiveRecord
 			'address_line2' => 'Address Line2',
 			'city' => 'City',
 			'state' => 'State',
-			'pin_code' => 'Pin Code',
+			'pin_code' => 'Post Code',
 			'country_id' => 'Country',
 			'phone1' => 'Phone 1',
 			'phone2' => 'Phone 2',

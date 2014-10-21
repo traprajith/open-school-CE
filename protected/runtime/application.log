@@ -1566,3 +1566,4 @@ Stack trace:
 #3 C:\wamp\www\oscenew\core\base\CApplication.php(158): CWebApplication->processRequest()
 #4 C:\wamp\www\oscenew\index.php(51): CApplication->run()
 #5 {main} REQUEST_URI=/oscenew/index.php?r=students/students/manhhhage
+2014/10/20 09:20:20 [warning] [application] Failed to set unsafe attribute "password" of "ConfigForm".
