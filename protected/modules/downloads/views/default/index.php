@@ -32,7 +32,7 @@ $this->breadcrumbs=array(
                     <div class="o-s_logo" style="width:200px;"> <a href="http://open-school.org" target="_blank"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/o-s_promo_logo.png" width="232" height="92" /></a> </div>   
     			</div>
                 
-                <div class="fourth_ad"><a href="http://open-school.org/contact.php" target="_blank"><img src="http://tryopenschool.com/images/o-s_ad_img.png" width="960" height="115" /></a></div>
+                <div class="fourth_ad"><a href="https://open-school.org/pricing" target="_blank"><img src="http://tryopenschool.com/images/o-s_ad_img.png" width="960" height="115" /></a></div>
 		
 		</div>
 		</td>

@@ -18,10 +18,10 @@
         <td width="247" valign="top">
         	<!--upgrade_div_starts-->
             <div class="upgrade_bx">
-                <div class="up_banr_imgbx"><a href="http://open-school.org/contact.php" target="_blank"><img src="http://tryopenschool.com/images/promo_bnnr_innerpage.png" width="231" height="200" /></a></div>
+                <div class="up_banr_imgbx"><a href="https://open-school.org/pricing" target="_blank"><img src="http://tryopenschool.com/images/promo_bnnr_innerpage.png" width="231" height="200" /></a></div>
                 <div class="up_banr_firstbx">
                   <h1>You are Using Community Edition</h1>
-                  <a href="http://open-school.org/contact.php" target="_blank">upgrade to premium version!</a>
+                  <a href="https://open-school.org/pricing" target="_blank">upgrade to premium version!</a>
                 </div>
                 
             </div>

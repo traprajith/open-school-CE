@@ -11,6 +11,7 @@
                  $serverurl = "http://licence-server.open-school.org/news.php";
 				 
 				 $info['severname'] = Yii::app()->request->hostInfo.Yii::app()->request->baseUrl ;
+				 
 				  // start a curl session
 				  $ch = curl_init ($serverurl);
 				  

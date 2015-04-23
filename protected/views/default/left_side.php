@@ -3,7 +3,7 @@
 	
 	<div class="up_banr_firstbx">
    	  <h1>You are Using Community Edition</h1>
-	  <a href="http://open-school.org/contact.php" target="_blank">upgrade to premium version!</a>
+	  <a href="https://open-school.org/pricing" target="_blank">upgrade to premium version!</a>
     </div>
 	
 </div>

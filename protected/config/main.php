@@ -1,4 +1,12 @@
 <?php
+ob_start('My_OB');
+function My_OB($str, $flags)
+{
+    //remove UTF-8 BOM
+    $str = preg_replace("/\xef\xbb\xbf/","",$str);
+ 
+    return $str;
+}
 
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');

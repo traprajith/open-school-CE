@@ -137,13 +137,14 @@ class DefaultController extends CController
             if($model->validate() === true) {
 				if($model->checkConnection() !== true) {
 					//Attemting To Create The Database
-					 @mysql_connect("$model->host","$model->username","$model->password"); 
-					 if (mysql_query("CREATE DATABASE $model->dbName"))
-					 $flag_db_created = 1;
-					 else{
-					 $flag_db_created = 0;
-					 }
+					$conn = new mysqli($model->host, $model->username, $model->password);
+					$sql = "CREATE DATABASE $model->dbName";
+					if ($conn->query($sql) === TRUE) {
+						$flag_db_created = 1;
+					} else {
+						$flag_db_created = 0;
 					}
+				}
                 if($model->checkConnection() === true) {
                     //create enviroment file
                     $configPath = Yii::getPathOfAlias('application.config');
@@ -234,7 +235,7 @@ class DefaultController extends CController
                     foreach ($sqlDataArr as $index => $script) {
                         if (preg_match('/insert\s+into/i', $script)) {
 //                            Yii::trace('$script:'.$script);
-                            if (mysql_query($script,$db) === true) {
+                            if (mysqli_query($db,$script) === true) {
                                 $remove[] = $index;
                             }
                         } else {
@@ -333,8 +334,7 @@ class DefaultController extends CController
         $dbinfo = explode(';', $str);
         foreach($dbinfo as $info)
             parse_str($info);
-        $db=mysql_connect($host.':'.$port,DB_USER,DB_PWD);
-        mysql_select_db($dbname, $db);
+        $db=mysqli_connect($host.':'.$port,DB_USER,DB_PWD,$dbname);
         return $db;
     }
 
