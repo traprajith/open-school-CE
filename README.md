@@ -4,6 +4,7 @@ open-school-CE
 Open-School is an integrated school management system which focuses on excellence and evolution in the field of Education. To achieve this O-S is flexible and innovates the new trends in education management. Open-School is a diverse, demanding, and high quality educational management system where every user can discover and realize their potential to achieve overall development.
 [Note] This is not the Premium Edition
 
+https://www.Open-School.org
 
 Try Here (Online Demo) tryopenschool 
 ==============
@@ -44,7 +45,7 @@ along with Open-School.  If not, see http://www.gnu.org/licenses
 
  
  * @author Open-School team <contact@Open-School.org>
- * @link http://www.Open-School.org/
+ * @link https://www.Open-School.org/
  * @copyright Copyright &copy; 2009-2018 wiwo inc.
 
  * Matthew George
@@ -54,18 +55,17 @@ along with Open-School.  If not, see http://www.gnu.org/licenses
  * Naveen George
  * Anupama Menon
  * Arun Mohan
- * Saravanakumar
+ * SaravanakumarTM
  * Anju B
  * Aneesh PA
- * Yadukrishnan K
+ * Yadu Krishnan
  * Jithesh PV
  * Unny Joseph
  * Meenu Augusthy
  * Shincy TU
- * Yadukrishnan K
  * Viswas TK
- * Prasanth
- * Jismy
+ * Prasanth KP
+ * Jismy James
 
 
 
