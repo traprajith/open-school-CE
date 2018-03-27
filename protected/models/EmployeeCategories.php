@@ -39,7 +39,8 @@ class EmployeeCategories extends CActiveRecord
 			array('status', 'numerical', 'integerOnly'=>true),
 			array('name, prefix', 'length', 'max'=>25),
 			array('name, prefix', 'required'),
-			array('name, prefix','CRegularExpressionValidator', 'pattern'=>'/^[A-Za-z_ ]+$/','message'=>"{attribute} should contain only letters."),
+			array('name', 'unique'),
+			//array('name, prefix','CRegularExpressionValidator', 'pattern'=>'/^[A-Za-z_ ]+$/','message'=>'{attribute}  '.Yii::t("app",'should contain only letters.')),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, prefix, status', 'safe', 'on'=>'search'),
@@ -63,10 +64,10 @@ class EmployeeCategories extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'prefix' => 'Prefix',
-			'status' => 'Status',
+			'id' => Yii::t("app",'ID'),
+			'name' => Yii::t("app",'Name'),
+			'prefix' => Yii::t("app",'Prefix'),
+			'status' => Yii::t("app",'Status'),
 		);
 	}
 

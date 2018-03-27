@@ -58,8 +58,8 @@ class Countries extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
+			'id' => Yii::t("app",'ID'),
+			'name' => Yii::t("app",'Name'),
 		);
 	}
 

@@ -12,7 +12,7 @@
  */
 ?><?php
  $this->breadcrumbs=array(
-	 'Manage Events'
+	 Yii::t("app",'Manage Events')
 );
 ?>
 <?php  
@@ -29,10 +29,10 @@ $('.search-form form').submit(function(){
 });
 ");
 ?>
-<h1>Events </h1>
+<h1><?php echo Yii::t("app",'Events'); ?> </h1>
 
-  <p class="left">You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.</p><?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?><div class="search-form" style="display:none">
+  <p class="left"><?php echo Yii::t("app", 'You may optionally enter a comparison operator').' (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
+or <b>=</b>)'. Yii::t("app", 'at the beginning of each of your search values to specify how the comparison should be done.');?></p><?php echo CHtml::link(Yii::t("app",'Advanced Search','#'),array('class'=>'search-button')); ?><div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
 	'model'=>$model,
 )); ?>
@@ -45,10 +45,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 
 <?php
 //Strings for the delete confirmation dialog.
-$del_con = Yii::t('admin_events', 'Are you sure you want to delete this events?');
-$del_title=Yii::t('admin_events', 'Delete Confirmation');
- $del=Yii::t('admin_events', 'Delete');
- $cancel=Yii::t('admin_events', 'Cancel');
+$del_con = Yii::t('app', 'Are you sure you want to delete this events?');
+$del_title=Yii::t('app', 'Delete Confirmation');
+ $del=Yii::t('app', 'Delete');
+ $cancel=Yii::t('app', 'Cancel');
    ?>
 <?php
     $this->widget('zii.widgets.grid.CGridView', array(
@@ -77,22 +77,22 @@ $del_title=Yii::t('admin_events', 'Delete Confirmation');
                    'class' => 'CButtonColumn',
                     'buttons' => array(
                                                      'events_delete' => array(
-                                                     'label' => Yii::t('admin_events', 'Delete'), // text label of the button
+                                                     'label' => Yii::t('app', 'Delete'), // text label of the button
                                                       'url' => '$data->id', // a PHP expression for generating the URL of the button
                                                       'imageUrl' =>Yii::app()->request->baseUrl .'/js_plugins/ajaxform/images/icons/cross.png', // image URL of the button.   If not set or false, a text link is used
-                                                      'options' => array("class" => "fan_del", 'title' => Yii::t('admin_events', 'Delete')), // HTML options for the button   tag
+                                                      'options' => array("class" => "fan_del", 'title' => Yii::t('app', 'Delete')), // HTML options for the button   tag
                                                       ),
                                                      'events_update' => array(
-                                                     'label' => Yii::t('admin_events', 'Update'), // text label of the button
+                                                     'label' => Yii::t('app', 'Update'), // text label of the button
                                                      'url' => '$data->id', // a PHP expression for generating the URL of the button
                                                      'imageUrl' =>Yii::app()->request->baseUrl .'/js_plugins/ajaxform/images/icons/pencil.png', // image URL of the button.   If not set or false, a text link is used
-                                                     'options' => array("class" => "fan_update", 'title' => Yii::t('admin_events', 'Update')), // HTML options for the    button tag
+                                                     'options' => array("class" => "fan_update", 'title' => Yii::t('app', 'Update')), // HTML options for the    button tag
                                                         ),
                                                      'events_view' => array(
-                                                      'label' => Yii::t('admin_events', 'View'), // text label of the button
+                                                      'label' => Yii::t('app', 'View'), // text label of the button
                                                       'url' => '$data->id', // a PHP expression for generating the URL of the button
                                                       'imageUrl' =>Yii::app()->request->baseUrl .'/js_plugins/ajaxform/images/icons/properties.png', // image URL of the button.   If not set or false, a text link is used
-                                                      'options' => array("class" => "fan_view", 'title' => Yii::t('admin_events', 'View')), // HTML options for the    button tag
+                                                      'options' => array("class" => "fan_view", 'title' => Yii::t('app', 'View')), // HTML options for the    button tag
                                                         )
                                                     ),
                    'template' => '{events_view}{events_update}{events_delete}',

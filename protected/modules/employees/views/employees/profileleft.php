@@ -1,28 +1,33 @@
  <div class="emp_cont_left">
-    <div class="empleftbx">
-<div class="empimgbx" style="height:128px;">
-    <ul>
-    <li>
+<div class="empleftbx-profile">
+    <div class="empimgbx-profile">
+
    <?php
    $employee=Employees::model()->findByAttributes(array('id'=>$_REQUEST['id']));
-	 if($employee->photo_file_name){ 
-	 echo '<img  src="'.$this->createUrl('DisplaySavedImage&id='.$employee->primaryKey).'" alt="'.$employee->photo_file_name.'" width="170" height="140" />';
-   // echo '<img class="imgbrder" src="'.$this->createUrl('DisplaySavedImage&id='.$employee->primaryKey).'" alt="'.$employee->photo_file_name.'" width="170" height="140" />';
-	 }else{
-		echo '<img class="imgbrder" src="images/super_avatar.png" alt='.$employee->first_name.' width="170" height="140" />'; 
+	 if($employee->photo_file_name){
+		 $path = Employees::model()->getProfileImagePath($employee->id);		 
+	 	echo '<img  src="'.$path.'" alt="'.$employee->photo_file_name.' />';
+   
 	 }
+	 elseif($employee->gender == 'M')
+	 {
+		echo '<img  src="images/s_prof_m_image.png" alt='.Employees::model()->getTeachername($employee->id).' />'; 
+	 }
+	 elseif($employee->gender == 'F')
+	 {
+		echo '<img  src="images/s_prof_fe_image.png" alt='.Employees::model()->getTeachername($employee->id).' />';  
+	 }
+	 
+	 
 	 ?>
-     </li>
-    <li class="img_text">
-    	<div style="line-height:9px; margin:20px 0px 5px 0px; font-size:14px"><?php echo ucfirst($employee->first_name).'&nbsp;'.ucfirst($employee->last_name); ?></div>
-        <a style="font-size:12px; color:#C30; padding-top:6px; display:block" href="#"><?php echo $employee->email; ?></a>
-    </li>
-    </ul>
-    </div>
+</div>
+	<div class="left-profile-name-sctn">
+    	<div class="left-profile-blk"><p><?php echo Employees::model()->getTeachername($employee->id); ?></p>
+        <a  href="#"><?php echo $employee->email; ?></a>
+   	 	</div>
+        </div>
     <div class="clear"></div>
-    
-    
-    <div class="clear"></div>
+
     <!--<div class="left_emp_navbx">
     <div class="left_emp_nav">
     <h2>Your Search</h2>
@@ -36,6 +41,7 @@
     <div class="clear"></div>
     <div class="left_emp_btn"><a class="arrowsml" href="#">Saved Searches</a></div>
     </div>-->
-    </div>
+   
     
+    </div>
     </div>

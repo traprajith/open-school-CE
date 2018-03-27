@@ -147,11 +147,11 @@ $("#lodrop").click(function(){
                 <?php 
 				if(Yii::app()->controller->id=='employees' || Yii::app()->controller->id =='employeeAttendances' || Yii::app()->controller->id =='employeeLeaveTypes' || Yii::app()->controller->id =='employeesSubjects'|| Yii::app()->controller->id =='employeeCategories'|| Yii::app()->controller->id =='employeeDepartments'|| Yii::app()->controller->id =='employeePositions')
 				{
-				    echo CHtml::link('Employees', array('/employees'),array('class'=>'ic3 active'));
+				    echo CHtml::link('Teachers', array('/employees'),array('class'=>'ic3 active'));
 				}
 				else
 				{
-					echo CHtml::link('Employees', array('/employees'),array('class'=>'ic3'));
+					echo CHtml::link('Teachers', array('/employees'),array('class'=>'ic3'));
 				}
 				?>
                 </li>

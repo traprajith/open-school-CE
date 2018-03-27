@@ -36,7 +36,10 @@ class FoodInfo extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('food_preference, amount', 'required'),
-			array('food_preference, amount', 'length', 'max'=>120),
+			array('amount', 'numerical', 'integerOnly'=>true),
+                        array('amount', 'match', 'pattern'=>'/^[0-9]+$/'),
+			array('food_preference,amount ', 'length', 'max'=>120),
+
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, food_preference, amount', 'safe', 'on'=>'search'),
@@ -60,9 +63,9 @@ class FoodInfo extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'food_preference' => 'Food Preference',
-			'amount' => 'Amount',
+			'id' => Yii::t('app','ID'),
+			'food_preference' => Yii::t('app','Food Preference'),
+			'amount' => Yii::t('app','Amount'),
 		);
 	}
 

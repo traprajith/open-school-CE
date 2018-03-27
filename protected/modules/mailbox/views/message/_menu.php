@@ -1,31 +1,4 @@
-<style>
-.mailbox-menu-newgrpmsg{
-	-moz-box-shadow:inset 0px 0px 0px 0px #ffffff !important;
-	-webkit-box-shadow:inset 0px 0px 0px 0px #ffffff !important ;
-	box-shadow:inset 0px 0px 0px 0px #ffffff !important;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #1bb4fa), color-stop(1, #0994f0) ) !important;
-	background:-moz-linear-gradient( center top, #1bb4fa 5%, #0994f0 100% ) !important;
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1bb4fa', endColorstr='#0994f0') !important;
-	background-color:#1bb4fa !important;
-	-moz-border-radius:3px !important;
-	-webkit-border-radius:3px !important;
-	border-radius:3px !important;
-	border:1px solid #0c93d1 !important;
-	display:inline-block;
-	color:#ffffff !important;
-	font-family:arial;
-	font-size:12px;
-	font-weight:bold;
-	padding:8px 14px !important;
-	text-decoration:none;
-	position:absolute;
-	top:16px;
-	right:146px;
-	/*text-shadow:1px 0px 0px #0664a3;*/
-}
-.mailbox-menu-newgrpmsg a{color:#fff !important; text-decoration:none !important; display:block;}
 
-</style>
 
 <?php
 
@@ -52,37 +25,51 @@ else
 		<?php
 		if($authInbox):?>
 		<div id="mailbox-inbox" class="mailbox-menu-item <?php echo ($action=='inbox')? 'mailbox-menu-current' : '' ; ?>">
-			<a href="<?php echo $this->createUrl('message/inbox'); ?>" onclick="js:return false;">Inbox </a>
+			<a href="<?php echo $this->createUrl('message/inbox'); ?>" onclick="js:return false;"><?php echo Yii::t('app','Inbox'); ?> </a>
 		</div>
 		<?php endif;
 		if($authSent) : ?>
 		<div  id="mailbox-sent" class="mailbox-menu-item <?php if($action=='sent') echo 'mailbox-menu-current '; ?>">
-			<a href="<?php echo $this->createUrl('message/sent'); ?>" onclick="js:return false;">Sent Mail</a>
+			<a href="<?php echo $this->createUrl('message/sent'); ?>" onclick="js:return false;"><?php echo Yii::t('app','Sent Mail'); ?></a>
 		</div>
 		<?php endif;
 		if($authTrash) : ?>
 		<div id="mailbox-trash" class="mailbox-menu-item <?php if($action=='trash') echo 'mailbox-menu-current '; ?>">
-			<a href="<?php echo $this->createUrl('message/trash'); ?>"  onclick="js:return false;">Trash </a> 
+			<a href="<?php echo $this->createUrl('message/trash'); ?>"  onclick="js:return false;"><?php echo Yii::t('app','Trash'); ?> </a> 
 		</div>
 		<?php endif; ?>
+        <?php
+			if($authNew) :
+		?>
+            <div class="mailbox-group-mdg icon-group"><a href="<?php echo $this->createUrl('message/newgroup'); ?>"><?php echo Yii::t('app','Group Message'); ?></a></div>   
+            <?php  $roles = Rights::getAssignedRoles(Yii::app()->user->Id); // check for single role
+			foreach($roles as $role)
+			{
+				$rolename = $role->name;
+			}
+		  if($rolename == 'Admin' or ModuleAccess::model()->check('My Account')) {?>  
+            <div class="mailbox-group-mdg icon-new-msg"> <a href="<?php echo $this->createUrl('message/new'); ?>"><?php echo Yii::t('app','New Message'); ?></a></div> 
+        <?php }
+		endif;
+			?>
 	</div>
-<?php
+<?php /*?><?php
 if($authNew) :
 	?>
 	<a href="<?php echo $this->createUrl('message/new'); ?>"><div class="mailbox-menu-newmsg  ui-helper-clearfix" align="center">
-		<span>New Message</span>
+		<?php echo Yii::t('app','New Message'); ?>
 	</div></a>
    <?php  $roles = Rights::getAssignedRoles(Yii::app()->user->Id); // check for single role
 			foreach($roles as $role)
 			{
 				$rolename = $role->name;
 			}
-		  if($rolename == 'Admin') {?>
+		  if($rolename == 'Admin' or ModuleAccess::model()->check('Home')) {?>
     <a href="<?php echo $this->createUrl('message/newgroup'); ?>"><div class="mailbox-menu-newgrpmsg  ui-helper-clearfix" align="center">
-		<span>Group Message</span>
+		<span><?php echo Yii::t('app','Group Message'); ?></span>
 	</div></a>
 <?php }
 endif;
-    ?>
+    ?><?php */?>
 
 </div>

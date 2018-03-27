@@ -42,6 +42,7 @@ class ReturnBook extends CActiveRecord
 		return array(
 			array('return_date', 'required'),
 			array('student_id, book_id, borrow_book_id, status', 'length', 'max'=>120),
+			array('issue_date', 'checkReturnDate'),	
 			array('issue_date, return_date, created_date', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -66,14 +67,14 @@ class ReturnBook extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'student_id' => 'Student',
-			'book_id' => 'Book',
-			'borrow_book_id' => 'Borrow Book',
-			'issue_date' => 'Issue Date',
-			'return_date' => 'Return Date',
-			'created_date' => 'Created Date',
-			'status' => 'Status',
+			'id' => Yii::t('app','ID'),
+			'student_id' => Yii::t('app','Student'),
+			'book_id' => Yii::t('app','Book'),
+			'borrow_book_id' => Yii::t('app','Borrow Book'),
+			'issue_date' => Yii::t('app','Issue Date'),
+			'return_date' => Yii::t('app','Return Date'),
+			'created_date' => Yii::t('app','Created Date'),
+			'status' => Yii::t('app','Status'),
 		);
 	}
 
@@ -100,5 +101,15 @@ class ReturnBook extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	public function checkReturnDate($attribute,$params)
+	{		
+		if($this->issue_date!='' and $this->return_date!=''){
+			$issue_date = date('Y-m-d', strtotime($this->issue_date));
+			$return_date 	= date('Y-m-d', strtotime($this->return_date));
+			if($issue_date > $return_date){
+				$this->addError($attribute,Yii::t("app",'Return Date must be greater than Issue Date'));
+			}
+		}
 	}
 }

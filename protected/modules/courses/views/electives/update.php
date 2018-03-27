@@ -1,8 +1,8 @@
 <?php
 $this->breadcrumbs=array(
-	'Electives'=>array('/courses'),
+	Yii::t('Electives','Electives')=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	Yii::t('Electives','Update'),
 );
 
 $this->menu=array(
@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1><?php echo Yii::t('Elective','Update Electives');?></h1>
+<h1><?php echo Yii::t('Electives','Update Electives');?> <?php echo $model->id; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

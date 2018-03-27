@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	'Subject Names'=>array('/courses'),
-	'Manage',
+	Yii::t('app','Subject Names')=>array('/courses'),
+	Yii::t('app','Manage'),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -26,7 +26,7 @@ $('.search-form form').submit(function(){
     </td>
     <td valign="top">
     <div class="cont_right formWrapper">
-<h1>Manage Subject Names</h1>
+<h1><?php echo Yii::t('app','Manage Subject Names'); ?></h1>
 
 
 

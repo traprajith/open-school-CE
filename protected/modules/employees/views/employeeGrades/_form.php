@@ -6,12 +6,12 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note"><?php echo Yii::t('app','Fields with'); ?><span class="required">*</span> <?php echo Yii::t('app','are required.') ;?></p>
 
 	<?php /*?><?php echo $form->errorSummary($model); ?><?php */?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','name')); ?></td>
+    <td><?php echo $form->labelEx($model,'name'); ?></td>
     <td>&nbsp;</td>
     <td><?php echo $form->textField($model,'name',array('size'=>30,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'name'); ?></td>
@@ -22,10 +22,10 @@
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','priority')); ?></td>
+    <td><?php echo $form->labelEx($model,'priority'); ?></td>
     <td>&nbsp;</td>
     <td><?php //echo $form->textField($model,'priority'); 
-		echo $form->dropDownList($model,'priority',array('1'=>'Low','2'=>'Medium','3'=>'High'),array('prompt'=>'Select'));
+		echo $form->dropDownList($model,'priority',array('1'=>Yii::t('app','Low'),'2'=>Yii::t('app','Medium'),'3'=>Yii::t('app','High')),array('prompt'=>Yii::t('app','Select')));
 		?>
 		<?php echo $form->error($model,'priority'); ?></td>
   </tr>
@@ -35,10 +35,10 @@
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','status')); ?></td>
+    <td><?php echo $form->labelEx($model,'status'); ?></td>
     <td>&nbsp;</td>
     <td><?php //echo $form->textField($model,'status'); 
-		echo $form->dropDownList($model,'status',array('1'=>'Active','0'=>'Inactive'),array('prompt'=>'Select'));
+		echo $form->dropDownList($model,'status',array('1'=>Yii::t('app','Active'),'0'=>Yii::t('app','Inactive')),array('prompt'=>Yii::t('app','Select')));
 		?>
 		<?php echo $form->error($model,'status'); ?></td>
   </tr>
@@ -48,7 +48,7 @@
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','max_hours_day')); ?></td>
+    <td><?php echo $form->labelEx($model,'max_hours_day'); ?></td>
     <td>&nbsp;</td>
     <td><?php echo $form->textField($model,'max_hours_day'); ?>
 		<?php echo $form->error($model,'max_hours_day'); ?></td>
@@ -59,7 +59,7 @@
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','max_hours_week')); ?></td>
+    <td><?php echo $form->labelEx($model,'max_hours_week'); ?></td>
     <td>&nbsp;</td>
     <td><?php echo $form->textField($model,'max_hours_week'); ?>
 		<?php echo $form->error($model,'max_hours_week'); ?></td>
@@ -68,7 +68,7 @@
 </table>
 
 	<div style="padding:20px 0 0 0px;">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class'=>'formbut')); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('app','Create') : Yii::t('app','Save'),array('class'=>'formbut')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

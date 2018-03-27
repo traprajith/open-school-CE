@@ -1,9 +1,9 @@
  <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ui-style.css" />
 <?php
 $this->breadcrumbs=array(
-	'Subjects'=>array('/courses'),
+	Yii::t('app','Subjects')=>array('/courses'),
 	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	Yii::t('app','Update'),
 );
 ?>
 
@@ -11,7 +11,7 @@ $this->breadcrumbs=array(
 $this->beginWidget('zii.widgets.jui.CJuiDialog',array(
                 'id'=>'jobDialog',
                 'options'=>array(
-                    'title'=>Yii::t('job','<h2>Create Subjects</h2>'),
+                    'title'=>'<h2>'.Yii::t('job','Create Subjects').'</h2>',
                     'autoOpen'=>true,
                     'modal'=>'true',
                     'width'=>'auto',

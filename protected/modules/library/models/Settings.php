@@ -59,9 +59,9 @@ class Settings extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'value' => 'Value',
+			'id' => Yii::t('app','ID'),
+			'name' => Yii::t('app','Name'),
+			'value' => Yii::t('app','Value'),
 		);
 	}
 

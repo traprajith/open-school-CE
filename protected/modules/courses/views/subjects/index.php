@@ -1,7 +1,7 @@
 
 <?php
 $this->breadcrumbs=array(
-	'Subjects',
+	Yii::t('app','Subjects'),
 );
 
 ?>
@@ -21,12 +21,12 @@ function batch()
     </td>
     <td valign="top">
     <div class="cont_right formWrapper">
-<h1><?php echo  Yii::t('subjects','Subjects');?></h1>
+<h1><?php echo  Yii::t('app','Subjects');?></h1>
 <br />
 <div class="formCon">
 
 <div class="formConInner">
-<span style="font-size:14px; font-weight:bold; color:#666;">Departments</span>&nbsp;&nbsp;&nbsp;
+<span style="font-size:14px; font-weight:bold; color:#666;"><?php echo Yii::t('app','Departments'); ?></span>&nbsp;&nbsp;&nbsp;
  <?php   $models = Batches::model()->findAll("is_deleted=:x", array(':x'=>'0'));
 				$data = array();
 				foreach ($models as $model_1)
@@ -41,7 +41,7 @@ function batch()
 
 $data = CHtml::listData(Courses::model()->findAll(array('order'=>'course_name DESC')),'id','course_name');
 
-echo Yii::t('subjects','Course');
+echo Yii::t('app','Course');
 echo CHtml::dropDownList('cid','',$data,
 array('prompt'=>'-Select-',
 'ajax' => array(
@@ -51,17 +51,17 @@ array('prompt'=>'-Select-',
 'data'=>'js:$(this).serialize()',
 ))); 
 echo '&nbsp;&nbsp;&nbsp;';
-echo Yii::t('subjects','Batch');
+echo Yii::app()->getModule('students')->fieldLabel("Students", "batch_id");
 
 $data1 = CHtml::listData(Batches::model()->findAll(array('order'=>'name DESC')),'id','name');
  ?>
         
-		<?php echo CHtml::dropDownList('batch_id','batch_id',$data1,array('empty'=>'-Select-','onchange'=>'batch()','id'=>'batchdrop')); ?>
+		<?php echo CHtml::dropDownList('batch_id','batch_id',$data1,array('empty'=>Yii::t('app','Select'),'onchange'=>'batch()','id'=>'batchdrop')); ?>
 
 <?php if(isset($_REQUEST['id']))
 {
 	echo '<br><br>';
- echo CHtml::ajaxLink(Yii::t('job','Add Normal subject'),$this->createUrl('subjects/Addnew'),array(
+ echo CHtml::ajaxLink(Yii::t('app','Add Normal subject'),$this->createUrl('subjects/Addnew'),array(
         'onclick'=>'$("#jobDialog").dialog("open"); return false;',
         'update'=>'#jobDialog',
 		'type' =>'GET','data' => array( 'val1' => $_REQUEST['id'] ),'dataType' => 'text',
@@ -79,8 +79,8 @@ $data1 = CHtml::listData(Batches::model()->findAll(array('order'=>'name DESC')),
 		{
 			echo '<tr>';
 			echo '<td>'.$normal_1->name.'</td>';
-			echo '<td>'.Yii::t('subjects','Edit').'</td>';
-			echo '<td>'.Yii::t('subjects','Delete').'</td>';
+			echo '<td>'.Yii::t('app','Edit').'</td>';
+			echo '<td>'.Yii::t('app','Delete').'</td>';
 			echo '</tr>';
 		}
 		?>
@@ -89,7 +89,7 @@ $data1 = CHtml::listData(Batches::model()->findAll(array('order'=>'name DESC')),
         <?php
 		}
 		else {
-		echo Yii::t('subjects','No Subjects Found');	
+		echo Yii::t('app','No Subjects Found');	
 		}
 		echo '<br>';
         
@@ -97,7 +97,7 @@ $data1 = CHtml::listData(Batches::model()->findAll(array('order'=>'name DESC')),
 		  echo '<br><br>';
 		 echo '<br>';
 
- /*echo CHtml::ajaxLink(Yii::t('job','Add Subject'),$this->createUrl('subjects/Addnew1'),array(
+ /*echo CHtml::ajaxLink(Yii::t('app','Add Subject'),$this->createUrl('subjects/Addnew1'),array(
         'onclick'=>'$("#jobDialog1").dialog("open"); return false;',
         'update'=>'#jobDialog1',
 		'type' =>'GET','data' => array( 'val1' => $_REQUEST['id'] ),'dataType' => 'text',
@@ -115,8 +115,8 @@ $data1 = CHtml::listData(Batches::model()->findAll(array('order'=>'name DESC')),
 		{
 			echo '<tr>';
 			echo '<td>'.$elective_1->name.'</td>';
-			echo '<td>'.Yii::t('subjects','Edit').'</td>';
-			echo '<td>'.Yii::t('subjects','Delete').'</td>';
+			echo '<td>'.Yii::t('app','Edit').'</td>';
+			echo '<td>'.Yii::t('app','Delete').'</td>';
 			echo '</tr>';
 		}
 		?>

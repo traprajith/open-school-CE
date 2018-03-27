@@ -1,6 +1,13 @@
 <?php
 
-class TranslateBaseController extends Controller{
+class TranslateBaseController extends RController{
+	public function filters()
+	{
+		return array(
+			'rights', // perform access control for CRUD operations
+		);
+	}
+	
     /**
      * override needed to check if its ajax, the redirect will be by javascript
      */

@@ -59,8 +59,8 @@ class MenuGroup extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'title' => 'Title',
+			'id' => Yii::t("app",'ID'),
+			'title' => Yii::t("app",'Title'),
 		);
 	}
 
@@ -96,7 +96,7 @@ class MenuGroup extends CActiveRecord
 					$response['id'] = $this->db->Insert_ID();
 				} else {
 					$response['status'] = 2;
-					$response['msg'] = 'Add menu group error.';
+					$response['msg'] = Yii::t("app",'Add menu group error.');
 				}
 			} else {
 				$response['status'] = 3;
@@ -133,7 +133,7 @@ class MenuGroup extends CActiveRecord
 			$id = (int)$_POST['id'];
 			if ($id == 1) {
 				$response['success'] = false;
-				$response['msg'] = 'Cannot delete Group ID = 1';
+				$response['msg'] = Yii::t("app",'Cannot delete Group ID = 1');
 			} else {
 				$sql = sprintf('DELETE FROM %s WHERE %s = %s', MENUGROUP_TABLE, MENUGROUP_ID, $id);
 				$delete = $this->db->Execute($sql);

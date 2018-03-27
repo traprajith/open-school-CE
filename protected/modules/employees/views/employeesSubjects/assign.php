@@ -8,7 +8,7 @@
 		  foreach($data as $value)
 		  {
 			  echo Employees::model()->findByPk($value->employee_id)->first_name;
-			  echo CHtml::link(Yii::t('employees','delete'),array('EmployeesSubjects/remove','subject_id'=>$subject_id,'employee_id'=>$value->employee_id));
+			  echo CHtml::link(Yii::t('app','delete'),array('EmployeesSubjects/remove','subject_id'=>$subject_id,'employee_id'=>$value->employee_id));
 		  
 		  }
 		  

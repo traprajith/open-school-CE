@@ -35,14 +35,18 @@ class Room extends CActiveRecord
 	 */
 	public function rules()
 	{
+		
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('room_no, no_of_bed', 'required'),
+			//array('room_no','unique'),
+			array('no_of_bed','numerical','integerOnly'=>true, 'min'=>1),
 			array('room_no, floor, is_full, no_of_bed', 'length', 'max'=>120),
 			array('created', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, room_no, floor, is_full, no_of_bed, created', 'safe', 'on'=>'search'),
+			array('id, room_no, floor, is_full, no_of_bed, created, hostel_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,12 +67,12 @@ class Room extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'room_no' => 'Room No',
-			'floor' => 'Floor',
-			'is_full' => 'Is Full',
-			'no_of_bed' => 'No Of Bed',
-			'created' => 'Created',
+			'id' => Yii::t('app','ID'),
+			'room_no' => Yii::t('app','Room No'),
+			'floor' => Yii::t('app','Floor'),
+			'is_full' => Yii::t('app','Is Full'),
+			'no_of_bed' => Yii::t('app','No Of Bed'),
+			'created' => Yii::t('app','Created'),
 		);
 	}
 

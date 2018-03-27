@@ -10,6 +10,9 @@
 
 class UserModule extends CWebModule
 {
+	public $subjectMaxCharsDisplay = 100;
+	public $ellipsis = '...';
+	public $allowableCharsSubject = '0-9a-z.,!?@\s*$%#&;:+=_(){}\[\]\/\\-';
 	/**
 	 * @var int
 	 * @desc items on page
@@ -134,6 +137,25 @@ class UserModule extends CWebModule
 
 	public function beforeControllerAction($controller, $action)
 	{
+		$roles=Rights::getAssignedRoles(Yii::app()->user->Id); // check for single role
+					
+		  foreach($roles as $role)
+		  {
+			   if(sizeof($roles)==1 and $role->name == 'teacher')
+			   {
+				 $controller->layout='application.views.portallayouts.teachers';
+			   }
+			   if(sizeof($roles)==1 and $role->name == 'student')
+			   { 
+				 $controller->layout='application.views.portallayouts.studentmain';
+			   }
+			   if(sizeof($roles)==1 and $role->name == 'parent')
+			   { 
+				 $controller->layout='application.views.portallayouts.none';
+			   }
+		  }
+		
+		
 		if(parent::beforeControllerAction($controller, $action))
 		{
 			// this method is called before any module controller action is performed
@@ -219,12 +241,69 @@ class UserModule extends CWebModule
 	 * Send mail method
 	 */
 	public static function sendMail($email,$subject,$message) {
-		$adminEmail = Yii::app()->params['adminEmail'];
+		$cur_user= User::model()->findByPk(Yii::app()->user->id);
+		if($cur_user->email)
+		{
+			$adminEmail = $cur_user->email;
+		}
+		else
+		{
+			$cur_user= User::model()->findByPk(1);
+			$adminEmail = $cur_user->email;
+		}
 	    $headers = "MIME-Version: 1.0\r\nFrom: $adminEmail\r\nReply-To: $adminEmail\r\nContent-Type: text/html; charset=utf-8";
 	    $message = wordwrap($message, 70);
 	    $message = str_replace("\n.", "\n..", $message);
 	    return mail($email,'=?UTF-8?B?'.base64_encode($subject).'?=',$message,$headers);
 	}
+	
+	public static function sendMailA($email,$subject,$message,$messagetext,$is_attachment="") {
+		require_once(dirname(__FILE__) .'/../../extensions/PHPMailer/class.phpmailer.php');
+		require_once(dirname(__FILE__) .'/../../extensions/PHPMailer/class.smtp.php');			
+		
+		$institutionName	= Configurations::model()->findByAttributes(array('config_key'=>'InstitutionName'));
+		
+		$mail		= new PHPMailer();					
+		// use custom SMTP mail server
+		// UseSmtpMailServer
+		$useSmtpMailServer	= Configurations::model()->findByAttributes(array('config_key'=>'UseSmtpMailServer'));
+		if($useSmtpMailServer!=NULL or $useSmtpMailServer->config_value==1){
+			// add custom server details
+			/*$username 			= '';
+			$password 			= '';			
+			$mail->IsSMTP(); 								// telling the class to use SMTP
+			$mail->SMTPAuth   	= true;                  	// enable SMTP authentication
+			$mail->SMTPSecure 	= "tls";                 	// sets the prefix to the servier
+			$mail->Host       	= "smtp.gmail.com";      	// sets GMAIL as the SMTP server
+			$mail->Port       	= 587;                   	// set the SMTP port for the GMAIL server
+			$mail->Username   	= $username;  		  		// username
+			$mail->Password   	= $password;            	// password
+			$setFrom			= $username;
+			*/
+		}
+		else{
+			$institutionEmail	= Configurations::model()->findByAttributes(array('config_key'=>'InstitutionEmail'));
+			$setFrom			= ($institutionEmail!=NULL and $institutionEmail->config_value!="")?$institutionEmail->config_value:'admin@example.com';
+		}
+		
+		$schoolName			= ($institutionName!=NULL and $institutionName->config_value!="")?$institutionName->config_value:'Institution Name';
+		
+		$mail->SetFrom($setFrom, $schoolName);
+		$mail->AddReplyTo($setFrom, $schoolName);
+		$body				= $message;
+		$address 			= $email;		
+		$mail->Subject		= $subject;			
+		$mail->AltBody		= "To view the message, please use an HTML compatible email viewer!"; // optional, comment out and test			
+		if($is_attachment!=""){	
+			$mail->AddAttachment($is_attachment); 
+		}		
+		$mail->MsgHTML($body);		
+		$mail->AddAddress($address);
+		
+		return $mail->Send();
+	}
+	
+	
 	
 	/**
 	 * Return safe user data.

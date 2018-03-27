@@ -15,11 +15,11 @@ class Registration extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * @return Registration the static model class
 	 */
+	 
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
-
 	/**
 	 * @return string the associated database table name
 	 */
@@ -31,18 +31,20 @@ class Registration extends CActiveRecord
 	/**
 	 * @return array validation rules for model attributes.
 	 */
+	 public $hostel;
+	 public $floor;
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
+		
 		return array(
-			array('student_id, food_preference', 'required'),
-			array('student_id','unique'),
+			array('student_id, food_preference','required'),
+			//array('student_id','unique'),
 			array('student_id, food_preference, desc, status', 'length', 'max'=>120),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, student_id, food_preference, desc, status', 'safe', 'on'=>'search'),
 		);
+		
 	}
 
 	/**
@@ -62,11 +64,11 @@ class Registration extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'student_id' => 'Student',
-			'food_preference' => 'Food Preference',
-			'desc' => 'Desc',
-			'status' => 'Status',
+			'id' => Yii::t('app','ID'),
+			'student_id' => Yii::t('app','Student'),
+			'food_preference' => Yii::t('app','Food Preference'),
+			'desc' => Yii::t('app','Description'),
+			'status' => Yii::t('app','Status'),
 		);
 	}
 

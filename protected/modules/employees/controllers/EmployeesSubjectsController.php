@@ -103,12 +103,31 @@ class EmployeesSubjectsController extends RController
 	}
 	public function actionDeleterow()
 	{
-
-		$postRecord = EmployeesSubjects::model()->findByPk($_REQUEST['id']);
-		$postRecord->delete();
-		 Yii::app()->user->setFlash('notification','Data Saved Successfully');
-		$this->redirect(array('create','cou'=>$_REQUEST['cou'],'sub'=>$_REQUEST['sub'],'dept'=>$_REQUEST['dept']));
-		
+		if(Yii::app()->request->isPostRequest){
+			$postRecord = EmployeesSubjects::model()->findByAttributes(array('id'=>$_GET['id']));
+			
+			if($postRecord)
+			{
+				//for delete time table entries in of employee
+				$subject_id= $postRecord->subject_id;
+				$employee_id= $postRecord->employee_id;
+				$sub_model= Subjects::model()->findByPk($subject_id);
+				$batch_id= $sub_model->batch_id;
+				$timetable_entries_model= TimetableEntries::model()->findAllByAttributes(array('employee_id'=>$employee_id, 'batch_id'=>$batch_id,'subject_id'=>$subject_id, 'is_elective'=>0));
+				foreach ($timetable_entries_model as $data)
+				{
+					$data->delete();
+				}
+	
+				$postRecord->delete();
+			}
+			 Yii::app()->user->setFlash('notification',Yii::t('app','Data Saved Successfully'));
+			$this->redirect(array('create','cou'=>$_REQUEST['cou'],'sub'=>$_REQUEST['sub'],'dept'=>$_REQUEST['dept']));	
+		}
+		else
+		{
+			throw new CHttpException(404,Yii::t('app','Invalid Request.'));
+		}
 	}
 
 	/**
@@ -128,7 +147,7 @@ class EmployeesSubjectsController extends RController
 				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 		}
 		else
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+			throw new CHttpException(400,Yii::t('app','Invalid request. Please do not repeat this request again.'));
 	}
 
 	/**
@@ -143,12 +162,18 @@ class EmployeesSubjectsController extends RController
 	}
 	public function actionAssign()
 	{
-	$model = new EmployeesSubjects;
-
-	$model->employee_id = $_REQUEST['emp_id'];
-	$model->subject_id = $_REQUEST['sub'];
-	$model->save();
-	$this->redirect(array('create','cou'=>$_REQUEST['cou'],'sub'=>$_REQUEST['sub'],'dept'=>$_REQUEST['dept']));
+		if(Yii::app()->request->isPostRequest){
+			$model = new EmployeesSubjects;
+		
+			$model->employee_id = $_REQUEST['emp_id'];
+			$model->subject_id = $_REQUEST['sub'];
+			$model->save();
+			$this->redirect(array('create','cou'=>$_REQUEST['cou'],'sub'=>$_REQUEST['sub'],'dept'=>$_REQUEST['dept']));
+		}
+		else
+		{
+			throw new CHttpException(404,Yii::t('app','Invalid Request.'));
+		}
 		
 	}
 
@@ -176,7 +201,7 @@ class EmployeesSubjectsController extends RController
 	{
 		$model=EmployeesSubjects::model()->findByPk($id);
 		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+			throw new CHttpException(404,Yii::t('app','The requested page does not exist.'));
 		return $model;
 	}
 

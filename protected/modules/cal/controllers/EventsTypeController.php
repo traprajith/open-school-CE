@@ -103,7 +103,7 @@ public function   init() {
 	{
 		$model=EventsType::model()->findByPk($id);
 		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+			throw new CHttpException(404,Yii::t('app','The requested page does not exist.'));
 		return $model;
 	}
 
@@ -190,6 +190,7 @@ public function   init() {
 		{
            $model=$this->loadModel($_POST['update_id']);
 			$model->attributes=$_POST['EventsType'];
+				$this->performAjaxValidation($model);
 			if( $model->save(false)){
                          echo json_encode(array('success'=>true));
 		             }else
@@ -206,7 +207,8 @@ public function   init() {
                        $model=new EventsType;
                       //set the submitted values
                         $model->attributes=$_POST['EventsType'];
-                       //return the JSON result to provide feedback.
+                       //return the JSON result to provide feedback
+					      $this->performAjaxValidation($model);
 			            if($model->save(false)){
                                 echo json_encode(array('success'=>true,'id'=>$model->primaryKey) );
                                 exit;
@@ -218,17 +220,24 @@ public function   init() {
 		}
   }
 
-     public function actionAjax_delete(){
-                 $id=$_POST['id'];
-                 $deleted=$this->loadModel($id);
-                if ($deleted->delete() ){
-               echo json_encode (array('success'=>true));
-               exit;
-                }else{
-                  echo json_encode (array('success'=>false));
-                  exit;
-                           }
-      }
+	public function actionAjax_delete(){
+		if(Yii::app()->request->isAjaxRequest){
+			$id=$_POST['id'];
+			$deleted=$this->loadModel($id);
+			if ($deleted->delete() ){
+				echo json_encode (array('success'=>true));
+				exit;
+			}
+			else{
+				echo json_encode (array('success'=>false));
+				exit;
+			}
+		}
+		else{
+			echo json_encode (array('success'=>false));
+			exit;
+		}
+	}
 
 
 }

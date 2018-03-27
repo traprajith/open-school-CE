@@ -27,11 +27,12 @@ border-radius: 3px;
 .ui-widget-header{
 	background:none;
 	border:none;
-	font-size:18px;
+	font-size:14px;
 	border-bottom:1px #d1d1d1 dashed;
 	-moz-border-radius: 0px;
 	-webkit-border-radius: 0px;
 	border-radius: 0px;
+	font-weight:500 !important;
 }
 .ui-dialog .ui-dialog-titlebar{
 	padding:10px 0px 10px 10px;
@@ -56,29 +57,29 @@ border-radius: 3px;
 .ui-widget input[type="submit"], button{
 	padding:0px 10px;
 	margin:0px;
+	 width:100%;
 	background:url(../images/fbut-bg.png) repeat-x;
 	height:30px;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
 	border:1px #b58530 solid;
 	color:#633c15;
 	font-size:12px;
 	cursor:pointer;
-	text-shadow: 0.1em 0.1em #fdbd59;
 	font-weight:bold;
 	font-family:Arial, Helvetica, sans-serif;
 }
 .ui-widget .formbut:hover{background:url(../images/fbut-bg-h.png) repeat-x;}
-.ui-widget label{font-size:14px; letter-spacing:.001em; color:#666;  font-weight:bold; padding:10px 0px 5px 3px; display:block}
-
+.ui-widget label{font-size:13px; letter-spacing:.001em; color:#666;  font-weight:500; padding:10px 0px 5px 3px; display:block}
+/*.ui-widget label{font-size:14px; letter-spacing:.001em; color:#666;  font-weight:bold; padding:10px 0px 5px 3px; display:block}*/
 .ui-widget h2{
-	
-	padding:0px 0px;
-	margin:0px;
-	color:##404040;
-	font-size:22px;
-	font-weight:normal;
+	padding: 0px 0px;
+	margin: 0px;
+	color: #956e0a;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
 }
 .ui-widget h3{
 	

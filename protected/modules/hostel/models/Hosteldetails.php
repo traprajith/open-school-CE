@@ -61,10 +61,10 @@ class Hosteldetails extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'hostel_name' => 'Hostel Name',
-			'address' => 'Desc',
-			'is_deleted' => 'Is Deleted',
+			'id' => Yii::t('app','ID'),
+			'hostel_name' => Yii::t('app','Hostel Name'),
+			'address' => Yii::t('app','Address'),
+			'is_deleted' => Yii::t('app','Is Deleted'),
 			
 		);
 	}

@@ -1,62 +1,108 @@
 <?php
 
-/**
--------------------------
-GNU GPL COPYRIGHT NOTICES
--------------------------
-This file is part of Open-School.
-
-Open-School is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-Open-School is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with Open-School.  If not, see <http://www.gnu.org/licenses/>.*/
-
-/**
- * $Id$
- *
- * @author Open-School team <contact@Open-School.org>
- * @link http://www.Open-School.org/
- * @copyright Copyright &copy; 2009-2013 wiwo inc.
- * @Matthew George,@Rajith Ramachandran,@Arun Kumar,
- * @Anupama,@Laijesh V Kumar,@Tanuja.
- * @license http://www.Open-School.org/
- */
- 
 class DefaultController extends CController
 {
     public function init() {
         parent::init();
         Yii::app()->Theme = 'Installer';
         Yii::app()->layout = 'main';
-    }
+	}
+	
+	
     
     /**
     * Show welcome page
     */
-    public function actionIndex() {
+    public function actionIndex() { 
 		
         Yii::app()->layout = null;
 		Yii::app()->session->remove('key');
 		
-		
+		if(isset($_POST['email']) && !isset($_POST['serial'])){
+            
+            $key_info['email']      = $_POST['email'];
+            $key_info['fname']      = $_POST['fname'];
+            $key_info['lname']      = $_POST['lname'];
+            $key_info['reg_domain'] = Yii::app()->controller->module->getRegdomain();
+
+            // this is the url where you have your server script
+                  
+              $serverurl = "http://licence-server.open-school.org/community.php";
+              
+              // start a curl session
+              $ch = curl_init ($serverurl);
+              
+              // return the output, don't print it
+              curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+              
+              // set curl to send post data
+              curl_setopt ($ch, CURLOPT_POST, true);
+              
+              // set the post data to be sent
+              curl_setopt ($ch, CURLOPT_POSTFIELDS, $key_info);
+              
+              // get the server response
+              $result = curl_exec ($ch);
+              
+
+            $this->render('welcome');
+        }
+
 		if(isset($_POST['serial'])){
 	
+				  $key_info['key'] = $_POST['serial'];
+				  //$key_info['key'] = '0123-4567-8901-2345';
 				  
+				  // the match key we are using here is the clients
+				  // email, this would be saved when they 
+				  // purchase the script/program from your website
+				  $key_info['email'] = $_POST['email'];
+				  $key_info['reg_domain'] = Yii::app()->controller->module->getRegdomain();
+				  
+				  
+				  // this is the url where you have your server script
+				  
+				  $serverurl = "http://licence-server.open-school.org/community.server.php";
+				  
+				  // start a curl session
+				  $ch = curl_init ($serverurl);
+				  
+				  // return the output, don't print it
+				  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+				  
+				  // set curl to send post data
+				  curl_setopt ($ch, CURLOPT_POST, true);
+				  
+				  // set the post data to be sent
+				  curl_setopt ($ch, CURLOPT_POSTFIELDS, $key_info);
+				  
+				  // get the server response
+				  $result = curl_exec ($ch);
+				  
+				  //echo $result;exit;
+				  
+				  // convert the json to an array
+				  $result = json_decode($result, true);
+				  
+				  //echo $result['valid'];exit;
+				  // check if the key was valid
+				  if($result['valid'] == 'true'){
 					  Yii::app()->session['key'] = $_POST['serial'];
                       Yii::app()->session['email'] = $_POST['email'];
 					  $this->redirect(array('step1'));
 					  //echo 'Valid Key';
 					  // do nothing and let the script to continue running
 					  
-				  
+				  }
+				  else {
+					  
+					  // key is not valid so stop it
+					  //die("Invalid Key!");
+					  echo 'Invalid Key';
+					  //exit;
+					  $this->redirect(array('index'));
+					  
+				  }
 				  }
 		
 		
@@ -80,7 +126,17 @@ class DefaultController extends CController
 				  Yii::app()->session->remove('key');//Remove
 				  $key_info['email'] = Yii::app()->session['email'];
 				  Yii::app()->session->remove('email');//Remove
-				  Yii::app()->session['key'] = $key_info['key'];
+				  $key_info['reg_domain'] = Yii::app()->controller->module->getRegdomain();
+				  $serverurl = "http://licence-server.open-school.org/community.server.php";
+				  $ch = curl_init ($serverurl);
+				  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+				  curl_setopt ($ch, CURLOPT_POST, true);
+				  curl_setopt ($ch, CURLOPT_POSTFIELDS, $key_info);
+				  $result = curl_exec ($ch);
+				  $result = json_decode($result, true);
+					if($result['valid'] == 'true')
+					{
+					  Yii::app()->session['key'] = $key_info['key'];
                       Yii::app()->session['email'] = $key_info['email'];
 					  $folders = $this->getFoldersWritable();
 					  $writables = array();
@@ -97,7 +153,15 @@ class DefaultController extends CController
 					  
 					  $this->render('step1', array('folders'=>$folders));
 					  
-				 
+				  }
+				  else {
+					  
+					  // key is not valid so stop it
+					  //die("Invalid Key!");
+					  echo 'Invalid Key';
+					  $this->redirect(array('index'));
+					  
+				  }
 				  }
 				  else {
 					  
@@ -178,11 +242,28 @@ class DefaultController extends CController
 				  Yii::app()->session->remove('key');//Remove
 				  $key_info['email'] = Yii::app()->session['email'];
 				  Yii::app()->session->remove('email');//Remove
-				  Yii::app()->session['key'] = $key_info['key'];
+				  $key_info['reg_domain'] = Yii::app()->controller->module->getRegdomain();
+				  $serverurl = "http://licence-server.open-school.org/community.server.php";
+				  $ch = curl_init ($serverurl);
+				  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+				  curl_setopt ($ch, CURLOPT_POST, true);
+				  curl_setopt ($ch, CURLOPT_POSTFIELDS, $key_info);
+				  $result = curl_exec ($ch);
+				  $result = json_decode($result, true);
+					if($result['valid'] == 'true')
+					{
+					  Yii::app()->session['key'] = $key_info['key'];
                       Yii::app()->session['email'] = $key_info['email'];
 					  $this->render('step2', array('model'=>$model));
 					  
-				  
+				  }
+				  else {
+					  //session contains invalid key
+					  //die("Invalid Key!");
+					  echo 'Invalid Key';
+					  $this->redirect(array('index'));
+					  
+				  }
 				  }
 				  else {
 					  //session expired or direct link 
@@ -213,7 +294,9 @@ class DefaultController extends CController
         }
 
         if (isset($_POST['install']) === true) {
-            if (is_object($connection) === true) {
+			
+            if (is_object($connection) === true) {				
+				
                 //create db schema
                 $sql = $this->getSql($this->module->structuresPath);
                 $sqlArr =  $this->splitQueries($sql);
@@ -221,7 +304,7 @@ class DefaultController extends CController
                     if (preg_match('/(CREATE\s+TABLE|DROP\s+TABLE|ALTER\s+TABLE|CREATE\s+VIEW|DROP\s+VIEW)/i', $script))
                         $result = $connection->createCommand($script)->execute();
                 }
-                
+               
                 //insert example data
                 $dataPath = $this->module->dataPath;
                 if (isset($_POST['example']) === true) {
@@ -244,11 +327,19 @@ class DefaultController extends CController
                     }
                     foreach ($remove as $i) unset($sqlDataArr[$i]);
                 }
+				
 				$this->initDbConnection();
-				$user = User::model()->findByPk(1);
-				$password = substr(md5(uniqid(mt_rand(), true)), 0, 10);
-                $user->password=UserModule::encrypting($password);
-                 if ($user->save() === true) {
+				
+				// change this for new user module !!!
+
+				
+                $user = User::model()->findByPk(1);
+				$salt= User::model()->getSalt();  
+                $password = substr(md5(uniqid(mt_rand(), true)), 0, 10);        
+                $user->password=Yii::app()->controller->module->encrypting($salt.$password);
+                $user->salt= $salt;
+				
+                if ($user->save() === true) {
                     Yii::app()->session['aemail'] = 'admin';
                     Yii::app()->session['password'] = $password;
                     $this->redirect(array('step4'));
@@ -267,11 +358,28 @@ class DefaultController extends CController
 				  Yii::app()->session->remove('key');//Remove
 				  $key_info['email'] = Yii::app()->session['email'];
 				  Yii::app()->session->remove('email');//Remove
-				  Yii::app()->session['key'] = $key_info['key'];
+				  $key_info['reg_domain'] = Yii::app()->controller->module->getRegdomain();
+				  $serverurl = "http://licence-server.open-school.org/community.server.php";
+				  $ch = curl_init ($serverurl);
+				  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+				  curl_setopt ($ch, CURLOPT_POST, true);
+				  curl_setopt ($ch, CURLOPT_POSTFIELDS, $key_info);
+				  $result = curl_exec ($ch);
+				  $result = json_decode($result, true);
+					if($result['valid'] == 'true')
+					{
+					  Yii::app()->session['key'] = $key_info['key'];
                       Yii::app()->session['email'] = $key_info['email'];
 					  $this->render('step3', array('canConnect' => $canConnect));
 					  
-				  
+				  }
+				  else {
+					  //session contains invalid key
+					  //die("Invalid Key!");
+					  echo 'Invalid Key';
+					  $this->redirect(array('index'));
+					  
+				  }
 				  }
 				  else {
 					  //session expired or direct link 
@@ -334,7 +442,7 @@ class DefaultController extends CController
         $dbinfo = explode(';', $str);
         foreach($dbinfo as $info)
             parse_str($info);
-        $db=mysqli_connect($host.':'.$port,DB_USER,DB_PWD,$dbname);
+        $db=mysqli_connect($host,DB_USER,DB_PWD,$dbname,$port);
         return $db;
     }
 
@@ -430,8 +538,10 @@ class DefaultController extends CController
                 $user->setScenario('init');
                 $user->Username = 'admin';
                 $user->Email = $model->adminEmail;
-                $password = substr(md5(uniqid(mt_rand(), true)), 0, 10);
-                $user->Password = md5($password);
+                $salt= User::model()->getSalt();  
+                $password = substr(md5(uniqid(mt_rand(), true)), 0, 10);        
+                $user->password=Yii::app()->controller->module->encrypting($salt.$password);
+                $user->salt= $salt;
                 $user->ValidationType = 1;
                 $user->ValidationExpired = 1;
                 $user->Status = User::STATUS_MEMBER;
@@ -458,7 +568,7 @@ class DefaultController extends CController
         if (Yii::app()->session->contains('aemail') === false && Yii::app()->session->contains('password') === false)
             $this->redirect(array('step3'));
         
-       
+        
         
         $model = new RegisterForm;
         if (isset($_POST['RegisterForm'])) {
@@ -470,7 +580,7 @@ class DefaultController extends CController
                 $data = http_build_query(CMap::mergeArray($model->attributes, array('ip'=>gethostbyname($_SERVER['SERVER_NAME']),'domain'=>Yii::app()->request->hostInfo.Yii::app()->request->baseUrl,'key'=>Yii::app()->session['key'])), null, '&');
 				 // set URL and other appropriate options
                 $options = array(
-				    CURLOPT_URL => 'http://licence-server.open-school.org/register.php',
+				    CURLOPT_URL => 'http://licence-server.open-school.org/community.register.php',
                     CURLOPT_HEADER => false,
                     CURLOPT_POST => true,
                     CURLOPT_POSTFIELDS => $data,
@@ -482,21 +592,44 @@ class DefaultController extends CController
                 $content=trim($content,'()');
                 $result = CJSON::decode($content, true);
                 curl_close($ch);
-				
-				$this->initDbConnection();
-				
-				$posts_1=Configurations::model()->findByAttributes(array('id'=>1));
-				$posts_1->config_value = $_POST['RegisterForm']['schoolname'];
-				$posts_1->save();
-				
-				$posts_2=Configurations::model()->findByAttributes(array('id'=>2));
-				$posts_2->config_value = $_POST['RegisterForm']['address'];
-				$posts_2->save();
                 
+//                if (is_array($result) && isset($result['ReturnedData']) && $result['ReturnedData'] === 'OK') {
+                    //create Settings.php
+					
+					
+					
+                    /*Yii::setPathOfAlias('Cms', Yii::getPathOfAlias('application.modules.Cms'));
+                    Yii::setPathOfAlias('User', Yii::getPathOfAlias('application.modules.User'));
+                    Yii::setPathOfAlias('Category', Yii::getPathOfAlias('application.modules.Category'));
+                    Yii::setPathOfAlias('Page', Yii::getPathOfAlias('application.modules.Page'));
+                    Yii::setPathOfAlias('News', Yii::getPathOfAlias('application.modules.News'));
+                    Yii::setPathOfAlias('Statistics', Yii::getPathOfAlias('application.modules.Statistics'));
+                    Yii::setPathOfAlias('Messaging', Yii::getPathOfAlias('application.modules.Messaging'));
+                    Yii::setPathOfAlias('Support', Yii::getPathOfAlias('application.modules.Support'));
+                    
+                    $this->initDbConnection();
+                    //Generate module settings
 
+                    //Modify this array for modules in this package
+                    $modules = array('Cms','User','News','Statistics','Messaging','Support','Gallery','Statistics');
+
+                    foreach($modules as $module)
+                        //SettingsService::db2php(array('Module' => $module));
+                        Cms::rawService('Cms/Settings/db2php', array('Module' => $module));
+
+                    //Cache pages and categories
+                    Cms::rawService('Cms/Page/cache',array());
+                    Cms::rawService('Cms/Category/cache',array());
+
+                    //Permission
+                    Cms::rawService('Cms/Permission/createAuthItems',array('cleanup' => 1));*/
+                    
+					
+                    
+                    //update .htaccess
 					$this->redirect(array('step5'));
                     
-
+//                }
             }
         }
 		
@@ -511,12 +644,28 @@ class DefaultController extends CController
 				  Yii::app()->session->remove('key');//Remove
 				  $key_info['email'] = Yii::app()->session['email'];
 				  Yii::app()->session->remove('email');//Remove
-				  $serverurl = "http://licence-server.open-school.org/server.php";
-				  Yii::app()->session['key'] = $key_info['key'];
+				  $key_info['reg_domain'] = Yii::app()->controller->module->getRegdomain();
+				  $serverurl = "http://licence-server.open-school.org/community.server.php";
+				  $ch = curl_init ($serverurl);
+				  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+				  curl_setopt ($ch, CURLOPT_POST, true);
+				  curl_setopt ($ch, CURLOPT_POSTFIELDS, $key_info);
+				  $result = curl_exec ($ch);
+				  $result = json_decode($result, true);
+					if($result['valid'] == 'true')
+					{
+					  Yii::app()->session['key'] = $key_info['key'];
                       Yii::app()->session['email'] = $key_info['email'];
 					  $this->render('step5', array('model'=>$model));
 					  
-				  
+				  }
+				  else {
+					  //session contains invalid key
+					  //die("Invalid Key!");
+					  echo 'Invalid Key';
+					  $this->redirect(array('index'));
+					  
+				  }
 				  }
 				  else {
 					  //session expired or direct link 
@@ -552,14 +701,36 @@ class DefaultController extends CController
 				  Yii::app()->session->remove('key');//Remove
 				  $key_info['email'] = Yii::app()->session['email'];
 				  Yii::app()->session->remove('email');//Remove
-				  
-					  
+				  $key_info['reg_domain'] = Yii::app()->controller->module->getRegdomain();
+				  $serverurl = "http://licence-server.open-school.org/community.server.php";
+				  $ch = curl_init ($serverurl);
+				  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+				  curl_setopt ($ch, CURLOPT_POST, true);
+				  curl_setopt ($ch, CURLOPT_POSTFIELDS, $key_info);
+				  $result = curl_exec ($ch);
+				  $result = json_decode($result, true);
+					if($result['valid'] == 'true')
+					{
+					  $key_info['deactivate'] = 1;
+					  $serverurl = "http://licence-server.open-school.org/community.server.php";
+					  $ch = curl_init ($serverurl);
+					  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); 
+					  curl_setopt ($ch, CURLOPT_POST, true);
+					  curl_setopt ($ch, CURLOPT_POSTFIELDS, $key_info);
+					  $result = curl_exec ($ch);
 					  $this->render('Finish', array('htaccessUpdated'=>$htaccessUpdated));
                       Yii::app()->session->remove('email');
                       Yii::app()->session->remove('password');
                       Yii::app()->end();
 					  
-				  
+				  }
+				  else {
+					  //session contains invalid key
+					  //die("Invalid Key!");
+					  echo 'Invalid Key';
+					  $this->redirect(array('index'));
+					  
+				  }
 				  }
 				  else {
 					  //session expired or direct link 

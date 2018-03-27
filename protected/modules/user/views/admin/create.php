@@ -6,15 +6,15 @@ $this->breadcrumbs=array(
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td width="247" valign="top">
-<div id="othleft-sidebar">
-<?php $this->renderPartial('//configurations/left_side');?>
-<?php
-//$this->menu=array(
-//    array('label'=>UserModule::t('Manage Users'), 'url'=>array('admin')),
-//    array('label'=>UserModule::t('Manage Profile Field'), 'url'=>array('profileField/admin')),
-//    array('label'=>UserModule::t('List User'), 'url'=>array('/user')),
-//);
-?>
+    <div id="othleft-sidebar">
+    <?php $this->renderPartial('//configurations/left_side');?>
+    <?php
+    //$this->menu=array(
+    //    array('label'=>UserModule::t('Manage Users'), 'url'=>array('admin')),
+    //    array('label'=>UserModule::t('Manage Profile Field'), 'url'=>array('profileField/admin')),
+    //    array('label'=>UserModule::t('List User'), 'url'=>array('/user')),
+    //);
+    ?>
 </div>
  </td>
     <td valign="top">

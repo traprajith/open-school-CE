@@ -12,7 +12,7 @@ $viewLink = $this->createUrl('news/info',array('id'=>$data->conversation_id));
 $received = $this->module->getDate($data->modified);
 $itemCssClass = $data->isNew($userid)? 'msg-new' : 'msg-read';
 
-$status = "View this news update";
+$status = Yii::t('app',"View this news update");
 ?>
 <tr class="mailbox-item <?php echo $itemCssClass; ?> <?php if($this->getAction()->getId()!='sent') echo 'mailbox-draggable-row'; ?>">
 	<?php if($this->getAction()->getId()!='sent'): // add dragdrop handle ?>
@@ -21,7 +21,7 @@ $status = "View this news update";
     <td style="width:25px;"><div class="mailbox-item-wrapper">&nbsp;</div></td>
 	<?php endif; ?>
     
-	<?php if( $this->module->isAdmin() ) : ?>
+	<?php if( $this->module->isAdmin() or ModuleAccess::model()->check('Home')) : ?>
     <td align="left" style="width:40px;">
 		<label class="ui-helper-reset" for="conv_<?php echo $data->conversation_id; ?>">
 		<div class="mailbox-item-wrapper mailbox-check">
@@ -35,7 +35,11 @@ $status = "View this news update";
         	<a class="mailbox-link" title="<?php echo $status; ?>" href="<?php echo $viewLink; ?>">
             <span style="width:55%; display:inline-block; float:left;">&nbsp;</span>
 			<span class="mailbox-subject-text" style="width:auto; min-width:15%; display:inline-block; float:left;"><?php echo preg_replace('/[\s]+/','&nbsp;',(($data->subject)? $data->subject : $this->module->defaultSubject)); ?></span>
-            <span class="mailbox-msg-brief" style="width:15%; display:inline-block; float:left;">&nbsp;-&nbsp;<?php echo preg_replace('/[\s]+/','&nbsp;',substr($data->text,0,50)); ?></span>
+            <span class="mailbox-msg-brief" style="width:15%; display:inline-block; float:left;">&nbsp;-&nbsp;<?php 
+					if(strlen($data->text) >50 )
+						echo preg_replace('/[\s]+/','&nbsp;',substr($data->text,0,50));
+					else 
+					    echo substr($data->text,0,10) ?></span>
             <span style="width:15%; display:inline-block; float:left; max-width: 15%;">&nbsp;</span>
             </a>
 		</div>
@@ -43,7 +47,7 @@ $status = "View this news update";
     <td style="width:50px;"  align="right" >
 		<div class="mailbox-item-wrapper mailbox-ellipsis">
 			<?php if($data->is_replied) : ?>
-			<div class="mailbox-replied" title="this message has been replied to"></div>
+			<div class="mailbox-replied" title="<?php echo Yii::t('app','this message has been replied to'); ?>"></div>
 			<?php endif; ?>
             <a class="mailbox-link" title="<?php echo $status; ?>" href="<?php echo $viewLink; ?>">
 			<?php echo $received; ?>

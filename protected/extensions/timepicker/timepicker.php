@@ -9,7 +9,8 @@ class timepicker extends CWidget {
 	public $model;
 	public $name;
 	public $language;
-	public $select = 'datetime'; # also avail 'time' and 'date'
+	public $select 		= 'datetime'; # also avail 'time' and 'date'
+	public $htmlOptions	= array();
 
 	public function init() {
 		$this->assets = Yii::app()->assetManager->publish(dirname(__FILE__).DIRECTORY_SEPARATOR.'assets');
@@ -47,7 +48,7 @@ class timepicker extends CWidget {
 		);
 
 		$this->options = array_merge($default, $this->options);
-        
+		
 		$options=empty($this->options) ? '' : CJavaScript::encode($this->options);
 
 		Yii::app()->getClientScript()->registerScript(__CLASS__.'#'.$this->id,"

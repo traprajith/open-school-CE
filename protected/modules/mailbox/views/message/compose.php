@@ -1,7 +1,30 @@
+<style type="text/css">
+.ui-autocomplete-input{
+background: none repeat scroll 0 0 #fff !important;
+    border: 1px solid #c2cfd8 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 2px !important;
+    padding: 7px 3px !important;
+	width: 289px;
+	/*text-transform:capitalize;*/
+}
+	
+.ui-autocomplete-input:hover{ background:#fff !important;
+	color:#000 !important;}
+.ui-menu .ui-menu-item a:hover{ color:#fff !important;}
+
+/*#mform button{ border-radius:0px !important;
+	background:none repeat scroll 0 0 #f38108 !important;
+	color:#fff;
+	text-shadow:0px 0px #fdbd59;}*/
+
+</style>
+
 <?php
 $this->breadcrumbs=array(
-	ucfirst($this->module->id)=>array('inbox'),
-	ucfirst($this->getAction()->getId())
+	Yii::t('app',ucfirst($this->module->id))=>array('inbox'),
+	Yii::t('app',ucfirst($this->getAction()->getId()))
 );
 ?>
 
@@ -10,6 +33,7 @@ $this->breadcrumbs=array(
 <script type="text/javascript">
   window.parent.CKEDITOR.tools.callFunction(CKEditorFuncNum, 
     url, errorMessage);
+	
 </script>
 <script type="text/javascript">
 $(document).ready(function () {
@@ -18,6 +42,7 @@ $(document).ready(function () {
 		height: 300,
 		width : '95%',
 		resize_enabled : false,
+		language:'<?php echo Yii::app()->language;?>',
 		toolbar :
 
 		[
@@ -32,7 +57,7 @@ $(document).ready(function () {
 
 	};
         //Set for the CKEditor
-		$('#Message_text').ckeditor(config);
+		$('#DashboardMessage_text').ckeditor(config);
 
     });
 
@@ -55,7 +80,7 @@ $(document).ready(function () {
         <div class="cont_right formWrapper" style="padding:0px; width:753px;">
       <div id="parent_rightSect">
       <div class="parentright_innercon">
-      <div class="mail_head">New Message<span>Compose new message here.</span></div>
+      <div class="mail_head"><?php echo Yii::t('app','New Message'); ?><span><?php echo Yii::t('app','Compose new message here.'); ?></span></div>
       <div >
 <?php
 $this->renderpartial('_menu');
@@ -77,7 +102,7 @@ $form=$this->beginWidget('CActiveForm', array(
 		<div class="formConInner" style="width:660px;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><?php echo CHtml::activeLabelEx($conv,'<strong>To</strong>'); ?></td>
+    <td><strong><?php echo CHtml::activeLabelEx($conv,'to'); ?></strong></td>
     <td><?php echo $form->textField($conv,'to',array('style'=>'width:30%;','id'=>'message-to','class'=>'mailbox-input', 'edit'=>$this->module->editToField? '1' : null)); ?>
 				<?php echo $form->error($conv,'to'); ?>
 				<?php
@@ -90,6 +115,7 @@ $form=$this->beginWidget('CActiveForm', array(
 						foreach($reps as $key => &$label)
 						{
 						?>
+                       
 						<option type="hidden" value="<?php echo $key; ?>"><?php echo $label; ?></option>
 						<?php
 						}
@@ -103,8 +129,8 @@ $form=$this->beginWidget('CActiveForm', array(
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><?php echo CHtml::activeLabelEx($conv,'<strong>Subject</strong>',array('class'=>'mailbox-label')); ?></td>
-    <td><?php echo $form->textField($conv,'subject',array('class'=>'mailbox-input','style'=>'width:50%;','placeholder'=>$this->module->defaultSubject,'id'=>'subjectid')); ?>
+    <td><strong><?php echo CHtml::activeLabelEx($conv,'subject',array('class'=>'mailbox-label')); ?></strong></td>
+    <td><?php echo $form->textField($conv,'subject',array('class'=>'','style'=>'width:50%;','placeholder'=>Yii::t('app',$this->module->defaultSubject),'id'=>'subjectid')); ?>
 				<?php echo $form->error($conv,'subject'); ?></td>
   </tr>
   <tr>
@@ -113,14 +139,14 @@ $form=$this->beginWidget('CActiveForm', array(
   </tr>
   <tr>
     <td colspan="2">
-    	<?php echo $form->textArea($msg,'text',array('cols'=>50,'rows'=>7, 'class'=>'mailbox-message-input','style'=>'width:100%;','placeholder'=>'Enter message here...')); ?>
+    	<?php echo $form->textArea($msg,'text',array('cols'=>50,'rows'=>7, 'class'=>'mailbox-message-input','style'=>'width:100%;','placeholder'=>Yii::t('app','Enter message here...'))); ?>
 		<?php echo $form->error($msg,'text'); ?>
     </td>
   </tr>
 </table>
 
 		<div id="mform" align="right">
-		<button class="btn btn-large message-btn-reply" onclick="no_recieve()" onclick=" no_subject();">Send Message</button>
+        	<input type="submit" onclick="no_recieve()" class="formbut" value="<?php echo Yii::t('app','Send Message'); ?>" />
 		</div>
         </div>
 	</div>
@@ -146,7 +172,7 @@ function no_recieve()
 	
 	if(document.getElementById("message-to").value=='')
 	{
-		alert("Add any recipient");
+		alert("<?php echo Yii::t('app','Add any recipient'); ?>");
 	}
 }
 
@@ -155,7 +181,7 @@ function no_subject()
 	
 	if(document.getElementById("subjectid").value=='')
 	{
-		confirm("Do you want to sent this message without subject?");
+		confirm("<?php echo Yii::t('app','Do you want to sent this message without subject?'); ?>");
 	}
 }
 </script>

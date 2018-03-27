@@ -82,11 +82,12 @@ var tempEvent;
                 return false;
             },
             eventClick: function(event)
-            {
+            { 
 				//alert(JSON.stringify(event));
                 if(!event.editable) return false;
                 tempEvent = event;
                 $("#EventCal_id").val(event.id);
+				$("#EventCal_organizer").val(event.organizer);
                 $("#EventCal_title").val(event.title);
 				$("#EventCal_type").val(event.type);
 				$("#EventCal_placeholder").val(event.placeholder);
@@ -99,13 +100,18 @@ var tempEvent;
                 return false;
             },
             dayClick: function(date, allDay)
-            {
+            { 
 				//alert(JSON.stringify(date));
                 tempEvent = new Object();
                 $("#EventCal_id").val(0);
                 $("#EventCal_title").val('');
+				$("#EventCal_type").val('');
+				$("#EventCal_organizer").val('');
+				$("#EventCal_placeholder").val("");
+				$("#EventCal_desc").val("");
                 $("input[name=EventCal_allDay]").attr('checked', allDay);
                 $("input[name=EventCal_editable]").attr('checked', true);
+				$("#EventCal_delete").hide();
                 var dateEnd = new Date(date);
                 dateEnd.setMinutes(dateEnd.getMinutes()+params.calendar.slotMinutes*2);
                 setupStartAndEndTimeFields(date, dateEnd);
@@ -158,13 +164,15 @@ var tempEvent;
 				
 				eventId: $("#EventCal_id").val(),
                 title: $("#EventCal_title").val(),
+				organizer: $("#EventCal_organizer").val(),
 				desc: $("#EventCal_desc").val(),
-				type: $("#EventCal_type").val(),
+				//type: $("#EventCal_type").val(),
                 start: $("#EventCal_start").val(),
                 end: $("#EventCal_end").val(),
                 allDay: $("#EventCal_allDay").is(':checked'),
                 editable: $("#EventCal_editable").is(':checked'),
-				placeholder: $("#EventCal_placeholder").val()
+				placeholder: $("#EventCal_placeholder").val(),
+				YII_CSRF_TOKEN:$("input[name=\'YII_CSRF_TOKEN\']").val(),
             }
 			$("#EventCal_desc").val("");
 			$("#EventCal_type").val("");
@@ -181,6 +189,7 @@ var tempEvent;
                             break;
                         
                     }
+					window.location.reload();
                 }
                 );
             $('#dlg_EventCal').dialog("close");
@@ -193,54 +202,73 @@ var tempEvent;
 				
 				eventId: $("#EventCal_id").val(),
                 title: $("#EventCal_title").val(),
+				organizer: $("#EventCal_organizer").val(),
 				desc: $("#EventCal_desc").val(),
 				type: $("#EventCal_type").val(),
                 start: $("#EventCal_start").val(),
                 end: $("#EventCal_end").val(),
                 allDay: $("#EventCal_allDay").is(':checked'),
                 editable: $("#EventCal_editable").is(':checked'),
-				placeholder: $("#EventCal_placeholder").val()
+				placeholder: $("#EventCal_placeholder").val(),
+				YII_CSRF_TOKEN:$("input[name=\'YII_CSRF_TOKEN\']").val(),
             }
-			$("#EventCal_desc").val("");
-			$("#EventCal_type").val("");
-			$("#EventCal_placeholder").val("");
 			$("#EventCal_delete").hide();
             $.post(params.baseUrl+"update",
                 data,
                 function(returnId)
                 {
-                    switch(returnId)
-                    {
-                        case "0":
-							tempEvent.id = returnId;
-                            $("#EventCal").fullCalendar( 'removeEvents', tempEvent.id);
-                            break;
-                        case data.eventId:
-                            tempEvent.id = returnId;
-                            tempEvent.title = data.title;
-							tempEvent.desc = data.desc;
-                            tempEvent.start = data.start;
-                            tempEvent.end = data.end;
-                            tempEvent.allDay = data.allDay;
-                            tempEvent.editable = data.editable;
-							tempEvent.placeholder = data.placeholder;
-                            $("#EventCal").fullCalendar( 'updateEvent', tempEvent);
-                            break;
-                        default:
-                            tempEvent.id = returnId;
-                            tempEvent.title = data.title;
-							tempEvent.desc = data.desc;
-                            tempEvent.start = data.start;
-                            tempEvent.end = data.end;
-                            tempEvent.allDay = data.allDay;
-                            tempEvent.editable = data.editable;
-							tempEvent.placeholder = data.placeholder;
-                            $("#EventCal").fullCalendar( 'renderEvent', tempEvent);
-                            break;
-                    }
+					$(".errorMessage").remove();
+					if(isNaN(returnId)){
+						$("#EventCal_ok").attr("disabled",false);
+						var errors	= JSON.parse(returnId);
+						$.each(errors, function(key, message) {							
+							var error	= $("<div class='errorMessage' />");
+							error.text(message[0]);
+							error.insertAfter($("#EventCal_" + key));
+						});
+					}
+					else{
+						switch(returnId)
+						{
+							case "0":
+								tempEvent.id = returnId;
+								$("#EventCal").fullCalendar( 'removeEvents', tempEvent.id);
+								break;
+							case data.eventId:
+								tempEvent.id = returnId;
+								tempEvent.title = data.title;
+								tempEvent.organizer = data.organizer;
+								tempEvent.desc = data.desc;
+								//tempEvent.type = data.type;
+								tempEvent.start = data.start;
+								tempEvent.end = data.end;
+								tempEvent.allDay = data.allDay;
+								tempEvent.editable = data.editable;
+								tempEvent.placeholder = data.placeholder;
+								$("#EventCal").fullCalendar( 'updateEvent', tempEvent);
+								break;
+							default:
+								tempEvent.id = returnId;
+								tempEvent.title = data.title;
+								tempEvent.organizer = data.organizer;
+								tempEvent.desc = data.desc;
+								//tempEvent.type = data.type;
+								tempEvent.start = data.start;
+								tempEvent.end = data.end;
+								tempEvent.allDay = data.allDay;
+								tempEvent.editable = data.editable;
+								tempEvent.placeholder = data.placeholder;
+								$("#EventCal").fullCalendar( 'renderEvent', tempEvent);
+								break;
+						}
+						$("#EventCal_desc").val("");
+						$("#EventCal_type").val("");
+						$("#EventCal_placeholder").val("");
+						$('#dlg_EventCal').dialog("close");
+						window.location.reload();
+					}
                 }
-                );
-            $('#dlg_EventCal').dialog("close");
+            );            
         }
 
         createNewEvent = function()

@@ -35,6 +35,7 @@ class MailboxModule extends CWebModule
 	* @property string the name of the username column in the user table.
 	*/
 	public $usernameColumn = 'username';
+	public $emailColumn = 'email';
 	/**
 	* @property string the name of the column in your User model that defines whether user is an admin or not.
 	*/
@@ -255,7 +256,22 @@ class MailboxModule extends CWebModule
 			return $this->_userid;
 		}
 	}
-	
+	public function getUserIdMail($email='')
+	{
+		if($email)
+		{
+			$r = call_user_func(array($this->userClass, 'model'))
+				->findByAttributes(array($this->emailColumn=>$email));
+				
+			if(!is_null($r)) return $r->{$this->userIdColumn};
+		}
+		else	
+		{
+			if(!$this->_userid)
+				$this->_userid = Yii::app()->user->{$this->userIdColumn};
+			return $this->_userid;
+		}
+	}
 	public function getUserName($userid=0)
 	{
 		if($userid)
@@ -270,6 +286,35 @@ class MailboxModule extends CWebModule
 		}
 		return $this->_username; 
 	}
+	public function getUserNameEmail($userid=0)
+	{
+		if($userid)
+		{
+			$r = call_user_func(array($this->userClass, 'model'))->findByPk($userid);
+			if(!is_null($r)) return $r->{$this->usernameColumn}; return false;
+			
+		}
+		if(!$this->_username) {
+			$userid = Yii::app()->user->{$this->userIdColumn};
+			$this->_username = call_user_func(array($this->userClass, 'model'))->findByPk($userid)->{$this->usernameColumn};
+		}
+		return $this->_username; 
+	}
+	public function getUserEmail($userid=0)
+	{
+		if($userid)
+		{
+			$r = call_user_func(array($this->userClass, 'model'))->findByPk($userid);
+			if(!is_null($r)) return $r->{$this->emailColumn}; return false;
+			
+		}
+		if(!$this->_username) {
+			$userid = Yii::app()->user->{$this->userIdColumn};
+			$this->_username = call_user_func(array($this->userClass, 'model'))->findByPk($userid)->{$this->usernameColumn};
+		}
+		return $this->_username; 
+	}
+	
 	
 	public function getFromLabel($userid)
 	{
@@ -302,10 +347,13 @@ class MailboxModule extends CWebModule
 	{
 		$criteria = new CDbCriteria;
 
-		$criteria->compare($this->usernameColumn, $term, true, 'OR');
+		$criteria->compare('`profile`.`firstname`', $term, true, 'OR');
+		$criteria->compare('`profile`.`lastname`', $term, true, 'OR');
+		$criteria->compare($this->emailColumn, $term, true, 'OR');
 		$criteria->compare($this->userIdColumn, $term, true, 'OR');
 		//$criteria->compare('email', $term, true, 'OR');
 		$criteria->mergeWith(array('limit'=>25));
+		
 		$users = call_user_func(array($this->userClass, 'model'))
 			->findAll($criteria);
 		//$users = User::model()->keyword($term)->limit(100)->findAll();
@@ -315,8 +363,8 @@ class MailboxModule extends CWebModule
 			if($user->{$this->userIdColumn}==$this->newsUserId)
 				continue;
 			
-			$json .= '{"label":"'.$user->{$this->usernameColumn}.'",'
-				.'"value":"'.$user->{$this->usernameColumn}.'"},';
+			$json .= '{"label":"'.(($user->profile!=NULL)?$user->profile->fullName:$user->username).' ( '.$user->{$this->emailColumn}.' )",'
+				.'"value":"'.$user->{$this->emailColumn}.'"},';
 		}
 		$json = rtrim($json,',') . ']';
 		die($json);
@@ -337,27 +385,33 @@ class MailboxModule extends CWebModule
 	 */
 	public function getUserSupportList()
 	{
-		$list = array('admin'=>'Site Administrator','support'=>'Customer Support','billing'=>'Billing Administrator' );
+		$list = array('webmaster@example.com'=>Yii::t('app','Site Administrator')); //,'support'=>'Customer Support','billing'=>'Billing Administrator'
 		
 		// we add site news as an option for the admin to create news updates by messaging the news box...
- 		if($this->isAdmin())
-			$list[$this->getUserName($this->newsUserId)] = 'Site News';
+ 		/*if($this->isAdmin())
+			$list[$this->getUserEmail($this->newsUserId)] = 'Site News';*/
 		return $list;
 	}
 	
 	public function getDate($time)
 	{
+		
+		$settings=UserSettings::model()->findByAttributes(array('user_id'=>1));
+		$timezone = Timezone::model()->findByAttributes(array('id'=>$settings->timezone));  
+		date_default_timezone_set($timezone->timezone); 
 		$timediff = time() - $time;
-		if($timediff < 60 )
-			$date = $timediff . ' sec ago';
-		elseif($timediff < 3600 - 60) // within last hour
-			$date = ceil($timediff / 60) . ' min ago';
-		elseif($time > strtotime('today')) // today
+		//if($timediff < 60 )
+			//$date = $timediff . ' sec ago';
+		//elseif($timediff < 3600 - 60) // within last hour
+			//$date = ceil($timediff / 60) . ' min ago';
+		if($time > strtotime('today')) // today
 			$date = date('h:i a',$time);
 		elseif($time > strtotime(date('Y-1-01'))) // within this year
 			$date = date('M j',$time);
 		else
-			$date = date('m/d/y',$time); // last year or more
+			$date = date('m/d/y',$time); 
+			// last year or more
+		//$date = date($settings->displaydate,strtotime($date)); 		
 		return $date;
 	}
 	
@@ -512,6 +566,24 @@ EOD;
 
 	public function beforeControllerAction($controller, $action)
 	{
+		$roles=Rights::getAssignedRoles(Yii::app()->user->Id); // check for single role
+					
+						  foreach($roles as $role)
+						  {
+							   if(sizeof($roles)==1 and $role->name == 'parent')
+							   {
+								 $controller->layout='none';
+							   }
+							   if(sizeof($roles)==1 and $role->name == 'student')
+							   { 
+								 $controller->layout='studentmain';
+							   }
+							   if(sizeof($roles)==1 and $role->name == 'teacher')
+							   { 
+								 $controller->layout='teachers';
+							   }
+						  }
+						  
 		if (Yii::app()->user->isGuest) {
 			if($controller->getId()!='news')
 			{

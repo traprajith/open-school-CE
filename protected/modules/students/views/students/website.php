@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
-<title>Easy Menu Manager</title>
+<title><?php echo Yii::t('app','Easy Menu Manager'); ?></title>
 <meta charset="utf-8">
 
 <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/menu/style.css">
@@ -37,60 +37,60 @@ var current_group_id = <?php //echo $group_id; ?> 1;
 
 				<form method="post" id="form-menu" action="<?php echo Menu::model()->site_url('menu.save_position'); ?>">
 					<div class="ns-row" id="ns-header">
-						<div class="ns-actions">Actions</div>
-						<div class="ns-class">Class</div>
-						<div class="ns-url">URL</div>
-						<div class="ns-title">Title</div>
+						<div class="ns-actions"><?php echo Yii::t('app','Actions'); ?></div>
+						<div class="ns-class"><?php echo Yii::t('app','Class'); ?></div>
+						<div class="ns-url"><?php echo Yii::t('app','URL'); ?></div>
+						<div class="ns-title"><?php echo Yii::t('app','Title'); ?></div>
 					</div>
 					<?php echo $menu_ul; ?>
 					<div id="ns-footer">
-						<button type="submit" class="button green small" id="btn-save-menu">Update Menu</button>
+						<button type="submit" class="button green small" id="btn-save-menu"><?php echo Yii::t('app','Update Menu'); ?></button>
 					</div>
 				</form>
 			</section>
 			<aside>
 				<div class="box info">
-					<h2>Info</h2>
+					<h2><?php echo Yii::t('app','Info'); ?></h2>
 					<section>
-						<p>Drag the menu list to re-order, and click <b>Update Menu</b> to save the position.</p>
-						<p>To add a menu, use the <b>Add Menu</b> form below.</p>
+						<p><?php echo Yii::t('app','Drag the menu list to re-order, and click'); ?> <b><?php echo Yii::t('app','Update Menu'); ?></b> <?php echo Yii::t('app','to save the position.'); ?></p>
+						<p><?php echo Yii::t('app','To add a menu, use the'); ?> <b><?php echo Yii::t('app','Add Menu'); ?></b> <?php echo Yii::t('app','form below.'); ?></p>
 					</section>
 				</div>
 				<div class="box">
-					<h2>Current Menu Group</h2>
+					<h2><?php echo Yii::t('app','Current Menu Group'); ?></h2>
 					<section>
 						<span id="edit-group-input"><?php echo $group_title; ?></span>
 						(ID: <b><?php echo $group_id; ?></b>)
 						<div>
-							<a id="edit-group" href="#">Edit</a>
+							<a id="edit-group" href="#"><?php echo Yii::t('app','Edit'); ?></a>
 							<?php if ($group_id > 1) : ?>
-							&middot; <a id="delete-group" href="#">Delete</a>
+							&middot; <a id="delete-group" href="#"><?php echo Yii::t('app','Delete'); ?></a>
 							<?php endif; ?>
 						</div>
 					</section>
 				</div>
 				<div class="box">
-					<h2>Add Menu</h2>
+					<h2><?php echo Yii::t('app','Add Menu'); ?></h2>
 					<section>
                     <?php $form=$this->beginWidget('CActiveForm',array('method'=>'post','action'=>$this->createUrl('Students/add'))); ?>
 						<!--<form id="form-add-menu" method="post">-->
 							<p>
-								<label for="menu-title">Title</label>
+								<label for="menu-title"><?php echo Yii::t('app','Title'); ?></label>
 								<input type="text" name="title" id="menu-title">
 							</p>
 							<p>
-								<label for="menu-url">URL</label>
+								<label for="menu-url"><?php echo Yii::t('app','URL'); ?></label>
 								<input type="text" name="url" id="menu-url">
 							</p>
 							<p>
-								<label for="menu-class">Class</label>
+								<label for="menu-class"><?php echo Yii::t('app','Class'); ?></label>
 								<input type="text" name="class" id="menu-class">
 							</p>
 							<p class="buttons">
 								<input type="hidden" name="group_id" value="<?php echo $group_id; ?>">
                                <?php echo CHtml::button('save');
                                   ?>
-								<button id="add-menu" type="submit" class="button green small">Add Menu</button>
+								<button id="add-menu" type="submit" class="button green small"><?php echo Yii::t('app','Add Menu'); ?></button>
                                 <input type="submit" value="search" />
 							</p>
 						<!--</form>-->
@@ -101,12 +101,12 @@ var current_group_id = <?php //echo $group_id; ?> 1;
 			<div class="clear"></div>
 		</article>
 		<footer>
-			Easy Menu Manager
+			<?php echo Yii::t('app','Easy Menu Manager'); ?>
 		</footer>
 	</section>
 	<div id="loading">
 		<img src="<?php //echo _BASE_URL; ?>templates/images/ajax-loader.gif" alt="Loading">
-		Processing...
+		<?php echo Yii::t('app','Processing...'); ?>
 	</div>
 </body>
 </html>

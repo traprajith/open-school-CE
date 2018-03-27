@@ -37,8 +37,8 @@ class EventsType extends CActiveRecord
 		return array(
 			array('name, colour_code', 'length', 'max'=>120),
 			array('name, colour_code', 'required'),
-			array('name','unique'),
-			array('colour_code','check'),
+			array('name','unique','message' => Yii::t("app","This name already exists.")),
+			//array('colour_code','check'),
 			
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -63,9 +63,9 @@ class EventsType extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'colour_code' => 'Colour Code',
+			'id' => Yii::t("app",'ID'),
+			'name' => Yii::t("app",'Name'),
+			'colour_code' => Yii::t("app",'Colour Code'),
 		);
 	}
 
@@ -92,7 +92,7 @@ class EventsType extends CActiveRecord
     {
 		if(!preg_match('/^#[a-f0-9]{6}$/i', $attribute))
         {
-			$this->addError($attribute,'Enter valid color hex code');
+			$this->addError($attribute,Yii::t("app",'Enter valid color hex code'));
 		}
 		
     }

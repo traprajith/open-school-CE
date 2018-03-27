@@ -1,12 +1,12 @@
- <?php
+<?php
 
 if($this->getAction()->getId()!='inbox') 
 $this->breadcrumbs=array(
-		ucfirst($this->module->id)=>array('inbox'),
-		ucfirst($this->getAction()->getId()) 
+		Yii::t('app',ucfirst($this->module->id))=>array('inbox'),
+		Yii::t('app',ucfirst($this->getAction()->getId()))
 );
 else
-	$this->breadcrumbs=array($this->module->id);
+	$this->breadcrumbs=array(Yii::t('app',$this->module->id));
 ?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
@@ -18,7 +18,7 @@ else
     	<div class="cont_right formWrapper" style="padding:0px; width:753px;">
       <div id="parent_rightSect">
       <div class="parentright_innercon">
-      <div class="mail_head">Mailbox<span>Check your mails here.</span></div>
+      <div class="mail_head"><?php echo Yii::t('app','Mailbox'); ?><span><?php echo Yii::t('app','Check your mails here.'); ?></span></div>
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td valign="top" width="75%">
@@ -48,7 +48,11 @@ EOD;
 
 if($dataProvider->getItemCount() > 0) {
 ?>
-<form id="message-list-form" action="<?php echo $this->createUrl($this->getId().'/'.$this->getAction()->getId()); ?>" method="post">
+<?php $form=$this->beginWidget('CActiveForm', array(
+	'id'=>'message-list-form',
+	'action'=>$this->createUrl($this->getId().'/'.$this->getAction()->getId()),
+)); ?>
+<?php /*?><form id="message-list-form" action="<?php echo $this->createUrl($this->getId().'/'.$this->getAction()->getId()); ?>" method="post"><?php */?>
 	<input type="hidden" class="mailbox-count" name="ui[]" value="<?php echo $dataProvider->getItemCount(); ?>" />
 	<input type="hidden" class="mailbox-sortby" name="ui[]" value="<?php echo $sortby; ?>" />
 	<div class="mailbox-clistview-container ui-helper-clearfix">
@@ -57,27 +61,30 @@ if($dataProvider->getItemCount() > 0) {
 	//if($dataProvider->getItemCount() > 1 && $this->getAction()->getId() != 'sent') : ?>
 		<div class="btn-group mailbox-checkall-buttons">
         	<input type="checkbox"  name="ch1" class="chkbox checkall" /> 
-			<!--<button class="btn checkall"  />Check All</button>
+            <span><?php echo Yii::t('app', 'Check All'); ?></span>
+<!--			<button class="mailbox-check-all"  />Check All</button>
 			<button class="btn uncheckall" onclick="return item();" />Uncheck All</button>-->
             
 		</div>
 	<?php
 	//endif; ?>
     
-    <?php if($this->getAction()->getId()!='sent') : ?>
-<div class="m-toplink" id="top" style="padding:left" > <span class="mailbox-buttons-label"></span>
+    
+<div class="mailbox-buttons mail-box-input-action" id="top" style="padding:left" > <span class="mailbox-buttons-label"></span>
 		<?php if($this->getAction()->getId()=='trash') : ?>
-	<input type="submit" id="mailbox-action-restore" class="btn mailbox-button"  name="button[restore]" value="Restore" onclick="return item();"/> 
-	<input type="submit" id="mailbox-action-delete" class="btn mailbox-button" name="button[delete]" value="Delete forever" onclick="return del();" />
+	<input type="submit" id="mailbox-action-restore" class="btn mailbox-button"  name="button[restore]" value="<?php echo Yii::t('app','Restore');?>" onclick="return item();"/> 
+	<input type="submit" id="mailbox-action-delete" class="btn mailbox-button" name="button[delete]" value="<?php echo Yii::t('app','Delete forever');?>" onclick="return del();" />
 		<?php else: ?>
 			<?php if(!$this->module->readOnly || ( $this->module->readOnly && !$this->module->isAdmin())): ?>
-	<input type="submit" id="mailbox-action-delete" class="btn mailbox-button" name="button[delete]" value="Delete" onclick="return del();" /> 
+	<input type="submit" id="mailbox-action-delete" class="btn mailbox-button" name="button[delete]" value="<?php echo Yii::t('app','Delete');?>" onclick="return del();" /> 
 			<?php endif; ?>
-	<input type="submit" id="mailbox-action-read" class="btn mailbox-button" name="button[read]" value="Read" onclick="return item();" /> 
-	<input type="submit" id="mailbox-action-unread" class="btn mailbox-button" name="button[unread]" value="Unread" onclick="return item();" /> 
+       <?php if($this->getAction()->getId()!='sent') : ?>    
+	<input type="submit" id="mailbox-action-read" class="btn mailbox-button" name="button[read]" value="<?php echo Yii::t('app','Read');?>" onclick="return item();" /> 
+	<input type="submit" id="mailbox-action-unread" class="btn mailbox-button" name="button[unread]" value="<?php echo Yii::t('app','Unread');?>" onclick="return item();" /> 
+    	<?php endif; ?>
 		<?php endif; ?>
 </div>
-   <?php endif; ?> 
+ 
 	
 	<?php
 
@@ -87,14 +94,14 @@ $this->widget('zii.widgets.CListView', array(
     'itemView'=>'_list',
 	/*'summaryText'=>Yii::t('zii','Result {start}-{end} of {count}.'),*/
     'itemsTagName'=>'table',
-    'template'=>'<div class="mailbox-summary">{summary}</div>{sorter}'.$ie6br.'<div id="mailbox-items" class="ui-helper-clearfix">{items}</div>{pager}',
+    'template'=>'<div class="mailbox-summary mailbox_summary">{summary}</div>{sorter}'.$ie6br.'<div id="mailbox-items" class="ui-helper-clearfix">{items}</div>{pager}',
     'sortableAttributes'=>$this->getAction()->getId()=='sent'?
 	array('created'=>'Sort by') :
-	array('modified'=>'Sort by'),
+	array('modified'=>Yii::t('app','Sort by')),
     'loadingCssClass'=>'mailbox-loading',
     'ajaxUpdate'=>'mailbox-list',
-    'afterAjaxUpdate'=>'$.yiimailbox.updateMailbox',
-    'emptyText'=>'<div style="width:100%"><h3>You have no mail in your '.$this->getAction()->getId().' folder.</h3></div>',
+    'afterAjaxUpdate'=>'initdraggable',//'$.yiimailbox.updateMailbox',
+    'emptyText'=>'<div style="width:100%"><h3>'.Yii::t('app','You have no mail in your '.$this->getAction()->getId().' folder.').'</h3></div>',
     //'htmlOptions'=>array('class'=>'ui-helper-clearfix'),
     'sorterHeader'=>'', 
     'sorterCssClass'=>'mailbox-sorter',
@@ -113,32 +120,34 @@ $this->widget('zii.widgets.CListView', array(
 		</div>-->
 	<?php
 	//endif; ?>
-     <?php if($this->getAction()->getId()!='sent') : ?>
-<div> <span class="mailbox-buttons-label btm-mailbox-btns"></span> 
+    
+<div  class="mail-box-input-action  footer-mailbox-flter"> <span class="mailbox-buttons-label btm-mailbox-btns"></span> 
 		<?php if($this->getAction()->getId()=='trash') : ?>
-	<input type="submit" id="mailbox-action-restore" class="btn mailbox-button" name="button[restore]" value="restore" onclick="return item();"/> 
-	<input type="submit"  id="mailbox-action-delete" class="btn mailbox-button" name="button[delete]" value="delete forever" onclick="return del();" />
+	<input type="submit" id="mailbox-action-restore" class="btn mailbox-button" name="button[restore]" value="<?php echo Yii::t('app','Restore');?>" onclick="return item();"/> 
+	<input type="submit"  id="mailbox-action-delete" class="btn mailbox-button" name="button[delete]" value="<?php echo Yii::t('app','Delete forever');?>" onclick="return del();" />
 		<?php else: ?>
 			<?php if(!$this->module->readOnly || ( $this->module->readOnly && !$this->module->isAdmin())): ?>
-	<input type="submit"  id="mailbox-action-delete" class="btn mailbox-button" name="button[delete]" value="Delete"  onclick="return del();"  /> 
+	<input type="submit"  id="mailbox-action-delete" class="btn mailbox-button" name="button[delete]" value="<?php echo Yii::t('app','Delete');?>"  onclick="return del();"  /> 
 			<?php endif; ?>
-	<input type="submit"  id="mailbox-action-read" class="btn mailbox-button" name="button[read]" value="Read" onclick="return item();"   /> 
-	<input type="submit"  id="mailbox-action-unread" class="btn mailbox-button" name="button[unread]" value="Unread" onclick="return item();" />
+         <?php if($this->getAction()->getId()!='sent') : ?>     
+	<input type="submit"  id="mailbox-action-read" class="btn mailbox-button" name="button[read]" value="<?php echo Yii::t('app','Read');?>" onclick="return item();"   /> 
+	<input type="submit"  id="mailbox-action-unread" class="btn mailbox-button" name="button[unread]" value="<?php echo Yii::t('app','Unread');?>" onclick="return item();" />
 		<?php endif; ?>
 </div>
 	
     	<?php endif; ?>
 	</div>
-</form>
-
+<?php /*?></form><?php */?>
+<?php $this->endWidget(); ?>
 <?php
+
 
 }
 else {
 	$this->renderpartial('_empty');
 } 
 ?>
-</div>
+
 
  </td>
         
@@ -170,10 +179,10 @@ function del()
 		}
 	}
 	if(checked==false){
-		alert('No item selected');return false;
+		alert('<?php echo Yii::t('app','No item selected'); ?>');return false;
 	}
 	else{
-		if(confirm('Are you sure ?')){
+		if(confirm('<?php echo Yii::t('app','Are you sure ?'); ?>')){
 			return true;
 		}
 		else{
@@ -194,7 +203,7 @@ function item()
 		}
 	}
 	if(checked==false){
-		alert('No item selected');return false;
+		alert('<?php echo Yii::t('app','No item selected'); ?>');return false;
 	}
 	return true;
 	

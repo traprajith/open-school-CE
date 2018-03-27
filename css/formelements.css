@@ -8,6 +8,7 @@
 	display: block;
 	clear: left;
 	float: left;
+	margin:0px 5px 0px 5px
 }
 #yellowchk .checkbox, .radio {
 	width: 19px;
@@ -35,6 +36,7 @@
 	display: block;
 	clear: left;
 	float: left;
+
 }
 #bluechk .checkbox, .radio {
 	width: 19px;

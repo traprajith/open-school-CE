@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	'Student Additional Fields'=>array('index'),
-	'Create',
+	Yii::t('app','Student Additional Fields')=>array('index'),
+	Yii::t('app','Create'),
 );
 
 
@@ -15,7 +15,7 @@ $this->breadcrumbs=array(
     </td>
     <td valign="top">
     <div class="cont_right formWrapper">
-<h1><?php echo Yii::t('students','Create StudentAdditionalFields');?></h1><br />
+<h1><?php echo Yii::t('app','Create StudentAdditionalFields');?></h1><br />
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
 </div>

@@ -41,7 +41,6 @@ class Logo extends CActiveRecord
 			array('photo_file_name, photo_content_type, photo_file_size, photo_data', 'required'),
 			array('photo_file_name, photo_content_type, photo_file_size', 'length', 'max'=>120),
 			array('uploadedFile', 'file', 'types'=>'jpg, png','maxSize'=>1024*60),
-			/*array('uploadedFile', 'file', 'types'=>'jpg, gif, png','allowEmpty' => true, 'maxSize' => 5242880),*/
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, photo_file_name, photo_content_type, photo_file_size, photo_data', 'safe', 'on'=>'search'),
@@ -65,11 +64,11 @@ class Logo extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'photo_file_name' => 'Photo File Name',
-			'photo_content_type' => 'Photo Content Type',
-			'photo_file_size' => 'Photo File Size',
-			'photo_data' => 'Photo Data',
+			'id' => Yii::t("app",'ID'),
+			'photo_file_name' => Yii::t("app",'Photo File Name'),
+			'photo_content_type' => Yii::t("app",'Photo Content Type'),
+			'photo_file_size' => Yii::t("app",'Photo File Size'),
+			'photo_data' => Yii::t("app",'Photo Data'),
 		);
 	}
 
@@ -94,4 +93,29 @@ class Logo extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+        
+        public function getLogo()
+        {
+            $criteria=new CDbCriteria;
+            $criteria->order='id DESC';
+            $logo=Logo::model()->findAll($criteria);
+            $flag=0;
+            $i=0;
+            if($logo!=NULL)
+            {
+                while($i<=count($logo) && $flag==0)
+                {                    
+                    if(DocumentUploads::model()->fileStatus(7, $logo[$i]->id, $logo[$i]->photo_file_name)==true && $flag==0)
+                    {                                                            
+                        return array('1'=>$logo[$i]->id,'2'=>$logo[$i]->photo_file_name);
+                        $flag=1;
+                    }
+                    $i= $i+1;
+                }
+            }
+            else if($flag==0)
+            {
+                return NULL;
+            }
+        }
 }

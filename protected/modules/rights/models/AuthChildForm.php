@@ -25,8 +25,11 @@ class AuthChildForm extends CFormModel
 	 */
 	public function attributeLabels()
 	{
-		return array(
+		/*return array(
 			'itemname' => Rights::t('core', 'Authorization item'),
+		);*/
+		return array(
+			'itemname' => Yii::t('app', 'Authorization item'),
 		);
 	}
 }

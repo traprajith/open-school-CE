@@ -63,9 +63,9 @@ class EventsHelper extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'user_id' => 'User',
-			'title' => 'Title',
+			'id' =>Yii::t('app', 'ID'),
+			'user_id' => Yii::t('app','User'),
+			'title' => Yii::t('app','Title'),
 		);
 	}
 

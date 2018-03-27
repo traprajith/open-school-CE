@@ -63,13 +63,13 @@
             </td>
       </tr>
 </table>
-<h4>Employee Attendance Report</h4>
+<center><?php echo Yii::t('app','Teacher Attendance Report'); ?></center>
 <table width="100%" cellspacing="0" cellpadding="0" class="attendance_table" align="center">
 <tr style="background:#dfdfdf;">
-    <th><?php  echo Yii::t('attendance','Name');?></th>
-    <th><?php echo Yii::t('attendance','Date');?></th>
-      <th><?php echo Yii::t('attendance','Halfday');?></th>
-        <th><?php echo Yii::t('attendance','Fullday');?></th>
+    <th><?php  echo Yii::t('app','Name');?></th>
+    <th><?php echo Yii::t('app','Date');?></th>
+      <th><?php echo Yii::t('app','Halfday');?></th>
+        <th><?php echo Yii::t('app','Fullday');?></th>
     </tr>
    
     <?php
@@ -80,7 +80,7 @@
    	foreach($data as $data1)
 	 {
 		echo '<tr>' ;
-		echo '<td>'. $data1->first_name .'</td>';
+		echo '<td>'. Employees::model()->getTeachername($data1->id) .'</td>';
 		echo '<td>';
 		 $date=EmployeeAttendances::model()->findAllByAttributes(array('employee_id'=>$data1->id));
 		 $fullday = 0;
@@ -96,9 +96,9 @@
             if($attd_year == $crrnt_year)
             {
           echo $date1->attendance_date .'<br/><br/>';
-          $fullday=$fullday+count(EmployeeAttendances::model()->findAllByAttributes(array('employee_id'=>$data1->id,'is_half_day'=>'0','attendance_date'=>$date1->attendance_date)));
-	 $halfday=$halfday+count(EmployeeAttendances::model()->findAllByAttributes(array('employee_id'=>$data1->id,'is_half_day'=>'1','attendance_date'=>$date1->attendance_date)));
-             }
+			$fullday=$fullday+count(EmployeeAttendances::model()->findAllByAttributes(array('employee_id'=>$data1->id,'is_half_day'=>'0','attendance_date'=>$date1->attendance_date)));
+			$halfday=$halfday+count(EmployeeAttendances::model()->findAllByAttributes(array('employee_id'=>$data1->id,'is_half_day'=>'1','attendance_date'=>$date1->attendance_date)));
+			}
          }
 	 echo '</td>';
 	 echo '<td>'.$halfday. '</td>';
@@ -113,7 +113,7 @@
 	 }
   }else
 		{
-			echo '<td align="center" colspan="5"><strong>'.'No Data Available!'.'</td>';
+			echo '<td align="center" colspan="5"><strong>'.Yii::t('app','No Data Available!').'</td>';
 		}
   ?>
 </div>

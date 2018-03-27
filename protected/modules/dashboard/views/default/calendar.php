@@ -60,7 +60,7 @@
         <td valign="top" width="75%">
         
         <div style="padding-left:20px;">
-<h1><?php echo Yii::t('dashboard','Events');?></h1>
+<h1><?php echo Yii::t('app','Events');?></h1>
 
 <div id="calendar" style="width:98%; padding-top:5px"></div>
 <div style="width:99%;"><table width="99%" border="0" cellspacing="0" cellpadding="0">
@@ -76,20 +76,20 @@
  	</div></td>
             <td valign="top" width="25%"><div class="dashSide">
         	<ul>
-            	<li><?php echo CHtml::link(Yii::t('dashboard','New Employee'),array('create'),array('class'=>'ico1')) ?></li>
+            	<li><?php echo CHtml::link(Yii::t('app','New Teacher'),array('create'),array('class'=>'ico1')) ?></li>
                 <li class="sptr"><img src="images/line_side.png" width="1" height="130" /></li>
-                <li><?php echo CHtml::link(Yii::t('dashboard','List Employees'),array('manage'),array('class'=>'ico4')) ?></li>
+                <li><?php echo CHtml::link(Yii::t('app','List Teachers'),array('manage'),array('class'=>'ico4')) ?></li>
                 <li class="sptr"><img src="images/line_side.png" width="1" height="130" /></li>
-                <li><a href="#" class="ico8">Leave</a></li>
-                <li><a href="#" class="ico3">Attendance</a></li>
+                <li><a href="#" class="ico8"><?php echo Yii::t('app','Leave');?></a></li>
+                <li><a href="#" class="ico3"><?php echo Yii::t('app','Attendance'); ?></a></li>
                 <li class="sptr"><img src="images/line_side.png" width="1" height="130" /></li>
-                <li><a href="#" class="ico6">Categories</a></li>
+                <li><a href="#" class="ico6"><?php echo Yii::t('app','Categories');?></a></li>
                  <li class="sptr"><img src="images/line_side.png" width="1" height="130" /></li>
-                <li><a href="#" class="ico9">Positions</a></li>
+                <li><a href="#" class="ico9"><?php echo Yii::t('app','Positions');?></a></li>
                  <li class="sptr"><img src="images/line_side.png" width="1" height="130" /></li>
-                <li><a href="#" class="ico10">Subjects</a></li>
+                <li><a href="#" class="ico10"><?php echo Yii::t('app','Subjects');?></a></li>
                  
-                 <li><a href="#" class="ico7">Settings</a></li>
+                 <li><a href="#" class="ico7"><?php echo Yii::t('app','Settings');?></a></li>
             </ul>
          <div class="clear"></div>
         </div></td>

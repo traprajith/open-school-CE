@@ -2,7 +2,7 @@
 <div class="formConInner">
 <?php echo CHtml::beginForm(); ?>
 
-	<p class="note"><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>
+<p style="padding-left:20px;"><?php echo Yii::t('User','Fields with');?><span class="required">*</span><?php echo Yii::t('User','are required.');?></p>
 
 	<?php echo CHtml::errorSummary($model); ?>
 	

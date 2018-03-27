@@ -1,12 +1,12 @@
 <?php
 $this->breadcrumbs=array(
-	'Subject Names'=>array('courses'),
-	'Create',
+	Yii::t('app','Subject Names')=>array('courses'),
+	Yii::t('app','Create'),
 );
 
 $this->menu=array(
-	array('label'=>'List SubjectName', 'url'=>array('index')),
-	array('label'=>'Manage SubjectName', 'url'=>array('admin')),
+	array('label'=>Yii::t('app','List SubjectName'), 'url'=>array('index')),
+	array('label'=>Yii::t('app','Manage SubjectName'), 'url'=>array('admin')),
 );
 ?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -18,7 +18,7 @@ $this->menu=array(
     </td>
     <td valign="top">
     <div class="cont_right formWrapper">
-<h1>Create Subject</h1><br />
+<h1><?php echo Yii::t('app','Create Subject'); ?></h1><br />
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
 </div>

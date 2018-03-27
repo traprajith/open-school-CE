@@ -1,0 +1,694 @@
+/*---dashboard------*/
+.dash_subhed_hide_one {
+    padding: 6px 32px 6px 0px !important;
+
+}
+.news { background-position: 49px -11px !important;}
+.mail_list {background-position: 65px -303px !important;}
+.events {background-position: 53px -84px !important;}
+.student { background-position: 52px -616px !important;}
+.examination {background-position: 52px -446px !important;}
+.attendance{background-position: 52px -529px !important;}
+.timetable {background-position: 37px -583px !important;}
+.teacher {background-position: 52px -682px !important;}
+.fees {background-position: 52px -751px !important;}
+.ui-dialog .ui-dialog-title {
+	text-align:right !important;
+	margin:2px !important;
+}
+.help-link .fa{ position:absolute; left:0px;}
+.yellow_bx {background: #fffcd9 url(../images/yellow.png) no-repeat left}
+.nav li{ float:right !important;}
+.container{background: #FFF url(../images/cont_right_bg.png) right repeat-y !important;}
+#othleft-sidebar ul li a {
+    background: url(../images/ap-leftside-ion.png) no-repeat right 10px;
+    background-position-y: 10px;
+    padding: 9px 23px 10px 0px !important;
+	    border-bottom: 1px solid #e2e8ed;
+    border-top: 0 solid #fff;
+    color: #666;
+    display: block;
+    font-family: arial, sans-serif;
+    font-size: 12px;
+    margin-bottom: 0;
+    margin-right: 12px;
+    margin-left: 10px;
+    line-height: 13px;
+    text-decoration: none;
+}
+table.complaint-profile {
+
+	text-align:right;
+}
+.chat_bg-color {
+	float:left;
+}
+.chat_bg-color-gray{
+	float:right;	
+}
+.triangle1-topright {
+	border-top: 8px solid transparent;
+	border-bottom: 8px solid transparent;
+	border-left: 10px solid #c5ced9;
+	right: -9px;
+}
+.two-Inputarea {
+	float: right;
+}
+.pull-right{ float:left !important;}
+.triangle1-topleft{
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 10px solid #79de8d;
+	    left: -9px;
+}
+.aprovleave-table table th{ text-align:right;}
+#othleft-sidebar ul li a.ddbook_ico {background-position-y: 10px;}
+#othleft-sidebar ul li a.inbox_ico {background-position-y: -30px;}
+#othleft-sidebar ul li a.news_ico { background-position-y: -74px;}
+#othleft-sidebar ul li a.evntlist_ico {background-position-y: -123px;}
+#othleft-sidebar ul li a.cal_ico {background-position-y: -169px;}
+#othleft-sidebar ul li a.evnttype_ico { background-position-y: -218px;}
+#othleft-sidebar ul li a.lbook_ico { background-position-y: -264px;}
+#othleft-sidebar ul li a.mg_ico { background-position-y: -362px;}
+
+#othleft-sidebar ul li a.studentlist_ico {background-position-y: -403px; }
+#othleft-sidebar ul li a.creatnew-student_ico { background-position-y: -434px;}
+#othleft-sidebar ul li a.studentfild-setting_ico { background-position-y: -362px;}
+#othleft-sidebar ul li a.managelog-catgry_ico {background-position-y: -469px;}
+#othleft-sidebar ul li a.managestudent-catgry_ico {background-position-y: -506px;}
+#othleft-sidebar ul li a.list-guardians_ico { background-position-y: -577px;}
+#othleft-sidebar ul li a.online-registration_ico {background-position-y: -612px;}
+#othleft-sidebar ul li a.student-approval_ico {background-position-y: -645px;}
+#othleft-sidebar ul li a.waiting-list_ico {background-position-y: -681px;}
+#othleft-sidebar ul li a.addleave-type_ico {background-position-y: -264px;}
+
+#othleft-sidebar ul li a.teacher-list_ico {background-position-y: -403px; }
+#othleft-sidebar ul li a.creatnew-teacher_ico { background-position-y: -434px;}
+#othleft-sidebar ul li a.leave-request_ico { background-position-y: -709px;}
+#othleft-sidebar ul li a.attendance-register_ico{ background-position-y: -744px;}
+#othleft-sidebar ul li a.subject-association_ico{ background-position-y: -776px;}
+#othleft-sidebar ul li a.manage-departnent_ico {background-position-y: -810px;}
+#othleft-sidebar ul li a.manage-positions_ico {background-position-y: -842px;}
+#othleft-sidebar ul li a.manage-grade_ico {background-position-y: -870px;}
+#othleft-sidebar ul li a.numberof-hr_ico {background-position-y: -906px;}
+
+#othleft-sidebar ul li a.genaral-setting_ico { background-position-y: -948px;}
+#othleft-sidebar ul li a.list-cours_ico {background-position-y: -577px;}
+#othleft-sidebar ul li a.create-courses_ico {background-position-y: -264px;}
+#othleft-sidebar ul li a.previous-courses_ico {background-position-y: -871px;}
+#othleft-sidebar ul li a.deactive-course_ico {background-position-y: -986px;}
+#othleft-sidebar ul li a.common-pool-course_ico {background-position-y: -1028px;}
+#othleft-sidebar ul li a.manage-classroom_ico {background-position-y: -362px;}
+
+#othleft-sidebar ul li a.exm-gradebook_ico {background-position-y: -744px;}
+#othleft-sidebar ul li a.list-cours_ico {background-position-y: -577px;}
+#othleft-sidebar ul li a.exame-result_ico {background-position-y: -613px;}
+#othleft-sidebar ul li a.grade-book_ico {background-position-y: -468px;}
+
+#othleft-sidebar ul li a.view-timetable_ico {    background-position-y: -1064px;}
+#othleft-sidebar ul li a.viewfull-timetable_ico {     background-position-y: -776px;}
+#othleft-sidebar ul li a.view-teacher-timetable_ico {background-position-y: -468px;}
+#othleft-sidebar ul li a.set-timetable_ico {background-position-y: -1104px;}
+#othleft-sidebar ul li a.set-weekdays_ico {background-position-y: -1141px;}
+#othleft-sidebar ul li a.timtable-classtiming_ico {    background-position-y: -908px;}
+#othleft-sidebar ul li a.setdeflt-weekdays_ico {background-position-y: -1141px;}
+#othleft-sidebar ul li a.classroom-timetable_ico {background-position-y: -680px;}
+#othleft-sidebar ul li a.subject-timetable_ico { background-position-y: -577px;}
+
+#othleft-sidebar ul li a.fee-dashboad_ico { background-position-y: -948px;}
+#othleft-sidebar ul li a.create-fee_ico {     background-position-y: -1249px;}
+#othleft-sidebar ul li a.manageinvoice_ico { background-position-y: -577px;}
+
+#othleft-sidebar ul li a.t-listrouter_ico { background-position-y: -1318px;}
+#othleft-sidebar ul li a.t-driverassociate_ico { background-position-y: -1355px;}
+#othleft-sidebar ul li a.t-searchstudent_ico { background-position-y: -1388px;}
+#othleft-sidebar ul li a.t-allotment_ico { background-position-y: -1455px;}
+#othleft-sidebar ul li a.t-vehicle-details_ico {background-position-y: -1420px;}
+#othleft-sidebar ul li a.t-driver-details_ico {     background-position-y: -1492px;}
+#othleft-sidebar ul li a.t-transportation-fee_ico {     background-position-y: -1528px;}
+
+
+#othleft-sidebar ul li a.hostel-roomlist_ico { background-position-y: -577px;}
+#othleft-sidebar ul li a.hostel-roomsearch_ico {background-position-y: -1563px;}
+#othleft-sidebar ul li a.hostel-details_ico {     background-position-y: -123px;}
+#othleft-sidebar ul li a.hostl-addroom-dtls_ico {    background-position-y: -264px;}
+#othleft-sidebar ul li a.hostl-addmess-detls_ico {background-position-y: -434px;}
+#othleft-sidebar ul li a.hostel-allot-room_ico { background-position-y: -1600px;}
+#othleft-sidebar ul li a.hostel-change-room_ico{     background-position-y: -1641px;}
+#othleft-sidebar ul li a.hostel-vacate_ico{ background-position-y: -1680px;}
+#othleft-sidebar ul li a.view-student-dtls_ico{ background-position-y: -403px;}
+#othleft-sidebar ul li a.hostel-mass-message_ico{ background-position-y: -1714px;}
+#othleft-sidebar ul li a.hostel-messdues_ico{    background-position-y: -1746px;}
+#othleft-sidebar ul li a.hostel-notify_ico{     background-position-y: -1780px;}
+
+#othleft-sidebar ul li a.search-book_ico {background-position-y: -809px;}
+#othleft-sidebar ul li a.add-book_ico {background-position-y: -264px;}
+#othleft-sidebar ul li a.list-book_ico {background-position-y: -577px;}
+#othleft-sidebar ul li a.borrow-book_ico {background-position-y: -613px;}
+#othleft-sidebar ul li a.return-book_ico{background-position-y: -709px;}
+#othleft-sidebar ul li a.view-book_ico{background-position-y: -744px;}
+#othleft-sidebar ul li a.due-date_ico {background-position-y: 10px;}
+#othleft-sidebar ul li a.managebook-ctgry_ico {background-position-y: -434px;}
+#othleft-sidebar ul li a.libry-viewstudent_ico {background-position-y: -403px;}
+#othleft-sidebar ul li a.lbrt-view-authr_ico {background-position-y: -1816px;}
+
+#othleft-sidebar ul li a.all-update_ico{background-position-y: -1853px;}
+#othleft-sidebar ul li a.createfile-upload_ico {background-position-y: -1888px;}
+#othleft-sidebar ul li a.managfile-upload_ico {background-position-y: -1928px;}
+#othleft-sidebar ul li a.createfile-catgry_ico {background-position-y: -1965px;}
+#othleft-sidebar ul li a.managefile-catgry_icor_ico {background-position-y: -2000px;}
+
+#othleft-sidebar ul li a.import_ico { background-position-y: -2067px;}
+#othleft-sidebar ul li a.import-createuser_ico {background-position-y: -434px;}
+
+#othleft-sidebar ul li a.export_ico {     background-position-y: -2032px;}
+
+#othleft-sidebar ul li a.notify-compose_ico {     background-position-y: -2104px;}
+#othleft-sidebar ul li a.notify-draft_ico { background-position-y: -362px;}
+#othleft-sidebar ul li a.notify-mailshote_ico { background-position-y: -2136px;}
+#othleft-sidebar ul li a.notify-sentmail_ico{     background-position-y: -2173px;}
+#othleft-sidebar ul li a.notify-template_ico {  background-position-y: -123px;}
+#othleft-sidebar ul li a.notify-senrsms_ico {     background-position-y: -2210px;}
+#othleft-sidebar ul li a.notify-allcontact_ico {      background-position-y: -2246px;}
+#othleft-sidebar ul li a.notify-group_ico {      background-position-y: -2285px;}
+#othleft-sidebar ul li a.notify-import_ico{ background-position-y: -2323px;}
+
+#othleft-sidebar ul li a.advancereport_ico{ background-position-y: -577px;}
+#othleft-sidebar ul li a.assessment-report_ico {     background-position-y: -469px;}
+#othleft-sidebar ul li a.student-assessment_ico {    background-position-y: -776px;}
+#othleft-sidebar ul li a.teacher-attendance_ico {     background-position-y: -747px;}
+#othleft-sidebar ul li a.student-attendance-report_ico {      background-position-y: -679px;}
+#othleft-sidebar ul li a.attandance-precents-report_ico{ background-position-y: -2321px;}
+
+#othleft-sidebar ul li a.manageacadamic-year_ico {background-position-y: -506px;}
+#othleft-sidebar ul li a.creat-newnew_ico {background-position-y: -434px;}
+#othleft-sidebar ul li a.setting-manageuser_ico { background-position-y: -1714px;}
+#othleft-sidebar ul li a.setting-passwors_ico { background-position-y: -2394px;}
+#othleft-sidebar ul li a.list-coursbatches_ico {background-position-y: -577px;}
+#othleft-sidebar ul li a.setting-creatcourse_ico {background-position-y: -1028px;}
+
+#othleft-sidebar ul li a.complt-regs_ico {background-position-y: -2501px;}
+#othleft-sidebar ul li a.students_ico {background-position-y: -2427px;}
+#othleft-sidebar ul li a.guardians_ico {background-position-y: -2468px;}
+
+#othleft-sidebar ul li a.gco-schilastic_ico {background-position-y: -2468px;}
+#othleft-sidebar ul li a.co-scholastic-skill_ico {background-position-y: -2534px;}
+#othleft-sidebar ul li a.gradinglevels_ico {background-position-y: -2569px;}
+
+#othleft-sidebar ul li a.cbscgrad-b_ico {background-position-y: -2613px;}
+#othleft-sidebar ul li a.cbscgrad-exmsetng_ico {background-position-y: -2654px;}
+#othleft-sidebar ul li a.m-paymnt_ico {background-position-y: -2696px;}
+
+#othleft-sidebar ul li a.creat-task_ico {background-position-y: -2742px;}
+#othleft-sidebar ul li a.manage-task_ico {background-position-y: -2785px;}
+#othleft-sidebar ul li a.setting-ap_ico {background-position-y: -2823px;}
+#othleft-sidebar ul li a.devicess_ico{background-position-y: -2862px;}
+
+#othleft-sidebar ul li a.purcs_ico {background-position-y: -2931px;}
+#othleft-sidebar ul li a.purcsitem-stock_ico {background-position-y:  -2899px;}
+#othleft-sidebar ul li a.purcs-stock_ico {background-position-y: -2965px;}
+#othleft-sidebar ul li a.purcs-reqst_ico{background-position-y: -2999px;}
+#othleft-sidebar ul li a.purcs-issue_ico{background-position-y: -3036px;}
+#othleft-sidebar ul li a.purcs-mpo_ico {background-position-y: -3081px;}
+#othleft-sidebar ul li a.purcs-supply_ico {background-position-y: -3082px;}	
+#othleft-sidebar ul li a.manage-sale_ico {background-position-y: -3589px;}
+#othleft-sidebar ul li a.sale-report_ico {background-position-y: -3621px;}
+#othleft-sidebar ul li a.hr-crtstaf-icon{background-position-y: -3117px;}
+#othleft-sidebar ul li a.hr-mangstaf-icon{background-position-y: -3155px;}
+
+
+#othleft-sidebar ul li a.hr-leave-reqst-icon{background-position-y: -3194px;}
+#othleft-sidebar ul li a.hr-leave-icon{ background-position-y: -3234px;}
+#othleft-sidebar ul li a.hr-aprove-leave-icon{background-position-y: -3276px;}
+#othleft-sidebar ul li a.hr-reqst-cancl-icon{    background-position-y: -3317px;}
+#othleft-sidebar ul li a.hr-myleave-icon{    background-position-y: -3358px;}
+
+#othleft-sidebar ul li a.hr-salry-dtls-icon{background-position-y: -3399px;}
+#othleft-sidebar ul li a.hr-genert-icon{background-position-y: -3436px;}
+#othleft-sidebar ul li a.hr-report-icon{background-position-y: -3475px;}
+#othleft-sidebar ul li a.hr-salry-dtls-icon{background-position-y: -3513px;}
+#othleft-sidebar ul li a.hr-my-slip-icon{background-position-y: -3555px;}
+
+
+
+
+
+#othleft-sidebar h1 h1{
+	padding: 12px 15px 13px 19px;	
+}
+.count{
+	position:absolute;
+	top:13px;
+	left:19px;
+	min-width:40px;
+	padding:5px 0px !important;
+	background-color:#405875;
+	color:#FFF !important;
+	text-align:center;
+	font-size:12px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+.a_feed_innercntnt p{
+	float:right;
+	padding-left:10px;
+}
+.innet_attnd-block1{
+	float: right !important;	
+}
+.mail_orange {
+    border-right: 5px solid #EA8E64 !important;
+	border-left: 5px solid #fff !important;
+}
+.mail_green {
+    border-right: 5px solid #adce5c !important;
+	border-left: 5px solid transparent !important;
+}
+.search_but i {
+    margin: 8px 8px 0px 19px !important;
+    color: #8d84ed;
+}
+.search_but {
+    left: 15px !important;
+	 right:inherit;
+}
+.a_feed_bx {
+    background: url(../images/a_feed_brdr.png) repeat-y right !important;
+}
+.a_feed {
+    right: -16px !important;
+	 left:inherit !important;
+}
+.a_feed_innerbx {
+    padding: 0px 44px 18px 11px !important;
+}
+.a_feed_inner_arrow {
+    background: url(../images/activity_f_arrow-rtl.png) no-repeat !important;
+    right: -14px !important;
+	left:inherit !important;
+
+}
+.logo_right{ left:0px !important; right:inherit!important;}
+.logo{ right:0px !important; left:inherit!important;}
+.lo_drop{ left:0; right:inherit !important;}
+.usernamebx{ left:0px !important; right:inherit !important;}
+.mssgimg{left:103px !important;  right:inherit!important;}
+.logo_right ul li{ float:right !important;}
+.drop_search input[type="text"], textArea, select{padding: 6px 23px !important;}
+.mailbox-menu-folders{ float:right !important;}
+.mailbox-menu-item{ float:right !important;}
+.event-left-drop{ left:34px !important;
+ right:inherit !important;
+}
+.strip-clr{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 3px;
+    height: 47px
+}
+.filterbxcntnt_inner li{ float:right !important;}
+.filterbxcntnt_left{ left:inherit !important; right:16px !important;}
+.table-complnt-posctn{ float:right !important;}
+.filterbxcntnt_right{ float:right !important;    padding: 5px 95px 1px 10px !important; }
+.overviewbox{ float:right !important;}
+.txtfld-col{ float:right !important;}
+.posctn-ul2{ float:right !important;}
+.posctn-ul1{ float:left !important;}
+.onln-adm-table{ float:right !important;}
+.onln-adm-table-icon{ float:right !important;}
+.onln-adm-stus{ float:right !important;}
+.letterNavCon li{ float:right !important;}
+.cr_align input{ float:right !important;}
+.cr_align label{ float:right !important;}
+.posctn-ul2 .cors-trip-btch{ float:right !important;}
+.explorer-tab a{ float:right !important;}
+.sd_but_con li {float: left !important;}
+.sd_nav li.completed {
+    background: url(../images/sd_nav_tick.png) no-repeat 11px 10px !important;
+}
+.yb_timetable {
+	width: 670px;
+	background: #fffcd9 url(../images/timetable-h-bg.png) no-repeat left 120px !important;
+	padding: 15px 20px 35px 20px;
+}
+.yellow_bx {
+	padding: 15px 20px 75px 20px;
+	margin: 20px 0px 0px 0px;
+	width: 918px;
+	border: 1px #eede9c solid;
+	background: #fffcd9 url(../images/yellow.png) no-repeat left;
+	position: relative;
+}
+
+.yb_attendance {
+	background: #fffcd9 url(../images/attendance-h-bg.png) no-repeat left 74px !important;
+	padding: 15px 20px 35px 20px;
+	width: 918px;
+}
+.yb_fees {
+	background: #fffcd9 url(../images/fees-h-bg.png) no-repeat left 120px !important;
+	padding: 15px 20px 35px 20px;
+	width: 670px;
+}
+.sb_icon {
+	top: 5px;
+	right: 14px;
+}
+.add_sb_but{
+    position: absolute;
+    top: 11px;
+    bottom: 19px;
+    left: 8px;
+}
+.sb_icon {
+    background: url(../images/notification.png) no-repeat right 0px;
+    padding: 10px 54px 10px 55px;
+}
+.fees-trash{
+	position:absolute;
+	top:13px;
+	left:13px;
+	width:15px;
+	height:19px;
+	background:url(../images/fees-trash.png) no-repeat;
+	
+}
+.sent_file_bg { float:right;}
+.tempCon h4 {
+    padding: 15px 40px 14px 17px;;
+}
+.tempCon {
+	background: url("../images/tempdwn-arrow.png") no-repeat scroll left 19px #f8fafb;
+}
+.tempCon h4 {
+	background: url("../images/temp_icon.png") no-repeat scroll  right 16px rgba(0, 0, 0, 0);
+}
+p.phone_icon_co {
+	background: url("../images/co_phone.png") no-repeat right;
+	padding: 1px 26px;
+}
+p.mail_icon_co {
+	background: url("../images/co_mail.png") no-repeat right;
+	padding: 1px 26px;
+}
+p.time_icon_co {
+	background: url("../images/co_time.png") no-repeat right;
+	padding: 1px 26px;
+}
+.n-sentnews-date{
+	text-align:left;
+}
+
+
+/*.text-fild-block-full { float:right;}*/
+.timetable-br1 a.delete {
+	left: 0px;
+	right:inherit !important;
+
+}
+.timetable-br1 a.edit {
+	left: 0px;
+
+}
+table.detail-view td {
+
+	text-align:right;
+}
+.text-fild-block {float: right;}
+.cb_left { float:right;}
+.cb_right {float:right;}
+.action-posiction {
+    left: 52px;
+    background: url(../images/act-but.png) no-repeat left;
+}
+.but_bg {
+    position: absolute;
+    width: 110px;
+    height: 30px;
+    background: #fff;
+    top: -31px;
+    left: -1px;
+    -webkit-border-top-left-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    border-top-right-radius: 3px;
+    border-top: 1px #dcdcdc solid;
+    border-left: 1px #dcdcdc solid;
+    border-right: 1px #dcdcdc solid;
+    z-index: 1;
+}
+.act_drop {
+    padding: 10px;
+    margin: 0px;
+    width: 220px;
+    -webkit-border-top-left-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    border-top-left-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    border-bottom-left-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -moz-border-radius-bottomright: 3px;
+    border-bottom-right-radius: 3px;
+    border-top: 1px #dcdcdc solid;
+    border-left: 1px #dcdcdc solid;
+    border-right: 1px #dcdcdc solid;
+    border-bottom: 3px #f0af04 solid;
+    position: absolute;
+    top: 18px;
+    left: -20px;
+    background: #FFF;
+    -moz-box-shadow: 0px 2px 14px -6px #33373d;
+    -webkit-box-shadow: 0px 2px 14px -6px #33373d;
+    box-shadow: 0px 2px 14px -6px #33373d;
+    display: none;
+    z-index: 1001;
+}
+.but_bg_outer {
+    position: absolute;
+    width: 120px;
+    height: 34px;
+
+    top: -35px;
+    left: -5px;
+    -webkit-border-top-left-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    border-top-right-radius: 3px;
+    z-index: 0;
+}
+div.act_but_hover {
+    padding: 0px 0px;
+    margin: 0px;
+    width: 60px;
+    text-decoration: none;
+    display: block;
+    background: url(../images/act-but.png) no-repeat left;
+    z-index: 2;
+    position: absolute;
+    top: 9px;
+    left: 21px;
+    color: #F60;
+    cursor: pointer;
+}
+.act_drop li.pending {
+	background: url("../images/act-li-bg.png") no-repeat scroll 6px -151px rgba(0, 0, 0, 0);
+}
+.act_drop li.add {
+	background: url(../images/act-li-bg.png) no-repeat right -97px;
+}
+.act_drop li.edit {
+	background: url(../images/act-li-bg.png) no-repeat right 8px;
+}
+.act_drop li.delete {
+	background: url(../images/act-li-bg.png) no-repeatright -43px;
+}
+.act_drop li.addstud {
+	background: url(../images/add_student.png) no-repeat right 13px;
+}
+.act_drop li.newsub {
+	background: url(../images/new_sub.png) no-repeat right 11px;
+}
+.act_drop li.exams {
+	background: url(../images/exams_sub.png) no-repeat right 11px;
+}
+.act_drop li.mark {
+	background: url(../images/mark_a.png) no-repeat right 10px;
+}
+.act_drop li.promote {
+	background: url(../images/promote.png) no-repeat right 11px;
+}
+.act_drop li.deactivate {
+	background: url(../images/deactivate.png) no-repeat right 13px;
+}
+.act_drop li.assign_tea {
+	background: url(../images/as_tea.png) no-repeat scroll right 10px rgba(0, 0, 0, 0);
+}
+.act_drop li.mark_att {
+	background: url(../images/mark_att.png) no-repeat scroll right 10px rgba(0, 0, 0, 0);
+}
+.act_drop-new{
+	top: 28px !important;
+    left: -20px !important;
+}
+div.act_but-new {
+    right: 52px;
+    background: url(../images/act-but.png) no-repeat left;
+}
+.online-Q-list h3 span {
+    float:right;
+}
+.exam-table table th{ text-align:right;}
+.setbx_bot li { float: right;}
+.midnav span { float:right;background: url(../images/bread-arrow.png) no-repeat right;}
+.midnav a {float:right; background: url(../images/bread-arrow.png) no-repeat right;}
+.summary {
+	text-align: right;
+}
+.button-column a { float:right;}
+ul.yiiPager li { float:right;}
+.document_table th { text-align:right;}
+.sd_letternav li{ float:right;}
+.sd_letternav li a{padding: 2px 5px  !important;}
+.dashboard-action-blk ul{
+	 float:left;
+		
+}
+.dash_subhed_hide_one{
+	min-width:87px;	
+}
+.box-two {
+	float: left;
+}
+.box-one {
+	float:right;
+}
+.cbi_ibx { float:right;    border-left: 1px #eede9c solid;
+    border-right: 1px #fff solid;}
+	.sd_links li {
+	float: right;
+}
+.sd_filter_box_arrow {
+	right: 30px;
+}
+.mailbox_summary {
+    font-size: 12px;
+    color: #999;
+    font-weight: bold;
+    position: absolute;
+    top: 75px !important;
+    left: 15px !important;
+	right:inherit !important;
+}
+.download-left-icon img {
+    float: right;
+}
+#alColumns{
+	float:right;
+}
+.temp_image-cnt h3{text-align:left;}
+#reqColumns{
+	float:left;
+
+}
+.onln-adm-name {
+	float: right;
+}
+
+.prof-view-col li.r-col { float:right;}
+.prof-view-col li.l-col { float:right;}
+.comn-tooltip a:hover span {
+	opacity: 1;
+	bottom: 33px;
+	left: 72px;
+}
+.temp_div-rht-img{
+background: url(../images/template.png) no-repeat right 2px;
+padding: 0px 40px 0px 40px;
+}
+.comn-tooltip a span:after, .comn-tooltip a span:before {
+    border-left: 15px solid #fdc93e;
+    border-bottom: 15px solid transparent;
+    border-top: 0px solid transparent;
+    border-right: 0px solid transparent;
+	left:-1%;
+}
+.grid-table .detail-view th{ text-align:right;}
+.form-left-bg {
+	float: right;
+}
+.form-right-bg {	float:right;}
+.pdtab_Con-table table th{ text-align:right;}
+ul.pages li { float:right;}
+.tablereson-blok span {
+	float:  left;
+}
+.tablereson-blok {
+	text-align: right;
+}
+.leave-rqst-right p {
+	text-align: right;
+}
+.leave-rqst-left p{
+	text-align: right;
+}
+.filterbxcntnt_right li{    padding: 4px 7px 2px 28px; float:right;}
+.filterbxcntnt_right li a{    left: 5px;}
+.batch-block span { float:right;}
+.batch-block .move_action .fa-arrow-right{
+    color: #f38108;
+    font-size: 12px;
+    -ms-transform: rotate(183deg);
+    -webkit-transform: rotate(183deg);
+    transform: rotate(183deg);
+}
+.fc {
+	direction: rtt;
+}
+.box-one-lft-rght {
+	float: right;
+	margin-right: 2px;
+}
+.bttns_addstudent-n ul li {
+	float: right;
+}
+.fc-header-right{ left:0px;}
+.fc-header-left{ right:0px;} 
+.fc-grid .fc-event-time{ text-align:right;}
+.txtfld-col-block-One {
+	float:right;
+}
+.confic-btns label{
+float:right;
+
+}
+.confic-btns input{
+margin: 0px 9px;
+float:right;
+}
+.sms-templt{
+position: absolute;
+left: 19px;
+top: 6px;
+}
+.act_drop-new li a {
+		padding: 12px 50px 10px 0px;
+}
+.act_drop li a{
+    padding: 12px 50px 10px 30px;
+}
+.mailbox-items-tbl {
+    direction: ltr;
+}
+.overflow-table .atnd_Con{
+	direction: ltr !important;
+}
+
+

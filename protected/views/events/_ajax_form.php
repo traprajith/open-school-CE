@@ -9,21 +9,21 @@
  * @ver 1.3
  -->
 <div id="events_form_con" class="client-val-form">
-    <?php if ($model->isNewRecord) : ?>    <h3 id="create_header">Create New Events</h3>
-    <?php  elseif (!$model->isNewRecord):  ?>    <h3 id="update_header">Update Events <?php  echo
+    <?php if ($model->isNewRecord) : ?>    <h3 id="create_header"><?php echo Yii::t('app','Create New Events');?></h3>
+    <?php  elseif (!$model->isNewRecord):  ?>    <h3 id="update_header"><?php echo Yii::t('app','Update Events');?> <?php  echo
         $model->id;  ?>  </h3>
     <?php   endif;  ?>
-    <?php      $val_error_msg = 'Error.Events was not saved.';
+    <?php      $val_error_msg = Yii::t('app','Error.Events was not saved.');
     $val_success_message = ($model->isNewRecord) ?
-            'Events was created successfuly.' :
-            'Events  was updated successfuly.';
+            Yii::t('app','Events was created successfuly.') :
+            Yii::t('app','Events  was updated successfuly.');
   ?>
 
     <div id="success-note" class="notification success png_bg"
          style="display:none;">
         <a href="#" class="close"><img
                 src="<?php echo Yii::app()->request->baseUrl.'/js_plugins/ajaxform/images/icons/cross_grey_small.png';  ?>"
-                title="Close this notification" alt="close"/></a>
+                title="<?php echo  Yii::t('app','Close this notification');?>" alt="<?php echo  Yii::t('app','close');?>"/></a>
         <div>
             <?php   echo $val_success_message;  ?>        </div>
     </div>
@@ -32,7 +32,7 @@
          style="display:none;">
         <a href="#" class="close"><img
                 src="<?php echo Yii::app()->request->baseUrl.'/js_plugins/ajaxform/images/icons/cross_grey_small.png';  ?>"
-                title="Close this notification" alt="close"/></a>
+                title="<?php echo Yii::t('app','Close this notification');?>" alt="<?php echo Yii::t('app','close');?>"/></a>
         <div>
             <?php   echo $val_error_msg;  ?>        </div>
     </div>
@@ -68,8 +68,8 @@
 
      ?>
     <?php echo $form->errorSummary($model, '
-    <div style="font-weight:bold">Please correct these errors:</div>
-    ', NULL, array('class' => 'errorsum notification errorshow png_bg')); ?>    <p class="note">Fields with <span class="required">*</span> are required.</p>
+    <div style="font-weight:bold">'.Yii::t('app','Please correct these errors:').'</div>
+    ', NULL, array('class' => 'errorsum notification errorshow png_bg')); ?>    <p class="note"><?php echo Yii::t('app','Fields with');?> <span class="required">*</span> <?php echo Yii::t('app','are required.');?></p>
 
 
     <div class="row">
@@ -212,7 +212,7 @@
            value=" <?php echo $model->id; ?>"/>
     <?php endif; ?>
     <div class="row buttons">
-        <?php   echo CHtml::submitButton($model->isNewRecord ? 'Submit' : 'Save',array('class' =>
+        <?php   echo CHtml::submitButton($model->isNewRecord ? Yii::t('app','Submit') : Yii::t('app','Save'),array('class' =>
         'button align-right')); ?>    </div>
 
   <?php  $this->endWidget(); ?></div>

@@ -9,8 +9,8 @@
  * @ver 1.3
  -->
 <div id="subject-name-ajax_form_con" class="client-val-form">
-    <?php if ($model->isNewRecord) : ?>    <h3 id="create_header"><?php echo Yii::t('subjectname','Create New Subject');?></h3>
-    <?php  elseif (!$model->isNewRecord):  ?>    <h3 id="update_header"><?php echo Yii::t('subjectname','Update Subject');?> <?php  echo
+    <?php if ($model->isNewRecord) : ?>    <h3 id="create_header"><?php echo Yii::t('app','Create New Subject');?></h3>
+    <?php  elseif (!$model->isNewRecord):  ?>    <h3 id="update_header"><?php echo Yii::t('app','Update Subject');?> <?php  echo
         $model->id;  ?>  </h3>
     <?php   endif;  ?>
     <?php      $val_error_msg = 'Error.SubjectNameAjax was not saved.';
@@ -68,12 +68,12 @@
 
      ?>
     <?php echo $form->errorSummary($model, '
-    <div style="font-weight:bold">Please correct these errors:</div>
-    ', NULL, array('class' => 'errorsum notification errorshow png_bg')); ?>    <p class="note">Fields with <span class="required">*</span> are required.</p>
+    <div style="font-weight:bold">'.Yii::('app','Please correct these errors').':</div>
+    ', NULL, array('class' => 'errorsum notification errorshow png_bg')); ?>    <p class="note"><?php echo Yii::('app','Fields with');?><span class="required">*</span><?php echo Yii::t('app','are required'); ?>.</p>
 
 
     <div class="row">
-            <?php echo $form->labelEx($model,Yii::t('subjectname','name')); ?>
+            <?php echo $form->labelEx($model,Yii::t('app','name')); ?>
             <?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>120)); ?>
         <span id="success-SubjectNameAjax_name"
               class="hid input-notification-success  success png_bg right"></span>
@@ -84,7 +84,7 @@
     </div>
 
         <div class="row">
-            <?php echo $form->labelEx($model,Yii::t('subjectname','code')); ?>
+            <?php echo $form->labelEx($model,Yii::t('app','code')); ?>
             <?php echo $form->textField($model,'code',array('size'=>60,'maxlength'=>120)); ?>
         <span id="success-SubjectNameAjax_code"
               class="hid input-notification-success  success png_bg right"></span>
@@ -102,7 +102,7 @@
            value=" <?php echo $model->id; ?>"/>
     <?php endif; ?>
     <div style="width:30%">
-        <?php   echo CHtml::submitButton($model->isNewRecord ? 'Submit' : 'Save',array('class' =>
+        <?php   echo CHtml::submitButton($model->isNewRecord ? Yii::t('app','Submit') : Yii::t('app','Save'),array('class' =>
         'formbut')); ?>    </div>
 
   <?php  $this->endWidget(); ?></div>

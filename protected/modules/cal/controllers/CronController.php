@@ -1,7 +1,7 @@
 <?php
 
 class CronController extends RController {
-
+	
     public function actionIndex() 
     {
         if (!Yii::app()->controller->module->calendarOptions['cronPeriod']) return;

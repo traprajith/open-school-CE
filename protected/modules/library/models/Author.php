@@ -61,9 +61,9 @@ class Author extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'auth_id' => 'Auth',
-			'author_name' => 'Author Name',
-			'desc' => 'Desc',
+			'auth_id' => Yii::t('app','Auth'),
+			'author_name' => Yii::t('app','Author Name'),
+			'desc' => Yii::t('app','Desc'),
 		);
 	}
 

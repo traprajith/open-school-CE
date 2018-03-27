@@ -51,7 +51,7 @@ class Mailbox extends CActiveRecord
 			//array('initiator_del,interlocutor_del', 'default', 'setOnEmpty'=>true, 'value'=>null ),
 			array('initiator_id, interlocutor_id, modified', 'required'),
 			array('initiator_id, interlocutor_id, bm_read, bm_deleted, initiator_del, interlocutor_del', 'numerical', 'integerOnly'=>true),
-			array('subject', 'length', 'max'=>100),
+			array('subject', 'length', 'max'=>255),
 			array('modified', 'length', 'max'=>10),
 			array('is_system', 'length', 'max'=>3),
 			array('subject','match','pattern'=>'/[^'.Yii::app()->controller->module->allowableCharsSubject.']+/i','not'=>true),
@@ -72,7 +72,7 @@ class Mailbox extends CActiveRecord
 		return array(
                     'initiator'=>array(self::BELONGS_TO, 'User','initiator_id'),
                     'interlocutor'=>array(self::BELONGS_TO, 'User','interlocutor_id'),
-		    'messages'=>array(self::HAS_MANY , 'Message','conversation_id'),
+		    'messages'=>array(self::HAS_MANY , 'Newmessage','conversation_id'),
 		);
 	}
 
@@ -83,13 +83,13 @@ class Mailbox extends CActiveRecord
 	{
 		return array(
 			'conversation_id' => 'Id',
-			'initiator_id' => 'From Id',
-			'interlocutor_id' => 'To Id',
-			'to' => 'To',
-			'subject' => 'Subject',
-			'last_message_ts' => 'Last Message Received',
-			'modified' => 'Last Modified',
-			'is_system' => 'Is System',
+			'initiator_id' => Yii::t('app','From Id'),
+			'interlocutor_id' => Yii::t('app','To Id'),
+			'to' => Yii::t('app','To'),
+			'subject' => Yii::t('app','Subject'),
+			'last_message_ts' => Yii::t('app','Last Message Received'),
+			'modified' => Yii::t('app','Last Modified'),
+			'is_system' => Yii::t('app','Is System'),
 		);
 	}
 
@@ -254,7 +254,7 @@ class Mailbox extends CActiveRecord
 	}
 	
 	
-	public static function conversation($id,$order='DESC')
+	public static function conversation($id)
 	{
 		if(!is_int((int)$id))
 			throw new Exception('Bad conversation Id');
@@ -299,7 +299,7 @@ class Mailbox extends CActiveRecord
 			$this->bm_read = $this->bm_read | self::INTERLOCUTOR_FLAG;
 		}
 		else
-			throw new Exception('User denied');
+			throw new Exception(Yii::t('app','User denied'));
 		return true;
 	}
 	
@@ -312,7 +312,7 @@ class Mailbox extends CActiveRecord
 			$this->bm_read = $this->bm_read & ~self::INTERLOCUTOR_FLAG;
 		}
 		else
-			throw new Exception('User denied');
+			throw new Exception(Yii::t('app','User denied'));
 		return true;
 	}
 	
@@ -326,7 +326,7 @@ class Mailbox extends CActiveRecord
 			$this->bm_deleted = $this->bm_deleted & ~self::INTERLOCUTOR_FLAG;
 			$this->interlocutor_del = 0;
 		}
-		else throw new Exception('User denied');
+		else throw new Exception(Yii::t('app','User denied'));
 		
 		return true;
 	}
@@ -346,11 +346,11 @@ class Mailbox extends CActiveRecord
 	 * conversations are deleted via the destroy method.
 	 * @return boolean true on success
 	 */
-	public function delete($userid=0)
+	public function delete($userid=0,$delete_ever=NULL)
 	{
 		//die((int)Yii::app()->controller->module->recyclePeriod);
 		if(!$userid)
-			throw new Exception('User Id must be supplied for delete method');
+			throw new Exception(Yii::t('app','User Id must be supplied for delete method'));
 		$day = date("z") + 1;
 		if($day > 183)
 			$day = $day - 183;
@@ -381,7 +381,7 @@ class Mailbox extends CActiveRecord
 			}
 		}
 		else
-			throw new Exception('User denied');
+			throw new Exception(Yii::t('app','User denied'));
 		
 		// if both parties have permanently deleted conversation
 		if(is_null($this->initiator_del) && is_null($this->interlocutor_del))
@@ -389,6 +389,14 @@ class Mailbox extends CActiveRecord
 			// delete conversation and messages from database
 			$this->destroy();
 		}
+		//rahul..........
+		if($delete_ever == 'Delete forever')
+		{
+			// delete conversation and messages from database
+			$this->destroy();
+		}
+		return true;
+		//rahul..........
 		return true;
 	}
 	/*
@@ -442,9 +450,9 @@ class Mailbox extends CActiveRecord
 	public function destroy()
 	{
 		// delete all conversation messages
-		$msg_count=Message::model()->deleteAll('conversation_id = :cid',array(':cid'=>$this->conversation_id));
+		$msg_count=DashboardMessage::model()->deleteAll('conversation_id = :cid',array(':cid'=>$this->conversation_id));
 		if(!$msg_count)
-			throw new Exception('Conversation messages not found?');
+			throw new Exception(Yii::t('app','Conversation messages not found?'));
 		
 		// delete conversation
 		return parent::delete();

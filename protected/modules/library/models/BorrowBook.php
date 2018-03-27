@@ -20,8 +20,10 @@ class BorrowBook extends CActiveRecord
 	 * @return BorrowBook the static model class
 	 */
 	 public $student_admission_no;
-	 
-	public static function model($className=__CLASS__)
+         public $student_name;
+
+
+         public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
@@ -41,16 +43,18 @@ class BorrowBook extends CActiveRecord
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
-		if(Yii::app()->controller->action->id == 'create'  and  Yii::app()->controller->id == 'borrowBook')
+		if((Yii::app()->controller->action->id == 'create' or Yii::app()->controller->action->id == 'update')  and  Yii::app()->controller->id == 'borrowBook' )
 		{
 			return array(
-			array('student_admission_no,subject, book_name, issue_date, due_date', 'required'),
+                        array('student_id', 'checkStudent'),
+			array('subject, book_name, issue_date, due_date', 'required'),
 			array('student_admission_no', 'numerical', 'integerOnly'=>true),
-			array('student_admission_no,subject, book_name, issue_date, due_date, student_id, book_name, subject, book_id, status', 'length', 'max'=>120),
+			array('issue_date', 'checkIssueDate'),	
+                        
 			array('issue_date, due_date, created', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, student_id, book_name, subject, book_id, issue_date, due_date, created, status', 'safe', 'on'=>'search'),
+			array('id, student_id, book_name, subject, book_id, issue_date, due_date, created, status, student_name', 'safe', 'on'=>'search'),
 		);
 		}
 		else
@@ -73,6 +77,28 @@ class BorrowBook extends CActiveRecord
 		return array(
 		);
 	}
+	
+	public function checkIssueDate($attribute,$params)
+	{		
+		if($this->issue_date!='' and $this->due_date!=''){
+			$issue_date = date('Y-m-d', strtotime($this->issue_date));
+			$due_date 	= date('Y-m-d', strtotime($this->due_date));
+			if($issue_date > $due_date){
+				$this->addError($attribute,Yii::t("app",'Issue Date must be less than Due Date'));
+			}
+		}
+	}
+        
+        public function checkStudent($attribute,$params)
+	{	
+            if($this->student_name=='' && $this->student_id==''){
+                    $this->addError($attribute,Yii::t("app",'Student cannot be blank'));
+            }
+            
+            else if($this->student_name!='' && $this->student_id==''){
+                    $this->addError($attribute,Yii::t("app",'Invalid Student'));
+            }
+	}
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -80,15 +106,16 @@ class BorrowBook extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'student_id' => 'Student ',
-			'book_name' => 'Book Name',
-			'subject' => 'Subject',
-			'book_id' => 'Book',
-			'issue_date' => 'Issue Date',
-			'due_date' => 'Due Date',
-			'created' => 'Created',
-			'status' => 'Status',
+			'id' => Yii::t('app','ID'),
+			'student_id' => Yii::t('app','Student '),
+			'book_name' => Yii::t('app','Book Name'),
+			'subject' => Yii::t('app','Subject'),
+			'book_id' => Yii::t('app','Book'),
+			'issue_date' => Yii::t('app','Issue Date'),
+			'due_date' => Yii::t('app','Due Date'),
+			'created' => Yii::t('app','Created'),
+			'status' => Yii::t('app','Status'),
+			'student_admission_no' => Yii::t('app','Student Name')
 		);
 	}
 
@@ -117,4 +144,10 @@ class BorrowBook extends CActiveRecord
 			'criteria'=>$criteria,
 		));
    }
+   
+   public function getStudentadm()
+	{
+		$student=Students::model()->findByAttributes(array('id'=>$this->student_id));
+			return $student->admission_no;
+	}
 }

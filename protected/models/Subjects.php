@@ -18,6 +18,8 @@
 class Subjects extends CActiveRecord
 {
 	public $job;
+	public $subject_tilte1;
+	public $subject_tilte2;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return Subjects the static model class
@@ -44,14 +46,17 @@ class Subjects extends CActiveRecord
 		// will receive user inputs.
 		return array(
 		
-			array('batch_id, no_exams, max_weekly_classes, elective_group_id, is_deleted', 'numerical', 'integerOnly'=>true),
-			array('name, code', 'length', 'max'=>255),
-			array('batch_id, name, max_weekly_classes, code', 'required'),
-			array('name','codes'),
+			array('batch_id, no_exams, max_weekly_classes, elective_group_id, is_deleted, cbsc_common', 'numerical', 'integerOnly'=>true),
+			array('name', 'length', 'max'=>70),
+			array('batch_id, name, max_weekly_classes', 'required'),
+			array('subject_tilte1','checkSubject1'),
+			array('subject_tilte2','checkSubject2'),
+			//array('name','unique','message' => "This subject name already exists."),
+			//array('name','codes','message' => "This  Event Type already exists."),
 			array('created_at, updated_at', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, code, batch_id, no_exams, max_weekly_classes, elective_group_id, is_deleted, created_at, updated_at', 'safe', 'on'=>'search'),
+			array('id, name, batch_id, no_exams, max_weekly_classes, elective_group_id, is_deleted, created_at, updated_at, admin_id, is_edit,split_subject,subject_tilte1,subject_tilte2, cbsc_common', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,8 +72,8 @@ class Subjects extends CActiveRecord
 		);
 
 	}
-
 	
+	#Checking unique subject name in a batch
 	public function codes($attribute,$params)
 	{
 		
@@ -83,7 +88,7 @@ class Subjects extends CActiveRecord
 		} 
 		if($flag==1)
 		{
-		$this->addError($attribute, 'This subject is already added');
+		$this->addError($attribute, Yii::t("app",'This subject is already added'));
 		}
 	}	
 	 
@@ -94,17 +99,22 @@ class Subjects extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'code' => 'Code',
-			'batch_id' => 'Batch',
-			'no_exams' => 'No Exams',
-			'max_weekly_classes' => 'Max Weekly Classes',
-			'elective_group_id' => 'Elective Group',
-			'is_deleted' => 'Is Deleted',
-			'created_at' => 'Created At',
-			'updated_at' => 'Updated At',
+			'id' => Yii::t("app",'ID'),
+			'name' => Yii::t("app",'Name'),
+			'code' => Yii::t("app",'Code'),
+			'batch_id' => Yii::app()->getModule('students')->batchLabel("Students", "batch_id"),
+			'no_exams' => Yii::t("app",'No Exams'),
+			'max_weekly_classes' => Yii::t("app",'Max Weekly Classes'),
+			'elective_group_id' => Yii::t("app",'Elective Group'),
+			'is_deleted' => Yii::t("app",'Is Deleted'),
+			'created_at' => Yii::t("app",'Created At'),
+			'updated_at' => Yii::t("app",'Updated At'),
+			'subject_tilte1' => Yii::t('app','First Sub Category '),
+			'subject_tilte2' => Yii::t('app','Second Sub Category '),
+			'Sub_category1' => Yii::t('app','First Sub Category '),
+			'Sub_category2' => Yii::t('app','Second Sub Category '),
 		);
+		
 	}
 
 	/**
@@ -117,6 +127,13 @@ class Subjects extends CActiveRecord
 		// should not be searched.
 
 		$criteria=new CDbCriteria;
+		$batch_id = $this->batch_id;
+		
+		 if($batch_id!=""){
+			  $criteria->condition='cbsc_common =:cbsc_common';
+			  $criteria->params=array(':cbsc_common'=>0);       
+			 
+		 }
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
@@ -139,9 +156,42 @@ class Subjects extends CActiveRecord
 		$batches=Batches::model()->findByAttributes(array('id'=>$this->batch_id,'is_deleted'=>0));
 			return $this->name.'('.$batches->name.')';
 	}
-		
-		
-	
-	
+	public function checkSubject1($attribute,$params)
+	{
+		if($this->split_subject!="" and $this->split_subject!=0){ 
+			if($this->subject_tilte1=='')
+				$this->addError($attribute,$this->getAttributeLabel($attribute).' '.Yii::t("app",'cannot be blank.'));
+		}
+	}
+	public function checkSubject2($attribute,$params)
+	{
+		if($this->split_subject!="" and $this->split_subject!=0){ 
+			if($this->subject_tilte2=='')
+				$this->addError($attribute,$this->getAttributeLabel($attribute).' '.Yii::t("app",'cannot be blank.'));
+		}
+	}
+	public function getName($data,$row){
+		echo $data->name;
+	}
+	public function getSub_category1($data,$row){		
+		$subject_spits	=	SubjectSplit::model()->findByAttributes(array('subject_id'=>$data->id));
+		if($subject_spits->split_name !=NULL or $subject_spits->split_name!='')
+			echo $subject_spits->split_name; 
+		else
+			echo "-";
+	}
+	public function getSub_category2($data,$row){		
+		$criteria=new CDbCriteria;
+		$criteria->condition = "subject_id = :subject_id";
+		$criteria->params = array(":subject_id"=>$data->id); 
+		//$criteria->order = 'id DESC';
+		$models = SubjectSplit::model()->findAll($criteria); 
+		foreach($models as $model){			
+		}
+		if($model->split_name !=NULL or $model->split_name!='')
+		echo $model->split_name;
+		else
+			echo "-";
+	}   
 	
 }

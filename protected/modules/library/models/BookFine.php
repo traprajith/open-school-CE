@@ -60,10 +60,10 @@ class BookFine extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'student_id' => 'Student',
-			'book_id' => 'Book',
-			'amount' => 'Amount',
+			'id' => Yii::t('app','ID'),
+			'student_id' => Yii::t('app','Student'),
+			'book_id' => Yii::t('app','Book'),
+			'amount' => Yii::t('app','Amount'),
 		);
 	}
 

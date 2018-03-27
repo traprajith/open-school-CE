@@ -1,48 +1,4 @@
 <?php
-
-/**
- * This is the model class for table "students".
- *
- * The followings are the available columns in table 'students':
- * @property integer $id
- * @property string $admission_no
- * @property string $class_roll_no
- * @property string $admission_date
- * @property string $first_name
- * @property string $middle_name
- * @property string $last_name
- * @property integer $batch_id
- * @property string $date_of_birth
- * @property string $gender
- * @property string $blood_group
- * @property string $birth_place
- * @property integer $nationality_id
- * @property string $language
- * @property string $religion
- * @property integer $student_category_id
- * @property string $address_line1
- * @property string $address_line2
- * @property string $city
- * @property string $state
- * @property string $pin_code
- * @property integer $country_id
- * @property string $phone1
- * @property string $phone2
- * @property string $email
- * @property integer $immediate_contact_id
- * @property integer $is_sms_enabled
- * @property string $photo_file_name
- * @property string $photo_content_type
- * @property string $photo_data
- * @property string $status_description
- * @property integer $is_active
- * @property integer $is_deleted
- * @property string $created_at
- * @property string $updated_at
- * @property integer $has_paid_fees
- * @property integer $photo_file_size
- * @property integer $user_id
- */
 class Students extends CActiveRecord
 {
 	/**
@@ -53,11 +9,17 @@ class Students extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-	
+
 	public $status;
 	public $dobrange;
 	public $admissionrange;
 	public $task_type;
+	
+	private $_model;
+	private $_modelReg;
+	private $_rules = array();
+	public $max_adm_no;
+	
 
 	/**
 	 * @return string the associated database table name
@@ -72,103 +34,189 @@ class Students extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-			array('admission_no, parent_id, batch_id, nationality_id, student_category_id, country_id, immediate_contact_id, is_sms_enabled, is_active, is_deleted, has_paid_fees, photo_file_size, phone1, phone2, user_id, uid', 'numerical', 'integerOnly'=>true),
-			array('admission_no, admission_date, first_name, last_name, gender, date_of_birth, address_line1, address_line2, city, state, pin_code, country_id, phone1, email,nationality_id', 'required',),
-			array('admission_no','unique'),
-			array('email','check'),
-			array('admission_no, class_roll_no, first_name, middle_name, last_name, gender, blood_group, birth_place, language, religion, address_line1, address_line2, city, state, email, photo_file_name, photo_content_type, status_description', 'length', 'max'=>255),
-			array('admission_date, date_of_birth, created_at, updated_at', 'safe'),			
-			array('email','email'),
-			array(
-				'date_of_birth',
-				'compare',
-				'compareAttribute'=>'created_at',
-				'operator'=>'<', 
-				'allowEmpty'=>false , 
-				'message'=>'{attribute} must be less than "{compareValue}".'
-			  ),
-
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('photo_data', 'file', 'types'=>'jpg, gif, png', 'allowEmpty' => true),
-			array('id, admission_no, parent_id, class_roll_no, admission_date, first_name, middle_name, last_name, batch_id, date_of_birth, gender, blood_group, birth_place, nationality_id, language, religion, student_category_id, address_line1, address_line2, city, state, pin_code, country_id, phone1, phone2, email, immediate_contact_id, is_sms_enabled, photo_file_name, photo_content_type, photo_data, status_description, is_active, is_deleted, created_at, updated_at, has_paid_fees, photo_file_size, user_id', 'safe', 'on'=>'search'),
-		);
+		if(Yii::app()->controller->module->id != 'user'){ //In case of edit from user module
+			if (!$this->_rules) {
+				$rules = array();
+				
+				if(Yii::app()->controller->id != 'archive' and Yii::app()->controller->id != 'androidApi'){						
+					$required = array();
+					$numerical = array();	
+					$decimal = array();
+					$safe	= array();				
+	
+					$model=$this->getFields();
+					
+					foreach ($model as $field) {
+							$field_rule 	= array();
+							$rule_added		= false;
+							if ($field->required==FormFields::REQUIRED_YES){
+									if ($field->form_field_type==5){
+											array_push($rules,array($field->varname, 'compare', 'compareValue'=>true, 'message'=>Yii::t('app', '{attribute} cannot be blank')));
+									}
+									array_push($required,$field->varname);
+									$rule_added		= true;
+							}
+							if ($field->field_type=='DECIMAL'){
+									array_push($decimal,$field->varname);
+									$rule_added		= true;
+							}
+							if ($field->field_type=='INTEGER'){
+									array_push($numerical,$field->varname);
+									$rule_added		= true;
+							}
+	
+							if($rule_added==false){
+									array_push($safe,$field->varname);
+							}
+					}
+					array_push($rules,array(implode(',',$required), 'required'));
+					array_push($rules,array(implode(',',$numerical), 'numerical', 'integerOnly'=>true));			
+					array_push($rules,array(implode(',',$decimal), 'match', 'pattern' => '/^\s*[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?\s*$/'));
+					array_push($rules,array(implode(',',$safe), 'safe'));
+					array_push($rules,array('email','email'));                    
+					array_push($rules,array('phone1','checkPhone'));
+					array_push($rules,array('email','checkEmail'));
+					array_push($rules,array('admission_no','numerical', 'integerOnly'=>true));
+					array_push($rules,array('admission_no','checkAdmissionNo'));
+					array_push($rules,array('date_of_birth','checkDateOfBirth')); 
+					array_push($rules,array('first_name, last_name, email','required','on'=>'user_edit'));//In case of edit user from manage users                  
+					array_push($rules,array('national_student_id','checkNationalId'));
+					
+					array_push($rules,array('photo_data', 'file', 'types'=>'jpg, jpeg,gif, png', 'allowEmpty' => true));
+				}
+				else{
+					array_push($rules,array('email, phone1','required'));   
+					array_push($rules,array('email','email'));                    
+					array_push($rules,array('phone1','checkPhone'));
+					array_push($rules,array('email','checkEmail'));          
+				}
+				$this->_rules = $rules;
+			}
+		}
+		return $this->_rules;                                   
 	}
 
-	/**
-	 * @return array relational rules.
-	 */
+	
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
-		return array(
-		);
+            // NOTE: you may need to adjust the relation name and the related
+            // class name for the relations automatically generated below.
+            return array(
+            );
 	}
 	
-	public function check($attribute,$params)
-    {
-		if(Yii::app()->controller->action->id!='update' and $this->$attribute!='')
-		{
-		$validate = User::model()->findByAttributes(array('email'=>$this->$attribute));
-		if($validate!=NULL)
-		{
+	public function defaultScope()
+	{
+		if((isset(Yii::app()->controller->module->id) and (Yii::app()->controller->module->id=="onlineadmission")) or (isset(Yii::app()->controller->module->id) and (Yii::app()->controller->module->id=="courses") and Yii::app()->controller->action->id == 'waitinglist') or (isset(Yii::app()->controller->module->id) and (Yii::app()->controller->module->id=="parentportal") and Yii::app()->controller->action->id == 'checkStatus')){
+				return parent::defaultScope();
+		}else{
+				return array(
+						'condition'=> $this->getTableAlias(false, false).".type=:not_online",
+						'params' => array(":not_online"=>0)
+				);
+			
+		} 
+	}
+     
+	public function checkAdmissionNo($attribute,$params)
+	{
+		if($this->$attribute != '' and Yii::app()->controller->module->id != 'onlineadmission'){
+			$criteria				= new CDbCriteria;		
+			$criteria->condition 	= 'admission_no=:admission_no';
+			$criteria->params		= array(':admission_no'=>$this->$attribute);
+			$student				= Students::model()->find($criteria);
+			
+			if($student != NULL and $student->id != $this->id){
+				$this->addError($attribute,$this->getAttributeLabel('admission_no').' '.Yii::t("app",'already exist'));
+			}
+			
+			if($this->$attribute <= 0){
+				$this->addError($attribute,$this->getAttributeLabel('admission_no').' '.Yii::t("app",'must be greater than zero'));
+			}
+		}		
+	}
+	public function checkNationalId($attribute,$params)
+	{
+		$model= StudentsUser::model()->findByAttributes(array('national_student_id'=>$this->$attribute,'is_deleted'=>'0')); //This model is for checking all Students(Both normal & online)				
+		if($this->$attribute!=''){
+			if(($model!=NULL and $model->id!=$this->id)){
+				$this->addError($attribute,$this->getAttributeLabel('national_student_id').' '.Yii::t("app",'already exist'));
+			}
+		}
+	}
+    
+	//Check the date of birth is less than today
+	public function checkDateOfBirth($attribute,$params)
+	{
+		if($this->$attribute != ''){
+			$today			= date('Y-m-d'); 
+			$selected_date	= date('Y-m-d', strtotime($this->$attribute));
+			if($selected_date >= $today){
+				$settings	= UserSettings::model()->findByAttributes(array('user_id'=>Yii::app()->user->id));
+				if($settings != NULL){
+					$date = date($settings->displaydate, strtotime($selected_date));
+				}
+				else{
+					$date = $this->$attribute; 
+				}
+				$this->addError($attribute,$this->getAttributeLabel('date_of_birth').' '.'"'.$date.'"'.' '.Yii::t('app','is invalid'));
+			}
+		}
+	}
+	//Check the email is unique
+	public function checkEmail($attribute,$params)
+	{
+		if($this->$attribute!=''){
+			$student	= StudentsUser::model()->findByAttributes(array('email'=>$this->$attribute,'is_deleted'=>0)); //This model is for checking all Students(Both normal & online)				
+			$employee	= Employees::model()->findByAttributes(array('email'=>$this->$attribute,'is_deleted'=>0));
+			$parent		= Guardians::model()->findByAttributes(array('email'=>$this->$attribute,'is_delete'=>0));
+			$user		= User::model()->findByAttributes(array('email'=>$this->$attribute));
+			if(($student != NULL and $student->id != $this->id) or $employee != NULL or $parent != NULL or ($user != NULL and $user->id != $this->uid)){
+				$this->addError($attribute,$this->getAttributeLabel('email').' '.'"'.$this->$attribute.'"'.' '.Yii::t('app','has already been taken'));
+			}	
+		}
+	}
+    
+	//check the phone number is unique
+	public function checkPhone($attribute,$params)
+	{
+		if($this->$attribute!=''){				
+			$student	= StudentsUser::model()->findByAttributes(array('phone1'=>$this->$attribute,'is_deleted'=>0)); //This model is for checking all Students(Both normal & online)
+			$employee	= Employees::model()->findByAttributes(array('mobile_phone'=>$this->$attribute,'is_deleted'=>0));
+			$parent		= Guardians::model()->findByAttributes(array('mobile_phone'=>$this->$attribute,'is_delete'=>0));
+			$user		= User::model()->findByAttributes(array('mobile_number'=>$this->$attribute));
+			if(($student != NULL and $student->id != $this->id) or $employee != NULL or $parent != NULL or ($user != NULL and $user->id != $this->uid)){
+				$this->addError($attribute,$this->getAttributeLabel('phone1').' '.'"'.$this->$attribute.'"'.' '.Yii::t('app','has already been taken'));
+			}
+		}
+	}
+    
         
-            $this->addError($attribute,'Email allready in use');
-		}
-		}
-    }
-
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
+	       
 	public function attributeLabels()
 	{
-		return array(
-			'id' => 'ID',
-			'admission_no' => 'Admission No',
-			'class_roll_no' => 'Class Roll No',
-			'admission_date' => 'Admission Date',
-			'first_name' => 'First Name',
-			'middle_name' => 'Middle Name',
-			'last_name' => 'Last Name',
-			'batch_id' => 'Batch',
-			'date_of_birth' => 'Date Of Birth',
-			'gender' => 'Gender',
-			'blood_group' => 'Blood Group',
-			'birth_place' => 'Birth Place',
-			'nationality_id' => 'Nationality',
-			'language' => 'Language',
-			'religion' => 'Religion',
-			'student_category_id' => 'Student Category',
-			'address_line1' => 'Address Line1',
-			'address_line2' => 'Address Line2',
-			'city' => 'City',
-			'state' => 'State',
-			'pin_code' => 'Post Code',
-			'country_id' => 'Country',
-			'phone1' => 'Phone 1',
-			'phone2' => 'Phone 2',
-			'email' => 'Email',
-			'immediate_contact_id' => 'Immediate Contact',
-			'is_sms_enabled' => 'Is Sms Enabled',
-			'photo_file_name' => 'Photo File Name',
-			'photo_content_type' => 'Photo Content Type',
-			'photo_data' => 'Photo Data',
-			'status_description' => 'Status Description',
-			'is_active' => 'Is Active',
-			'is_deleted' => 'Is Deleted',
-			'created_at' => 'Created At',
-			'updated_at' => 'Updated At',
-			'has_paid_fees' => 'Has Paid Fees',
-			'photo_file_size' => 'Photo File Size',
-			'user_id' => 'User',
+		$labels = array(
+			'uid' => Yii::t('app','User ID'),
+			'id' => Yii::t("app",'ID')
 		);
+		$model=$this->getFields();
+		
+		foreach ($model as $field)
+			$labels[$field->varname] = Yii::t('app',$field->title);
+			
+		return $labels;		
 	}
 
+	public function scopes()
+	{
+		return array(
+			'lastRecord'=>array(
+				'condition' => 'is_online=1',
+				'order'=>'id DESC',
+				'limit'=>1,
+			),
+		);
+	}
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
@@ -231,9 +279,106 @@ class Students extends CActiveRecord
 	public function getFullname()
 	{
 	
-		return '</td><td  style="padding:0 0 0 20px;" >'.CHtml::link($this->first_name, array('/students/students/view', 'id'=>$this->id)).'
-								   </td><td  style="padding:0 0 0 20px;">'.$this->admission_no.'</td>'.
+		return '</td><td style="padding-left:15px;">'.CHtml::link($this->first_name.' '.$this->last_name, array('/students/students/view', 'id'=>$this->id)).'
+								   </td><td style="padding-left:15px;">'.$this->admission_no.'</td>'.
 								 '</tr>';
+									 
+	}
+        
+        public function getFullnames()
+	{
+            $name 	= "";
+
+		if(FormFields::model()->isVisible('first_name', 'Students', 'forStudentProfile'))
+                {
+                    $name 	.= ucfirst($this->first_name);
+                }
+
+                if(FormFields::model()->isVisible('middle_name','Students', 'forStudentProfile'))
+                {
+                    $name 	.= (($name!="")?" ":"").ucfirst($this->middle_name);
+                }
+
+                if(FormFields::model()->isVisible('last_name','Students', 'forStudentProfile'))
+                {
+                    $name 	.= (($name!="")?" ":"").ucfirst($this->last_name);
+                }
+				
+				$batch_student 	= BatchStudents::model()->findByAttributes(array('student_id'=>$this->id, 'batch_id'=>$_REQUEST['id'], 'status'=>1));						
+				if($batch_student != NULL and $batch_student->roll_no != NULL){
+					$roll_no	= $batch_student->roll_no;
+				}
+				else{
+					$roll_no	= '-';
+				}
+                
+                if(FormFields::model()->isVisible("fullname", "Students", "forStudentProfile"))                                            
+                {					
+					if(Yii::app()->controller->id == 'batches' and Yii::app()->controller->action->id == 'promote'){
+						$batch_student 	= BatchStudents::model()->findByAttributes(array('student_id'=>$this->id, 'batch_id'=>$_REQUEST['id'], 'status'=>1));						
+						if($batch_student != NULL and $batch_student->roll_no != NULL){
+							$roll_no	= $batch_student->roll_no;
+						}
+						else{
+							$roll_no	= '-';
+						}
+						$data			= '</td>';
+						if(Configurations::model()->rollnoSettingsMode() != 2){
+							$data	.= '<td style="padding-left:15px;">'.$roll_no.'</td>';
+						}
+						if(Configurations::model()->rollnoSettingsMode() != 1){ 
+							$data	.= '<td style="padding-left:15px;">'.$this->admission_no.'</td>';
+						}							
+						$data	.= '<td style="padding-left:15px;">'.CHtml::link($name, array('/students/students/view', 'id'=>$this->id)).'</td>
+									  
+									  <td style="padding-left:15px;"></td></tr>';
+						return $data;
+					}
+					else{
+						return '</td><td style="padding-left:15px;">'.$roll_no.'</td>
+									<td style="padding-left:15px;">'.CHtml::link($name, array('/students/students/view', 'id'=>$this->id)).'</td>
+									  <td style="padding-left:15px;">'.$this->admission_no.'</td></tr>';
+					}
+                }
+                else
+                {
+                    return '</td><td style="padding-left:15px;">'.$this->admission_no.'</td>'.
+								 '</tr>';
+                }
+	
+		
+									 
+	}
+	
+	public function getT_fullname()
+	{
+            $name= "";
+            $no="";
+            if(FormFields::model()->isVisible('first_name','Students','forTeacherPortal'))
+            {
+                $name.= $this->first_name;
+            }
+            if(FormFields::model()->isVisible('last_name','Students','forTeacherPortal'))
+            {
+                $name.= " ".$this->last_name;
+            }
+            if(FormFields::model()->isVisible('admission_no','Students','forTeacherPortal'))
+            {
+                $no= $this->admission_no;
+            }
+			if(Yii::app()->controller->module->id == 'teachersportal'){
+				if($this->studentFullName('forTeacherPortal')){
+					return '</td><td>'.$name.'</td><td >'.$no.'</td>'.'</tr>';	
+				}else{
+					return '</td><td >'.$no.'</td>'.'</tr>';								   								 
+				}
+			}else{
+            	return '</td><td>'.$name.'</td><td >'.$no.'</td>'.'</tr>';								   								 
+			}
+            
+            //		return '</td><td>'.$this->first_name.' '.$this->last_name.'
+            //								   </td><td >'.$this->admission_no.'</td>'.
+            //								 '</tr>';
 									 
 	}
 	public function getStudentname()
@@ -241,6 +386,236 @@ class Students extends CActiveRecord
 		return ucfirst($this->first_name).' '.ucfirst($this->middle_name).' '.ucfirst($this->last_name);
 	}
 	
+	public function getStudentnameforstudentprofile()
+	{
+		$name 	= "";
+
+		if(FormFields::model()->isVisible('first_name', 'Students', 'forStudentProfile'))
+        {
+            $name 	.= ucfirst($this->first_name);
+        }
+
+        if(FormFields::model()->isVisible('middle_name','Students', 'forStudentProfile'))
+        {
+            $name 	.= (($name!="")?" ":"").ucfirst($this->middle_name);
+        }
+
+        if(FormFields::model()->isVisible('last_name','Students', 'forStudentProfile'))
+        {
+            $name 	.= (($name!="")?" ":"").ucfirst($this->last_name);
+        }
+		if($name !=""){
+        	return $name;
+		}else{
+			return '-';
+		}
+	}
 	
+	public function getStudentnameforparentportal()
+	{
+		$name 	= "";
+
+		if(FormFields::model()->isVisible('first_name', 'Students', 'forParentPortal'))
+        {
+            $name 	.= ucfirst($this->first_name);
+        }
+
+        if(FormFields::model()->isVisible('middle_name','Students', 'forParentPortal'))
+        {
+            $name 	.= (($name!="")?" ":"").ucfirst($this->middle_name);
+        }
+
+        if(FormFields::model()->isVisible('last_name','Students', 'forParentPortal'))
+        {
+            $name 	.= (($name!="")?" ":"").ucfirst($this->last_name);
+        }
+		if($name !=NULL){
+        	return $name;
+		}else{
+			return '-';
+		}
+	}
+
+	public function studentFullName($scope='forStudentProfile'){
+		$name 	= "";
+
+		if(FormFields::model()->isVisible('first_name', 'Students', $scope))
+        {
+			
+            $name 	.= ucfirst($this->first_name);
+        }
+
+        if(FormFields::model()->isVisible('middle_name','Students', $scope))
+        {
+            $name 	.= (($name!="")?" ":"").ucfirst($this->middle_name);
+        }
+
+        if(FormFields::model()->isVisible('last_name','Students', $scope))
+        {
+            $name 	.= (($name!="")?" ":"").ucfirst($this->last_name);
+			
+        }
+
+        return $name;
+	}
+        
+        
 	
+//Student Profile Image Path
+	public function getProfileImagePath($id){
+		$model = Students::model()->findByPk($id);
+		$path = 'uploadedfiles/student_profile_image/'.$model->id.'/'.$model->photo_file_name;	
+		return $path;
+	}
+//Get the fiedls from form_fields	
+	public function getFields() {
+		$scope 		= NULL;
+		if(Yii::app()->controller->module->id == 'students' or Yii::app()->controller->module->id == 'studentportal' or Yii::app()->controller->module->id == 'admin'){
+			$scope 	= "forAdminRegistration";
+		}
+		if(Yii::app()->controller->module->id == 'onlineadmission'){
+			$scope 	= "forOnlineRegistration";
+		}
+
+		$criteria	= new CDbCriteria;
+		if(Yii::app()->controller->id == 'guardians' and Yii::app()->controller->action->id == 'addguardian'){
+			$criteria->condition	= "`tab_selection`=:tab_selection AND `model`=:model";
+			$criteria->params		= array(':tab_selection'=>3, 'model'=>"Students");
+		}		
+		else{
+			$criteria->condition	= "`tab_selection`=:tab_selection AND `model`=:model";
+			$criteria->params		= array(':tab_selection'=>1, 'model'=>"Students");
+		}		
+
+		if($scope!=NULL){
+			$this->_modelReg	= FormFields::model()->$scope()->findAll($criteria);
+		}
+		else{
+			$this->_modelReg	= FormFields::model()->findAll($criteria);
+		}
+
+		return $this->_modelReg;		
+	}
+	
+
+    //return full name of father
+    public function getFatherName($student_id)
+    {
+        $name="";
+        $guardian_list_data = GuardianList::model()->findAllByAttributes(array('student_id'=>$student_id));
+        if($guardian_list_data)
+        {
+            foreach($guardian_list_data as $key=>$data)
+            {
+                if($data->relation=="Father")
+                {
+                    $guardian_model= Guardians::model()->findByPk($data->guardian_id);
+                    if(FormFields::model()->isVisible('first_name','Guardians','forStudentProfile'))
+                    {                        
+                        $name= ucfirst($guardian_model->first_name);
+                    }
+                    if(FormFields::model()->isVisible('last_name','Guardians','forStudentProfile'))
+                    {                        
+                        $name.= " ".ucfirst($guardian_model->last_name);
+                    }
+                    return $name;
+                }
+            }
+    	
+        }else
+            return "-";				
+    }
+    
+    public function getMotherName($student_id)
+    {
+        $name="";
+        $guardian_list_data = GuardianList::model()->findAllByAttributes(array('student_id'=>$student_id));
+        if($guardian_list_data)
+        {
+            foreach($guardian_list_data as $key=>$data)
+            {
+                if($data->relation=="Mother")
+                {
+                    $guardian_model= Guardians::model()->findByPk($data->guardian_id);
+                    if(FormFields::model()->isVisible('first_name','Guardians','forStudentProfile'))
+                    {                        
+                        $name= ucfirst($guardian_model->first_name);
+                    }
+                    if(FormFields::model()->isVisible('last_name','Guardians','forStudentProfile'))
+                    {                        
+                        $name.= " ".ucfirst($guardian_model->last_name);
+                    }
+                    return $name;
+                }
+            }
+    	
+        }else
+            return "-";				
+    }
+//In case restore, check whether the email is already assigned to another user		
+	public function checkEmailDuplicate($type, $id) //$type may be 'student' or 'guardian'
+	{
+		if($type == 'student'){
+			$selected_user		= Students::model()->findByPk($id);
+		}
+		if($type == 'guardian'){
+			$selected_user		= Guardians::model()->findByPk($id);
+		}
+		$student 	= Students::model()->findByAttributes(array('email'=>$selected_user->email, 'is_deleted'=>0));
+		$guardian	= Guardians::model()->findByAttributes(array('email'=>$selected_user->email, 'is_delete'=>0));
+		$employee	= Employees::model()->findByAttributes(array('email'=>$selected_user->email, 'is_deleted'=>0));
+		$user		= User::model()->findByAttributes(array('email'=>$selected_user->email));
+		if($student != NULL or $guardian != NULL or $employee != NULL or ($user != NULL and $user->id != $selected_user->uid)){
+			return $id;
+		}
+		return;		
+	}
+//In case restore, check whether the phone is already assigned to another user		
+	public function checkPhoneDuplicate($type, $id) //$type may be 'student' or 'guardian'
+	{
+		if($type == 'student'){
+			$selected_user	= Students::model()->findByPk($id);
+			$phone 			= $selected_user->phone1;
+		}
+		if($type == 'guardian'){
+			$selected_user	= Guardians::model()->findByPk($id);
+			$phone 			= $selected_user->mobile_phone;
+		}		
+		$student 	= Students::model()->findByAttributes(array('phone1'=>$phone, 'is_deleted'=>0));
+		$guardian	= Guardians::model()->findByAttributes(array('mobile_phone'=>$phone, 'is_delete'=>0));
+		$employee	= Employees::model()->findByAttributes(array('mobile_phone'=>$phone, 'is_deleted'=>0));
+		$user		= User::model()->findByAttributes(array('mobile_number'=>$phone));
+		
+		if($student != NULL or $guardian != NULL or $employee != NULL or ($user != NULL and $user->id != $selected_user->uid)){
+			return $id;
+		}
+		return;		
+	}
+
+	public function getPrimaryGuardian($student_id){		
+		$student				= Students::model()->findByPk($student_id);
+		if($student!=NULL and $student->parent_id!=NULL and $student->parent_id!=0){
+			$guardian 				= Guardians::model()->findByPk($student->parent_id);
+			return $guardian;
+		}
+		
+		return NULL;
+	}
+	public function getstud()
+	{		           
+		$name = ucfirst($this->first_name).' '.ucfirst($this->middle_name).' '.ucfirst($this->last_name);		   
+		return $name;
+	}
+        
+        //Student batch name
+        public static function getStudentBatch($student_id)
+        {
+            $criteria               =   new CDbCriteria;  
+            $criteria->join         =   'LEFT JOIN batch_students t1 ON t1.batch_id = t.id';
+            $criteria->condition    =   't.is_active=:is_active AND t.is_deleted=:is_deleted AND t1.student_id=:student_id AND t1.status=:status AND t1.result_status=:result_status';
+            $criteria->params       =   array(':is_active'=>1, ':is_deleted'=>0, ':student_id'=>$student_id, ':status'=>1, ':result_status'=>0);   
+            $criteria->order        =   't.id DESC';
+            $batch                  =   Batches::model()->find($criteria);
+            return $batch;            
+        }
 }

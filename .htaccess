@@ -1,7 +1,7 @@
 Options +FollowSymLinks
 IndexIgnore */*
 RewriteEngine on
-RewriteBase /osce/open-school
+RewriteBase /osce23
 
 #Admin
 Rewriterule ^admin$ index.php?r=Cms/admin/home

@@ -45,8 +45,11 @@ class VehicleDetails extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('vehicle_no, vehicle_code, no_of_seats, maximum_capacity', 'required'),
-			array('no_of_seats,maximum_capacity', 'numerical', 'integerOnly'=>true),
+			array('vehicle_no, vehicle_code, no_of_seats, maximum_capacity, insurance', 'required'),
+			array('no_of_seats, maximum_capacity', 'numerical', 'integerOnly'=>true),
+			array('maximum_capacity','check'),
+			array('maximum_capacity','checkinteger'),
+			array('no_of_seats','checkint'),
 			array('vehicle_no, vehicle_code, no_of_seats, maximum_capacity, vehicle_type, address, city, state, phone, insurance, tax_remitted, permit,status', 'length', 'max'=>120),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -59,6 +62,8 @@ class VehicleDetails extends CActiveRecord
 	/**
 	 * @return array relational rules.
 	 */
+	 
+	 
 	public function relations()
 	{
 		// NOTE: you may need to adjust the relation name and the related
@@ -74,21 +79,44 @@ class VehicleDetails extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'vehicle_no' => 'Vehicle No',
-			'vehicle_code' => 'Vehicle Code',
-			'no_of_seats' => 'No Of Seats',
-			'maximum_capacity' => 'Maximum Capacity',
-			'vehicle_type' => 'Vehicle Type',
-			'address' => 'Address',
-			'city' => 'City',
-			'state' => 'State',
-			'phone' => 'Phone',
-			'insurance' => 'Insurance',
-			'tax_remitted' => 'Tax Remitted',
-			'permit' => 'Permit',
-			'status' => 'Status',
+			'vehicle_no' =>  Yii::t('app','Vehicle No'),
+			'vehicle_code' =>  Yii::t('app','Vehicle Code'),
+			'no_of_seats' =>  Yii::t('app','No Of Seats'),
+			'maximum_capacity' =>  Yii::t('app','Maximum Capacity'),
+			'vehicle_type' =>  Yii::t('app','Vehicle Type'),
+			'address' =>  Yii::t('app','Address'),
+			'city' =>  Yii::t('app','City'),
+			'state' =>  Yii::t('app','State'),
+			'phone' =>  Yii::t('app','Phone'),
+			'insurance' =>  Yii::t('app','Insurance'),
+			'tax_remitted' =>  Yii::t('app','Tax Remitted'),
+			'permit' =>  Yii::t('app','Permit'),
+			'status' =>  Yii::t('app','Status'),
 		);
 	}
+	public function check($attribute,$params)
+   {
+
+      if ($this->$attribute > $this->no_of_seats)
+         $this->addError($attribute, 'vehicle capacity is due to no of seat');
+
+   }
+   
+   public function checkinteger($attribute,$params)
+   {
+
+      if ($this->$attribute < 1)
+         $this->addError($attribute, 'Maximum Capacity must be an integer');
+
+   }
+   
+    public function checkint($attribute,$params)
+   {
+
+      if ($this->$attribute < 1)
+         $this->addError($attribute, 'No of Seats must be an integer');
+
+   }
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.

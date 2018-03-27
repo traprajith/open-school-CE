@@ -21,18 +21,19 @@ class UserIdentity extends CUserIdentity
 	 */
 	public function authenticate()
 	{
+           
 		if (strpos($this->username,"@")) {
 			$user=User::model()->notsafe()->findByAttributes(array('email'=>$this->username));
 		} else {
 			$user=User::model()->notsafe()->findByAttributes(array('username'=>$this->username));
-		}
+		}                
 		if($user===null)
 			if (strpos($this->username,"@")) {
 				$this->errorCode=self::ERROR_EMAIL_INVALID;
 			} else {
 				$this->errorCode=self::ERROR_USERNAME_INVALID;
 			}
-		else if(Yii::app()->getModule('user')->encrypting($this->password)!==$user->password)
+		else if(Yii::app()->getModule('user')->encrypting($user->salt.$this->password)!==$user->password)
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
 		else if($user->status==0&&Yii::app()->getModule('user')->loginNotActiv==false)
 			$this->errorCode=self::ERROR_STATUS_NOTACTIV;
@@ -42,9 +43,34 @@ class UserIdentity extends CUserIdentity
 			$this->_id=$user->id;
 			$this->username=$user->username;
 			$this->errorCode=self::ERROR_NONE;
-		}
+		}                 
 		return !$this->errorCode;
 	}
+        
+        public function otp_authenticate()
+	{           
+		if (strpos($this->username,"@")) {
+			$user=User::model()->notsafe()->findByAttributes(array('email'=>$this->username));
+		} else {
+			$user=User::model()->notsafe()->findByAttributes(array('username'=>$this->username));
+		}                
+		if($user===null)
+                {
+			if (strpos($this->username,"@")) {
+				$this->errorCode=self::ERROR_EMAIL_INVALID;
+			} else {
+				$this->errorCode=self::ERROR_USERNAME_INVALID;
+			}		
+                }
+		else {
+			$this->_id=$user->id;
+			$this->username=$user->username;
+			$this->errorCode=self::ERROR_NONE;
+		}                 
+		return !$this->errorCode;
+	}
+        
+        
     
     /**
     * @return integer the ID of the user record

@@ -105,4 +105,107 @@ label {
 .employee{font-size:11px; color:#666;}
 .portal_timetable a.delete{position:absolute; width:13px; height:12px; background:url(../images/tb-del.png) no-repeat; right:5px; top:5px;}
 .loader{ background-color:#aec3d3; width:100px;}
+table.detail-view{
+	background:#fff;
+	border-collapse: collapse;
+	width: 100%;
+	margin: 0;
+	border-top:1px #eaeef1 solid;
+	border-left:1px #eaeef1 solid;
+	border-right:1px #eaeef1 solid;
+	border-bottom:1px #eaeef1 solid;
+}
+table.detail-view th{
+	padding:10px 0px 10px 20px;
+	border-bottom:1px #eaeef1 solid;
+	text-align:left;
+}
+table.detail-view td{
+	padding:10px 0px;
+	border-bottom:1px #eaeef1 solid;
+	text-align:left;
+}
+.formCon{
+	padding:0px;
+	margin:0px 0px 20px 0px;
+	width:100%;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	border:0px #c2cfd8 solid;
+	background:#f8fafb url(../images/formcon-bg.png);
+	border:1px #d1e0ea solid;
+	/*-moz-box-shadow:0px 0px 8px #e7e5e5;
+  	-webkit-box-shadow: 0px 0px 8px #e7e5e5;
+  	box-shadow: 0px 0px 8px #e7e5e5;*/
+}
+.formConInner{
+	padding:15px 15px;
+	position:relative;
+	width:100%;
+}
 
+.formCon td{padding:0px 0px;}
+.formCon h2 span{ color:#2bad0f}
+.formCon label{font-size:12px; letter-spacing:.001em; color:#666;padding:0px 0px 0px 3px; display:block}/*font-family: 'Share', cursive;*/
+.formCon input[type="text"], input[type="password"], textArea, select{
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	border:1px #c2cfd8 solid;
+	padding:6px 3px;
+	background:#fff;
+	-moz-box-shadow:inset 0px 0px 8px #e7e5e5;
+  	-webkit-box-shadow:inset 0px 0px 8px #e7e5e5;
+  	box-shadow:inset -1px 1px 2px #d5dbe0;
+	/*width:auto !important;*/
+}
+.formCon textArea{
+	width:auto !important;
+}
+.formbut{
+	padding:0px 10px;
+	margin:0px;
+	background:url(../../images/fbut-bg.png) repeat-x;
+	height:30px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	border:1px #b58530 solid;
+	color:#633c15;
+	font-size:12px;
+	cursor:pointer;
+	text-shadow: 0.1em 0.1em #fdbd59;
+	font-weight:bold;
+	font-family:Arial, Helvetica, sans-serif;
+}
+.formbut:hover{background:url(../../images/fbut-bg-h.png) repeat-x;}
+.required{color:#F00;}
+.hint{
+	color:#C30;
+	padding:5px 0px 0px 0px;
+}
+.errorSummary{
+	padding:10px 10px 1px 10px;
+	margin:0px 0px 10px 0px;
+	background:#C30;
+	width:90%;
+	color:#FFF;
+	font-weight:bold;
+}
+.errorSummary ul{
+	padding:0px 0px 0px 0px;
+	margin:0px 0px 10px 0px;
+}
+.errorSummary li{
+	padding:0px 0px !important;
+	margin:0px;
+	list-style:none;
+}
+.success{
+	background:none;
+}
+.errorMessage{
+	color:#C30;
+	padding:5px 0px 0px 0px;
+}

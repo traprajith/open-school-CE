@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Batches',
+	Yii::app()->getModule('students')->fieldLabel("Students", "batch_id"),
 );
 ?>
 
@@ -27,8 +27,8 @@ $this->breadcrumbs=array(
                         {
                             echo '<tr>';
                             echo '<td>'.CHtml::link($posts_1->name, array('#')).'</td>';
-                            echo '<td>'.CHtml::link(Yii::t('Batch','Edit'), array('#')).'</td>';
-                            echo '<td>'.CHtml::link(Yii::t('Batch','Delete'), array('#')).'</td>';
+                            echo '<td>'.CHtml::link(Yii::t('app','Edit'), array('#')).'</td>';
+                            echo '<td>'.CHtml::link(Yii::t('app','Delete'), array('#')).'</td>';
                             echo '</tr>';
                         }
                         ?>

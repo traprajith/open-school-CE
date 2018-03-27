@@ -31,7 +31,7 @@ $('.search-form form').submit(function(){
 <div class="edit_bttns" style="top:15px; right:20px">
     <ul>
     <li>
-     <?php echo CHtml::link(Yii::t('user','<span>Create Profile Field</span>'), array('profileField/create'),array('class'=>'addbttn last')); ?>
+     <?php echo '<span>'.CHtml::link(Yii::t('user','Create Profile Field'),array('profileField/create'),array('class'=>'addbttn last')).'</span>';?>
     </li>
     </ul>
     <div class="clear"></div>

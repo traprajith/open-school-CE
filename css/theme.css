@@ -1,0 +1,332 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333;
+	margin: 0px;
+	background:#33373d;/*background:#24343e url(../images/pattern-bg.png);
+	background:url(../images/cont_left_bg.png) left repeat-y;*/
+}
+a {
+	text-decoration: none;
+	color: #F60;
+}
+
+.action_bar {
+    background: #1e2124;
+    height: 52px;
+}
+.usernamebx {
+	height: 36px;
+	margin: 0;
+	padding: 16px 18px 0 20px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	color: #606771;
+	font-size: 11px;
+	font-weight: bold;
+	text-transform: uppercase;
+	background-color: #191c1f;
+	display: block;
+}
+.flaticon-arrow486:before {
+    content: "\e000";
+}
+
+.navigation_wrapper_outer {
+	position: relative;
+	width: 1000px;
+	height: 80px;
+	padding: 0px 0px 0px 0px;
+	margin: 0px;
+	border-bottom: 1px solid #f0b928 ;
+	background: #FDC93E;
+}
+.nav {
+	position: absolute;
+	margin: 0px;
+	padding: 0px;
+	top: 0px;
+	border-bottom: 1px solid #e2b12e;
+	height: 81px;
+}
+
+
+
+.nav-secn-border {
+	    height: 162px;
+    border-bottom: 1px solid #e2b12e;
+    position: relative;
+}
+
+.nav li a {
+	border-right: 1px solid #e2b12e;
+	color: #674d03;
+	display: block;
+	font-size: 11px;
+	height: 59px;
+	line-height: 18px;
+    padding: 21px 0px 0px;
+	text-align: center;
+	text-transform: uppercase;
+
+	margin-top: 1px;
+}
+.nav li a:hover {
+	color: #000;
+	background-color:rgba(0,0,0,0.1) ;
+}
+.nav li a.active {
+	color: #fff;
+	background-color:rgba(0,0,0,0.2) ;
+	margin-top: 0px;
+	height: 60px;
+}
+.nav .fa {
+    font-size: 17px;
+}
+/*--------------------Navebar-style---end---------------------------*/
+.midnav {
+	width: 990px;
+	height: 35px;
+	padding: 0px 0px 0px 10px;
+	margin-top: 15px;
+	background: #77798E;
+}
+.midnav span {
+    display: block;
+    height: 15px;
+    padding: 10px 10px;
+    margin: 0px;
+    color: #faeecf;
+    font-size: 11px;
+
+}
+.midnav a {
+	display: block;
+	height: 15px;
+	padding: 10px 10px;
+	margin: 0px;
+	color: #dfe0e0;
+	font-size: 11px;
+
+}
+.news_boxnew ul li {
+    list-style: url(../images/red_dot.png);
+}
+/*--------------------brdcmb---end---------------------------*/
+a.explorer_but {
+	padding: 15px 0px 0px 25px;
+	margin: 0px;
+	color: #656e7c;
+	font-size: 11px;
+	text-transform: none;
+	position: absolute;
+	top: 5px;
+	left: 360px;
+	width: 170px;
+	height: 30px;
+	font-weight: bold;
+	text-align: center;/*background:url(../images/explorer_arrow.png) no-repeat 0px 7px ;*/
+}
+a.explorer_but span {
+	font-size: 28px;
+	position: absolute;
+	top: 5px;
+	left: 0px;
+	text-align: left;
+	float: left;
+	padding-left: 0px;
+}
+a.explorer_but:before {
+	margin-left: 0px;
+}
+a.explorer_but:hover {
+	color: #585f68;
+}
+
+.mssgimg span {
+	position: absolute;
+	font-size: 10px;
+	font-weight: normal;
+	right: -6px;
+	top: -7px;
+	line-height: 13px;
+	background-color: #F63;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	padding: 2px 6px;
+	color: #FFF;
+}
+
+.mssgimg {
+	margin: 0px;
+	padding: 0;
+	position: absolute;
+	top: 17px;
+	right: 145px;
+	color: #606771;
+	font-size: 18px;
+}
+/*-------------mailbox-left---------*/
+.mail_blue{border-left: 5px solid #67acf0;}
+.mail_orange{border-left: 5px solid #EA8E64;}
+/*-------------mailbox-left---End------*/
+/*---------button---style----start-----*/
+.edit_bttns li a {
+	margin: 0px;
+	font-size: 12px;
+	border-right: #c6c4c4 0px solid;
+	display: block;
+	color: #fff;
+	font-weight: bold;
+	background: #f38108;
+	padding: 6px 20px;
+	 transition-duration:0.9s;
+	 border:1px solid #e97a05;
+}
+.edit_bttns li a:hover {
+	background: #f28614;
+	 border:1px solid #e97a05;
+	color:#FFF;
+}
+
+.formbut_yellow button, input[type="submit"] {
+	background: url("../images/fbut-bg.png") repeat-x scroll 0 0 rgba(0, 0, 0, 0) !important;
+	border: 1px solid #f38108  !important;
+}
+ input[type="submit"] {
+	background: none repeat scroll 0 0 #f38108  !important;
+	color: #fff !important;
+	text-shadow: 0 0 0 !important;
+	padding:7px 17px !important;
+	cursor:pointer;
+	border:none !important;
+
+
+}
+input[type="submit"]:hover{
+	background-color:#f38108  !important;
+	transition-duration:0.2s;
+	padding:7px 17px !important;
+	border:none !important;	
+}
+
+ input[type="button"] {
+	background: none repeat scroll 0 0 #f38108  !important;
+	color: #fff !important;
+	text-shadow: 0 0 0 !important;
+	padding:7px 17px !important;
+	cursor:pointer;
+	border:none !important;
+
+
+}
+input[type="button"]:hover{
+	 background-color:#f38108  !important;
+	 transition-duration:0.2s;
+	 padding:7px 17px !important;
+	 border:none !important;	
+}
+
+
+.contrht_bttns li a {
+	margin: 0px;
+    font-size: 12px;
+    border-right: #f38108  0px solid;
+    color: #fff;
+    font-weight: bold;
+	background: #f38108  url(../images/os-buttn-icon.png) no-repeat right;
+    padding: 6px 32px 6px 18px;
+    transition-duration: 0.9s;
+    border: 1px solid #e97a05;
+    display: inline-block;
+}
+.contrht_bttns li a:hover {
+    background: #d36d01;
+    color: #FFF;
+}
+.ui-button-text-only {
+	background: #77798e !important;
+	font-size: 12px;
+	font-weight: bold !important;
+	height: 29px;
+	margin: 0;
+	padding:0px 20px;
+	border:none !important;
+	color: #fff !important;
+	box-shadow:none !important;
+}
+.ui-button-text-only:focus{
+	 outline:none;	
+}
+.ui-state-default:hover {
+	background: #FDC93E    !important;
+	color:#fff !important;
+	
+}
+/*---------button---style----end-----*/
+
+/*---------popup---top--start---*/
+.ui-dialog-titlebar {
+	background: #FDC93E !important;
+	color: #000 !important;
+}
+/*---------popup---top--end---*/
+select option { color: #000;font-weight:500; background-color:#fff; }
+select option:hover{background-color:#E4453D;box-shadow: 0 0 10px 100px #1882A8 inset;}
+
+.student-prfl{
+    color: #FFF;
+    background-color: #f38108 ;
+    position: absolute;
+    padding: 0px 15px 0px 0px;
+    font-weight: 600;
+    font-size: 13px;
+	transition-duration:0.3s;
+}
+.student-prfl i{
+color: #f78b19;
+    font-size: 17px;
+    margin-right: 13px;
+    padding: 6px 10px;
+    background-color: #c46806;
+
+}
+.studnt-prfl-bg:hover .student-prfl i{color: #f3c594;}
+
+
+.exp_but {
+    width: 26px;
+    height: 26px;
+    margin: 0px;
+    display: block;
+    top: 3px;
+    right: 0px;
+    background: url(../images/explorer_arrow1.png) no-repeat;
+    position: absolute;
+}
+.letterNavCon li.ln_active a {
+    background: #F60;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    color: #FFF;
+    border: 1px solid #f60;
+    width: 14px;
+}
+.letterNavCon li a:hover {
+	text-decoration: none;
+	background: #F60;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	color: #fff;
+	border: 1px #F60 solid;
+}
+.explor-bar{
+	height:7px;
+	background:none repeat scroll 0 0 #fdc93e; 
+	border:1px solid #fdc93e;
+}

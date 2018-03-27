@@ -65,11 +65,11 @@ class EventsUserpreference extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'user_id' => Yii::t('CalModule.EventsUserPreference', 'User'),
-			'mobile' => Yii::t('CalModule.EventsUserPreference', 'Mobile'),
-			'mobile_alert' => Yii::t('CalModule.EventsUserPreference', 'Mobile Alert'),
-			'email' => Yii::t('CalModule.EventsUserPreference', 'Email'),
-			'email_alert' => Yii::t('CalModule.EventsUserPreference', 'Email Alert'),
+			'user_id' => Yii::t('app', 'User'),
+			'mobile' => Yii::t('app', 'Mobile'),
+			'mobile_alert' => Yii::t('app', 'Mobile Alert'),
+			'email' => Yii::t('app', 'Email'),
+			'email_alert' => Yii::t('app', 'Email Alert'),
 		);
 	}
 

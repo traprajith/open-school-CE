@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	'Employees Subjects'=>array('create'),
-	'Create',
+	Yii::t('app','Teachers Subjects')=>array('create'),
+	Yii::t('app','Create'),
 );
 
 
@@ -16,7 +16,7 @@ $this->breadcrumbs=array(
     <td valign="top">
     <div class="cont_right formWrapper">
 
-<h1><?php echo Yii::t('employees','Subject Association');?></h1>
+<h1><?php echo Yii::t('app','Subject Association');?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
 </div>

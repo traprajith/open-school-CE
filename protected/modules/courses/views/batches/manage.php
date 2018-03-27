@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	'Batches'=>array('/courses'),
-	'Manage',
+	Yii::app()->getModule('students')->fieldLabel("Students", "batch_id")=>array('/courses'),
+	Yii::t('app','Manage'),
 );
 ?>
 <script language="javascript">
@@ -27,7 +27,7 @@ window.location = "index.php?r=courses/batches/manage&id="+id;
                 <?php
                  echo CHtml::dropDownList('mydropdownlist','mydropdownlist',
                       CHtml::listData(Courses::model()->findAll(),
-                      'id', 'course_name'),array('onchange'=>'getid();','id'=>'drop','prompt'=>'Select Course'));
+                      'id', 'course_name'),array('onchange'=>'getid();','id'=>'drop','prompt'=>Yii::t('app','Select Course')));
                  ?> 
                 <?php // echo $searchForm->dropDownList($model, 'category_id', CHtml::listData(Category::model()->findAll(), 'id', 'name')); ?>
                 </div>

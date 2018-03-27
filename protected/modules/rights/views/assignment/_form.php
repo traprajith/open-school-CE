@@ -10,7 +10,7 @@
 	</div>
 	
 	<div class="row buttons">
-		<?php echo CHtml::submitButton(Rights::t('core', 'Assign'),array('class'=>'greenbutton')); ?>
+		<?php echo CHtml::submitButton(Yii::t('app', 'Assign'),array('class'=>'greenbutton')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

@@ -50,7 +50,7 @@ class CCaptchaValidator extends CValidator
 		$captcha=$this->getCaptchaAction();
 		if(!$captcha->validate($value,$this->caseSensitive))
 		{
-			$message=$this->message!==null?$this->message:Yii::t('yii','The verification code is incorrect.');
+			$message=$this->message!==null?$this->message:Yii::t('app','The verification code is incorrect.');
 			$this->addError($object,$attribute,$message);
 		}
 	}
@@ -73,7 +73,7 @@ class CCaptchaValidator extends CValidator
 				}
 			}
 			if($captcha===null)
-				throw new CException(Yii::t('yii','CCaptchaValidator.action "{id}" is invalid. Unable to find such an action in the current controller.',
+				throw new CException(Yii::t('app','CCaptchaValidator.action "{id}" is invalid. Unable to find such an action in the current controller.',
 						array('{id}'=>$this->captchaAction)));
 		}
 		return $captcha;
@@ -90,7 +90,7 @@ class CCaptchaValidator extends CValidator
 	public function clientValidateAttribute($object,$attribute)
 	{
 		$captcha=$this->getCaptchaAction();
-		$message=$this->message!==null ? $this->message : Yii::t('yii','The verification code is incorrect.');
+		$message=$this->message!==null ? $this->message : Yii::t('app','The verification code is incorrect.');
 		$message=strtr($message, array(
 			'{attribute}'=>$object->getAttributeLabel($attribute),
 		));

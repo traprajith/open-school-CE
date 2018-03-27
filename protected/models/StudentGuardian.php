@@ -60,9 +60,9 @@ class StudentGuardian extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'gid' => 'Gid',
-			'sid' => 'Sid',
+			'id' => Yii::t("app",'ID'),
+			'gid' => Yii::t("app",'Gid'),
+			'sid' => Yii::t("app",'Sid'),
 		);
 	}
 

@@ -62,10 +62,10 @@ class AuthAssignment extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'itemname' => 'Itemname',
-			'userid' => 'Userid',
-			'bizrule' => 'Bizrule',
-			'data' => 'Data',
+			'itemname' => Yii::t('app','Itemname'),
+			'userid' => Yii::t('app','Userid'),
+			'bizrule' => Yii::t('app','Bizrule'),
+			'data' => Yii::t('app','Data'),
 		);
 	}
 

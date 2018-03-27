@@ -6,23 +6,23 @@
 $model;
 ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note"><?php echo Yii::t('app','Fields with'); ?><span class="required">*</span><?php echo Yii::t('app','are required.'); ?></p>
 <?php $data = CHtml::listData(SubjectName::model()->findAll(),'id','name') ?>
 	<?php echo $form->errorSummary($model); ?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><?php echo $form->labelEx($model,Yii::t('subjects','name')); ?></td>
-    <td><?php echo $form->dropDownList($model,'name',$data,array('prompt'=>'Select')); ?>
+    <td><?php echo $form->labelEx($model,Yii::t('app','name')); ?></td>
+    <td><?php echo $form->dropDownList($model,'name',$data,array('prompt'=>Yii::t('app','Select'))); ?>
 		<?php echo $form->error($model,'name'); ?></td>
     
   </tr>
   <tr>
-    <td><?php echo $form->labelEx($model,Yii::t('subjects','max_weekly_classes')); ?></td>
+    <td><?php echo $form->labelEx($model,Yii::t('app','max_weekly_classes')); ?></td>
     <td><?php echo $form->textField($model,'max_weekly_classes'); ?>
 		<?php echo $form->error($model,'max_weekly_classes'); ?></td>
         </tr>
   <tr>
-    <td><?php echo $form->labelEx($model,Yii::t('subjects','no_exams')); ?></td>
+    <td><?php echo $form->labelEx($model,Yii::t('app','no_exams')); ?></td>
     <td><?php echo $form->checkBox($model,'no_exams'); ?>
 		<?php echo $form->error($model,'no_exams'); ?></td>
   </tr>
@@ -81,15 +81,15 @@ $model;
 		<?php //echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
          <?php if($id==1)
 		{
-		echo CHtml::ajaxSubmitButton(Yii::t('subjects','Save'),CHtml::normalizeUrl(array('subjects/create','render'=>false)),array('success'=>'js: function(data) {
+		echo CHtml::ajaxSubmitButton(Yii::t('app','Save'),CHtml::normalizeUrl(array('subjects/create','render'=>false)),array('success'=>'js: function(data) {
                        $("#jobDialog").dialog("close");
-                    }'),array('id'=>'closeJobDialog','name'=>'Submit'));
+                    }'),array('id'=>'closeJobDialog','name'=>Yii::t('app','Submit')));
 		}
 		else
 		{
-			echo CHtml::ajaxSubmitButton(Yii::t('subjects','Save'),CHtml::normalizeUrl(array('subjects/create','render'=>false)),array('success'=>'js: function(data) {
+			echo CHtml::ajaxSubmitButton(Yii::t('app','Save'),CHtml::normalizeUrl(array('subjects/create','render'=>false)),array('success'=>'js: function(data) {
                        $("#jobDialog1").dialog("close");
-                    }'),array('id'=>'closeJobDialog','name'=>'Submit'));
+                    }'),array('id'=>'closeJobDialog','name'=>Yii::t('app','Submit')));
 		}
 		 ?>
        

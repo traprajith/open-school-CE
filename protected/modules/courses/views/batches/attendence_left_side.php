@@ -34,8 +34,8 @@
 			   ?>
     
     <li class="img_text">
-    	<?php echo '<strong>'.Yii::t('Batch','Batch:').'</strong>';?><?php echo $batch->name; ?><br>
-        <span><strong><?php echo Yii::t('Batch','Course:');?></strong>
+    	<?php echo '<strong>'.Yii::app()->getModule('students')->fieldLabel("Students", "batch_id").'</strong>';?><?php echo $batch->name; ?><br>
+        <span><strong><?php echo Yii::t('app','Course:');?></strong>
         <?php $course=Courses::model()->findByAttributes(array('id'=>$batch->course_id));
 		if($course!=NULL)
 		   {
@@ -48,19 +48,19 @@
     </div>
     <div class="status_bx">
     	<ul>
-        	<li style="border-right:1px #d9e1e7 solid"><span><?php echo count(Students::model()->findAll("batch_id=:x", array(':x'=>$_REQUEST['id']))); ?></span><?php echo Yii::t('Batch','Students');?></li>
-            <li style="border-left:1px #fff solid;border-right:1px #d9e1e7 solid;"><span><?php echo count(Subjects::model()->findAll("batch_id=:x", array(':x'=>$_REQUEST['id']))); ?></span><?php echo Yii::t('Batch','Subjects');?></li>
-            <li style="border-left:1px #fff solid"><span><?php echo count(TimetableEntries::model()->findAll(array('condition'=>'batch_id=:x', 'group'=>'employee_id','params'=>array(':x'=>$_REQUEST['id'])))); ?></span><?php echo Yii::t('Batch','Employees');?></li>
+        	<li style="border-right:1px #d9e1e7 solid"><span><?php echo count(Students::model()->findAll("batch_id=:x", array(':x'=>$_REQUEST['id']))); ?></span><?php echo Yii::t('app','Students');?></li>
+            <li style="border-left:1px #fff solid;border-right:1px #d9e1e7 solid;"><span><?php echo count(Subjects::model()->findAll("batch_id=:x", array(':x'=>$_REQUEST['id']))); ?></span><?php echo Yii::t('app','Subjects');?></li>
+            <li style="border-left:1px #fff solid"><span><?php echo count(TimetableEntries::model()->findAll(array('condition'=>'batch_id=:x', 'group'=>'employee_id','params'=>array(':x'=>$_REQUEST['id'])))); ?></span><?php echo Yii::t('app','Teachers');?></li>
         </ul>
      <div class="clear"></div>
     </div>
 	<div class="namelist">
     	<ul>
-        	<li><?php echo '<strong>'.Yii::t('Batch','Class Teacher : ').'</strong>';?> 
+        	<li><?php echo '<strong>'.Yii::t('app','Class Teacher : ').'</strong>';?> 
 			<?php $employee=Employees::model()->findByAttributes(array('id'=>$batch->employee_id));
 		    if($employee!=NULL)
 		    {
-			   echo $employee->first_name.' '.$employee->middle_name.' '.$employee->last_name; 
+			   echo Employees::model()->getTeachername($employee->id); 
 		    }?>
             </li>
             <!--<li><strong>Class Teacher:</strong>Mary Symon</li>

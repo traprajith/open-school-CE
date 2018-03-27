@@ -1,11 +1,11 @@
 <?php $this->breadcrumbs = array(
-	'Rights'=>Rights::getBaseUrl(),
-	Rights::t('core', 'Create :type', array(':type'=>Rights::getAuthItemTypeName($_GET['type']))),
+	Yii::t('app','Rights')=>Rights::getBaseUrl(),
+	Yii::t('app', 'Create :type', array(':type'=>Rights::getAuthItemTypeName($_GET['type']))),
 ); ?>
 
 <div class="createAuthItem">
 
-	<h1><?php echo Rights::t('core', 'Create :type', array(
+	<h1><?php echo Yii::t('app', 'Create :type', array(
 		':type'=>Rights::getAuthItemTypeName($_GET['type']),
 	)); ?></h1>
 

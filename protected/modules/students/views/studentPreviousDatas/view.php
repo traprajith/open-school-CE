@@ -1,19 +1,19 @@
 <?php
 $this->breadcrumbs=array(
-	'Student Previous Datases'=>array('index'),
+	Yii::t('app','Student Previous Datases')=>array('index'),
 	$model->id,
 );
 
 $this->menu=array(
-	array('label'=>'List StudentPreviousDatas', 'url'=>array('index')),
-	array('label'=>'Create StudentPreviousDatas', 'url'=>array('create')),
-	array('label'=>'Update StudentPreviousDatas', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete StudentPreviousDatas', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage StudentPreviousDatas', 'url'=>array('admin')),
+	array('label'=>Yii::t('app','List StudentPreviousDatas'), 'url'=>array('index')),
+	array('label'=>Yii::t('app','Create StudentPreviousDatas'), 'url'=>array('create')),
+	array('label'=>Yii::t('app','Update StudentPreviousDatas'), 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>Yii::t('app','Delete StudentPreviousDatas'), 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>Yii::t('app','Are you sure you want to delete this item?'))),
+	array('label'=>Yii::t('app','Manage StudentPreviousDatas'), 'url'=>array('admin')),
 );
 ?>
 
-<h1>View StudentPreviousDatas #<?php echo $model->id; ?></h1>
+<h1><?php echo Yii::t('app','View StudentPreviousDatas'); ?> #<?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	'Employees'=>array('index'),
-	'Create',
+	Yii::t('app','Teacher')=>array('index'),
+	Yii::t('app','Create'),
 );
 
 
@@ -25,7 +25,7 @@ $this->breadcrumbs=array(
     </div>
     
     </div>-->
-     <h1>Add New Employee</h1>
+     <h1><?php echo Yii::t('app','Enrolment'); ?></h1>
     <?php echo $this->renderPartial('_form1', array('model'=>$model)); ?>
 
     </div>

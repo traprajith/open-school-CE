@@ -54,34 +54,11 @@ class EJuiMonthPicker extends CJuiInputWidget
 		
 		// Default options for the jQuery widget
 		$default_options = array(
-			'monthNames' => array(
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','January'),
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','February'),
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','March'),
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','April'),
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','May'),
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','June'),
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','July'),
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','August'),
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','September'),
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','October'),
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','November'),
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','December'),
-			),
-			'monthNamesShort' => array(
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','Jan'),
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','Feb'),
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','Mar'),
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','Apr'),
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','May'),
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','Jun'),
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','Jul'),
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','Aug'),
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','Sep'),
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','Oct'),
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','Nov'),
-				Yii::t('EJuiMonthPicker.EJuiMonthPicker','Dec'),
-			),
+			'monthNames' => array('January','February','March','April','May','June','July','August','September','October','November','December'),
+				
+			
+			'monthNamesShort' => array('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'),
+				
 			'prevText'=>Yii::t('EJuiMonthPicker.EJuiMonthPicker','Prev'),
 			'nextText'=>Yii::t('EJuiMonthPicker.EJuiMonthPicker','Next'),
 			'showOn'=>'focus',

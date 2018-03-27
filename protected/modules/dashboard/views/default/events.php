@@ -1,3 +1,5 @@
+
+
 <script>
 	function getType()
 	{
@@ -12,21 +14,26 @@
 		}
 	}
 </script>
+<?php
+ $this->breadcrumbs=array(
+	 Yii::t('app','View Events')
+);
+?>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td width="80" valign="top" id="port-left">
-       		 <?php $this->renderPartial('left_side');?>
+       		 <?php echo $this->renderPartial('application.modules.mailbox.views.default.left_side'); ?>
         </td>
         <td valign="top">
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                 	<td valign="top" width="75%">
-                        <div style="padding-left:20px; position:relative; padding-top:10px;">
-                            <h1><?php echo Yii::t('dashboard','Events list');?></h1>
-                            <div style="position:absolute; width:auto; z-index:10; top:0px; right:25px; font-size:14px;">
+                        <div class="os-left-block">
+                            <h1><?php echo Yii::t('app','Events list');?></h1>
+                            <div class="event-left-drop">
                         	<?php
-								echo Yii::t('CalModule.fullCal', 'Show');
+								echo Yii::t('app', 'Show');
 								$data = EventsType::model()->findAll();
 								$events_type = CHtml::listData($data,'id','name');
 								
@@ -35,7 +42,7 @@
 									$options["options"][$datum->id] = array("style" => "background-color:".$datum->colour_code);
 									
 								}
-								$options["prompt"] = 'All Events';
+								$options["prompt"] = Yii::t('app','All Events');
 								$options["style"] = 'margin:10px';
 								$options["onchange"] = 'getType();';
 								$options["id"] = 'eventid';
@@ -96,7 +103,7 @@
                                             <div style="padding:10px 0px 30px 20px">
                                                 <div class="yellow_bx" style="background-image:none;width:90%;padding-bottom:45px;">
                                                     <div class="y_bx_head" style="width:95%;">
-                                                    	<?php echo Yii::t('dashboard','No Upcoming Events');?>
+                                                    	<?php echo Yii::t('app','No Upcoming Events');?>
                                                     </div>                    
                                                 </div>
                                             </div>
@@ -128,15 +135,15 @@
                                                     <div class="stripbx greenstrip">28<span>sep</span></div>  -->
                                                     <?php
 														$event_type = EventsType::model()->findByPk($event->type);
-                                                    	echo '<div class="stripbx" style="position:relative;"><div style="position:absolute; background-color:'.$event_type->colour_code.';top:0px;left:0px; width:3px; height:47px;"></div>'.date("d", $event->start).'<span>'.date("M", $event->start).'</span></div>';
+                                                    	echo '<div class="stripbx" style="position:relative;"><div class="strip-clr" style=" background-color:'.$event_type->colour_code.'"></div>'.date("d", $event->start).'<span>'.date("M", $event->start).'</span></div>';
 													?>
                                                 </td>
-                                                <td align="left">
-                                                    <div class="hdng_events"><?php echo substr($event->title,0,25); ?></div>
+                                                <td >
+                                                    <div class="hdng_events"><?php echo CHtml::ajaxLink(substr($event->title,0,25),$this->createUrl('default/view',array('event_id'=>$event->id)),array('update'=>'#jobDialog'),array('id'=>'showJobDialog1'.$event->id,'class'=>'add')); ?></div>
                                                     <div style="width:580px;">
                                                     	
                                                         <?php 
-														echo CHtml::ajaxLink(substr($event->desc,0,50),$this->createUrl('default/view',array('event_id'=>$event->id)),array('update'=>'#jobDialog'),array('id'=>'showJobDialog1'.$event->id,'class'=>'add')); 
+														echo substr($event->desc,0,25); 
 														?>
                                                     </div>
                                                     <div id="jobDialog"></div>

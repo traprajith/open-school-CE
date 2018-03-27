@@ -125,11 +125,11 @@ $this->renderPartial('application.views.layouts.header'); ?>
                 <?php 
 				if(Yii::app()->controller->id=='employees')
 				{
-				    echo CHtml::link('Employees', array('/employees'),array('class'=>'ic3 active'));
+				    echo CHtml::link('Teachers', array('/employees'),array('class'=>'ic3 active'));
 				}
 				else
 				{
-					echo CHtml::link('Employees', array('/employees'),array('class'=>'ic3'));
+					echo CHtml::link('Teachers', array('/employees'),array('class'=>'ic3'));
 				}
 				?>
                 </li>
@@ -281,7 +281,7 @@ $this->renderPartial('application.views.layouts.header'); ?>
 					    )),
 						array('label'=>''.t('Manage<span>Manage your Dashboard</span>'), 'url'=>'javascript:void(0);','linkOptions'=>array('id'=>'menu_5','class'=>'menu_5'), 'itemOptions'=>array('id'=>'menu_5'), 
 					       'items'=>array(
-						array('label'=>t('Comments'), 'url'=>array('/comments/admin'),'active'=>Yii::app()->controller->id=='comments' ? true : false),
+						array('label'=>t('Complaints'), 'url'=>array('/comments/admin'),'active'=>Yii::app()->controller->id=='comments' ? true : false),
 						//array('label'=>'Like/Rating', 'url'=>array('/like/admin')),
 						//array('label'=>'Survey', 'url'=>array('/survey/admin')),
 						     

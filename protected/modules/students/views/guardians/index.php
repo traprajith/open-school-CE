@@ -1,11 +1,11 @@
 <?php
 $this->breadcrumbs=array(
-	'Guardians',
+	Yii::t('app','Guardians'),
 );
 
 $this->menu=array(
-	array('label'=>'Create Guardians', 'url'=>array('create')),
-	array('label'=>'Manage Guardians', 'url'=>array('admin')),
+	array('label'=>Yii::t('app','Create Guardians'), 'url'=>array('create')),
+	array('label'=>Yii::t('app','Manage Guardians'), 'url'=>array('admin')),
 );
 ?>
 

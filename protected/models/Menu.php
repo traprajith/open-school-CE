@@ -67,13 +67,13 @@ class Menu extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'parent_id' => 'Parent',
-			'title' => 'Title',
-			'url' => 'Url',
-			'class' => 'Class',
-			'position' => 'Position',
-			'group_id' => 'Group',
+			'id' => Yii::t("app",'ID'),
+			'parent_id' => Yii::t("app",'Parent'),
+			'title' => Yii::t("app",'Title'),
+			'url' => Yii::t("app",'Url'),
+			'class' => Yii::t("app",'Class'),
+			'position' => Yii::t("app",'Position'),
+			'group_id' => Yii::t("app",'Group'),
 		);
 	}
 
@@ -154,7 +154,7 @@ class Menu extends CActiveRecord
 					$response['li_id'] = $li_id;
 				} else {
 					$response['status'] = 2;
-					$response['msg'] = 'Add menu error.';
+					$response['msg'] = Yii::t("app",'Add menu error.');
 				}
 			} else {
 				$response['status'] = 3;
@@ -195,7 +195,7 @@ class Menu extends CActiveRecord
 					$response['menu'] = $d;
 				} else {
 					$response['status'] = 2;
-					$response['msg'] = 'Edit menu error.';
+					$response['msg'] = Yii::t("app",'Edit menu error.');
 				}
 			} else {
 				$response['status'] = 3;

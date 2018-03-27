@@ -1,8 +1,8 @@
-<?php $this->pageTitle = Yii::app()->name.' - Site basic information';?>
+<?php $this->pageTitle = Yii::app()->name.' - Site Basic Information';?>
 
-<h1>Site basic information</h1>
+<h1>Basic information</h1>
 <p class="emphasize">Your site name is used as default page title which is important for SEO.
-The email you provide will be used to create administrator account.</p>
+The email you provide will be used to create the administrator account.</p>
 <div class="form">
     <h3></h3>
     <div class="content">

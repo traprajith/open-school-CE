@@ -40,7 +40,8 @@ class Event extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-		array('title, desc', 'required',),
+			array('title, desc', 'required',),
+			array('end', 'checkTime'),
 		);
 	}
 
@@ -62,12 +63,16 @@ class Event extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'user_id' => Yii::t('CalModule.Event', 'User'),
-			'title' => Yii::t('CalModule.Event', 'Title'),
-			'allDay' => Yii::t('CalModule.Event', 'All Day'),
-			'start' => Yii::t('CalModule.Event', 'Start'),
-			'end' => Yii::t('CalModule.Event', 'End'),
-			'editable' => Yii::t('CalModule.Event', 'Editable'),
+			'user_id' => Yii::t('app', 'User'),
+			'title' => Yii::t('app', 'Title'),
+			'placeholder' => Yii::t("app",'Event Privacy'),
+			'type' => Yii::t("app",'Event Type'),
+			'desc' => Yii::t("app",'Description'),
+			'allDay' => Yii::t('app', 'All Day'),
+			'start' => Yii::t('app', 'Start'),			
+			'end' => Yii::t('app', 'End'),
+			'organizer'=>Yii::t('app', 'Organizer/In charge'),
+			'editable' => Yii::t('app', 'Editable'),
 		);
 	}
 
@@ -95,9 +100,15 @@ class Event extends CActiveRecord
 		));
 	}
 
-        public function afterFind()
-        {
-            $this->allDay = (bool)$this->allDay;
-            $this->editable = (bool)$this->editable;
-        }
+	public function afterFind()
+	{
+		$this->allDay = (bool)$this->allDay;
+		$this->editable = (bool)$this->editable;
+	}
+	
+	public function checkTime($attriue){
+		if($this->start>=$this->end){
+			$this->addError("end", Yii::t("app", "End time must be greater than start time"));
+		}
+	}
 }

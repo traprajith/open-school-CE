@@ -1,26 +1,32 @@
-<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/rights_style.css" />
+<?php $subdomain = explode('.com' , $_SERVER['SERVER_NAME']);
+if($subdomain[0]=='tryopenschool'){
+	throw new CHttpException(404,'You are not authorized to view this page.');
+}
+else{ ?>
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/rights_style.css" />
 
-<?php $this->beginContent(Rights::module()->appLayout); ?>
+	<?php $this->beginContent(Rights::module()->appLayout); ?>
 
-		<?php if( $this->id!=='install' ): ?>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td width="247" valign="top">
-				<?php $this->renderPartial('/_menu'); ?>
+			<?php if( $this->id!=='install' ): ?>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	  <tr>
+		<td width="247" valign="top">
+					<?php $this->renderPartial('/_menu'); ?>
 
-	</td>
-    <td valign="top">
-    <div class="rights_right rights_formWrapper">
+		</td>
+		<td valign="top">
+		<div class="rights_right rights_formWrapper">
 
-		<?php endif; ?>
+			<?php endif; ?>
 
-		<?php $this->renderPartial('/_flash'); ?>
+			<?php $this->renderPartial('/_flash'); ?>
 
-		<?php echo $content; ?>
+			<?php echo $content; ?>
 
-	</div>
-   </td>
-   </tr>
-   </table>
+		</div>
+	   </td>
+	   </tr>
+	   </table>
 
-<?php $this->endContent(); ?>
+	<?php $this->endContent(); ?>
+<?php } ?>

@@ -146,6 +146,7 @@ public function   init() {
               //Figure out if we are updating a Model or creating a new one.
              if(isset($_POST['update_id']))$model= $this->loadModel($_POST['update_id']);
 			 else $model=new Subjects;
+			 
             //  Comment out the following line if you want to perform ajax validation instead of client validation.
             //  You should also set  'enableAjaxValidation'=>true and
             //  comment  'enableClientValidation'=>true  in CActiveForm instantiation ( _ajax_form  file).
@@ -184,7 +185,7 @@ public function   init() {
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['id']))
 			$model->batch_id=$_GET['id'];
-
+			$model->elective_group_id=0;
 		$this->render('index',array('model'=>$model));
 		
 	}
@@ -194,7 +195,25 @@ public function   init() {
 		if(isset($_POST['Subjects']))
 		{
            $model=$this->loadModel($_POST['update_id']);
+		   $old_name = $model->name;
+		   $old_code = $model->code;
+		   $old_max_weekly_classes = $model->max_weekly_classes;
 			$model->attributes=$_POST['Subjects'];
+			$sub1						=	$_POST['Subjects']['subject_tilte1'];
+			$sub2						=	$_POST['Subjects']['subject_tilte2']; 
+			$split	=	array('0'=>$sub1,'1'=>$sub2); 
+			$model->split_subject		=	$_POST['Subjects']['split_subject'];
+			$model->no_exams = 0;
+				$subjects_cps	=	SubjectSplit::model()->findAllByAttributes(array('subject_id'=>$model->id));
+				$old_sub_code	=array();
+				$k=0;
+				foreach($subjects_cps as $subjects_cp){
+					
+					$old_sub_code[$k]=	$subjects_cp->split_name; 
+					$k++;
+				}
+			//$model->elective_group_id = 0;
+			$this->performAjaxValidation($model);
 			/*$data=SubjectName::model()->findByAttributes(array('id'=>$model->name));
 						if($data!=NULL)
 						{
@@ -202,9 +221,38 @@ public function   init() {
 							$model->code=$data->code;
 							
 						}*/
-			if( $model->save(false)){
-                         echo json_encode(array('success'=>true));
-		             }else
+				if( $model->save(false)){
+					//check whether any change occur in the common subjects
+					if($model->admin_id!=0 and ($old_sub_code[0] != $split[0] or $old_sub_code[1] != $split[1] or $old_name != $model->name or $old_code != $model->code or $old_max_weekly_classes != $model->max_weekly_classes)){
+						$model->saveAttributes(array('is_edit'=>1));
+					}
+					$subject_spits	=	SubjectSplit::model()->findAllByAttributes(array('subject_id'=>$model->id));
+					$k=0;
+					if($subject_spits!=NULL){
+						if($model->split_subject==1){
+							foreach($subject_spits as $subject_spit){
+								$subject_spit->split_name	=	$split[$k];
+								$subject_spit->save();
+								$k++;
+							}
+						}else{
+							foreach($subject_spits as $subject_spit){
+								$subject_spit->delete();
+							}
+						}
+					}else{
+						if($model->split_subject==1){
+							for($i=0;$i<2;$i++){
+								$subjects_spt				=	new SubjectSplit;
+								$subjects_spt->subject_id	=	$model->id;
+								$subjects_spt->split_name	=	$split[$i];
+								$subjects_spt->save();
+							}
+						}
+					}
+					echo json_encode(array('success'=>true));
+				}else
+						
                      echo json_encode(array('success'=>false));
                 }
 
@@ -213,34 +261,42 @@ public function   init() {
 
   public function actionAjax_Create(){
 
-               if(isset($_POST['Subjects']))
+         if(isset($_POST['Subjects']))
 		{
-                       $model=new Subjects;
-					   
-                      //set the submitted values
-                        $model->attributes=$_POST['Subjects'];
-						
-						/*$data=SubjectName::model()->findByAttributes(array('id'=>$model->name));
-						if($data!=NULL)
-						{
-							$model->name=$data->name;
-							$model->code=$data->code;
-							
-						}*/
-                       //return the JSON result to provide feedback.
-			            if($model->save(false)){
-                                echo json_encode(array('success'=>true,'id'=>$model->primaryKey) );
-                                exit;
-                        } else
-                        {
-                            echo json_encode(array('success'=>false));
-                            exit;
-                        }
+		   $model=new Subjects;
+		   
+		  //set the submitted values
+			$model->attributes=$_POST['Subjects']; 
+			$sub1						=	$_POST['Subjects']['subject_tilte1'];
+			$sub2						=	$_POST['Subjects']['subject_tilte2'];
+			$split	=	array('0'=>$sub1,'1'=>$sub2); 
+			$model->split_subject		=	$_POST['Subjects']['split_subject'];
+			$model->no_exams = 0;
+			$model->elective_group_id = 0;
+		   //return the JSON result to provide feedback.
+		   $this->performAjaxValidation($model);
+			if($model->save(false)){
+				if($model->split_subject==1){
+					for($i=0;$i<2;$i++){
+						$subjects_spt				=	new SubjectSplit;
+						$subjects_spt->subject_id	=	$model->id;
+						$subjects_spt->split_name	=	$split[$i];
+						$subjects_spt->save();
+					}
+				}
+				echo json_encode(array('success'=>true,'id'=>$model->primaryKey) );
+				exit;
+			} else
+			{
+				echo json_encode(array('success'=>false));
+				exit;
+			}
 		}
   }
 
      public function actionAjax_delete(){
                  $id=$_POST['id'];
+				
                  $deleted=$this->loadModel($id);
                 if ($deleted->delete() ){
                echo json_encode (array('success'=>true,'msg'=>deleted));

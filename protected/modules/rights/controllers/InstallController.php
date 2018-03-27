@@ -106,7 +106,8 @@ class InstallController extends RController
 		// User is guest, deny access.
 		else
 		{
-			$this->accessDenied(Rights::t('install', 'You must be logged in to install Rights.'));
+			/*$this->accessDenied(Rights::t('install', 'You must be logged in to install Rights.'));*/
+			$this->accessDenied(Yii::t('app', 'You must be logged in to install Rights.'));
 		}
 	}
 

@@ -1,19 +1,20 @@
 <style>
-td .ui-state-highlight {
-	 height:56px; 
-	 width:95px; 
-	 background:#FFC !important;
-	 box-shadow:inset 0px 0px 5px #d8a829;
-    -moz-box-shadow:inset 0px 0px 5px #d8a829;
-    -webkit-box-shadow:inset 0px 0px 5px #d8a829;
-}	
+	
 #note {
 	color:#900;
-	position:absolute;
+	/*position:absolute;
 	bottom:0;
 	right:20px;
 	height:150px;
-	width:130px;
+	width:130px;*/
+}
+#dlg_EventCal select {
+    margin-left:0px !important;
+	margin-top:5px !important;
+}
+.ui-button-text-only
+{
+    height: 37px;
 }
 </style>
 
@@ -25,32 +26,39 @@ $( document ).ready(function() {
 
 <!-- Event dialog -->
 <?php
+$has_permission = $this->deletePermission();
 $calendarOptions = Yii::app()->controller->module->calendarOptions;
 //print_r($calendarOptions); exit;
 $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
     'id' => 'dlg_EventCal',
     'options' => array(
-        'title' => Yii::t('CalModule.fullCal', 'Event Detail'),
+        'title' => Yii::t('app', 'Event Detail'),
         'modal' => true,
         'autoOpen' => false,
         'hide' => 'slide',
         'show' => 'slide',
 		'width'=> '350px',
+		'close'=>'js:function(){$(".errorMessage").remove();}',
         'buttons' => array(
 			array(
-                'text' => Yii::t('CalModule.fullCal', 'Delete'),
-                'click' => "js:function() { if (confirm('Are you sure?')) {eventDialogDelete(); }}",
-				'style' =>'display:none;',
+                'text' => Yii::t('app', 'Delete'),
+                'click' => "js:function() { if (confirm('".Yii::t('app','Are you sure you want to delete this event?')."')) {eventDialogDelete();
+				 }}",				
 				'id' => 'EventCal_delete',
+				'style'=>($has_permission == 0)?'display: none;':''								
             ),
             array(
-                'text' => Yii::t('CalModule.fullCal', 'OK'),
-                'click' => "js:function() { eventDialogOK(); }",
+                'text' => Yii::t('app', 'OK'),
+				'id'=>'EventCal_ok',
+                'click' => "js:function() { 
+						$('#EventCal_ok').attr('disabled',true);
+						eventDialogOK(); 
+				}",
             ),
             array(
-                'text' => Yii::t('CalModule.fullCal', 'Cancel'),
+                'text' => Yii::t('app', 'Cancel'),
                 'click' => 'js:function() { $("#EventCal_desc").val(""); $("#EventCal_type").val("");
-			$("#EventCal_placeholder").val(""); $("#EventCal_delete").hide(); $(this).dialog("close"); }',
+				$("#EventCal_placeholder").val(""); $("#EventCal_delete").hide(); $(this).dialog("close"); }',
             ),
     ))));
 	/*echo CHtml::link('open dialog', '#', array(
@@ -58,69 +66,82 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
 ));*/
 ?>
 
-<div class="form" style="padding-left:50px;">
+<div class="form " style="padding-left:15px;">
+	<?php $model	= new Event; ?>
     <?php echo CHtml::beginForm(); ?>
-    <div class="row">
-        <?php
+    <table width="100%" border="0" cellspacing="5" cellpadding="3" style="font-size:12px;">
+  <tr>
+    <td><?php 
         echo CHtml::hiddenField("EventCal_id", 0);
-        echo CHtml::label(Yii::t('CalModule.fullCal', 'Message&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'), "EventCal_title");
-        echo CHtml::textField("EventCal_title");
-        ?>
-    </div>
-     <div class="row">
-         <?php
-		echo CHtml::label('Event Type', "EventCal_type");
-		$events_type = CHtml::listData(EventsType::model()->findAll(),'id','name');
-        echo CHtml::dropDownList("EventCal_type", 0, $events_type,array('style'=>'width:185px;','prompt'=>'Select'));
-		//echo CHtml::dropDownList("EventCal_type", 0, array('1' => 'Exams', '2' => 'Holidays', '3' => 'Notice', '4' => 'Meetings'));
-		 ?>
-    </div>
-     <div class="row">
+		echo CHtml::activeLabelEx($model, 'title').'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+		?>
+        </td>
+    <td>
+	<?php
+    	echo CHtml::textField("EventCal_title");
+	?>
+    </td>
+  </tr>
+  <tr>
+    <td> 
+		
 		<?php
-		echo CHtml::label('Event Privacy', "EventCal_placeholder");
-        if (Yii::app()->user->isSuperuser) 
+		echo CHtml::activeLabelEx($model, 'type');
+		$events_type = CHtml::listData(EventsType::model()->findAll(),'id','name');?></td>
+    <td> <?php echo CHtml::dropDownList("EventCal_type", 1, $events_type,array('style'=>'width:185px;'));
+		 ?></td>
+  </tr>
+  <tr>
+    <td><?php echo CHtml::activeLabelEx($model, 'placeholder');?></td>
+    <td> <?php if (Yii::app()->user->checkAccess('Admin')) 
 		{
 			$all_roles=new RAuthItemDataProvider('roles', array('type'=>2));
 			$data = $all_roles->fetchData();
-			$roles = CHtml::listData($data,'name','name');
+			$roles = CHtml::listData($data,'name','name'); 
 			echo CHtml::dropDownList("EventCal_placeholder",'0',$roles,array('empty'=>array('0' => 'Public'),'style'=>'text-transform: capitalize;'));
         }
-        ?>
-    </div>
-     <div class="row">
-         <?php
-		
-		echo CHtml::label('Event Description', "EventCal_desc");
-        echo CHtml::textArea('EventCal_desc','',array('rows'=>6, 'cols'=>30));
-		 ?>
-    </div>
-     <div class="row" id="note">
-     	Note: Make sure that the start and end time is different.
-     </div>
-    <div class="row">
-        <?php
-        echo CHtml::label(Yii::t('CalModule.fullCal', 'Start'), "EventCal_start");
-        echo CHtml::dropDownList("EventCal_start", 0, array());
-        ?>
-    </div>
-    <div class="row">
-        <?php
-        echo CHtml::label(Yii::t('CalModule.fullCal', 'End'), "EventCal_end");
-        echo CHtml::dropDownList("EventCal_end", 0, array());
-        ?>
-    </div>
-    <div class="row">
-        <?php
-        echo CHtml::label(Yii::t('CalModule.fullCal', 'All Day'), "EventCal_allDay");
-        echo CHtml::checkBox("EventCal_allDay", true);
-        ?>
-    </div>
-    <div class="row">
-        <?php
-        echo CHtml::label(Yii::t('CalModule.fullCal', 'Editable'), "EventCal_editable");
-        echo CHtml::checkBox("EventCal_editable", true);
-        ?>
-    </div>
+        ?></td>
+  </tr>
+  <tr>
+    <td> <?php echo CHtml::activeLabelEx($model, 'desc');?></td>
+    <td><?php echo CHtml::textArea('EventCal_desc','',array('rows'=>6, 'cols'=>30));?></td>
+  </tr>
+  <tr>
+    <td><?php
+		echo CHtml::activeLabelEx($model, 'start');?></td>
+    <td> <?php echo CHtml::dropDownList("EventCal_start", 0, array());
+        ?></td>
+  </tr>
+  <tr>
+    <td><?php
+		echo CHtml::activeLabelEx($model, 'end');?></td>
+    <td><?php echo CHtml::dropDownList("EventCal_end", 1, array());
+        ?></td>
+  </tr>
+  <tr>
+    <td> <?php echo CHtml::activeLabelEx($model, 'organizer');?></td>
+    <td><?php echo CHtml::textField('EventCal_organizer');
+		 ?></td>
+  </tr>
+  <tr>
+    <td> <?php
+		echo CHtml::activeLabelEx($model, 'allDay');?></td>
+    <td><?php echo CHtml::checkBox("EventCal_allDay", true);
+        ?></td>
+  </tr>
+  <tr>
+    <td> <?php
+		echo CHtml::activeLabelEx($model, 'editable');?></td>
+    <td><?php echo CHtml::checkBox("EventCal_editable", true);
+        ?></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+
+
 
     <?php echo CHtml::endForm(); ?>
     </div>
@@ -171,16 +192,16 @@ if($calendarOptions['cronPeriod'])
         $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
             'id' => 'dlg_Userpreference',
             'options' => array(
-                'title' => Yii::t('CalModule.fullCal', Yii::t('CalModule.fullCal', 'preference')),
+                'title' => Yii::t('app', 'preference'),
                 //'modal' => false,
                 'autoOpen' => false,
                 'buttons' => array(
                     array(
-                        'text' => Yii::t('CalModule.fullCal', 'OK'),
+                        'text' => Yii::t('app', 'OK'),
                         'click' => 'js:function() { userpreferenceOK(); }'
                     ),
                     array(
-                        'text' => Yii::t('CalModule.fullCal', 'Cancel'),
+                        'text' => Yii::t('app', 'Cancel'),
                         'click' => 'js:function() { $(this).dialog("close"); }'
                     ),)
                 )));
@@ -194,17 +215,17 @@ if($calendarOptions['cronPeriod'])
         $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
             'id' => 'dlg_eventsHelper',
             'options' => array(
-                'title' => Yii::t('CalModule.fullCal', 'Events list'),
+                'title' => Yii::t('app', 'Events list'),
                 'modal' => false,
                 'position' => array('right', 'top'),
                 'autoOpen' => false,
                 'buttons' => array(
                     array(
-                        'text' => Yii::t('CalModule.fullCal', 'OK'),
+                        'text' => Yii::t('app', 'OK'),
                         'click' => 'js:function() { $(this).dialog("close"); }'
                     ),
                     array(
-                        'text' => Yii::t('CalModule.fullCal', 'add new'),
+                        'text' => Yii::t('app', 'add new'),
                         'click' => 'js:function() { createNewEvent(); }'
                     ),
             )))
@@ -214,7 +235,7 @@ if($calendarOptions['cronPeriod'])
 ?>
         <!-- end event helper dialog -->
 
-        <div id='loading' style='display:none'>loading...</div>
+        <div id='loading' style='display:none'><?php echo Yii::t('app','loading...');?></div>
 
         <div id="EventCal"></div>
 <?php $this->widget('CalWidget'); ?>

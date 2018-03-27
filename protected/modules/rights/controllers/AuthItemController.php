@@ -62,6 +62,10 @@ class AuthItemController extends RController
 					'assign',
 					'revoke',
 					'sortable',
+					'assignRole',
+					'manageRoles',
+					'editRole',
+					'deleteRole',
 				),
 				'users'=>$this->_authorizer->getSuperusers(),
 			),
@@ -231,8 +235,10 @@ class AuthItemController extends RController
 				$generator->addItems($items['operations'], CAuthItem::TYPE_OPERATION);
 				if( ($generatedItems = $generator->run())!==false && $generatedItems!==array() )
 				{
-					Yii::app()->getUser()->setFlash($this->module->flashSuccessKey,
-						Rights::t('core', 'Authorization items created.')
+					/*Yii::app()->getUser()->setFlash($this->module->flashSuccessKey,
+						Rights::t('core', 'Authorization items created.')*/
+						Yii::app()->getUser()->setFlash($this->module->flashSuccessKey,
+						Yii::t('app', 'Authorization items created.')
 					);
 					$this->redirect(array('authItem/permissions'));
 				}
@@ -284,8 +290,11 @@ class AuthItemController extends RController
 				$item = $this->_authorizer->attachAuthItemBehavior($item);
 
 				// Set a flash message for creating the item
-				Yii::app()->user->setFlash($this->module->flashSuccessKey,
+				/*Yii::app()->user->setFlash($this->module->flashSuccessKey,
 					Rights::t('core', ':name created.', array(':name'=>$item->getNameText()))
+				);*/
+				Yii::app()->user->setFlash($this->module->flashSuccessKey,
+					Yii::t('app', ':name created.', array(':name'=>$item->getNameText()))
 				);
 
 				// Redirect to the correct destination
@@ -322,8 +331,11 @@ class AuthItemController extends RController
 				$item = $this->_authorizer->attachAuthItemBehavior($item);
 
 				// Set a flash message for updating the item
-				Yii::app()->user->setFlash($this->module->flashSuccessKey,
+				/*Yii::app()->user->setFlash($this->module->flashSuccessKey,
 					Rights::t('core', ':name updated.', array(':name'=>$item->getNameText()))
+				);*/
+				Yii::app()->user->setFlash($this->module->flashSuccessKey,
+					Yii::t('app', ':name updated.', array(':name'=>$item->getNameText()))
 				);
 
 				// Redirect to the correct destination
@@ -351,8 +363,11 @@ class AuthItemController extends RController
 					$child = $this->_authorizer->attachAuthItemBehavior($child);
 
 					// Set a flash message for adding the child
-					Yii::app()->user->setFlash($this->module->flashSuccessKey,
+					/*Yii::app()->user->setFlash($this->module->flashSuccessKey,
 						Rights::t('core', 'Child :name added.', array(':name'=>$child->getNameText()))
+					);*/
+					Yii::app()->user->setFlash($this->module->flashSuccessKey,
+						Yii::t('app', 'Child :name added.', array(':name'=>$child->getNameText()))
 					);
 
 					// Reidrect to the same page
@@ -404,8 +419,11 @@ class AuthItemController extends RController
 			$this->_authorizer->authManager->removeAuthItem($itemName);
 
 			// Set a flash message for deleting the item
-			Yii::app()->user->setFlash($this->module->flashSuccessKey,
+			/*Yii::app()->user->setFlash($this->module->flashSuccessKey,
 				Rights::t('core', ':name deleted.', array(':name'=>$item->getNameText()))
+			);*/
+			Yii::app()->user->setFlash($this->module->flashSuccessKey,
+				Yii::t('app', ':name deleted.', array(':name'=>$item->getNameText()))
 			);
 
 			// If AJAX request, we should not redirect the browser
@@ -414,7 +432,7 @@ class AuthItemController extends RController
 		}
 		else
 		{
-			throw new CHttpException(400, Rights::t('core', 'Invalid request. Please do not repeat this request again.'));
+			throw new CHttpException(400, Yii::t('app', 'Invalid request. Please do not repeat this request again.'));
 		}
 	}
 
@@ -435,8 +453,11 @@ class AuthItemController extends RController
 			$child = $this->_authorizer->attachAuthItemBehavior($child);
 
 			// Set a flash message for removing the child
-			Yii::app()->user->setFlash($this->module->flashSuccessKey,
+			/*Yii::app()->user->setFlash($this->module->flashSuccessKey,
 				Rights::t('core', 'Child :name removed.', array(':name'=>$child->getNameText()))
+			);*/
+			Yii::app()->user->setFlash($this->module->flashSuccessKey,
+				Yii::t('app', 'Child :name removed.', array(':name'=>$child->getNameText()))
 			);
 
 			// If AJAX request, we should not redirect the browser
@@ -445,7 +466,7 @@ class AuthItemController extends RController
 		}
 		else
 		{
-			throw new CHttpException(400, Rights::t('core', 'Invalid request. Please do not repeat this request again.'));
+			throw new CHttpException(400, Yii::t('app', 'Invalid request. Please do not repeat this request again.'));
 		}
 	}
 
@@ -469,7 +490,7 @@ class AuthItemController extends RController
 		}
 		else
 		{
-			throw new CHttpException(400, Rights::t('core', 'Invalid request. Please do not repeat this request again.'));
+			throw new CHttpException(400, Yii::t('app', 'Invalid request. Please do not repeat this request again.'));
 		}
 	}
 
@@ -483,7 +504,6 @@ class AuthItemController extends RController
 		{
 			$model = $this->loadModel();
 			$childName = $this->getChildName();
-
 			if( $childName!==null && $model->hasChild($childName)===true )
 				$model->removeChild($childName);
 
@@ -493,7 +513,7 @@ class AuthItemController extends RController
 		}
 		else
 		{
-			throw new CHttpException(400, Rights::t('core', 'Invalid request. Please do not repeat this request again.'));
+			throw new CHttpException(400, Yii::t('app', 'Invalid request. Please do not repeat this request again.'));
 		}
 	}
 
@@ -509,7 +529,7 @@ class AuthItemController extends RController
 		}
 		else
 		{
-			throw new CHttpException(400, Rights::t('core', 'Invalid request. Please do not repeat this request again.'));
+			throw new CHttpException(400, Yii::t('app', 'Invalid request. Please do not repeat this request again.'));
 		}
 	}
 	
@@ -540,7 +560,7 @@ class AuthItemController extends RController
 		if( in_array($type, $validTypes)===true )
 			return $type;
 		else
-			throw new CException(Rights::t('core', 'Invalid authorization item type.'));
+			throw new CException(Yii::t('app', 'Invalid authorization item type.'));
 	}
 
 	/**
@@ -560,9 +580,463 @@ class AuthItemController extends RController
 			}
 
 			if( $this->_model===null )
-				throw new CHttpException(404, Rights::t('core', 'The requested page does not exist.'));
+				throw new CHttpException(404, Yii::t('app', 'The requested page does not exist.'));
 		}
 
 		return $this->_model;
+	}
+	public function actionAssignRole()
+	{
+		$this->layout = 'rights.views.layouts.main_config';
+		$model=new UserRoles;
+		                    //Default
+							$controller['default'] = array("Mailbox.Ajax","Mailbox.Message","Mailbox.News","Dashboard.Default","Dashboard.Index", 'Hr.MyPayslip','Hr.Leaves', 'Hr.Salary');
+							//Home
+							$controller[1] = array("Cal.Cron","Cal.EventsType","Cal.Main","ActivityFeed","Complaints");
+							//Students
+							$controller[2] = array("Students.Achievements","Students.Default","Students.Guardians","Students.Savedsearches","Students.StudentAdditionalFields",
+  "Students.StudentAttentance","Students.StudentCategories","Students.StudentCategory","Students.StudentDocument","Students.StudentLeave","Students.StudentPreviousDatas","Students.Students","Students.LogCategory","Students.Logcomment","Onlineadmission.Admin","Onlineadmission.Default","Onlineadmission.Registration","Onlineadmission.WaitinglistStudents","Savedsearches");
+							//Employees
+							$controller[3] = array("Employees.Achievements","Employees.Leaves","EmployeeElectives","Employees.Default","Employees.EmployeeAttendances","Employees.EmployeeCategories","Employees.EmployeeDepartments","Employees.EmployeeElectiveSubjects","Employees.EmployeeGrades","Employees.EmployeeLeaveTypes","Employees.EmployeePositions","Employees.Employees","Employees.EmployeesSubjects","Employees.LogCategory","Employees.Logcomment","Employees.Savedsearches","Employees.EmployeeDocument","Employees.TeacherSubjectAttendance");
+							//Courses
+							$controller[4] = array("Courses","Courses.Batches","Courses.ClassTiming","Courses.ClassTimings","Courses.Courses","Courses.Default","Courses.Defaultsubjects","Courses.ElectiveExams","Courses.ElectiveGroups","Courses.Electives","Courses.ElectiveScores","Courses.Exam","Courses.ExamGroups","Courses.Exams","Courses.ExamScores","Courses.GradingLevels","Courses.StudentAttentance","Courses.StudentElectives","Courses.Subject","Courses.SubjectName","Courses.SubjectsCommonPool","Courses.SubjectNameAjax","Courses.Subjects","Courses.TimetableEntries","Courses.Weekdays");
+							//Examination
+							$controller[5] = array("Examination.Default","Examination.ElectiveGroups","Examination.Exam","Examination.ElectiveExams","Examination.ExamGroups","Examination.ElectiveScores","Examination.Exams","Examination.ExamScores","Examination.GradingLevels","Examination.Result");
+							//Attendance
+							$controller[6] = array("Attendance.Default","Attendance.EmployeeAttendances","Attendance.EmployeeLeaveTypes","Attendance.StudentAttentance","Attendance.SubjectAttendance","Attendances");
+							//Timetable
+							$controller[7] = array("Timetable.ClassTiming","Timetable.Default","Timetable.TeachersTimetable","Timetable.TimetableEntries","Timetable.view","Timetable.Weekdays");
+							//Fees
+							$controller[8] = array("Fees.Create","Fees.Dashboard","Fees.Invoices","Fees.Subscriptions","Fees.View","Fees.Gateways","Fees.PaymentTypes","Fees.Paypal","Fees.Remove","Fees.Taxes","Fees.Transactions");
+							//Report
+							$controller[9] = array("Report.Default","Report.Notification","Reports");
+							//Settings
+							$controller[10] = array("Configurations","AcademicYears","AttendanceSettings","CommonClassTimings","NotificationSettings","PreviousYearSettings","SmsCount","SmsSettings","StudentDocumentList","OnlineRegisterSettings","Themes","UserSettings","Holidays.Cron","Holidays.Main","Translate.Edit","Translate.Generate","Translate.Translate");
+							//Hostel
+							$controller[11] = array("Hostel.Allotment","Hostel.Default","Hostel.Floor","Hostel.FoodInfo","Hostel.Hosteldetails","Hostel.MessFee","Hostel.MessManage","Hostel.Registration","Hostel.Room","Hostel.RoomDetails","Hostel.Roomrequest","Hostel.Settings","Hostel.Vacate");
+							//Transport
+							$controller[12] = array("Transport.BusLog","Transport.Default","Transport.DriverDetails","Transport.FuelConsumption","Transport.RouteDetails","Transport.StopDetails","Transport.Transportation","Transport.VehicleDetails","Transport.Devices");
+							//Library
+							$controller[13] = array("Library.Authors","Library.Book","Library.BookFine","Library.BorrowBook","Library.Category","Library.Default","Library.Publication","Library.ReturnBook","Library.Settings");
+							//Downloads
+							$controller[14] = array("Downloads.Default","Downloads.FileCategory","Downloads.FileUploads","Downloads.Students","Downloads.Teachers");
+							//Import
+							$controller[15] = array("Importcsv.Default","Importcsv.Users");
+							//Export
+							$controller[16] = array("Export.Default");
+							//Notifications
+							$controller[18] = array("Notifications.Default","EmailTemplates","Sms.ContactGroup","Sms.Contactgroups","Sms.Contacts","Sms.Default","Sms.Send","Sms.Systemtemplates","Sms.Templates","SmsSettings");
+							
+							//Purchase
+							$controller[21] = array("Purchase.MaterialRequistion", "Purchase.Sale");
+							//HR
+							$controller[22] = array("Hr.Default","Hr.MyPayslip","Hr.LeaveRequests","Hr.Leaves", "Hr.Staff", "Hr.LeaveTypes", "Hr.Payslip", "Hr.Salary");
+		
+		if(isset($_GET['id']) and $_GET['id']!=NULL)
+		{
+			   $time_setting = UserSettings::model()->findByPk(1);	
+			   $roles=Rights::getAssignedRoles($_GET['id']);
+			   if(sizeof($roles)==0)
+			   {
+				  $role=new RoleForm;
+		  
+				  
+				  if(isset($_POST['RoleForm']))
+				  {
+					  $role->attributes=$_POST['RoleForm'];
+					  if($role->validate())
+					  {
+						  //Assign Role
+						  $authorizer = Yii::app()->getModule("rights")->getAuthorizer();
+                          $authorizer->authManager->assign($role->name, $_GET['id']);
+						  
+                          $user_time = new UserSettings;
+						  $user_time->user_id = $_GET['id'];
+						  $user_time->dateformat 	= $time_setting->dateformat;
+						  $user_time->displaydate 	= $time_setting->displaydate;
+						  $user_time->timezone 		= $time_setting->timezone;
+						  $user_time->timeformat 	= $time_setting->timeformat;
+						  $user_time->name_format 	= $time_setting->name_format;
+						  $user_time->language 		= $time_setting->language;
+						  $user_time->save();
+						  
+								
+						  
+						  $this->redirect(array('assignment/user','id'=>$_GET['id']));
+					  }
+				  }
+				  if(isset($_POST['UserRoles']))
+				  {
+					  $model->attributes=$_POST['UserRoles'];
+					  if($model->save())
+					  {
+						  //Create New Role and assign items
+						  $this->_authorizer->createAuthItem($model->name, 2, $model->description, '', '');
+						  
+						  $authorizer = Yii::app()->getModule("rights")->getAuthorizer();
+                          $authorizer->authManager->assign($model->name, $_GET['id']); 
+						  
+						  foreach($model->modules as $module)
+						  {
+							  
+							  $ModuleAccess = new ModuleAccess;
+							  $ModuleAccess->role_id = $model->id;
+							  $ModuleAccess->module_id = $module;
+							  $ModuleAccess->save(); //Module Access Saved
+							  
+							  //Entry In rights
+							  
+							  foreach($controller[$module] as $itemname)
+							  {
+								  $this->_authorizer->authManager->addItemChild($model->name, $itemname.'.*');
+							  }
+							  
+						  }
+						  //default
+						  
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Configurations.DisplaySavedImage');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Configurations.DisplayLogoImage');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'AcademicYears.*');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Mailbox.Message.New');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Mailbox.Message.Inbox');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Mailbox.Message.Sent');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Mailbox.Message.Trash');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Mailbox.Message.Reply');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'News.*');
+						  
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Complaints.Close');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Complaints.Create');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Complaints.Delete');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Complaints.Display');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Complaints.Feedback');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Complaints.Feedbacklist');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Complaints.Reopen');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Complaints.Update');
+						  
+						  						  
+						  foreach($controller['default'] as $itemname)
+						  {
+								$this->_authorizer->authManager->addItemChild($model->name, $itemname.'.*');
+						  }
+						  
+						  $user_time = new UserSettings;
+						  $user_time->user_id = $_GET['id'];
+						  $user_time->dateformat 	= $time_setting->dateformat;
+						  $user_time->displaydate 	= $time_setting->displaydate;
+						  $user_time->timezone 		= $time_setting->timezone;
+						  $user_time->timeformat 	= $time_setting->timeformat;
+						  $user_time->name_format 	= $time_setting->name_format;
+						  $user_time->language 		= $time_setting->language;
+						  $user_time->save();
+						  
+						  
+						  $this->redirect(array('assignment/user','id'=>$_GET['id']));
+					  }
+				  }
+			  }
+			  else
+			  {
+				  $this->redirect(array('assignment/user','id'=>$_GET['id']));
+			  }
+		}
+		else
+		{
+			if(isset($_POST['UserRoles']))
+			{
+				$model->attributes=$_POST['UserRoles'];
+				if($model->save())
+				{
+					$this->_authorizer->createAuthItem($model->name, 2, $model->description, '', '');
+					      foreach($model->modules as $module)
+						  {
+							  
+							  $ModuleAccess = new ModuleAccess;
+							  $ModuleAccess->role_id = $model->id;
+							  $ModuleAccess->module_id = $module;
+							  $ModuleAccess->save(); //Module Access Saved
+							  
+							  //Entry In rights
+							  
+							  foreach($controller[$module] as $itemname)
+							  {
+								  $this->_authorizer->authManager->addItemChild($model->name, $itemname.'.*');
+							  }
+							  
+						  }
+						  //default
+						  
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Configurations.DisplaySavedImage');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Configurations.DisplayLogoImage');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'AcademicYears.*');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Mailbox.Message.New');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Mailbox.Message.Inbox');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Mailbox.Message.Sent');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Mailbox.Message.Trash');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Mailbox.Message.Reply');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'News.*');
+						  
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Complaints.Close');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Complaints.Create');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Complaints.Delete');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Complaints.Display');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Complaints.Feedback');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Complaints.Feedbacklist');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Complaints.Reopen');
+						  $this->_authorizer->authManager->addItemChild($model->name, 'Complaints.Update');
+						  
+
+						  foreach($controller['default'] as $itemname)
+						  {
+								$this->_authorizer->authManager->addItemChild($model->name, $itemname.'.*');
+						  }
+						  
+					      	$this->redirect(array('/rights/authItem/manageroles'));
+						 
+				}
+			}
+		}
+		$this->render('assignRole', array(
+			'model'=>$model,'role'=>$role,
+		));
+		
+	}
+	
+	public function actionManageRoles(){
+		$this->layout = 'rights.views.layouts.main_config';
+		
+		$criteria = new CDbCriteria;
+		$criteria->condition = "id !=:x";
+		$criteria->params = array(':x'=>1);
+		
+		$total = UserRoles::model()->count($criteria);
+		$pages = new CPagination($total);
+        $pages->setPageSize(Yii::app()->params['listPerPage']);
+        $pages->applyLimit($criteria);  // the trick is here!
+		
+		$posts = UserRoles::model()->findAll($criteria);
+		$this->render('managerole', array(
+			'posts'=>$posts,
+			'pages' => $pages,
+			'item_count'=>$total,
+			'page_size'=>Yii::app()->params['listPerPage'],
+		));
+	}
+	
+	public function actionEditrole($rid){
+		
+		$this->layout = 'rights.views.layouts.main_config';
+		$model_old= UserRoles::model()->findByAttributes(array('id'=>$rid));
+		$auth_assignments = AuthAssignment::model()->findAllByAttributes(array('itemname'=>$model_old->name));
+		
+		//Saving user ids for inserting later
+		$user_ids = array();
+		foreach($auth_assignments as $auth_assignment){
+			$user_ids[] = $auth_assignment->userid;
+		}
+		
+		$modules_access = ModuleAccess::model()->findAllByAttributes(array('role_id'=>$model_old->id));
+		
+		//Saving module list for inserting later
+		$modules = array();
+		foreach($modules_access as $module_access){
+			$modules[] = $module_access->module_id;			
+		}
+				
+		if(isset($_POST['UserRoles']) and $_POST['UserRoles']!=NULL){
+			
+			if($_POST['UserRoles']['name'] != $model_old->name or $_POST['UserRoles']['description'] != $model_old->description or $_POST['UserRoles']['modules'] != NULL){
+				
+				//Updating details in User Roles Table
+				
+				$user_role = UserRoles::model()->findByAttributes(array('id'=>$_POST['UserRoles']['id']));
+				$user_role->saveAttributes(array('name'=>$_POST['UserRoles']['name'],'description'=>$_POST['UserRoles']['description']));
+				
+				/* Start deleting existing data from related tables */
+				
+					/* Deleting Role */
+					
+					$itemName = $model_old->name;
+				
+					// Load the item and save the name for later use
+					$item = $this->_authorizer->authManager->getAuthItem($itemName);
+					$item = $this->_authorizer->attachAuthItemBehavior($item);
+		
+					// Delete the item
+					$this->_authorizer->authManager->removeAuthItem($itemName);
+					
+					/* End deleting Role */
+					
+					/* Revoke users */
+					
+					Yii::app()->runController('/rights/assignment/revokemultiple/rname/'.$model_old->name);
+					
+					/* End revoke users */
+					
+					/* Deleting Module access */
+						
+						foreach($modules_access as $module_access){
+							$module_access->delete();
+						}
+						
+					/* End deleting module access*/
+				
+				/* End deletion process */
+				
+				/* Start inserting new values */
+				
+					//Default
+							$controller['default'] = array("Mailbox.Ajax","Mailbox.Message","Mailbox.News","Dashboard.Default","Dashboard.Index", "Hr.MyPayslip","Hr.Leaves", "Hr.Salary");
+							//Home
+							$controller[1] = array("Cal.Cron","Cal.EventsType","Cal.Main","ActivityFeed","Complaints");
+							//Students
+							$controller[2] = array("Students.Achievements","Students.Default","Students.Guardians","Students.Savedsearches","Students.StudentAdditionalFields",
+  "Students.StudentAttentance","Students.StudentCategories","Students.StudentCategory","Students.StudentDocument","Students.StudentLeave","Students.StudentPreviousDatas","Students.Students","Students.LogCategory","Students.Logcomment","Onlineadmission.Admin","Onlineadmission.Default","Onlineadmission.Registration","Onlineadmission.WaitinglistStudents","Savedsearches");
+							//Employees
+							$controller[3] = array("Employees.Achievements","Employees.Leaves","EmployeeElectives","Employees.Default","Employees.EmployeeAttendances","Employees.EmployeeCategories","Employees.EmployeeDepartments","Employees.EmployeeElectiveSubjects","Employees.EmployeeGrades","Employees.EmployeeLeaveTypes","Employees.EmployeePositions","Employees.Employees","Employees.EmployeesSubjects","Employees.LogCategory","Employees.Logcomment","Employees.Savedsearches","Employees.EmployeeDocument","Employees.TeacherSubjectAttendance");
+							//Courses
+							$controller[4] = array("Courses","Courses.Batches","Courses.ClassTiming","Courses.ClassTimings","Courses.Courses","Courses.Default","Courses.Defaultsubjects","Courses.ElectiveExams","Courses.ElectiveGroups","Courses.Electives","Courses.ElectiveScores","Courses.Exam","Courses.ExamGroups","Courses.Exams","Courses.ExamScores","Courses.GradingLevels","Courses.StudentAttentance","Courses.StudentElectives","Courses.Subject","Courses.SubjectName","Courses.SubjectsCommonPool","Courses.SubjectNameAjax","Courses.Subjects","Courses.TimetableEntries","Courses.Weekdays");
+							//Examination
+							$controller[5] = array("Examination.Default","Examination.ElectiveGroups","Examination.Exam","Examination.ElectiveExams","Examination.ExamGroups","Examination.ElectiveScores","Examination.Exams","Examination.ExamScores","Examination.GradingLevels","Examination.Result");
+							//Attendance
+							$controller[6] = array("Attendance.Default","Attendance.EmployeeAttendances","Attendance.EmployeeLeaveTypes","Attendance.StudentAttentance","Attendance.SubjectAttendance","Attendances");
+							//Timetable
+							$controller[7] = array("Timetable.ClassTiming","Timetable.Default","Timetable.TeachersTimetable","Timetable.TimetableEntries","Timetable.view","Timetable.Weekdays");
+							//Fees
+							$controller[8] = array("Fees.Create","Fees.Dashboard","Fees.Invoices","Fees.Subscriptions","Fees.View","Fees.Gateways","Fees.PaymentTypes","Fees.Paypal","Fees.Remove","Fees.Taxes","Fees.Transactions");
+							//Report
+							$controller[9] = array("Report.Default","Report.Notification","Reports");
+							//Settings
+							$controller[10] = array("Configurations","AcademicYears","AttendanceSettings","CommonClassTimings","NotificationSettings","PreviousYearSettings","SmsCount","SmsSettings","StudentDocumentList","OnlineRegisterSettings","Themes","UserSettings","Holidays.Cron","Holidays.Main","Translate.Edit","Translate.Generate","Translate.Translate");
+							//Hostel
+							$controller[11] = array("Hostel.Allotment","Hostel.Default","Hostel.Floor","Hostel.FoodInfo","Hostel.Hosteldetails","Hostel.MessFee","Hostel.MessManage","Hostel.Registration","Hostel.Room","Hostel.RoomDetails","Hostel.Roomrequest","Hostel.Settings","Hostel.Vacate");
+							//Transport
+							$controller[12] = array("Transport.BusLog","Transport.Default","Transport.DriverDetails","Transport.FuelConsumption","Transport.RouteDetails","Transport.StopDetails","Transport.Transportation","Transport.VehicleDetails","Transport.Devices");
+							//Library
+							$controller[13] = array("Library.Authors","Library.Book","Library.BookFine","Library.BorrowBook","Library.Category","Library.Default","Library.Publication","Library.ReturnBook","Library.Settings");
+							//Downloads
+							$controller[14] = array("Downloads.Default","Downloads.FileCategory","Downloads.FileUploads","Downloads.Students","Downloads.Teachers");
+							//Import
+							$controller[15] = array("Importcsv.Default","Importcsv.Users");
+							//Export
+							$controller[16] = array("Export.Default");
+							//Notifications
+							$controller[18] = array("Notifications.Default","EmailTemplates","Sms.ContactGroup","Sms.Contactgroups","Sms.Contacts","Sms.Default","Sms.Send","Sms.Systemtemplates","Sms.Templates","SmsSettings");
+							
+							//Purchase
+							$controller[21] = array("Purchase.MaterialRequistion", "Purchase.Sale");
+							//HR
+							$controller[22] = array("Hr.Default","Hr.MyPayslip","Hr.LeaveRequests","Hr.Leaves", "Hr.Staff", "Hr.LeaveTypes", "Hr.Payslip", "Hr.Salary");
+					
+						  
+						  $this->_authorizer->createAuthItem($user_role->name, 2, $user_role->description, '', '');
+						  
+						  foreach($user_ids as $user_id){
+						   	$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
+                          	$authorizer->authManager->assign($user_role->name, $user_id);
+						  }
+							
+						  $modules = $_POST['UserRoles']['modules'];
+						  	
+						  foreach($modules as $module)
+						  {
+							  
+							  $ModuleAccess = new ModuleAccess;
+							  $ModuleAccess->role_id = $user_role->id;
+							  $ModuleAccess->module_id = $module;
+							  $ModuleAccess->save(); //Module Access Saved
+							  
+							  //Entry In rights
+							  
+							  foreach($controller[$module] as $itemname)
+							  {
+								  $this->_authorizer->authManager->addItemChild($user_role->name, $itemname.'.*');
+							  }
+							  
+						  }
+						  //default
+						  
+						  $this->_authorizer->authManager->addItemChild($user_role->name, 'Configurations.DisplaySavedImage');
+						  $this->_authorizer->authManager->addItemChild($user_role->name, 'Configurations.DisplayLogoImage');
+						  $this->_authorizer->authManager->addItemChild($user_role->name, 'AcademicYears.*');
+						  $this->_authorizer->authManager->addItemChild($user_role->name, 'Mailbox.Message.New');
+						  $this->_authorizer->authManager->addItemChild($user_role->name, 'Mailbox.Message.Inbox');
+						  $this->_authorizer->authManager->addItemChild($user_role->name, 'Mailbox.Message.Sent');
+						  $this->_authorizer->authManager->addItemChild($user_role->name, 'Mailbox.Message.Trash');
+						  $this->_authorizer->authManager->addItemChild($user_role->name, 'Mailbox.Message.Reply');
+						  $this->_authorizer->authManager->addItemChild($user_role->name, 'News.*');
+						  
+						  $this->_authorizer->authManager->addItemChild($user_role->name, 'Complaints.Close');
+						  $this->_authorizer->authManager->addItemChild($user_role->name, 'Complaints.Create');
+						  $this->_authorizer->authManager->addItemChild($user_role->name, 'Complaints.Delete');
+						  $this->_authorizer->authManager->addItemChild($user_role->name, 'Complaints.Display');
+						  $this->_authorizer->authManager->addItemChild($user_role->name, 'Complaints.Feedback');
+						  $this->_authorizer->authManager->addItemChild($user_role->name, 'Complaints.Feedbacklist');
+						  $this->_authorizer->authManager->addItemChild($user_role->name, 'Complaints.Reopen');
+						  $this->_authorizer->authManager->addItemChild($user_role->name, 'Complaints.Update');
+						  
+		
+						  foreach($controller['default'] as $itemname)
+						  {
+								$this->_authorizer->authManager->addItemChild($user_role->name, $itemname.'.*');
+						  }
+		
+				/* End inserting new values */				
+				
+			}
+			
+			$this->redirect(array('/rights/authItem/manageroles'));
+		}
+	
+		$this->render('editrole', array(
+			'model'=>$model_old,
+		));
+	}
+	
+	
+	public function actionDeleterole($rid){
+		if(Yii::app()->request->isPostRequest)
+		{
+			$role = UserRoles::model()->findByAttributes(array('id'=>$rid));
+			$modules_access = ModuleAccess::model()->findAllByAttributes(array('role_id'=>$role->id));
+			
+			/* Start deleting existing data from related tables */
+					
+				/* Deleting Role details*/
+				
+				$itemName = $role->name;
+			
+				// Load the item and save the name for later use
+				$item = $this->_authorizer->authManager->getAuthItem($itemName);
+				$item = $this->_authorizer->attachAuthItemBehavior($item);
+		
+				// Delete the item
+				$this->_authorizer->authManager->removeAuthItem($itemName);
+				
+				/* End deleting Role details */
+				
+				/* Revoke users */
+				
+				Yii::app()->runController('/rights/assignment/revokemultiple/rname/'.$role->name);
+				
+				/* End revoke users */
+				
+				/* Deleting Module access */
+					
+					foreach($modules_access as $module_access){
+						$module_access->delete();
+					}
+					
+				/* End deleting module access*/
+				
+				$role->delete();
+			
+			/* End deletion process */
+			
+			$this->redirect(array('/rights/authItem/manageroles'));
+		}
+		else
+		{
+			throw new CHttpException(404,Yii::t('app','Invalid Request.'));
+		}
 	}
 }

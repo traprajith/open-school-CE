@@ -51,15 +51,15 @@ class CRangeValidator extends CValidator
 		if($this->allowEmpty && $this->isEmpty($value))
 			return;
 		if(!is_array($this->range))
-			throw new CException(Yii::t('yii','The "range" property must be specified with a list of values.'));
+			throw new CException(Yii::t('app','The "range" property must be specified with a list of values.'));
 		if(!$this->not && !in_array($value,$this->range,$this->strict))
 		{
-			$message=$this->message!==null?$this->message:Yii::t('yii','{attribute} is not in the list.');
+			$message=$this->message!==null?$this->message:Yii::t('app','{attribute} is not in the list.');
 			$this->addError($object,$attribute,$message);
 		}
 		else if($this->not && in_array($value,$this->range,$this->strict))
 		{
-			$message=$this->message!==null?$this->message:Yii::t('yii','{attribute} is in the list.');
+			$message=$this->message!==null?$this->message:Yii::t('app','{attribute} is in the list.');
 			$this->addError($object,$attribute,$message);
 		}
 	}
@@ -75,10 +75,10 @@ class CRangeValidator extends CValidator
 	public function clientValidateAttribute($object,$attribute)
 	{
 		if(!is_array($this->range))
-			throw new CException(Yii::t('yii','The "range" property must be specified with a list of values.'));
+			throw new CException(Yii::t('app','The "range" property must be specified with a list of values.'));
 
 		if(($message=$this->message)===null)
-			$message=$this->not ? Yii::t('yii','{attribute} is in the list.') : Yii::t('yii','{attribute} is not in the list.');
+			$message=$this->not ? Yii::t('app','{attribute} is in the list.') : Yii::t('app','{attribute} is not in the list.');
 		$message=strtr($message,array(
 			'{attribute}'=>$object->getAttributeLabel($attribute),
 		));

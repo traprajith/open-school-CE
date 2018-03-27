@@ -20,6 +20,7 @@ class ProfileController extends Controller
 			'profile'=>$model->profile,
 	    ));
 	}
+	
 
 
 	/**
@@ -40,15 +41,23 @@ class ProfileController extends Controller
 		
 		if(isset($_POST['User']))
 		{
+			
 			$model->attributes=$_POST['User'];
 			$profile->attributes=$_POST['Profile'];
-			
 			if($model->validate()&&$profile->validate()) {
 				$model->save();
 				$profile->save();
-                Yii::app()->user->updateSession();
-				Yii::app()->user->setFlash('profileMessage',UserModule::t("Changes is saved."));
-				$this->redirect(array('/user/profile'));
+				//$model=$this->loadModel($id);
+		$settings=UserSettings::model()->findByAttributes(array('user_id'=>1));
+				if($settings!=NULL)
+				{	
+					$time=Timezone::model()->findByAttributes(array('id'=>$settings->timezone));
+					date_default_timezone_set($time->timezone);
+					
+				}
+						//Yii::app()->user->updateSession();
+			Yii::app()->user->setFlash('profileMessage',Yii::t('app',"Changes is saved."));
+			$this->redirect(array('/user/profile'));
 			} else $profile->validate();
 		}
 
@@ -76,10 +85,12 @@ class ProfileController extends Controller
 					$model->attributes=$_POST['UserChangePassword'];
 					if($model->validate()) {
 						$new_password = User::model()->notsafe()->findbyPk(Yii::app()->user->id);
-						$new_password->password = UserModule::encrypting($model->password);
+                                                $salt= User::model()->getSalt();          
+						$new_password->password = UserModule::encrypting($salt.$model->password);
 						$new_password->activkey=UserModule::encrypting(microtime().$model->password);
+                                                $new_password->salt= $salt;
 						$new_password->save();
-						Yii::app()->user->setFlash('profileMessage',UserModule::t("New password is saved."));
+						Yii::app()->user->setFlash('profileMessage',Yii::t('app',"New password is saved."));
 						$this->redirect(array("profile"));
 					}
 			}

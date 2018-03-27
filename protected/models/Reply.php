@@ -62,11 +62,11 @@ class Reply extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'uid' => 'Uid',
-			'sid' => 'Sid',
-			'mid' => 'Mid',
-			'rid' => 'Rid',
+			'id' => Yii::t("app",'ID'),
+			'uid' => Yii::t("app",'Uid'),
+			'sid' => Yii::t("app",'Sid'),
+			'mid' => Yii::t("app",'Mid'),
+			'rid' => Yii::t("app",'Rid'),
 		);
 	}
 

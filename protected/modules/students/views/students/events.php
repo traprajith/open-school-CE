@@ -16,45 +16,45 @@
 			editable: true,
 			events: [
 				{
-					title: 'All Day Event',
+					title: '<?php echo Yii::t('app','All Day Event'); ?>',
 					start: new Date(y, m, 15)
 				},
 				{
-					title: 'Long Event',
+					title: '<?php echo Yii::t('app','Long Event'); ?>',
 					start: new Date(y, m, d-5),
 					end: new Date(y, m, d-2)
 				},
 				{
 					id: 999,
-					title: 'Repeating Event',
+					title: '<?php echo Yii::t('app','Repeating Event'); ?>',
 					start: new Date(y, m, d-3, 16, 0),
 					allDay: false
 				},
 				{
 					id: 999,
-					title: 'Repeating Event',
+					title: '<?php echo Yii::t('app','Repeating Event'); ?>',
 					start: new Date(y, m, d+4, 16, 0),
 					allDay: false
 				},
 				{
-					title: 'Meeting',
+					title: '<?php echo Yii::t('app','Meeting'); ?>',
 					start: new Date(y, m, d, 10, 30),
 					allDay: false
 				},
 				{
-					title: 'Lunch',
+					title: '<?php echo Yii::t('app','Lunch'); ?>',
 					start: new Date(y, m, d, 12, 0),
 					end: new Date(y, m, d, 14, 0),
 					allDay: false
 				},
 				{
-					title: 'Birthday Party',
+					title: '<?php echo Yii::t('app','Birthday Party'); ?> ',
 					start: new Date(y, m, d+1, 19, 0),
 					end: new Date(y, m, d+1, 22, 30),
 					allDay: false
 				},
 				{
-					title: 'Click for Google',
+					title: '<?php echo Yii::t('app','Click for Google'); ?>',
 					start: new Date(y, m, 28),
 					end: new Date(y, m, 29),
 					url: 'http://google.com/'
@@ -75,7 +75,7 @@
     </td>
     <td valign="top">
     <div class="cont_right formWrapper">
-    <h1><?php echo Yii::t('students','Events');?></h1><br />
+    <h1><?php echo Yii::t('app','Events');?></h1><br />
 <div class="formCon">
 <div class="formConInner">
 

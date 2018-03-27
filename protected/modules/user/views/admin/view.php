@@ -1,3 +1,8 @@
+<style>
+table.detail-view td{
+	 padding:10px 21px;		
+}
+</style>
 <?php
 $this->breadcrumbs=array(
 	UserModule::t('Users')=>array('admin'),
@@ -20,10 +25,9 @@ $this->breadcrumbs=array(
 <?php
  
 	$attributes = array(
-		'id',
+		//'id',
 		'username',
 	);
-	
 	$profileFields=ProfileField::model()->forOwner()->sort()->findAll();
 	if ($profileFields) {
 		foreach($profileFields as $field) {
@@ -38,8 +42,10 @@ $this->breadcrumbs=array(
 	
 	array_push($attributes,
 		'email',
-		'create_at',
-		'lastvisit_at',
+		//'create_at',
+		array('name'=>'creat_at','label'=>Yii::t('app','Created At'),),
+		//'lastvisit_at',
+		array('name'=>'last_at','label'=>Yii::t('app','Last At'),),
 		array(
 			'name' => 'superuser',
 			'value' => User::itemAlias("AdminStatus",$model->superuser),

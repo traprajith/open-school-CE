@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	ucfirst($this->module->id)=>array('inbox'),
-	ucfirst($this->getAction()->getId())
+	Yii::t('app',ucfirst($this->module->id))=>array('inbox'),
+	Yii::t('app',ucfirst($this->getAction()->getId()))
 );
 
 $this->renderpartial('_menu');
@@ -57,11 +57,11 @@ $form=$this->beginWidget('CActiveForm', array(
 			</div>
 		</div>
 		<div class="mailbox-textarea-wrap">
-		<?php echo $form->textArea($msg,'text',array('cols'=>50,'rows'=>7, 'class'=>'mailbox-message-input','style'=>'width:100%;','placeholder'=>'Enter message here...')); ?>
+		<?php echo $form->textArea($msg,'text',array('cols'=>50,'rows'=>7, 'class'=>'mailbox-message-input','style'=>'width:100%;','placeholder'=>Yii::t('app','Enter message here...'))); ?>
 		<?php echo $form->error($msg,'text'); ?>
 		</div>
 		<div>
-		<button class="btn btn-large message-btn-reply">Send Message</button>
+		<button class="btn btn-large message-btn-reply"></button><?php echo Yii::t('app','Send Message'); ?></button>
 		</div>
 	</div>
 <?php $this->endWidget(); ?><!-- form --> 

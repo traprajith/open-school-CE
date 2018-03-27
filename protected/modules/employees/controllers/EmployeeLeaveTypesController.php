@@ -109,9 +109,15 @@ class EmployeeLeaveTypesController extends RController
 	 */
 	public function actionDelete($id)
 	{
+		if(Yii::app()->request->isPostRequest){
 		
 			$this->loadModel($id)->delete();
             $this->redirect(array('index'));
+		}
+		else
+		{
+			throw new CHttpException(404,Yii::t('app','Invalid Request.'));
+		}
 		
 			
 	}
@@ -163,7 +169,7 @@ class EmployeeLeaveTypesController extends RController
 	{
 		$model=EmployeeLeaveTypes::model()->findByPk($id);
 		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+			throw new CHttpException(404,Yii::t('app','The requested page does not exist.'));
 		return $model;
 	}
 

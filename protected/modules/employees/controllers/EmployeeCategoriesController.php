@@ -91,11 +91,13 @@ class EmployeeCategoriesController extends RController
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['EmployeeCategories']))
-		{
+		{ 
 			$model->attributes=$_POST['EmployeeCategories'];
-			if($model->save())
-				Yii::app()->user->setFlash('notification','Data Updated Successfully');
+			if($model->validate()){
+				$model->saveAttributes(array('name'=>$_POST['EmployeeCategories']['name'],'prefix'=>$_POST['EmployeeCategories']['prefix']));			
+				Yii::app()->user->setFlash('notification',Yii::t('app','Data Updated Successfully'));
 				$this->redirect(array('admin'));
+			}
 		}
 
 		$this->render('update',array(
@@ -120,7 +122,7 @@ class EmployeeCategoriesController extends RController
 				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 		}
 		else
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+			throw new CHttpException(400, Yii::t('app','Invalid request. Please do not repeat this request again.'));
 	}
 
 	/**
@@ -128,7 +130,7 @@ class EmployeeCategoriesController extends RController
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('EmployeeCategories');
+		$dataProvider=new CActiveDataProvider('TeacherCategories');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -158,7 +160,7 @@ class EmployeeCategoriesController extends RController
 	{
 		$model=EmployeeCategories::model()->findByPk($id);
 		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+			throw new CHttpException(404,Yii::t('app','The requested page does not exist.'));
 		return $model;
 	}
 

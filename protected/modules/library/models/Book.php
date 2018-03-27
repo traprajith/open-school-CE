@@ -45,13 +45,17 @@ class Book extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('isbn,title, subject, category, author', 'required'),
-			array('isbn,shelf_no', 'numerical', 'integerOnly'=>true),
-			array('isbn, book_position, shelf_no, status, copy_taken', 'length', 'max'=>120),
+			array('isbn,title, subject, category, author,book_position,shelf_no, edition , publisher, copy', 'required'),
+			array('shelf_no', 'numerical', 'integerOnly'=>true),	
+			array('isbn, copy', 'numerical', 'integerOnly'=>true, 'min'=>1),
+			array('isbn', 'unique'),
+			array('isbn', 'length', 'max'=>13),		
+			array('status', 'length', 'max'=>120),
 			array('title, subject, category, author, edition, publisher', 'length', 'max'=>255),
 			array('date', 'safe'),
-			array('copy','CRegularExpressionValidator', 'pattern'=>'/^[1-9]\d{0,2}$/','message'=>"{attribute} should contain only positive integers."),
-			array('title','CRegularExpressionValidator', 'pattern'=>'/^[A-Za-z_ ]+$/','message'=>"{attribute} should contain only letters."),
+			//array('book_position, shelf_no, copy_taken', 'numerical', 'integerOnly'=>true, 'min'=>1),
+			array('book_position, shelf_no, copy_taken','CRegularExpressionValidator', 'pattern'=>'/^[1-9]\d{0,2}$/','message'=>"{attribute} ".Yii::t('app',"should contain only positive integers.")),
+			//array('title','CRegularExpressionValidator', 'pattern'=>'/^[A-Za-z_ ]*$/','message'=>"{attribute} ".Yii::t("app","should contain only letters.")),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, isbn, title, subject, category, author, edition, publisher, copy,copy_taken, book_position, shelf_no, date, status', 'safe', 'on'=>'search'),
@@ -75,23 +79,24 @@ class Book extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'isbn' => 'Isbn',
-			'title' => 'Title',
-			'subject' => 'Subject',
-			'category' => 'Category',
-			'author' => 'Author',
-			'edition' => 'Edition',
-			'publisher' => 'Publisher',
-			'copy' => 'Copy',
-			'copy_taken' => 'Copy Remaining',
-			'book_position' => 'Book Position',
-			'shelf_no' => 'Shelf No',
-			'date' => 'Date',
-			'status' => 'Status',
+			'id' => Yii::t('app','ID'),
+			'isbn' => Yii::t('app','Isbn'),
+			'title' => Yii::t('app','Title'),
+			'subject' => Yii::t('app','Subject'),
+			'category' => Yii::t('app','Category'),
+			'author' => Yii::t('app','Author'),
+			'edition' => Yii::t('app','Edition'),
+			'publisher' => Yii::t('app','Publisher'),
+			'copy' => Yii::t('app','Copy'),
+			'copy_taken' => Yii::t('app','Copy Remaining'),
+			'book_position' => Yii::t('app','Book Position'),
+			'shelf_no' => Yii::t('app','Shelf No'),
+			'date' => Yii::t('app','Date'),
+			'status' => Yii::t('app','Status'),
 		);
 	}
-
+	
+	
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
@@ -122,4 +127,7 @@ class Book extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	
+	
 }

@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	'Courses'=>array('/courses'),
-	'Manage',
+	Yii::t('app','Courses')=>array('/courses'),
+	Yii::t('app','Manage'),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -39,7 +39,7 @@ $('.search-form form').submit(function(){
     <div class="formCon" style="width:100%">
 
 <div class="formConInner" style="padding-top:10px; font-size:14px; font-weight:bold;"> 
-<h1><?php echo Yii::t('batch','Manage Courses');?></h1>
+<h1><?php echo Yii::t('app','Manage Courses');?></h1>
 <?php
 
 

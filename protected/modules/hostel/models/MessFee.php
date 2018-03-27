@@ -37,7 +37,7 @@ class MessFee extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('student_id, allotment_id, is_paid, status', 'length', 'max'=>120),
+			array('student_id, allotment_id, is_paid, status,created', 'length', 'max'=>120),
 			array('created', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -62,12 +62,12 @@ class MessFee extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'student_id' => 'Student',
-			'allotment_id' => 'Allotment',
-			'is_paid' => 'Is Paid',
-			'created' => 'Created',
-			'status' => 'Status',
+			'id' => Yii::t('app','ID'),
+			'student_id' => Yii::t('app','Student'),
+			'allotment_id' => Yii::t('app','Allotment'),
+			'is_paid' => Yii::t('app','Is Paid'),
+			'created' => Yii::t('app','Created'),
+			'status' => Yii::t('app','Status'),
 		);
 	}
 

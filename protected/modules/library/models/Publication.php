@@ -59,9 +59,9 @@ class Publication extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'publication_id' => 'Publication',
-			'name' => 'Name',
-			'location' => 'Location',
+			'publication_id' => Yii::t('app','Publication'),
+			'name' => Yii::t('app','Name'),
+			'location' => Yii::t('app','Location'),
 		);
 	}
 

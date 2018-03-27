@@ -34,8 +34,8 @@
 			   ?>
     
     <li class="img_text">
-    	<?php echo Yii::t('Batch','<strong>Batch: </strong> ');?><?php echo $batch->name; ?><br>
-        <span><?php echo Yii::t('Batch','Promote Batch');?><strong>Course:</strong>
+    	<?php echo '<strong>'.Yii::app()->getModule('students')->fieldLabel("Students", "batch_id").'</strong> ';?><?php echo $batch->name; ?><br>
+        <span><?php echo Yii::t('app','Promote').' '.Yii::app()->getModule('students')->fieldLabel("Students", "batch_id");?><strong><? echo Yii::t('app','Course :') ?></strong>
         <?php $course=Courses::model()->findByAttributes(array('id'=>$batch->course_id));
 		if($course!=NULL)
 		   {
@@ -48,19 +48,19 @@
     </div>
     <div class="status_bx">
     	<ul>
-        	<li style="border-right:1px #D4D4D4 solid"><span><?php echo count(Students::model()->findAll("batch_id=:x", array(':x'=>$_REQUEST['id']))); ?></span><?php echo Yii::t('Batch','Students');?></li>
-            <li style="border-left:1px #fff solid;border-right:1px #D4D4D4 solid;"><span><?php echo count(Subjects::model()->findAll("batch_id=:x", array(':x'=>$_REQUEST['id']))); ?></span><?php echo Yii::t('Batch','Subjects');?></li>
-            <li style="border-left:1px #fff solid"><span><?php echo count(TimetableEntries::model()->findAll(array('condition'=>'batch_id=:x', 'group'=>'employee_id','params'=>array(':x'=>$_REQUEST['id'])))); ?></span><?php echo Yii::t('Batch','Employees');?></li>
+        	<li style="border-right:1px #D4D4D4 solid"><span><?php echo count(Students::model()->findAll("batch_id=:x", array(':x'=>$_REQUEST['id']))); ?></span><?php echo Yii::t('app','Students');?></li>
+            <li style="border-left:1px #fff solid;border-right:1px #D4D4D4 solid;"><span><?php echo count(Subjects::model()->findAll("batch_id=:x", array(':x'=>$_REQUEST['id']))); ?></span><?php echo Yii::t('app','Subjects');?></li>
+            <li style="border-left:1px #fff solid"><span><?php echo count(TimetableEntries::model()->findAll(array('condition'=>'batch_id=:x', 'group'=>'employee_id','params'=>array(':x'=>$_REQUEST['id'])))); ?></span><?php echo Yii::t('app','Teachers');?></li>
         </ul>
      <div class="clear"></div>
     </div>
 	<div class="namelist">
     	<ul>
-        	<li><?php echo Yii::t('Batch','<strong>Class Teacher :</strong> ');?>
+        	<li><?php echo '<strong>'.Yii::t('app','Class Teacher : ').'</strong>';?>
 			<?php $employee=Employees::model()->findByAttributes(array('id'=>$batch->employee_id));
 		    if($employee!=NULL)
 		    {
-			   echo $employee->first_name.' '.$employee->middle_name.' '.$employee->last_name; 
+			   echo Employees::model()->getTeachername($employee->id); 
 		    }?>
             </li>
             <!--<li><strong>Class Teacher:</strong>Mary Symon</li>
@@ -73,54 +73,54 @@
 		if($week==NULL)
 		{?>
         <div class="notifications nt_green">
-    	<?php echo Yii::t('Batch','<span>Notice</span>');?>
-        <?php echo Yii::t('Batch','No Batch weekdays are defined.Default Settings Selected.');?><br />
-        <?php echo CHtml::link(Yii::t('Batch','Define Now'), array('/courses/weekdays','id'=>$_REQUEST['id']));?></div>
+    	<?php echo '<span>'.Yii::t('app','Notice').'</span>';?>
+        <?php echo Yii::t('app','No').' '.Yii::app()->getModule('students')->fieldLabel("Students", "batch_id").' '.Yii::t('app','weekdays are defined.Default Settings Selected.');?><br />
+        <?php echo CHtml::link(Yii::t('app','Define Now'), array('/courses/weekdays','id'=>$_REQUEST['id']));?></div>
         <?php } ?>
         <?php $timing=ClassTimings::model()->findByAttributes(array('batch_id'=>$batch->id));
 		if($timing==NULL)
 		{ $time='nt_gray';?>
         <div class="notifications nt_red">
-    	<?php echo Yii::t('Batch','<span>Notice</span>');?>
-        <?php echo Yii::t('Batch','No Batch Class Timings are defined.');?><br />
-        <?php echo CHtml::link(Yii::t('Batch','Define Now'), array('#'),array('id'=>'add_class-timings-side'));?></div>
+    	<?php echo '<span>'.Yii::t('app','Notice').'</span>';?>
+        <?php echo Yii::t('app','No').' '.Yii::app()->getModule('students')->fieldLabel("Students", "batch_id").' '.Yii::t('app','Class Timings are defined.');?><br />
+        <?php echo CHtml::link(Yii::t('app','Define Now'), array('#'),array('id'=>'add_class-timings-side'));?></div>
         <?php } ?>
         <?php $ttab=TimetableEntries::model()->findByAttributes(array('batch_id'=>$batch->id));
 		if($ttab==NULL)
 		{?>
         <div class="notifications <?php echo $time; ?>">
-    	<?php echo Yii::t('Batch','<span>Notice</span>');?>
-       <?php echo Yii::t('Batch','Time Table Not Created.');?> <br />
-        <?php echo CHtml::link(Yii::t('Batch','Create Now'), array('weekdays/timetable','id'=>$_REQUEST['id']));?></div>
+    	<?php echo '<span>'.Yii::t('app','Notice').'</span>';?>
+       <?php echo Yii::t('app','Time Table Not Created.');?> <br />
+        <?php echo CHtml::link(Yii::t('app','Create Now'), array('weekdays/timetable','id'=>$_REQUEST['id']));?></div>
         <?php } ?>
         <?php $sub=Subjects::model()->findByAttributes(array('batch_id'=>$batch->id));
 		if($sub==NULL)
 		{?>
         <div class="notifications nt_red">
-    	<?php echo Yii::t('Batch','<span>Notice</span>');?>
-        <?php echo Yii::t('Batch','No Subjects Added');?>.<br />
-        <?php echo CHtml::link(Yii::t('Batch','Add Now'), array('#'),array('id'=>'add_subjects-side')) ?></div>
+    	<?php echo '<span>'.Yii::t('app','Notice').'</span>';?>
+        <?php echo Yii::t('app','No Subjects Added');?>.<br />
+        <?php echo CHtml::link(Yii::t('app','Add Now'), array('#'),array('id'=>'add_subjects-side')) ?></div>
         <?php } ?>
     
     <div class="clear"></div>
     <div class="left_emp_navbx">
     <div class="left_emp_nav">
-    <h2><?php echo Yii::t('Batch','Actions');?></h2>
+    <h2><?php echo Yii::t('app','Actions');?></h2>
     <ul>
     
-    <li><?php echo CHtml::link(Yii::t('Batch','Add Student'), array('/students/students/create'),array('class'=>'student')) ?></li>
+    <li><?php echo CHtml::link(Yii::t('app','Add Student'), array('/students/students/create'),array('class'=>'student')) ?></li>
    <?php /*?> <li><?php echo CHtml::link('Add Event', array('#'),array('id'=>'add_events-side','class'=>'addevnt')) ?></li><?php */?>
-    <li><?php echo CHtml::link(Yii::t('Batch','New Subject'), array('#'),array('id'=>'add_subject-name-side','class'=>'newsub')) ?></li>
-    <li><?php echo CHtml::link(Yii::t('Batch','Mark Attendance'), array('/courses/studentAttentance','id'=>$_REQUEST['id']),array('class'=>'mark')) ?></li>
+    <li><?php echo CHtml::link(Yii::t('app','New Subject'), array('#'),array('id'=>'add_subject-name-side','class'=>'newsub')) ?></li>
+    <li><?php echo CHtml::link(Yii::t('app','Mark Attendance'), array('/courses/studentAttentance','id'=>$_REQUEST['id']),array('class'=>'mark')) ?></li>
     
    <?php /*?> <li><a class="copy" href="#">Copy Batch Settings<span class="active"></span></a></li><?php */?>
-    <li><?php echo CHtml::link(Yii::t('Batch','Promote Batch'), array('batches/promote','id'=>$_REQUEST['id']),array('class'=>'promote')) ?></li>
+    <li><?php echo CHtml::link(Yii::t('app','Promote').' '.Yii::app()->getModule('students')->fieldLabel("Students", "batch_id"), array('batches/promote','id'=>$_REQUEST['id']),array('class'=>'promote')) ?></li>
     <?php if($batch->is_active=='1')
 	{?>
-    <li><?php echo CHtml::link(Yii::t('Batch','Deactivate Batch'), array('batches/deactivate','id'=>$_REQUEST['id']),array('confirm'=>'Are You Sure,Deactivate This Batch ?','class'=>'deactivate last')) ?></li><?php }
+    <li><?php echo CHtml::link(Yii::t('app','Deactivate').' '.Yii::app()->getModule('students')->fieldLabel("Students", "batch_id"), array('batches/deactivate','id'=>$_REQUEST['id']),array('confirm'=>Yii::t('app','Are you sure you want to deactivate this').' '.Yii::app()->getModule('students')->fieldLabel("Students", "batch_id").' '.'?','class'=>'deactivate last')) ?></li><?php }
 	else
 	{ ?>
-    <li><?php echo CHtml::link(Yii::t('Batch','Activate Batch'), array('batches/activate','id'=>$_REQUEST['id']),array('confirm'=>'Are You Sure,Activate This Batch ?','class'=>'deactivate last')) ?></li><?php }?>
+    <li><?php echo CHtml::link(Yii::t('app','Activate').' '.Yii::app()->getModule('students')->fieldLabel("Students", "batch_id"), array('batches/activate','id'=>$_REQUEST['id']),array('confirm'=>Yii::t('app','Are you sure you want to deactivate this').' '. Yii::app()->getModule('students')->fieldLabel("Students", "batch_id").' '.'?','class'=>'deactivate last')) ?></li><?php }?>
     
     
     </ul>

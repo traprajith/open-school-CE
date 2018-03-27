@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	'Site News'=>array('news/'),
-	'News Update',
+	Yii::t('app','Site News')=>array('news/'),
+	Yii::t('app','News Update'),
 );
 
 ?>
@@ -19,7 +19,7 @@ $this->breadcrumbs=array(
 <div class="cont_right formWrapper" style="padding:0px; width:753px;">
       <div id="parent_rightSect">
       <div class="parentright_innercon">
-     <div class="mail_head">Site News<span>Latest news listed here</span></div>
+     <div class="mail_head"><?php echo Yii::t('app','Site News'); ?><span><?php echo Yii::t('app','Latest news listed here'); ?></span></div>
 
 
 <?php
@@ -40,8 +40,19 @@ foreach($conv->messages as $msg):
 		?>
 <div class="mailbox-message-header">
 		<div class="message-sender">
-<?php	echo 'Author:' . ucfirst($sender); ?></div>
-		<div class="message-date">Last Updated: <?php echo date("Y-m-d H:i a",$msg->created); ?></div>
+<?php	echo Yii::t('app','Author:'). ucfirst($sender); ?></div>
+
+<?php
+
+$settings=UserSettings::model()->findByAttributes(array('user_id'=>1));
+		
+		if($settings!=NULL)
+		{	
+			$timezone = Timezone::model()->findByAttributes(array('id'=>$settings->timezone));
+			date_default_timezone_set($timezone->timezone);
+		}
+?>
+		<div class="message-date"><?php echo Yii::t('app','Last Updated:');?> <?php echo date("Y-m-d H:i a",$msg->created); ?></div>
 		<br />
 	</div>
 
@@ -52,6 +63,8 @@ foreach($conv->messages as $msg):
 	
 	
 	<br />
+
+	
 <?php $first_message=0;
 endforeach; 
 

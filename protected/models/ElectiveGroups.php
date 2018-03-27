@@ -13,6 +13,8 @@
  */
 class ElectiveGroups extends CActiveRecord
 {
+	public $max_weekly_classes;
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return ElectiveGroups the static model class
@@ -37,15 +39,17 @@ class ElectiveGroups extends CActiveRecord
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
-		return array(
-			array('batch_id, is_deleted', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>255),
-			array('batch_id, name', 'required'),
-			array('created_at, updated_at', 'safe'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, name, batch_id, is_deleted, created_at, updated_at', 'safe', 'on'=>'search'),
-		);
+		if(Yii::app()->controller->id != 'academicYears'){
+			return array(
+				array('batch_id, name, code, max_weekly_classes', 'required'),
+				array('batch_id, is_deleted, max_weekly_classes', 'numerical', 'integerOnly'=>true),
+				array('name , code', 'length', 'max'=>255),			
+				array('created_at, updated_at', 'safe'),
+				// The following rule is used by search().
+				// Please remove those attributes that should not be searched.
+				array('id, name, batch_id, is_deleted, created_at, updated_at', 'safe', 'on'=>'search'),
+			);
+		}
 	}
 
 	/**
@@ -65,12 +69,13 @@ class ElectiveGroups extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'batch_id' => 'Batch',
-			'is_deleted' => 'Is Deleted',
-			'created_at' => 'Created At',
-			'updated_at' => 'Updated At',
+			'id' => Yii::t("app",'ID'),
+			'name' => Yii::t("app",'Name'),
+			'code' => Yii::t("app",'Code'),
+			Yii::app()->getModule('students')->fieldLabel("Students", "batch_id"),
+			'is_deleted' => Yii::t("app",'Is Deleted'),
+			'created_at' => Yii::t("app",'Created At'),
+			'updated_at' => Yii::t("app",'Updated At'),
 		);
 	}
 

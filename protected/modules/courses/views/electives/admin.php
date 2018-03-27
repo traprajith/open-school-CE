@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	'Electives'=>array('/courses'),
-	'Manage',
+	Yii::t('app','Electives')=>array('index'),
+	Yii::t('app','Manage'),
 );
 
 $this->menu=array(
@@ -23,7 +23,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1><?php echo Yii::t('elective','Manage Electives');?></h1>
+<h1>Manage Electives</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>

@@ -1,5 +1,4 @@
 <style>
-
 .fancybox-inner{ width:auto;}
 .notification{ width:88%;}
 </style>
@@ -15,13 +14,13 @@
  * @ver 1.3
  -->
 <div id="subject-name_form_con" class="client-val-form">
-    <?php if ($model->isNewRecord) : ?>    <h3 id="create_header"><?php echo Yii::t('Timing','Create New Subject');?></h3>
-    <?php  elseif (!$model->isNewRecord):  ?>    <h3 id="update_header"><?php echo Yii::t('Timing','Update Subject');?></h3>
+    <?php if ($model->isNewRecord) : ?>    <h3 id="create_header"><?php echo Yii::t('app','Create New Subject');?></h3>
+    <?php  elseif (!$model->isNewRecord):  ?>    <h3 id="update_header"><?php echo Yii::t('app','Update Subject');?></h3>
     <?php   endif;  ?>
-    <?php      $val_error_msg = 'Error.SubjectName was not saved.';
+    <?php      $val_error_msg = Yii::t('app','Error.SubjectName was not saved.');
     $val_success_message = ($model->isNewRecord) ?
-            'Subject was created successfuly.' :
-            'Subject was updated successfuly.';
+            Yii::t('app','Subject was created successfuly.') :
+            Yii::t('app','Subject was updated successfuly.');
   ?>
 
     <div id="success-note" class="notification success png_bg"
@@ -74,12 +73,12 @@
 
      ?>
     <?php echo $form->errorSummary($model, '
-    <div style="font-weight:bold">Please correct these errors:</div>
+    <div style="font-weight:bold">'.Yii::t('app','Please correct these errors:').'</div>
     ', NULL, array('class' => 'errorsum notification errorshow png_bg')); ?>  
 
 
     <div class="row">
-            <?php echo $form->labelEx($model,Yii::t('Timing','name'),array('style'=>'color:#222222;')); ?>
+            <?php echo $form->labelEx($model,'name',array('style'=>'color:#222222;')); ?>
             <?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>80)); ?>
         <span id="success-SubjectName_name"
               class="hid input-notification-success  success png_bg right"></span>
@@ -90,7 +89,7 @@
     </div>
 
         <div class="row">
-            <?php echo $form->labelEx($model,Yii::t('Timing','code'),array('style'=>'color:#222222;')); ?>
+            <?php echo $form->labelEx($model,'code',array('style'=>'color:#222222;')); ?>
             <?php echo $form->textField($model,'code',array('size'=>60,'maxlength'=>120)); ?>
         <span id="success-SubjectName_code"
               class="hid input-notification-success  success png_bg right"></span>
@@ -108,7 +107,7 @@
            value=" <?php echo $model->id; ?>"/>
     <?php endif; ?>
     <div class="row buttons" style="width:30%">
-        <?php   echo CHtml::submitButton($model->isNewRecord ? 'Save' : 'Save',array('class' =>
+        <?php   echo CHtml::submitButton($model->isNewRecord ? Yii::t('app','Save') : Yii::t('app','Save'),array('class' =>
         'formbut')); ?>    </div>
 
   <?php  $this->endWidget(); ?></div>

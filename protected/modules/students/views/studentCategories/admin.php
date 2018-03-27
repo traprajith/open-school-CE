@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	'Student Categories'=>array('index'),
-	'Manage',
+	Yii::t('app','Student Categories')=>array('index'),
+	Yii::t('app','Manage'),
 );
 
 
@@ -28,7 +28,7 @@ $('.search-form form').submit(function(){
     <td valign="top">
     <div class="cont_right formWrapper">
 
-<h1><?php echo Yii::t('students','Manage Student Categories');?></h1>
+<h1><?php echo Yii::t('app','Manage Student Categories');?></h1>
 
 
 

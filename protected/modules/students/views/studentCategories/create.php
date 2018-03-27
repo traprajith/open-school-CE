@@ -1,12 +1,12 @@
 <?php
 $this->breadcrumbs=array(
-	'Student Categories'=>array('index'),
-	'Create',
+	Yii::t('app','Student Categories')=>array('index'),
+	Yii::t('app','Create'),
 );
 
 $this->menu=array(
-	array('label'=>'List StudentCategories', 'url'=>array('index')),
-	array('label'=>'Manage StudentCategories', 'url'=>array('admin')),
+	array('label'=>Yii::t('app','List StudentCategories'), 'url'=>array('index')),
+	array('label'=>Yii::t('app','Manage StudentCategories'), 'url'=>array('admin')),
 );
 ?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -18,7 +18,7 @@ $this->menu=array(
     </td>
     <td valign="top">
     <div class="cont_right formWrapper">
-<h1><?php echo Yii::t('students','Create StudentCategories');?></h1><br />
+<h1><?php echo Yii::t('app','Create StudentCategories');?></h1><br />
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
  	</div>

@@ -40,8 +40,13 @@ class StopDetails extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('route_id,fare', 'numerical', 'integerOnly'=>true),
+			array('stop_name, fare, arrival_mrng,arrival_evng', 'required'),
+			array('route_id', 'numerical', 'integerOnly'=>true),
+			array('fare', 'type', 'type'=>'float', 'message'=>Yii::t('app', '{attribute} must be a valid number')),
 			array('stop_name, fare, arrival_mrng, departure_mrng, arrival_evng, departure_evng', 'length', 'max'=>120),
+			array('stop_name','unique'),
+			array('fare', 'compare', 'operator'=>'>=', 'compareValue'=>0),
+			array('arrival_evng', 'compareTime'),
 			//array('stop_name, fare, arrival_mrng, arrival_evng', 'check'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -67,13 +72,14 @@ class StopDetails extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'route_id' => 'Route',
-			'stop_name' => 'Stop Name',
-			'fare' => 'Fare',
-			'arrival_mrng' => 'Morning Arrival',
-			'departure_mrng' => 'Departure Mrng',
-			'arrival_evng' => 'Evening Arrival',
-			'departure_evng' => 'Departure Evng',
+			'route_id' =>  Yii::t('app','Route'),
+			'stop_name' =>  Yii::t('app','Stop Name'),
+			'fare' =>  Yii::t('app','Fare'),
+			'arrival_mrng' =>  Yii::t('app','Morning Arrival'),
+			'departure_mrng' =>  Yii::t('app','Departure Mrng'),
+			'arrival_evng' =>  Yii::t('app','Evening Arrival'),
+			'departure_evng' =>  Yii::t('app','Departure Evng'),
+			
 		);
 	}
 
@@ -100,6 +106,18 @@ class StopDetails extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	public function compareTime($attribute){
+		if($this->arrival_mrng!=NULL and $this->arrival_evng!=NULL){
+			$arrivalMrng	= new DateTime($this->arrival_mrng);
+			$arrivalEvng	= new DateTime($this->arrival_evng);			
+			$arrivalMrng	= $arrivalMrng->format('H:i');
+			$arrivalEvng	= $arrivalEvng->format('H:i');			
+			if($arrivalMrng>=$arrivalEvng){
+				$this->addError("arrival_evng", Yii::t("app", "Evening Arrival must be greater than Morning Arrival"));
+			}
+		}
 	}
 	
 	/*public function check($attribute,$params){

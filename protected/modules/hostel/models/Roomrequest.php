@@ -60,11 +60,11 @@ class Roomrequest extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'student_id' => 'Student',
-			'allot_id' => 'Allot',
-			'status' => 'Status',
-			'created_at' => 'Created',
+			'id' => Yii::t('app','ID'),
+			'student_id' => Yii::t('app','Student'),
+			'allot_id' => Yii::t('app','Allot'),
+			'status' => Yii::t('app','Status'),
+			'created_at' => Yii::t('app','Created'),
 			
 		);
 	}

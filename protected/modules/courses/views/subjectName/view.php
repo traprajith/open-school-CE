@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs=array(
-	'Subject Names'=>array('index'),
+	Yii::t('app','Subject Names')=>array('index'),
 	$model->name,
 );
 
 $this->menu=array(
-	array('label'=>'List SubjectName', 'url'=>array('index')),
-	array('label'=>'Create SubjectName', 'url'=>array('create')),
-	array('label'=>'Update SubjectName', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete SubjectName', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage SubjectName', 'url'=>array('admin')),
+	array('label'=>Yii::t('app','List SubjectName'), 'url'=>array('index')),
+	array('label'=>Yii::t('app','Create SubjectName'), 'url'=>array('create')),
+	array('label'=>Yii::t('app','Update SubjectName'), 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>Yii::t('app','Delete SubjectName'), 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>Yii::t('app','Are you sure you want to delete this item?'))),
+	array('label'=>Yii::t('app','Manage SubjectName'), 'url'=>array('admin')),
 );
 ?>
 

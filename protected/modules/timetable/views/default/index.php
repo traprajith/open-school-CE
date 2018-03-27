@@ -2,7 +2,7 @@
 
 <?php
 $this->breadcrumbs=array(
-	$this->module->id,
+    $this->module->id,
 );
 ?>
 
@@ -14,29 +14,43 @@ $this->breadcrumbs=array(
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td valign="top" width="75%">
-		<div style="padding:20px; position:relative;">
-			
-            <div class="edit_bttns" style="width:350px; top:30px; right:-15px;">
-            	<ul>
-                 
-                 
-                 </ul>
-           </div> 
-            
-				<div class="promo_bx">
-                	
-               	  <div class="promo_txtbx">
-                   	<h1>Community Edition is feature-limited.</h1>
-					<p>Buy our premium version to get this feature and manage your institution more efficiently.</p>
-                    <a href="http://www.tryopenschool.com/index.php?r=timetable" target="_blank"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/try_bttn.png" width="75" height="38" /></a>
-                  </div> 
-                    <div class="o-s_logo" style="width:200px;"> <a href="http://open-school.org" target="_blank"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/o-s_promo_logo.png" width="232" height="92" /></a> </div>   
-    			</div>
-                
-                <div class="fourth_ad"><a href="https://open-school.org/pricing" target="_blank"><img src="http://tryopenschool.com/images/o-s_ad_img.png" width="960" height="115" /></a></div>
-		
-		</div>
-		</td>
+        <div class="full-formWrapper1 opnsl_new_edtn_block">
+          
+      <div class="opnsl_modl_block">
+            <div class="panel-body">
+                <div class="img_block_cnt">
+                  <div class="futrd_list">
+                        <ul>
+                          <h4>PAID FEATURES</h4>
+                            <li>Set Weekdays </li> 
+                            <li>Print the timetable </li>
+                            <li>View Teacher’s Timetable </li>
+                            <li>Set Batch wise Class Timings and Breaks </li>
+                            <li>Notification to avoid time overlapping </li>
+                            <li>Allocate teachers to available class hours </li>
+                            <li>Create, generate and maintain timetable for each batch </li>
+                            <li>Create flexible timings for different days </li>
+                            <li>Switch between fixed and flexible timetable </li>
+                                             
+                        </ul>
+                    </div>                 
+                </div>
+            </div>
+         </div> 
+          <div class="add_banner_block">
+            <div class="add_banner">
+              <img src="images/add_new.png" />
+              <a href="https://open-school.org/pricing" target="_blank" class="add_btn">Know more</a>
+            </div>
+            <div class="add_banner">
+                <img src="images/add_new1.png" />
+                <a href="https://open-school.org/pricing" target="_blank" class="add_btn">Know more</a>
+            </div>
+            </div>
+
+        
+        </div>
+        </td>
        </tr>
      </table>
     </td>

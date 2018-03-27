@@ -1,8 +1,8 @@
  <?php
 $this->breadcrumbs=array(
-	'Courses'=>array('/courses'),
+	Yii::t('app','Courses')=>array('/courses'),
 	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	Yii::t('app','Update'),
 );
 
 
@@ -37,7 +37,7 @@ $this->menu=array(
 $this->beginWidget('zii.widgets.jui.CJuiDialog',array(
 					'id'=>'jobDialog11',
 					'options'=>array(
-                    'title'=>Yii::t('job','Update'),
+                    'title'=>Yii::t('app','Update Course : ').$model->course_name,
                     'autoOpen'=>true,
                     'modal'=>'true',
                     'width'=>'400',

@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs=array(
-	'Elective Groups'=>array('/courses'),
+	Yii::t('app','Elective Groups')=>array('index'),
 	$model->name=>array('view','id'=>$model->id),
-	'Update',
+	Yii::t('app','Update'),
 );
 
 $this->menu=array(
-	array('label'=>'List ElectiveGroups', 'url'=>array('index')),
-	array('label'=>'Create ElectiveGroups', 'url'=>array('create')),
-	array('label'=>'View ElectiveGroups', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage ElectiveGroups', 'url'=>array('admin')),
+	array('label'=>Yii::t('app','List Elective Groups'), 'url'=>array('index')),
+	array('label'=>Yii::t('app','Create Elective Groups'), 'url'=>array('create')),
+	array('label'=>Yii::t('app','View Elective Groups'), 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>Yii::t('app','Manage Elective Groups'), 'url'=>array('admin')),
 );
 ?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -21,7 +21,7 @@ $this->menu=array(
     </td>
     <td valign="top">
     <div class="cont_right formWrapper">
-<h1>Update ElectiveGroups <?php echo $model->id; ?></h1>
+<h1><?php echo Yii::t('app','Update Elective Group : ').$model->name; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
 </div>

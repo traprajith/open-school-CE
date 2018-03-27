@@ -63,12 +63,12 @@ class MessManage extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'student_id' => 'Student',
-			'food_preference' => 'Food Preference',
-			'amount' => 'Amount',
-			'status' => 'Status',
-			'created' => 'Created',
+			'id' => Yii::t('app','ID'),
+			'student_id' => Yii::t('app','Student'),
+			'food_preference' => Yii::t('app','Food Preference'),
+			'amount' => Yii::t('app','Amount'),
+			'status' => Yii::t('app','Status'),
+			'created' => Yii::t('app','Created'),
 		);
 	}
 

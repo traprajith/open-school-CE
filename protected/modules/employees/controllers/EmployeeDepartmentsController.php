@@ -89,15 +89,17 @@ class EmployeeDepartmentsController extends RController
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
+         
 		if(isset($_POST['EmployeeDepartments']))
-		{
+		{ 		
 			$model->attributes=$_POST['EmployeeDepartments'];
-			if($model->save())
-			Yii::app()->user->setFlash('notification','Data Updated Successfully');
+			if($model->validate()){
+				$model->saveAttributes(array('code'=>$_POST['EmployeeDepartments']['code'],'name'=>$_POST['EmployeeDepartments']['name']));
+				Yii::app()->user->setFlash('notification',Yii::t('app','Data Updated Successfully'));
 				$this->redirect(array('admin'));
+			}						
 		}
-
+        
 		$this->render('update',array(
 			'model'=>$model,
 		));
@@ -121,7 +123,7 @@ class EmployeeDepartmentsController extends RController
 				
 		}
 		else
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+			throw new CHttpException(400,Yii::t('app','Invalid request. Please do not repeat this request again.'));
 	}
 
 	/**
@@ -159,7 +161,7 @@ class EmployeeDepartmentsController extends RController
 	{
 		$model=EmployeeDepartments::model()->findByPk($id);
 		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+			throw new CHttpException(404,Yii::t('app','The requested page does not exist.'));
 		return $model;
 	}
 

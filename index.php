@@ -24,12 +24,12 @@ along with Open-School.  If not, see <http://www.gnu.org/licenses/>.*/
  *
  * @author Open-School team <contact@Open-School.org>
  * @link http://www.Open-School.org/
- * @copyright Copyright &copy; 2009-2013 wiwo inc.
+ * @copyright Copyright &copy; 2009-2014 wiwo inc.
  * @Matthew George,@Rajith Ramachandran,@Arun Kumar,
- * @Anupama,@Laijesh V Kumar,@Tanuja.
+ * @Anupama,@Laijesh V Kumar.
  * @license http://www.Open-School.org/
  */
-
+//date_default_timezone_set("Asia/Kolkata");
 
 // If no environment info or no system settings, go install
 if (file_exists(dirname(__FILE__).'/protected/config/environment.php') === false 
@@ -47,5 +47,5 @@ $config=dirname(__FILE__).'/protected/config/common.php';
 // specify how many levels of call stack should be shown in each log message
 //defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
 
-require_once($yii);
+require_once($yii); 
 Yii::createWebApplication($config)->run();

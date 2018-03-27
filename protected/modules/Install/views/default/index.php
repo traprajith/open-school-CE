@@ -5,7 +5,7 @@ if (Yii::app()->user->hasFlash('error') === true) {
 ?>
 <h3>Database information</h3>
 <p>
-    <h4>Notes: Fowllowing folder must writable(chmod 777):</h4>
+    <h4>Notes: Following folder must writable(chmod 777):</h4>
     <ul>
         <li>./assets - <?php echo $assetsPermit ? 'Fail' : 'OK';?></li>
         <li>./UploadFiles - <?php echo $uploadPermit ? 'Fail' : 'OK';?></li>

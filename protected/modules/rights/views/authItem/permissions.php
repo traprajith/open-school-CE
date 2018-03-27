@@ -1,34 +1,34 @@
 <?php $this->breadcrumbs = array(
-	'Rights'=>Rights::getBaseUrl(),
-	Rights::t('core', 'Permissions'),
+	Yii::t('app','Rights')=>Rights::getBaseUrl(),
+	Yii::t('app', 'Permissions'),
 ); ?>
 
 <div id="permissions">
 
-	<h1><?php echo Rights::t('core', 'Permissions'); ?></h1>
+	<h1><?php echo Yii::t('app', 'Permissions'); ?></h1>
 
 	<p>
-		<?php echo Rights::t('core', 'Here you can view and manage the permissions assigned to each role.'); ?><br />
-		<?php echo Rights::t('core', 'Authorization items can be managed under {roleLink}, {taskLink} and {operationLink}.', array(
-			'{roleLink}'=>CHtml::link(Rights::t('core', 'Roles'), array('authItem/roles')),
-			'{taskLink}'=>CHtml::link(Rights::t('core', 'Tasks'), array('authItem/tasks')),
-			'{operationLink}'=>CHtml::link(Rights::t('core', 'Operations'), array('authItem/operations')),
+		<?php echo Yii::t('app', 'Here you can view and manage the permissions assigned to each role.'); ?><br />
+		<?php echo Yii::t('app', 'Authorization items can be managed under {roleLink}, {taskLink} and {operationLink}.', array(
+			'{roleLink}'=>CHtml::link(Yii::t('app', 'Roles'), array('authItem/roles')),
+			'{taskLink}'=>CHtml::link(Yii::t('app', 'Tasks'), array('authItem/tasks')),
+			'{operationLink}'=>CHtml::link(Yii::t('app', 'Operations'), array('authItem/operations')),
 		)); ?>
 	</p>
 
-	<p><?php echo CHtml::link(Rights::t('core', 'Generate items for controller actions'), array('authItem/generate'), array(
+	<p><?php echo CHtml::link(Yii::t('app', 'Generate items for controller actions'), array('authItem/generate'), array(
 	   	'class'=>'generator-link',
 	)); ?></p>
 
-	<?php $this->widget('zii.widgets.grid.CGridView', array(
+	<?php /*?><?php $this->widget('zii.widgets.grid.CGridView', array(
 		'dataProvider'=>$dataProvider,
 		'template'=>'{items}',
-		'emptyText'=>Rights::t('core', 'No authorization items found.'),
+		'emptyText'=>Yii::t('app', 'No authorization items found.'),
 		'htmlOptions'=>array('class'=>'grid-view permission-table'),
 		'columns'=>$columns,
-	)); ?>
+	)); ?><?php */?>
 
-	<p class="info">*) <?php echo Rights::t('core', 'Hover to see from where the permission is inherited.'); ?></p>
+	<p class="info">*) <?php echo Yii::t('app', 'Hover to see from where the permission is inherited.'); ?></p>
 
 	<script type="text/javascript">
 
@@ -36,7 +36,7 @@
 		* Attach the tooltip to the inherited items.
 		*/
 		jQuery('.inherited-item').rightsTooltip({
-			title:'<?php echo Rights::t('core', 'Source'); ?>: '
+			title:'<?php echo Yii::t('app', 'Source'); ?>: '
 		});
 
 		/**

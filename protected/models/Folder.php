@@ -60,10 +60,10 @@ class Folder extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'uid' => 'Uid',
-			'mid' => 'Mid',
-			'fid' => 'Fid',
+			'id' => Yii::t("app",'ID'),
+			'uid' => Yii::t("app",'Uid'),
+			'mid' => Yii::t("app",'Mid'),
+			'fid' => Yii::t("app",'Fid'),
 		);
 	}
 

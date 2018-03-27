@@ -45,19 +45,28 @@ along with Open-School.  If not, see http://www.gnu.org/licenses
  
  * @author Open-School team <contact@Open-School.org>
  * @link http://www.Open-School.org/
- * @copyright Copyright &copy; 2009-2014 wiwo inc.
+ * @copyright Copyright &copy; 2009-2018 wiwo inc.
 
  * Matthew George
  * Rajith Ramachandran
- * Arun Kumar
- * Anupama
- * Laijesh V Kumar
  * MGK Vishnu
  * Sherin Jose
- * Tanuja
  * Naveen George
- * Rahul Viswanath
- * Sajith Varghese
- * Aju Pulikal
+ * Anupama Menon
+ * Arun Mohan
+ * Saravanakumar
+ * Anju B
+ * Aneesh PA
+ * Yadukrishnan K
+ * Jithesh PV
+ * Unny Joseph
+ * Meenu Augusthy
+ * Shincy TU
+ * Yadukrishnan K
+ * Viswas TK
+ * Prasanth
+ * Jismy
+
+
 
  * @license http://www.Open-School.org/

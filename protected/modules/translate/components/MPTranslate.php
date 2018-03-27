@@ -248,6 +248,14 @@ class MPTranslate extends CApplicationComponent{
             array('id'=>self::ID)
         );
     }
+	
+	function g_dropdown($name=self::ID){
+        return CHtml::dropDownList($name,$this->getLanguage(),
+            $this->acceptedLanguages,
+            array('id'=>$name)
+        );
+    }
+	
     /**
      * translate some message from $sourceLanguage to $targetLanguage using google translate api
      * googleApiKey must be defined to use this service

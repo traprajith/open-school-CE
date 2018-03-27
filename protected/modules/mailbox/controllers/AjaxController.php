@@ -17,7 +17,7 @@ class AjaxController extends RController
 	public function actionAuto()
 	{
 		if(!isset($_GET['term']))
-			throw new Exception('Term required');
+			throw new Exception(Yii::t('app','Term required'));
 		
 		die(Yii::app()->controller->module->autoComplete($_GET['term']));
 	}

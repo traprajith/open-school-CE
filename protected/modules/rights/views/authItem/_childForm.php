@@ -8,7 +8,7 @@
 	</div>
 	
 	<div style="padding-top:10px;">
-		<?php echo CHtml::submitButton(Rights::t('core', 'Add'),array('class'=>'formbut')); ?>
+		<?php echo CHtml::submitButton(Yii::t('app', 'Add'),array('class'=>'formbut')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

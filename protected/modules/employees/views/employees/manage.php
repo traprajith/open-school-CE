@@ -1,11 +1,21 @@
 <style>
 .drop select { width:159px;}
+.bttns_addstudent li a.addbttn{
+	padding:12px 15px 11px 12px;
+	font-size:12px;
+	background-color:#09F;
+	font-weight:bold;
+}
+.bttns_addstudent{
+	top:0px;
+	left:98px;
+}
 </style>
 
 <?php
 $this->breadcrumbs=array(
-	'Employees'=>array('index'),
-	'Manage',
+	Yii::t('app','Teacher')=>array('index'),
+	Yii::t('app','Manage'),
 );
 
 
@@ -103,7 +113,7 @@ if ($('#'+id).is(':hidden')){
             	else{
                 	$('#'+id).hide();
             	}*/
-				 $(".drop").hide();
+				 $(".drop_search").hide();
 $('#'+id).toggle();	
 
 }
@@ -126,7 +136,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     </td>
     <td valign="top">
     <div class="cont_right formWrapper">
-<h1><?php echo Yii::t('employees','Manage Employees');?></h1>
+<h1><?php echo Yii::t('app','Manage Teachers');?></h1>
 
                                                 
    
@@ -142,21 +152,20 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
        <?php $j=0; ?>
         
         <div id="jobDialog"></div>
-        
-    	  <div class="contrht_bttns">
-          
-    <ul>
-    <li><?php echo CHtml::ajaxLink('<span>'.Yii::t('employees','Save Filter').'</span>',$this->createUrl('Savedsearches/Create'),array(
+<div class="button-bg">
+<div class="top-hed-btn-left"> </div>
+<div class="top-hed-btn-right">
+<ul>                                    
+<li><?php echo CHtml::ajaxLink('<span>'.Yii::t('app','Save Filter').'</span>',$this->createUrl('Savedsearches/Create'),array(
         'onclick'=>'$("#jobDialog").dialog("open"); return false;',
         'update'=>'#jobDialog',
 		'type' =>'GET','data' => array( 'val1' => Yii::app()->request->getUrl(),'type'=>'2' ),'dataType' => 'text',
-        ),array('id'=>'showJobDialog','class'=>'saveic')); ?></li>
-    
-    
-    <li><a href="#" class="load_filter" onClick="hide('load')"><span><?php echo Yii::t('employees','Load Filter');?></span></a> 
+        ),array('id'=>'showJobDialog','class'=>'a_tag-btn')); ?></li>
+
+<li style=" position:relative;"><a href="javascript:void(0)" class="load_filter a_tag-btn" onClick="hide('load')"><span><?php echo Yii::t('app','Load Filter');?></span></a> 
  
     
-    <div id="load" style="display:none;  overflow:scroll; height:200px; background:#fff; left:-40px; top:40px" class="drop">
+    <div id="load" style="display:none; left: -141px;" class="drop">
     <div class="droparrow"></div>
         <ul class="loaddrop">
         	<li style="text-align:center">
@@ -165,37 +174,40 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		{ 
 			foreach ($data as $data1)
 			{
-				echo '<span style="width:150px; float:left; ">';echo CHtml::link($data1->name, $data1->url,array('class'=>'vtip')); echo '</span>';
+				echo '<span style="width:150px; float:left; ">';echo CHtml::link($data1->name, CHtml::decode($data1->url),array('class'=>'vtip')); echo '</span>';
 				echo '<span>'; 
-	echo CHtml::link('<img src="images/cross.png" border="0" />',array('/savedsearches/deleteemp','user_id'=>Yii::app()->User->id,'sid'=>$data1->id),array('confirm'=>'Are you sure you want to delete this?'));echo '</span>';
+	echo CHtml::link('<img src="images/cross.png" border="0" />',array('/savedsearches/deleteemp','user_id'=>Yii::app()->User->id,'sid'=>$data1->id),array('confirm'=>Yii::t('app','Are you sure ? You want to delete this?')));echo '</span>';
 			}
 		}
 		else
 		{
-			echo '<span style="color:#d30707;"><i>'.Yii::t('students','No Saved Searches').'</i></span>';
+			echo '<span style="color:#d30707;"><i>'.Yii::t('app','No Saved Searches').'</i></span>';
 		}
 		?>
         </li>
         </ul>
-        </div></li>
-    
-    
-      
-    <li><?php echo CHtml::link('<span>'.Yii::t('employees','Clear All').'</span>', array('manage')); ?></li>
-    
-    </ul>
-    </div>
-    <div class="bttns_imprtcntact">
+        </div></li> 
+    <li><?php echo CHtml::link('<span>'.Yii::t('app','Clear All').'</span>', array('manage'),array('class'=>'a_tag-btn')); ?></li>                               
+</ul>
+</div> 
+
+</div>
+        
+    	  <div class="contrht_bttns">
+          
     <ul>
-    <!--<li><a class=" import_contact last" href="">Import Contact</a></li>-->
-    </ul>
-    </div>
+    <li></li>
     
-    <div class="bttns_addstudent ">
-    <ul>
-    <li><?php echo CHtml::link(Yii::t('employees','Add Employee'), array('create'),array('class'=>'addbttn last')); ?></li>
+    
+    <li>
+    
+    
+
+    
     </ul>
     </div>
+
+    
     </div>
   
     <div class="clear"></div>
@@ -203,7 +215,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     <div class="filterbxcntnt">
    	<div class="filterbxcntnt_inner"  style="border-bottom:#ddd solid 1px; height:60px;">
     <ul>
-    <li style="font-size:12px"><?php echo Yii::t('employees','Filter Your Employees:');?></li>
+    <li style="font-size:12px"><?php echo Yii::t('app','Filter Your Teacher:');?></li>
     
     <?php $form=$this->beginWidget('CActiveForm', array(
 	'method'=>'get',
@@ -211,116 +223,198 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 )); ?>
 
 
-<li><div onClick="hide('name')" style="cursor:pointer;"><?php echo Yii::t('employees','Name');?></div>
-<div id="name" style="display:none; width:210px; padding-top:0px; height:30px" class="drop" >
+<li><div onClick="hide('name')" style="cursor:pointer;"><?php echo Yii::t('app','Name');?></div>
+<div id="name" style="display:none; width:230px;" class="drop_search" >
 <div class="droparrow" style="left:10px;"></div>
-<input type="search" placeholder="search" name="name" value="<?php echo isset($_GET['name']) ? CHtml::encode($_GET['name']) : '' ; ?>" />
-<input type="submit" value="Apply" />
+<div class="filter_ul">
+<ul>
+    <li class="Text_area_Box">
+     <input type="search" placeholder="<?php echo Yii::t('app','search'); ?>" name="name" value="<?php echo isset($_GET['name']) ? CHtml::encode($_GET['name']) : '' ; ?>" />
+    </li>
+    <li class="Btn_area_Box">
+    <input type="submit" value="<?php echo Yii::t('app','Apply'); ?>" />
+    </li>
+</ul>
+</div>
+</div>
+</li>
+
+<li><div onClick="hide('admissionnumber')" style="cursor:pointer;"><?php echo Yii::t('app','Teacher Number');?></div>
+<div id="admissionnumber" style="display:none; width:230px;" class="drop_search" >
+<div class="droparrow" style="left:10px;"></div>
+<div class="filter_ul">
+<ul>
+    <li class="Text_area_Box">
+     <input type="search" placeholder="<?php echo Yii::t('app','search'); ?>" name="employeenumber" value="<?php echo isset($_GET['employeenumber']) ? CHtml::encode($_GET['employeenumber']) : '' ; ?>" />
+    </li>
+    <li class="Btn_area_Box">
+    <input type="submit" value="<?php echo Yii::t('app','Apply'); ?>" />
+    </li>
+</ul>
+</div>
 </div>
 </li>
 
 
-<li><div onClick="hide('admissionnumber')" style="cursor:pointer;"<?php echo Yii::t('employees','Employee number');?>></div>
-<div id="admissionnumber" style="display:none; width:231px; padding-top:0px; height:30px" class="drop">
-<div class="droparrow" style="left:10px;"></div>
-<input type="search" placeholder="search" name="employeenumber" value="<?php echo isset($_GET['employeenumber']) ? CHtml::encode($_GET['employeenumber']) : '' ; ?>" />
-<input type="submit" value="Apply" />
-</div>
-</li>
 
-<li><div onClick="hide('batch')" style="cursor:pointer;"><?php echo Yii::t('employees','Department');?></div>
-<div id="batch" style="display:none; width:195px; padding-top:0px; height:30px" class="drop">
+<li><div onClick="hide('batch')" style="cursor:pointer;"><?php echo Yii::t('app','Department');?></div>
+<div id="batch" style="display:none; width:230px;" class="drop_search">
 <div class="droparrow" style="left:10px;"></div>
-<?php 
-
+<div class="filter_ul">
+<ul>
+    <li class="Text_area_Box">
+     <?php 
 $data1 = CHtml::listData(EmployeeDepartments::model()->findAll(array('order'=>'name DESC')),'id','name');
-echo CHtml::activeDropDownList($model,'employee_department_id',$data1,array('prompt'=>'Select','id'=>'employee_department_id')); ?>
-<input type="submit" value="Apply" />
+echo CHtml::activeDropDownList($model,'employee_department_id',$data1,array('prompt'=>Yii::t('app','Select'),'id'=>'employee_department_id')); ?>
+    </li>
+    <li class="Btn_area_Box">
+   <input type="submit" value="<?php echo Yii::t('app','Apply'); ?>" />
+    </li>
+</ul>
+</div>
 </div>
 </li>
 
-<li><div onClick="hide('cat')" style="cursor:pointer;"><?php echo Yii::t('employees','Category');?></div>
-<div id="cat" style="display:none; width:195px; padding-top:0px; height:30px" class="drop">
+<li><div onClick="hide('cat')" style="cursor:pointer;"><?php echo Yii::t('app','Category');?></div>
+<div id="cat" style="display:none; width:230px;" class="drop_search">
 <div class="droparrow" style="left:10px;"></div>
+<div class="filter_ul">
+<ul>
+<li class="Text_area_Box">
 <?php 
-
 $data2 = CHtml::listData(EmployeeCategories::model()->findAll(array('order'=>'name DESC')),'id','name');
-echo CHtml::activeDropDownList($model,'employee_category_id',$data2,array('prompt'=>'Select','id'=>'employee_category_id')); ?>
-<input type="submit" value="Apply" />
+echo CHtml::activeDropDownList($model,'employee_category_id',$data2,array('prompt'=>Yii::t('app','Select'),'id'=>'employee_category_id')); ?>
+</li>
+<li class="Btn_area_Box">
+<input type="submit" value="<?php echo Yii::t('app','Apply'); ?>" />
+</li>
+</ul>
+</div>
 </div>
 </li>
 
 
-<li><div onClick="hide('pos')" style="cursor:pointer;"><?php echo Yii::t('employees','Position');?></div>
-<div id="pos" style="display:none; width:195px; padding-top:0px; height:30px" class="drop">
+<li><div onClick="hide('pos')" style="cursor:pointer;"><?php echo Yii::t('app','Position');?></div>
+<div id="pos" style="display:none; width:230px;" class="drop_search">
 <div class="droparrow" style="left:10px;"></div>
+<div class="filter_ul">
+<ul>
+<li class="Text_area_Box">
 <?php 
-
 $data3 = CHtml::listData(EmployeePositions::model()->findAll(array('order'=>'name DESC')),'id','name');
-echo CHtml::activeDropDownList($model,'employee_position_id',$data3,array('prompt'=>'Select','id'=>'employee_position_id')); ?>
-<input type="submit" value="Apply" />
+echo CHtml::activeDropDownList($model,'employee_position_id',$data3,array('prompt'=>Yii::t('app','Select'),'id'=>'employee_position_id')); ?>
+</li>
+<li class="Btn_area_Box">
+<input type="submit" value="<?php echo Yii::t('app','Apply'); ?>" />
+</li>
+</ul>
+</div>
 </div>
 </li>
 
-<li><div onClick="hide('grd')" style="cursor:pointer;"><?php echo Yii::t('employees','Grade');?></div>
-<div id="grd" style="display:none; width:195px; padding-top:0px; height:30px; left:-140px" class="drop">
+<li><div onClick="hide('grd')" style="cursor:pointer;"><?php echo Yii::t('app','Grade');?></div>
+<div id="grd" style="display:none; width:230px;left:-140px" class="drop_search">
 <div class="droparrow" style="left:150px;"></div>
+<div class="filter_ul">
+<ul>
+<li class="Text_area_Box">
 <?php 
-
-$data4 = CHtml::listData(EmployeeGrades::model()->findAll(array('order'=>'name DESC')),'id','name');
-echo CHtml::activeDropDownList($model,'employee_grade_id',$data4,array('prompt'=>'Select','id'=>'employee_grade_id')); ?>
-<input type="submit" value="Apply" />
+$data4 = CHtml::listData(EmployeeGrades::model()->findAll(array('order'=>'name DESC','condition'=>'status=:x','params'=>array(':x'=>1))),'id','name');
+echo CHtml::activeDropDownList($model,'employee_grade_id',$data4,array('prompt'=>Yii::t('app','Select'),'id'=>'employee_grade_id')); ?>
+</li>
+<li class="Btn_area_Box">
+<input type="submit" value="<?php echo Yii::t('app','Apply'); ?>" />
+</li>
+</ul>
+</div>
 </div>
 </li>
 
 
-<li><div onClick="hide('gender')" style="cursor:pointer;"><?php echo Yii::t('employees','Gender');?></div>
-<div id="gender" style="display:none; width:200px; padding-top:0px; height:30px; left:-140px" class="drop">
+<li><div onClick="hide('gender')" style="cursor:pointer;"><?php echo Yii::t('app','Gender');?></div>
+<div id="gender" style="display:none; width:242px; left:-140px" class="drop_search">
 <div class="droparrow" style="left:150px;"></div>
+<div class="filter_ul">
+<ul>
+<li class="Text_area_Box">
 <?php 
-
-echo CHtml::activeDropDownList($model,'gender',array('M' => 'Male', 'F' => 'Female'),array('prompt'=>'All')); 
+echo CHtml::activeDropDownList($model,'gender',array('M' => Yii::t('app','Male'), 'F' => Yii::t('app','Female')),array('prompt'=>Yii::t('app','All'))); 
  ?>
- <input type="submit" value="Apply" />
+</li> 
+ <li class="Btn_area_Box">
+ <input type="submit" value="<?php echo Yii::t('app','Apply'); ?>" />
+</li>
+</ul>
+</div> 
 </div>
 </li>
 
-<li><div onClick="hide('marital')" style="cursor:pointer;"><?php echo Yii::t('employees','Marital Status');?></div>
-<div id="marital" style="display:none; width:200px; padding-top:0px; height:30px;" class="drop">
-<div class="droparrow" style="left:10px;"></div>
+<li><div onClick="hide('marital')" style="cursor:pointer;"><?php echo Yii::t('app','Marital Status');?></div>
+<div id="marital" style="display:none; width:230px; left:-140px" class="drop_search">
+<div class="droparrow" style="left:173px;"></div>
+<div class="filter_ul">
+<ul>
+<li class="Text_area_Box">
 <?php 
-
-echo CHtml::activeDropDownList($model,'marital_status',array('Single'=>'Single','Married'=>'Married','Divorced'=>'Divorced'),array('prompt'=>'All')); 
+echo CHtml::activeDropDownList($model,'marital_status',array('Single'=>Yii::t('app','Single'),'Married'=>Yii::t('app','Married'),'Divorced'=>Yii::t('app','Divorced')),array('prompt'=>Yii::t('app','All'))); 
  ?>
- <input type="submit" value="Apply" />
+ </li> 
+ <li class="Btn_area_Box">
+ <input type="submit" value="<?php echo Yii::t('app','Apply'); ?>" />
+</li>
+</ul>
+</div> 
 </div>
 </li>
 
-<li><div onClick="hide('bloodgroup')" style="cursor:pointer;"><?php echo Yii::t('employees','Blood Group');?></div>
-<div id="bloodgroup" style="display:none; width:200px; padding-top:0px; height:30px;" class="drop" >
+<li><div onClick="hide('bloodgroup')" style="cursor:pointer;"><?php echo Yii::t('app','Blood Group');?></div>
+<div id="bloodgroup" style="display:none; width:230px;" class="drop_search" >
 <div class="droparrow" style="left:10px;"></div>
+<div class="filter_ul">
+<ul>
+<li class="Text_area_Box">
 <?php echo CHtml::activeDropDownList($model,'blood_group',
-		 							array('A+' => 'A+', 'A-' => 'A-', 'B+' => 'B+', 'B-' => 'B-', 'O+' => 'O+', 'O-' => 'O-', 'AB+' => 'AB+', 'AB-' => 'AB-'),
-									array('prompt' => 'Select')); ?>
-                                    <input type="submit" value="Apply" />
-</div>
+array('A+' => 'A+', 'A-' => 'A-', 'B+' => 'B+', 'B-' => 'B-', 'O+' => 'O+', 'O-' => 'O-', 'AB+' => 'AB+', 'AB-' => 'AB-'),
+array('prompt' => Yii::t('app','Select'))); ?>
+</li> 
+<li class="Btn_area_Box">                                    
+<input type="submit" value="<?php echo Yii::t('app','Apply'); ?>" />
 </li>
-                                    
-
-
-<li><div onClick="hide('nationality')" style="cursor:pointer;"><?php echo Yii::t('employees','Country');?></div>
-<div id="nationality" style="display:none; width:195px; left:-180px; height:30px; padding-top:0px;" class="drop">
-<div class="droparrow" style="left:190px;"></div>
-<?php echo CHtml::activeDropDownList($model,'nationality_id',CHtml::listData(Countries::model()->findAll(),'id','name'),array('prompt'=>'Select')); ?>
-<input type="submit" value="Apply" />
+</ul>
+</div>                                 
 </div>
 </li>
 
+<li><div onClick="hide('nationality')" style="cursor:pointer;"><?php echo Yii::t('app','Country');?></div>
+<div id="nationality" style="display:none; width:230px; left:-180px;" class="drop_search">
+<div class="droparrow" style="left:200px;"></div>
+<div class="filter_ul">
+<ul>
+<li class="Text_area_Box">
+<?php echo CHtml::activeDropDownList($model,'home_country_id',CHtml::listData(Countries::model()->findAll(),'id','name'),array('prompt'=>Yii::t('app','Select'))); ?>
+</li> 
+<li class="Btn_area_Box">      
+<input type="submit" value="<?php echo Yii::t('app','Apply'); ?>" />
+</li>
+</ul>
+</div>
 
-<li><div onClick="hide('dob')" style="cursor:pointer;"><?php echo Yii::t('employees','Date Of Birth');?></div>
-<div id="dob" style="display:none; width:345px; left:-210px; height:30px; padding-top:0px;" class="drop">
+</div>
+</li>
+
+
+<li><div onClick="hide('dob')" style="cursor:pointer;"><?php echo Yii::t('app','Date Of Birth');?></div>
+<div id="dob" style="display:none; width:420px; left:-210px; " class="drop_search">
 <div class="droparrow" style=" left:240px"></div>
-<?php echo CHtml::activeDropDownList($model,'dobrange',array('1' => 'born before', '2' => 'born in', '3' => 'born after'),array('prompt'=>'Option')); ?>
+
+         
+<div class="filter_ul">
+<ul>
+
+<li class="Text_area_Box-two">
+<?php echo CHtml::activeDropDownList($model,'dobrange',array('1' => Yii::t('app','born before'), '2' => Yii::t('app','born in'), '3' => Yii::t('app','born after')),array('prompt'=>Yii::t('app','Option'))); ?>
+</li>
+<li class="Text_area_Box-two">
 <?php
 $settings=UserSettings::model()->findByAttributes(array('user_id'=>Yii::app()->user->id));
 	if($settings!=NULL)
@@ -349,19 +443,32 @@ $daterange=date('Y');
 									'yearRange'=>'1900:'.$daterange_1,
 								),
 								'htmlOptions'=>array(
-									'style'=>'height:15px;',
+									'style'=>'',
 									'id'=>'dobtxt'
 								),
 							));
 		 ?>
-         <input type="submit" value="Apply" />
+</li>
+<li class="Btn_area_Box">
+<input type="submit" value="<?php echo Yii::t('app','Apply'); ?>" />
+</li>
+
+</ul>
+</div>   
+         
+         
 </div>
 </li>
 
-<li><div onClick="hide('joining')" style="cursor:pointer;"><?php echo Yii::t('employees','Joining Date');?></div>
-<div id="joining" style="display:none; width:345px; left:-190px;  height:30px; padding-top:0px;" class="drop">
+<li><div onClick="hide('joining')" style="cursor:pointer;"><?php echo Yii::t('app','Joining Date');?></div>
+<div id="joining" style="display:none; width:420px; left:-190px; " class="drop_search">
 <div class="droparrow" style=" left:220px"></div>
-<?php echo CHtml::activeDropDownList($model,'joinrange',array('1' => 'before', '2' => 'in', '3' => 'after'),array('prompt'=>'Option')); ?>
+<div class="filter_ul">
+<ul>
+<li class="Text_area_Box-two">
+<?php echo CHtml::activeDropDownList($model,'joinrange',array('1' => Yii::t('app','before'), '2' => Yii::t('app','on'), '3' => Yii::t('app','after')),array('prompt'=>Yii::t('app','Option'))); ?>
+</li>
+<li class="Text_area_Box-two">
 <?php 
 				$this->widget('zii.widgets.jui.CJuiDatePicker', array(
 								'name'=>'Employees[joining_date]',
@@ -376,21 +483,27 @@ $daterange=date('Y');
 									'yearRange'=>'1900:'.$daterange_1,
 								),
 								'htmlOptions'=>array(
-									'style'=>'height:15px;',
+									'style'=>'',
 									'id'=>'joindatetxt'
 								),
 							));
 		 ?>
-         <input type="submit" value="Apply" />
+         </li>
+<li class="Btn_area_Box">   
+         <input type="submit" value="<?php echo Yii::t('app','Apply'); ?>" />
+         </li>
+         </ul>
+         </div>
+         
 </div>
 </li>
 
-<?php /*?><li><div onclick="hide('status')" style="cursor:pointer;"><?php echo Yii::t('employees','Status');?></div>
+<?php /*?><li><div onclick="hide('status')" style="cursor:pointer;"><?php echo Yii::t('app','Status');?></div>
 <div id="status" style="display:none; width:160px; min-height:20px; padding-top:0px; left:-120px" class="drop">
 <div class="droparrow"  style="left:135px"></div>
 
 <?php 
-echo CHtml::activeDropDownList($model,'status',array('1' => 'Present', '0' => 'Former'),array('selected'=>'selected','prompt'=>'All')); 
+echo CHtml::activeDropDownList($model,'status',array('1' => 'Present', '0' => 'Former'),array('selected'=>'selected','prompt'=>Yii::t('app','All'))); 
  ?>
  <input type="submit" value="Apply" />
 </div>
@@ -400,15 +513,13 @@ echo CHtml::activeDropDownList($model,'status',array('1' => 'Present', '0' => 'F
 
 
 
-
-<?php $this->endWidget(); ?>
     
     </ul>
     <div class="clear"></div>
     </div>
     <div class="clear"></div>
     <div class="filterbxcntnt_inner_bot" >
-    <div class="filterbxcntnt_left"><?php echo Yii::t('employees','<strong>Active Filters:</strong>');?></div>
+    <div class="filterbxcntnt_left"><strong><?php echo Yii::t('app','Active Filters:');?></strong></div>
     <div class="clear"></div>
     <div class="filterbxcntnt_right">
     <ul>
@@ -417,14 +528,14 @@ echo CHtml::activeDropDownList($model,'status',array('1' => 'Present', '0' => 'F
     <?php if(isset($_REQUEST['name']) and $_REQUEST['name']!=NULL)
 	{
 		$j++; ?>
-    <li>Name : <?php echo $_REQUEST['name']?><a href="<?php echo Yii::app()->request->getUrl().'&name='?>"></a></li>
+    <li><?php echo Yii::t('app','Name');?> : <?php echo $_REQUEST['name']?><a href="<?php echo Yii::app()->request->getUrl().'&name='?>"></a></li>
     <?php } ?>
     
     
     <?php if(isset($_REQUEST['employeenumber']) and $_REQUEST['employeenumber']!=NULL)
     { 
 	    $j++; ?>
-    <li>Admission number : <?php echo $_REQUEST['employeenumber']?><a href="<?php echo Yii::app()->request->getUrl().'&employeenumber='?>"></a></li>
+    <li><?php echo Yii::t('app','Teacher Number');?> : <?php echo $_REQUEST['employeenumber']?><a href="<?php echo Yii::app()->request->getUrl().'&employeenumber='?>"></a></li>
     <?php } ?>
     
     
@@ -432,7 +543,7 @@ echo CHtml::activeDropDownList($model,'status',array('1' => 'Present', '0' => 'F
     { 
 	   $j++;
 	?>
-    <li>Department : <?php echo EmployeeDepartments::model()->findByAttributes(array('id'=>$_REQUEST['Employees']['employee_department_id']))->name?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[employee_department_id]='?>"></a></li>
+    <li><?php echo Yii::t('app','Department');?> : <?php echo EmployeeDepartments::model()->findByAttributes(array('id'=>$_REQUEST['Employees']['employee_department_id']))->name?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[employee_department_id]='?>"></a></li>
     <?php } ?>
     
     
@@ -440,7 +551,7 @@ echo CHtml::activeDropDownList($model,'status',array('1' => 'Present', '0' => 'F
     { 
 	   $j++;
 	?>
-    <li>Category : <?php echo EmployeeCategories::model()->findByAttributes(array('id'=>$_REQUEST['Employees']['employee_category_id']))->name?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[employee_category_id]='?>"></a></li>
+    <li><?php echo Yii::t('app','Category');?> : <?php echo EmployeeCategories::model()->findByAttributes(array('id'=>$_REQUEST['Employees']['employee_category_id']))->name?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[employee_category_id]='?>"></a></li>
     <?php } ?>
     
     
@@ -448,7 +559,7 @@ echo CHtml::activeDropDownList($model,'status',array('1' => 'Present', '0' => 'F
     { 
 	   $j++;
 	?>
-    <li>Position : <?php echo EmployeePositions::model()->findByAttributes(array('id'=>$_REQUEST['Employees']['employee_position_id']))->name?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[employee_position_id]='?>"></a></li>
+    <li><?php echo Yii::t('app','Position');?> : <?php echo EmployeePositions::model()->findByAttributes(array('id'=>$_REQUEST['Employees']['employee_position_id']))->name?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[employee_position_id]='?>"></a></li>
     <?php } ?>
     
     
@@ -456,7 +567,7 @@ echo CHtml::activeDropDownList($model,'status',array('1' => 'Present', '0' => 'F
     { 
 	   $j++;
 	?>
-    <li>Grade : <?php echo EmployeeGrades::model()->findByAttributes(array('id'=>$_REQUEST['Employees']['employee_grade_id']))->name?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[employee_grade_id]='?>"></a></li>
+    <li><?php echo Yii::t('app','Grade');?> : <?php echo EmployeeGrades::model()->findByAttributes(array('id'=>$_REQUEST['Employees']['employee_grade_id']))->name?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[employee_grade_id]='?>"></a></li>
     <?php } ?>
     
     
@@ -464,32 +575,32 @@ echo CHtml::activeDropDownList($model,'status',array('1' => 'Present', '0' => 'F
     <?php if(isset($_REQUEST['Employees']['gender']) and $_REQUEST['Employees']['gender']!=NULL)
 	{ $j++;
 	if($_REQUEST['Employees']['gender']=='M')
-	$gen='Male';
+	$gen=Yii::t('app','Male');
 	else
-	$gen='Female';
+	$gen=Yii::t('app','Female');
 	?>
-    <li>Gender : <?php echo $gen?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[gender]='?>"></a></li>
+    <li><?php echo Yii::t('app','Gender');?> : <?php echo $gen?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[gender]='?>"></a></li>
     <?php } ?>
     
     
     <?php if(isset($_REQUEST['Employees']['marital_status']) and $_REQUEST['Employees']['marital_status']!=NULL)
 	{
 		$j++; ?>
-    <li>Marital Status : <?php echo $_REQUEST['Employees']['marital_status']?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[marital_status]='?>"></a></li>
+    <li><?php echo Yii::t('app','Marital Status');?> : <?php echo $_REQUEST['Employees']['marital_status']?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[marital_status]='?>"></a></li>
     <?php } ?>
     
     
     <?php if(isset($_REQUEST['Employees']['blood_group']) and $_REQUEST['Employees']['blood_group']!=NULL)
 	{ 
 	   $j++; ?>
-    <li>Blood Group : <?php echo $_REQUEST['Employees']['blood_group']?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[blood_group]='?>"></a></li>
+    <li><?php echo Yii::t('app','Blood Group');?> : <?php echo $_REQUEST['Employees']['blood_group']?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[blood_group]='?>"></a></li>
     <?php } ?>
     
     
-    <?php  if(isset($_REQUEST['Employees']['nationality_id']) and $_REQUEST['Employees']['nationality_id']!=NULL)
+    <?php  if(isset($_REQUEST['Employees']['home_country_id']) and $_REQUEST['Employees']['home_country_id']!=NULL)
 	{
 	    $j++; ?>
-    <li>Country : <?php echo Countries::model()->findByAttributes(array('id'=>$_REQUEST['Employees']['nationality_id']))->name?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[nationality_id]='?>"></a></li>
+    <li><?php echo Yii::t('app','Country');?> : <?php echo Countries::model()->findByAttributes(array('id'=>$_REQUEST['Employees']['home_country_id']))->name?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[home_country_id]='?>"></a></li>
     <?php } ?>
     
     
@@ -501,26 +612,26 @@ echo CHtml::activeDropDownList($model,'status',array('1' => 'Present', '0' => 'F
 	    { $j++;
 			      if($_REQUEST['Employees']['dobrange']=='1')
 				  {
-					  $range = 'born before';
+					  $range = Yii::t('app','born before');
 				  }
 				  if($_REQUEST['Employees']['dobrange']=='2')
 				  {
-					  $range = 'born in';
+					  $range = Yii::t('app','born in');
 				  }
 				  if($_REQUEST['Employees']['dobrange']=='3')
 				  {
-					  $range = 'born after';
+					  $range = Yii::t('app','born after');
 				  }?>
-    <li>Date Of Birth : <?php echo $range.' : '.$_REQUEST['Employees']['date_of_birth']?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[date_of_birth]='?>"></a></li>
+    <li><?php echo Yii::t('app','Date Of Birth');?> : <?php echo $range.' : '.$_REQUEST['Employees']['date_of_birth']?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[date_of_birth]='?>"></a></li>
     <?php }} 
 	
 	elseif(isset($_REQUEST['Employees']['dobrange']) and $_REQUEST['Employees']['dobrange']==NULL)
 	{ 
 	  if(isset($_REQUEST['Employees']['date_of_birth']) and $_REQUEST['Employees']['date_of_birth']!=NULL)
 	  { $j++;
-		        $range = 'born in';  
+		        $range = Yii::t('app','born in');  
 				  ?>
-    <li>Date Of Birth : <?php echo $range.' : '.$_REQUEST['Employees']['date_of_birth']?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[date_of_birth]='?>"></a></li>
+    <li><?php echo Yii::t('app','Date Of Birth :'); ?> <?php echo $range.' : '.$_REQUEST['Employees']['date_of_birth']?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[date_of_birth]='?>"></a></li>
     <?php }} ?>
     
     
@@ -533,27 +644,27 @@ echo CHtml::activeDropDownList($model,'status',array('1' => 'Present', '0' => 'F
 			  { $j++;
 				  if($_REQUEST['Employees']['joinrange']=='1')
 				  {
-					  $joinrange = 'before';
+					  $joinrange = Yii::t('app','before');
 				  }
 				  if($_REQUEST['Employees']['joinrange']=='2')
 				  {
-					  $joinrange = 'in';
+					  $joinrange = Yii::t('app','on');
 				  }
 				  if($_REQUEST['Employees']['joinrange']=='3')
 				  {
-					  $joinrange = 'after';
+					  $joinrange = Yii::t('app','after');
 				  }
 				  
 				  ?>
-     <li>Joining Date : <?php echo $joinrange.' : '.$_REQUEST['Employees']['joining_date']?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[joining_date]='?>"></a></li>
+     <li><?php echo Yii::t('app','Joining Date');?> : <?php echo $joinrange.' : '.$_REQUEST['Employees']['joining_date']?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[joining_date]='?>"></a></li>
     <?php }} 
 	elseif(isset($_REQUEST['Employees']['joinrange']) and $_REQUEST['Employees']['joinrange']==NULL)
 		{
 			  if(isset($_REQUEST['Employees']['joining_date']) and $_REQUEST['Employees']['joining_date']!=NULL)
 			  { $j++;
 			  
-				   $joinrange = 'in'; ?>
-     <li>Joining Date : <?php echo $joinrange.' : '.$_REQUEST['Employees']['joining_date']?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[joining_date]='?>"></a></li>
+				   $joinrange = Yii::t('app','on'); ?>
+     <li><?php echo Yii::t('app','Joining Date');?> : <?php echo $joinrange.' : '.$_REQUEST['Employees']['joining_date']?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[joining_date]='?>"></a></li>
     <?php }}?> 
     
     
@@ -561,18 +672,22 @@ echo CHtml::activeDropDownList($model,'status',array('1' => 'Present', '0' => 'F
 	{ $j++;
 		  if($_REQUEST['Employees']['status']=='1')
 		  {
-			  $status='Present';
+			  $status=Yii::t('app','Present');
 		  }
 		  else
 		  {
-		      $status='Former';
+		      $status=Yii::t('app','Former');
 		  }
 		  ?>
-		  <li>Status : <?php echo $status?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[status]='?>"></a></li>
+		  <li><?php echo Yii::t('app','Status :'); ?> <?php echo $status?><a href="<?php echo Yii::app()->request->getUrl().'&Employees[status]='?>"></a></li>
     <?php } ?> 
     <?php if($j==0)
 	{
-		echo '<div style="padding-top:3px; font-size:11px;"><i>No Active Filters</i></div>';
+        ?>
+		<div style="padding-top:3px; font-size:11px;"><i>
+                        <?php echo Yii::t('app','No Active Filters'); ?>
+                    </i></div>
+                  <?php
 	}?> 
    
     <div class="clear"></div>
@@ -584,349 +699,119 @@ echo CHtml::activeDropDownList($model,'status',array('1' => 'Present', '0' => 'F
     </div>
     <div class="clear"></div>
     
-      <div class="list_contner_hdng">
-    <div class="letterNavCon" id="letterNavCon">
+    <!-- Alphabetic Sort -->
+    <?php $this->widget('application.extensions.letterFilter.LetterFilter', array(
+        //parameters
+        'outerWrapperClass'=>'list_contner_hdng',
+        'innerWrapperId'=>'letterNavCon',
+        'innerWrapperClass'=>'letterNavCon',
+        'activeClass'=>'ln_active',
+    )); ?>
+    <!-- END Alphabetic Sort -->    
     
+    <?php
+	$current_academic_yr = Configurations::model()->findByAttributes(array('id'=>35));
+	if(Yii::app()->user->year)
+	{
+		$year = Yii::app()->user->year;
+	}
+	else
+	{
+		$year = $current_academic_yr->config_value;
+	}
+	$is_delete = PreviousYearSettings::model()->findByAttributes(array('id'=>4));
+	if(($year != $current_academic_yr->config_value and $is_delete->settings_value==0) and $list!=NULL)
+	{
+		
+	?><?php /*?>
+	
+		<div>
+			<div class="yellow_bx" style="background-image:none;width:670px;padding-bottom:45px;">
+				<div class="y_bx_head" style="width:650px;">
+				<?php 
+					echo Yii::t('app','You are not viewing the current active year. ');
+					
+				?>
+				</div>
+				<div class="y_bx_list" style="width:650px;">
+					<h1><?php echo CHtml::link(Yii::t('app','Previous Academic Year Settings'),array('/previousYearSettings/create')) ?></h1>
+				</div>
+			</div>
+		</div>
+		<?php */?>
+	<?php	
+		
+	}
+	
+	
+	?>
     
-  
-                    
-<ul>
-<?php if((isset($_REQUEST['val']) and $_REQUEST['val']==NULL) or (!isset($_REQUEST['val'])))
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-
-<?php echo CHtml::link(Yii::t('employees','All'), Yii::app()->request->getUrl().'&val=',array('class'=>'vtip')); ?>                            
-</li>
-
-
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='A')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php echo CHtml::link(Yii::t('employees','A'), Yii::app()->request->getUrl().'&val=A',array('class'=>'vtip')); ?>                            
-</li>
-
-
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='B')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','B'), Yii::app()->request->getUrl().'&val=B',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='C')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','C'), Yii::app()->request->getUrl().'&val=C',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='D')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','D'), Yii::app()->request->getUrl().'&val=D',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='E')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','E'), Yii::app()->request->getUrl().'&val=E',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='F')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','F'), Yii::app()->request->getUrl().'&val=F',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='G')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','G'), Yii::app()->request->getUrl().'&val=G',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='H')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','H'), Yii::app()->request->getUrl().'&val=H',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='I')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','I'), Yii::app()->request->getUrl().'&val=I',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='J')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','J'), Yii::app()->request->getUrl().'&val=J',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='K')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','K'), Yii::app()->request->getUrl().'&val=K',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='L')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','L'), Yii::app()->request->getUrl().'&val=L',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='M')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','M'), Yii::app()->request->getUrl().'&val=M',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='N')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','N'), Yii::app()->request->getUrl().'&val=N',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='O')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','O'), Yii::app()->request->getUrl().'&val=O',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='P')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','P'), Yii::app()->request->getUrl().'&val=P',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='Q')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','Q'), Yii::app()->request->getUrl().'&val=Q',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='R')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','R'), Yii::app()->request->getUrl().'&val=R',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='S')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','S'), Yii::app()->request->getUrl().'&val=S',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='T')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','T'), Yii::app()->request->getUrl().'&val=T',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='U')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','U'), Yii::app()->request->getUrl().'&val=U',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='V')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','V'), Yii::app()->request->getUrl().'&val=V',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='W')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','W'), Yii::app()->request->getUrl().'&val=W',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='X')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','X'), Yii::app()->request->getUrl().'&val=X',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='Y')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','Y'), Yii::app()->request->getUrl().'&val=Y',array('class'=>'vtip')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='Z')
-{
-	echo '<li class="ln_active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link(Yii::t('employees','Z'), Yii::app()->request->getUrl().'&val=Z',array('class'=>'vtip')); ?>                            
-</li>
-<div class="clear"></div>
-</ul>
-                    	<div class="clear"></div>
-                    </div>
-    
-    </div>                                          
-    <div class="list_contner">
+                                             
+    <div  style="margin-top:43px;">
     
     <div class="clear"></div>
+    
+    <div class="pdf-box">
+    <div class="box-one">
+    	<div class="bttns_addstudent-n">
+    <ul>
+    	<li>
+			<?php echo CHtml::link(Yii::t('app','Add Teacher'), array('create'),array('class'=>'formbut-n')); ?>
+         </li>
+         <?php if(count($list) > 0){ ?>
+             <li>
+                    <?php echo CHtml::Button( Yii::t('app','Delete All'),array('name'=>'submit','class'=>' formbut-n-input','id'=>'delete','onclick'=>'return delete_all()',));?>   
+             </li>
+        <?php } ?>
+    </ul>
+</div>
+    </div>
+    <div class="box-two">
+         <div class="pdf-div">
+         	<?php if(count($list) > 0){ ?>
+                <button type="submit" class="pdf_but-input"  name= "print" formtarget="_blank">
+                	<?php echo Yii::t('app','Generate PDF')?>
+                </button>
+			<?php } ?>    
+         </div>
+    </div>
+</div>
+    
+<?php $this->endWidget(); ?>    
                                                 
     <?php if($list)
-	{?>
-        <div class="tablebx">  
-         <div class="pagecon">
-                                                 <?php 
-	                                                  $this->widget('CLinkPager', array(
-													  'currentPage'=>$pages->getCurrentPage(),
-													  'itemCount'=>$item_count,
-													  'pageSize'=>$page_size,
-													  'maxButtonCount'=>5,
-													  //'nextPageLabel'=>'My text >',
-													  'header'=>'',
-												  'htmlOptions'=>array('class'=>'pages'),
-												  ));?>
-                                                  </div>                                         
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+	{
+	
+	?>
     
+    
+    
+        <div class="tablebx" style="position:relative">  
+
+        
+     
+    
+   <div class="clear"></div>   
+
+
+                       
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr class="tablebx_topbg">
-    <td><?php echo Yii::t('employees','Sl. No.');?></td>	
-    <td><?php echo Yii::t('employees','Employee Name');?></td>
-    <td><?php echo Yii::t('employees','Employee No.');?></td>
-    <td><?php echo Yii::t('employees','Department');?></td>
-    <td><?php echo Yii::t('employees','Gender');?></td>
-    <td><?php echo Yii::t('employees','Actions');?></td>
+    <td style="text-align:center"><div class="btn-group mailbox-checkall-buttons">
+    <input type="checkbox" id="ch"  name="ch1" class="chkbox checkall" onClick="checkall()"/> </div></td>
+    <td><?php echo Yii::t('app','Sl. No.');?></td>	
+    <td><?php echo Yii::t('app','Teacher Name');?></td>
+    <td><?php echo Yii::t('app','Teacher No');?></td>
+    <td><?php echo Yii::t('app','Department');?></td>
+    <td><?php echo Yii::t('app','Gender');?></td>
+    <?php
+	if((($year == $current_academic_yr->config_value)) or ($year != $current_academic_yr->config_value and $is_delete->settings_value!=0))
+	{
+	?>
+    <td><?php echo Yii::t('app','Actions');?></td>
+    <?php
+	}
+	?>
     <!--<td style="border-right:none;">Task</td>-->
   </tr>
   <?php 
@@ -944,9 +829,17 @@ else
   
   <?php foreach($list as $list_1)
 	{ ?>
- <tr class=<?php echo $cls;?> id=<?php echo $i;?>>
+ <tr class="<?php echo $cls;?>" id="<?php echo $i;?>">
+    <td style="text-align:center">
+        <div class="mailbox-item-wrapper">
+        <label class="checkbox1" for="conv_<?php echo $list_1->id; ?>">
+        <div class="mailbox-check mailbox-ellipsis">
+        <input class="checkbox1 " id="conv_<?php echo $list_1->id; ?>" type="checkbox" name="convs" value="<?php echo $list_1->id; ?>" onClick="selectcheck()" />
+        </div>
+        </div>
+    </td>
     <td><?php echo $i; ?></td>
-    <td><?php echo CHtml::link($list_1->first_name.'  '.$list_1->middle_name.'  '.$list_1->last_name,array('view','id'=>$list_1->id)) ?></td>
+    <td><?php echo CHtml::link(Employees::model()->getTeachername($list_1->id),array('view','id'=>$list_1->id)) ?></td>
     <td><?php echo $list_1->employee_number ?></td>
 	<?php $batc = EmployeeDepartments::model()->findByAttributes(array('id'=>$list_1->employee_department_id)); 
 	if($batc!=NULL)
@@ -958,16 +851,21 @@ else
     
     <td><?php if($list_1->gender=='M')
 	{
-		echo 'Male';
+		echo Yii::t('app','Male');
 	}
 	elseif($list_1->gender=='F')
 	{
-		echo 'Female';
+		echo Yii::t('app','Female');
 	}?></td>
-    <td><?php //echo CHtml::ajaxlink('Delete',array('employees/manage','id'=>$list_1->id),array('confirm'=>'Do you want to delete Employee ?')) 
+    <td><?php //echo CHtml::ajaxlink('Delete',array('employees/manage','id'=>$list_1->id),array('confirm'=>'Do you want to delete Teacher ?')) 
 		//echo CHtml::ajaxLink('Delete', array('deletes','id'=>$list_1->id), array('update'=>'#'.$i),array('confirm'=>'Do you want to delete this employee ?'));
-		echo CHtml::ajaxLink('Delete', array('deletes','id'=>$list_1->id), array('success'=>'rowdelete('.$i.')'),array('confirm'=>'Do you want to delete this employee ?'));
-		//echo CHtml::ajaxLink('Delete', array('deletes'), array('update'=>'#forAjaxRefresh'),array('onclick'=>'js: alert(Do you want to delete Employee ?);'));
+	
+	if((($year == $current_academic_yr->config_value)) or ($year != $current_academic_yr->config_value and $is_delete->settings_value!=0))
+	{
+	
+		echo CHtml::link('<span>'.Yii::t('app','Delete').'</span>', "#", array('submit'=>array('deletes','id'=>$list_1->id,), 'confirm'=>Yii::t('app','Are you sure you want to delete the teacher?'), 'csrf'=>true)); 
+	}
+		//echo CHtml::ajaxLink('Delete', array('deletes'), array('update'=>'#forAjaxRefresh'),array('onclick'=>'js: alert(Do you want to delete Teacher ?);'));
 	?></td>
     <!--<td style="border-right:none;">Task</td>-->
   </tr><?php
@@ -998,7 +896,7 @@ else
     <?php }
 	else
 	{
-	echo '<div class="listhdg" align="center">'.Yii::t('employees','Nothing Found!!').'</div>';	
+	echo '<div class="listhdg" align="center">'.Yii::t('app','Nothing Found!!').'</div>';	
 	}?>
     
     
@@ -1050,5 +948,66 @@ $('.load_filter').click(function(event){
 function rowdelete(id)
 {
 	 $("#"+id).fadeOut("slow");
+	 location.reload();
+}
+function checkall()
+{
+	if(ch.checked)
+	{ 
+		$('.checkbox1').prop('checked', true);
+	}
+	else
+	{
+		$('.checkbox1').each(function() { //loop through each checkbox
+		   this.checked = false; //deselect all checkboxes with class "checkbox1"                       
+		});         
+	}
+}
+function selectcheck()
+{
+	var numberOfChecked = $('.checkbox1:checked').length; //count of all checked checkboxes with class "checkbox1"
+	var totalCheckboxes = $('.checkbox1:checkbox').length; //count of all textboxes with class "checkbox1"
+	if(numberOfChecked == totalCheckboxes)
+		ch.checked=true;
+	else
+		ch.checked=false;	
+}
+
+function delete_all()
+{  
+	var numberOfChecked = $('.checkbox1:checked').length; //count of all checked checkboxes with class "checkbox1"
+	var totalCheckboxes = $('.checkbox1:checkbox').length; //count of all textboxes with class "checkbox1"
+	var notChecked 		= $('.checkbox1:not(":checked")').length; //totalCheckboxes - numberOfChecked;
+	
+	if(numberOfChecked > 0){		
+		var favorite = [];
+		$.each($("input[name='convs']:checked"), function(){            
+			favorite.push($(this).val());
+		});
+		var r	= confirm("<?php echo Yii::t('app','Are you sure ? Do you want to delete this?');?>");
+		
+		if(r==true){
+			$.ajax({
+				url:"<?php echo Yii::app()->createUrl('/employees/employees/delete_all');?>",
+				type:'POST',
+				data:{id:favorite, "<?php echo Yii::app()->request->csrfTokenName;?>":"<?php echo Yii::app()->request->csrfToken;?>"},
+				dataType:"json",
+				success:function(response){
+					if(response.status=="success"){
+						window.location.reload();
+					}
+					else{
+						alert("<?php echo Yii::t("app", "Error");?>");
+					}
+				}
+			});
+		}
+		else{		
+			return false;
+		}
+	}else{
+		alert("<?php echo Yii::t('app','Please select atleast one Teacher');?>");
+		return false;
+	}
 }
 </script>

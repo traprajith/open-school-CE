@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Subject Name Ajaxes'=>array('/courses'),
+	Yii::t('app','Subject Name Ajaxes')=>array('/courses'),
 	$model->name,
 );
 
@@ -13,7 +13,7 @@ $this->breadcrumbs=array(
 );*/
 ?>
 
-<h1><?php echo Yii::t('subjectname','View Subjects');?></h1>
+<h1><?php echo Yii::t('app','View Subjects');?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

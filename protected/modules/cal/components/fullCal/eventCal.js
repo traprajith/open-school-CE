@@ -145,33 +145,54 @@ var tempEvent;
                 data,
                 function(returnId)
                 {
-                    switch(returnId)
-                    {
-                        case "0":
-                            $("#EventCal").fullCalendar( 'removeEvents', tempEvent.id);
-                            break;
-                        case data.eventId:
-                            tempEvent.id = returnId;
-                            tempEvent.title = data.title;
-                            tempEvent.start = data.start;
-                            tempEvent.end = data.end;
-                            tempEvent.allDay = data.allDay;
-                            tempEvent.editable = data.editable;
-                            $("#EventCal").fullCalendar( 'updateEvent', tempEvent);
-                            break;
-                        default:
-                            tempEvent.id = returnId;
-                            tempEvent.title = data.title;
-                            tempEvent.start = data.start;
-                            tempEvent.end = data.end;
-                            tempEvent.allDay = data.allDay;
-                            tempEvent.editable = data.editable;
-                            $("#EventCal").fullCalendar( 'renderEvent', tempEvent);
-                            break;
-                    }
+					$(".errorMessage").remove();
+					if(isNaN(returnId)){
+						var errors	= JSON.parse(returnId);
+						$.each(errors, function(key, message) {							
+							var error	= $("<div class='errorMessage' />");
+							error.text(message[0]);
+							error.insertAfter($("#EventCal_" + key));
+						});
+					}
+					else{
+						switch(returnId)
+						{
+							case "0":
+								tempEvent.id = returnId;
+								$("#EventCal").fullCalendar( 'removeEvents', tempEvent.id);
+								break;
+							case data.eventId:
+								tempEvent.id = returnId;
+								tempEvent.title = data.title;
+								tempEvent.organizer = data.organizer;
+								tempEvent.desc = data.desc;
+								//tempEvent.type = data.type;
+								tempEvent.start = data.start;
+								tempEvent.end = data.end;
+								tempEvent.allDay = data.allDay;
+								tempEvent.editable = data.editable;
+								tempEvent.placeholder = data.placeholder;
+								$("#EventCal").fullCalendar( 'updateEvent', tempEvent);
+								break;
+							default:
+								tempEvent.id = returnId;
+								tempEvent.title = data.title;
+								tempEvent.organizer = data.organizer;
+								tempEvent.desc = data.desc;
+								//tempEvent.type = data.type;
+								tempEvent.start = data.start;
+								tempEvent.end = data.end;
+								tempEvent.allDay = data.allDay;
+								tempEvent.editable = data.editable;
+								tempEvent.placeholder = data.placeholder;
+								$("#EventCal").fullCalendar( 'renderEvent', tempEvent);
+								break;
+						}
+						$('#dlg_EventCal').dialog("close");
+						window.location.reload();
+					}
                 }
-                );
-            $('#dlg_EventCal').dialog("close");
+            );
         }
 
         createNewEvent = function()

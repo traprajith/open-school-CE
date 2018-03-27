@@ -89,33 +89,33 @@ class UserDetails extends MyActiveRecord {
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'user_id' => 'User',
-			'agency_employee_id' => 'Agency Employee',
-			'lastname' => 'Lastname',
-			'firstname' => 'Firstname',
-			'suffix' => 'Suffix',
-			'address1' => 'Address1',
-			'address2' => 'Address2',
-			'zip_code' => 'Zip Code',
-			'city' => 'City',
-			'state' => 'State',
-			'phone1' => 'Phone1',
-			'phone2' => 'Phone2',
-			'dob' => 'Dob',
-			'ssn' => 'Ssn',
-			'includepayroll' => 'Includepayroll',
-			'employee_type' => 'Employee Type',
-			'weekend_access' => 'Weekend Access',
-			'earliest_login_time' => 'Earliest Login Time',
-			'automatic_lodout_time' => 'Automatic Lodout Time',
-			'hire_date' => 'Hire Date',
-			'termination_date' => 'Termination Date',
-			'File' => 'File',
-			'attachment' => 'Attachment',
-			'photo' => 'Photo',
-			'photo_thumb' => 'photo_thumb',
-			'sign' => 'signature'
+			'id' => Yii::t("app",'ID'),
+			'user_id' => Yii::t("app",'User'),
+			'agency_employee_id' => Yii::t("app",'Agency Teacher'),
+			'lastname' => Yii::t("app",'Lastname'),
+			'firstname' => Yii::t("app",'Firstname'),
+			'suffix' => Yii::t("app",'Suffix'),
+			'address1' => Yii::t("app",'Address1'),
+			'address2' => Yii::t("app",'Address2'),
+			'zip_code' => Yii::t("app",'Zip Code'),
+			'city' => Yii::t("app",'City'),
+			'state' => Yii::t("app",'State'),
+			'phone1' => Yii::t("app",'Phone 1'),
+			'phone2' => Yii::t("app",'Phone 2'),
+			'dob' => Yii::t("app",'Dob'),
+			'ssn' => Yii::t("app",'Ssn'),
+			'includepayroll' => Yii::t("app",'Includepayroll'),
+			'employee_type' => Yii::t("app",'Teacher Type'),
+			'weekend_access' => Yii::t("app",'Weekend Access'),
+			'earliest_login_time' => Yii::t("app",'Earliest Login Time'),
+			'automatic_lodout_time' => Yii::t("app",'Automatic Lodout Time'),
+			'hire_date' => Yii::t("app",'Hire Date'),
+			'termination_date' => Yii::t("app",'Termination Date'),
+			'File' => Yii::t("app",'File'),
+			'attachment' => Yii::t("app",'Attachment'),
+			'photo' => Yii::t("app",'Photo'),
+			'photo_thumb' => Yii::t("app",'photo_thumb'),
+			'sign' => Yii::t("app",'signature'),
 		);
 	}
 
@@ -251,7 +251,7 @@ class UserDetails extends MyActiveRecord {
                         }
 
      }  else {
-         echo "Select an image to upload";
+         echo Yii::t("app","Select an image to upload");
      }
 	  }
 }

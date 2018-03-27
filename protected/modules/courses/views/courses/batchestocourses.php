@@ -6,10 +6,10 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tbody>
   <tr class="cbtablebx_topbg">
-    <td><?php echo Yii::t('Courses','Batch Name');?>
+    <td><?php echo Yii::app()->getModule('students')->fieldLabel("Students", "batch_id").' '.Yii::t('app','Name');?>
     </td>
-    <td><?php echo Yii::t('Courses','Start Date');?></td>
-    <td><?php echo Yii::t('Courses','End Date');?></td>
+    <td><?php echo Yii::t('app','Start Date');?></td>
+    <td><?php echo Yii::t('app','End Date');?></td>
     <td style="border-right:none;">Actions</td>
   </tr>
   <tr class="even">

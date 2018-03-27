@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
      /* First Step: file upload */
 
     var button = $('input#importStep1'), interval;
@@ -13,7 +12,7 @@ $(document).ready(function() {
         },
         onComplete : function(file, response) {
             this.enable();
-            $("input#fileName").val(file);
+            //$("input#fileName").val(file);
             $("div#importCsvFirstStepResult").html(response);
         }
     });
@@ -23,6 +22,8 @@ $(document).ready(function() {
     /* Breadcrumbs */
 
     $("a#importCsvA2").click(function() {
+		$('html, body').animate({scrollTop:$('#content').position().top}, 'slow');
+		$("div#delimiters_log").hide(500);
         $("div#importCsvFirstStep").hide(500);
         $("div#importCsvSecondStep").show(500);
         $("div#importCsvThirdStep").hide(500);
@@ -35,8 +36,10 @@ $(document).ready(function() {
 /* Going to Second Step*/
 
 function toSecondStep(uploadfile, delimiterFromFile, tableFromFile, textDelimiterFromFile) {
+	   $('html, body').animate({scrollTop:$('#content').position().top}, 'slow');
        $("span#importCsvForFile").text(uploadfile);
        $("input#thirdFile").val(uploadfile);
+	   $("input#fileName").val(uploadfile);
        $("input#delimiter").val(delimiterFromFile);
        $("input#textDelimiter").val(textDelimiterFromFile);
        $("#table").val(tableFromFile);
@@ -48,10 +51,12 @@ function toSecondStep(uploadfile, delimiterFromFile, tableFromFile, textDelimite
 
 /* Going toThird Step*/
 
-function toThirdStep(content, delimiter, table, textDelimiter) {
+function toThirdStep(content, delimiter, model, table, textDelimiter) {
+	   $('html, body').animate({scrollTop:$('#content').position().top}, 'slow');
        $("span#importCsvForDelimiter").text(delimiter);
        $("span#importCsvForTextDelimiter").text(textDelimiter);
-       $("span#importCsvForTable").text(table);
+       $("span#importCsvForModel").text(model);
+	   $("div#delimiters_log").show(500);
        $("input#thirdDelimiter").val(delimiter);
        $("input#thirdTextDelimiter").val(textDelimiter);
        $("input#thirdTable").val(table);
@@ -65,6 +70,7 @@ function toThirdStep(content, delimiter, table, textDelimiter) {
 /* Going to the end*/
 
 function toEnd() {
-       $("div#importCsvThirdStepColumnsAndForm").hide(500);
+	   $('html, body').animate({scrollTop:$('#content').position().top}, 'slow');
+       $("div#importCsvThirdStepColumnsAndForm, div#delimiters_log").hide(500);
        $("span#importCsvBread2").css({"display" : "none"});
 }

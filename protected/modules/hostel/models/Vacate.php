@@ -64,13 +64,13 @@ class Vacate extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'student_id' => 'Student',
-			'room_no' => 'Room No',
-			'allot_id' => 'Allot',
-			'status' => 'Status',
-			'admit_date' => 'Admit Date',
-			'vacate_date' => 'Vacate Date',
+			'id' => Yii::t('app','ID'),
+			'student_id' => Yii::t('app','Student'),
+			'room_no' => Yii::t('app','Room No'),
+			'allot_id' => Yii::t('app','Allot'),
+			'status' => Yii::t('app','Status'),
+			'admit_date' => Yii::t('app','Admission Date'),
+			'vacate_date' => Yii::t('app','Vacate Date'),
 		);
 	}
 

@@ -2954,6 +2954,10 @@ if (!defined('__CLASS_HTML2PDF__')) {
          */
         protected function _tag_close_DIV($param, $other='div')
         {
+			if ($this->parsingCss->value['page-break-after'] == "always")
+			$this->_setNewPage(null, '', null, $this->_defaultTop);
+			$this->parsingCss->setPosition();
+			
             if ($this->_isForOneLine) return false;
 
             if ($this->parsingCss->value['overflow']=='hidden') {
@@ -4159,6 +4163,9 @@ if (!defined('__CLASS_HTML2PDF__')) {
          */
         protected function _tag_close_P($param)
         {
+			if($this->parsingCss->value['page-break-after'] == "always")
+				$this->_setNewPage();
+				
             if ($this->_isForOneLine) return false;
 
             if ($this->_maxH) $this->_tag_open_BR(array());

@@ -38,7 +38,6 @@ class RouteDetails extends CActiveRecord
 			array('route_name, no_of_stops, vehicle_id', 'required'),
 			array('no_of_stops', 'numerical', 'integerOnly'=>true),
 			array('route_name, no_of_stops, vehicle_id', 'length', 'max'=>120),
-			array('route_name','CRegularExpressionValidator', 'pattern'=>'/^[A-Za-z_ ]+$/','message'=>"{attribute} should contain only letters."),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, route_name, no_of_stops, vehicle_id', 'safe', 'on'=>'search'),
@@ -63,9 +62,12 @@ class RouteDetails extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'route_name' => 'Route Name',
-			'no_of_stops' => 'No Of Stops',
-			'vehicle_id' => 'Vehicle',
+			'route_name' =>  Yii::t('app','Route Name'),
+			'consumed_date' =>  Yii::t('app','Date'),
+			'no_of_stops' =>  Yii::t('app','No Of Stops'),
+			'vehicle_id' =>  Yii::t('app','Vehicle'),
+			
+		
 		);
 	}
 

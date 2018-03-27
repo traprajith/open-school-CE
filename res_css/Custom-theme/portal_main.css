@@ -1,0 +1,48 @@
+/*
+Created by: @themepixels
+URL: http://themepixels.com/
+*/
+
+body {
+   background: #2f323a;
+   font-family: 'LatoRegular', 'Lucida Grande', 'Lucida Sans Unicode', Helvetica, sans-serif !important;
+   line-height: 21px;
+   color: #636e7b;
+   overflow: hidden;
+}
+
+.nav-bracket > li.active > a,
+.nav-bracket > li.active > a:hover,
+.nav-bracket > li.active > a:focus {
+   background-color: #fdca43;
+   color: #fff;
+}
+.logopanel {
+   padding: 10px;
+   background: #fff;
+   height:85px;
+}
+
+.mailbox-menu-newmsg {
+    border: 1px solid #b52b2b !important;
+    border-radius: 3px !important;
+    background-color: #b52b2b;
+    box-shadow: 0 0 0 0 #ffffff inset !important;
+    color: #ffffff !important;
+    display: inline-block;
+    font-family: arial;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 6px 14px !important;
+    position: absolute;
+    right: 20px;
+    text-decoration: none;
+    top: 5px;
+}
+
+
+
+.headerbar {
+    border-left: 1px solid #eee;
+    background: #fff;
+}

@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Courses',
+	Yii::t('courses','Courses'),
 );
 
 $this->menu=array(

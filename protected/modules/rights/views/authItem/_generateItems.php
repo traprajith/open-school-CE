@@ -32,7 +32,7 @@
 
 <?php else: ?>
 
-	<tr><th  class="no-items-row" colspan="3"><?php echo Rights::t('core', 'No actions found.'); ?></th></tr>
+	<tr><th  class="no-items-row" colspan="3"><?php echo Yii::t('app', 'No actions found.'); ?></th></tr>
 
 <?php endif; ?>
 
@@ -40,13 +40,13 @@
 
 	<?php if( $displayModuleHeadingRow===true ): ?>
 
-		<tr><th class="module-heading-row" colspan="3"><?php echo Rights::t('core', 'Modules'); ?></th></tr>
+		<tr><th class="module-heading-row" colspan="3"><?php echo Yii::t('app', 'Modules'); ?></th></tr>
 
 	<?php endif; ?>
 
 	<?php foreach( $items['modules'] as $moduleName=>$moduleItems ): ?>
 
-		<tr><th class="module-row" colspan="3"><?php echo ucfirst($moduleName).'Module'; ?></th></tr>
+		<tr><th class="module-row" colspan="3"><?php echo ucfirst($moduleName).Yii::t('app','Module'); ?></th></tr>
 
 		<?php $this->renderPartial('_generateItems', array(
 			'model'=>$model,

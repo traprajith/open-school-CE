@@ -3,7 +3,7 @@
 body{
 	padding:0px;
 	margin:0px;
-	background:url(../images/bg.png) repeat-x top;
+	background:#33373d;
 	font-size:16px;
 	font-family:Arial, Helvetica, sans-serif;
 	
@@ -17,42 +17,51 @@ a{text-decoration:none;}
 	height:523px;
 	background:url(../images/loginimg.png) no-repeat;
 }
+.lw_logo p{
+	text-align:center;
+	text-align: center;
+	font-size: 13px;
+	color: #636363;	
+}
 input[type="text"],input[type="password"]{
-	-webkit-border-radius: 3px;
+	/*-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
-	border-radius: 3px;
-	border:0px #dddddd solid;
-	padding:8px 10px;
+	border-radius: 3px;*/
+	border:1px #e5e5e5 solid;
+	padding:10px 10px;
 	color:#333;
 	width:200px;
 	font-size:12px;
 	background:url(../images/logintxt-bg.png);
-	-moz-box-shadow:inset 0px 0px 3px #747474;
+	/*-moz-box-shadow:inset 0px 0px 3px #747474;
   -webkit-box-shadow:inset 0px 0px 3px #747474;
-  box-shadow:inset 0px 1px 3px #cacaca;
+  box-shadow:inset 0px 1px 3px #cacaca;*/
   outline:none;
 }
 .loginbut{
 	padding:0px 20px;
-	background:url(../images/fbut-bg.png) repeat-x;
+	background:#f38108;
 	height:37px;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-	border:1px #b58530 solid;
-	color:#633c15;
+	border:1px #de7504 solid;
+	color:#fff;
 	font-size:15px;
 	cursor:pointer;
-	text-shadow: 0.1em 0.1em #fdbd59;
-	font-weight:bold;
+	outline:none;
+}
+.loginbut:hover{
+	background:#de7504;
 }
 .loginboxWrapper{
-	margin:180px auto 0 auto; width:718px; height:295px; color:#3e3d3d; font-size:12px; background:url(../images/login_bg.png) repeat-x bottom;-webkit-border-radius: 4px;
+	margin:180px auto 0 auto; width:718px; height:295px; color:#3e3d3d; font-size:12px;
+	background:#FFF;
+	border-left:15px #ffbb00 solid;
+	/*background:url(../images/login_bg.png) repeat-x bottom;
+	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
 	-moz-box-shadow:0px 0px 3px #747474;
   -webkit-box-shadow:0px 0px 3px #747474;
-  box-shadow:0px 0px 8px #272626;
+  box-shadow:0px 0px 8px #272626;*/
 	}
 .loginboxWrapper h1{font-family:Arial, Helvetica, sans-serif; font-size:18px; color:#000; font-weight:lighter; margin:0px; padding:0px;}
 .loginboxWrapper a{color:#09F; text-decoration:none;}
@@ -66,14 +75,15 @@ input[type="text"],input[type="password"]{
 }
 .lw_right{
 	width:350px;
-	height:255px;
+	height:245px;
 	position:relative;
 	float:left;
-	padding:20px;
+	padding:25px 20px 20px 20px;
+	
 }
 .lw_right p{padding:12px 0px 8px 0px; margin:0px;}
 .lw_right td{
-	padding:5px 0px;
+	padding:7px 0px;
 }
 .lw_logo{
 	position:absolute;
@@ -81,6 +91,10 @@ input[type="text"],input[type="password"]{
 	left:65px;
 	width:171px;
 	height:161px;
+}
+.lw_logo img{
+	min-width: 171px; 
+	max-width: 171px;
 }
 .loginrow{position:relative;}
 .errorSummary{
@@ -91,3 +105,66 @@ input[type="text"],input[type="password"]{
 	background:url(../images/alert-triangle-red.png) no-repeat left top;
 }
 
+/*login credentials*/
+.logincredential{
+	margin:0px auto 0 auto; width:690px; height:80px; color:#3e3d3d; font-size:12px;
+	background:#2a2e34;
+	color:#798699;
+	text-align:left;
+}
+.logincredential h6{
+	font-size:12px;
+	color:#ffbb00;
+	margin:0px;
+	padding:0px 0px 10px 0px;
+}
+.logincredential p{
+	font-size:11px;
+	color:#798699;
+	padding:0px;
+	margin:0px;
+	line-height:14px;
+}
+.logincredential ul{
+	padding:0px;
+	margin:0px;
+	list-style:none;
+}
+.logincredential ul li{
+	width:145px;
+	height:65px;
+	padding:15px 0px 0px 25px;
+	float:left;
+	border-right:1px #1e2126 solid;
+	border-left:1px #383c43 solid;
+}
+.logincredential ul li:first-child{
+	border-left:0px #383c43 solid;
+}
+.logincredential ul li:last-child{
+	border-right:0px #383c43 solid;
+}
+.opnsl_powered{
+	margin: 0px auto 0 auto;
+	width: 734px;
+}
+
+.opnsl_powered p{
+    font-size: 12px;
+    color: #9c9c9c;
+    padding: 5px 0px;
+    margin: 2px 0px;
+    font-weight: 400;
+	text-transform:uppercase;
+    font-family: "Open Sans", sans-serif;
+}
+.opnsl_powered p a{
+    font-size: 12px;
+    color: #29b6f6;
+    padding: 0px;
+    margin: 2px 0px;
+    font-weight: 500;
+	text-transform:uppercase;
+	text-decoration:none;
+    font-family: "Open Sans", sans-serif;
+}

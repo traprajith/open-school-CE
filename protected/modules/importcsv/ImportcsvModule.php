@@ -53,6 +53,9 @@
 
 class ImportcsvModule extends CWebModule
 {
+	public $subjectMaxCharsDisplay = 100;
+	public $ellipsis = '...';
+	public $allowableCharsSubject = '0-9a-z.,!?@\s*$%#&;:+=_(){}\[\]\/\\-';
         /*
          * path for csv file
          */
@@ -65,14 +68,19 @@ class ImportcsvModule extends CWebModule
 	public $tableKey;
 	public $csvKey;
 	public $allowedColumns;
+	public $csvDefaultValues	= array();
+	
+	//new configurations
+	public $models;
+	public $scopes 	= array();
+	public $scope 	= "forAdminRegistration";
+	
+	public $actions	= array();
+	public $action	= 'insert';
 
 
 	public function init()
 	{
-		// this method is called when the module is being created
-		// you may place code here to customize the module or the application
-
-		// import the module-level models and components
 		$this->setImport(array(
 			'importcsv.models.*',
 			'importcsv.components.*',

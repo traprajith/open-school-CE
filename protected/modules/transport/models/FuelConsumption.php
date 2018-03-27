@@ -65,10 +65,10 @@ class FuelConsumption extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'vehicle_id' => 'Vehicle',
-			'fuel_consumed' => 'Fuel Consumed',
-			'amount' => 'Amount',
-			'consumed_date' => 'Date',
+			'vehicle_id' =>  Yii::t('app','Vehicle'),
+			'fuel_consumed' =>  Yii::t('app','Fuel Consumed'),
+			'amount' =>  Yii::t('app','Amount'),
+			'consumed_date' =>  Yii::t('app','Date'),
 		);
 	}
 

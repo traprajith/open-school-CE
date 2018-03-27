@@ -1,4 +1,4 @@
-<!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,400italic' rel='stylesheet' type='text/css'>-->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,400italic' rel='stylesheet' type='text/css'>
 
 
 <script>
@@ -177,6 +177,9 @@ $(document).ready(function() {
 .ui-corner-all a{text-indent:-999px !important; background:url(images/evnt_close.png) no-repeat !important;
 	width:21px; height:21px;}
 
+.ui-dialog-titlebar{
+	background-color:#fff !important;
+}
 
 
 </style>
@@ -184,7 +187,7 @@ $(document).ready(function() {
 
 
 <div id="dialog" class="window">
-<?php
+<?php 
 	$event = Events::model()->findByAttributes(array('id'=>$event_id));
 	$event_type = EventsType::model()->findByPk($event->type);
 ?>

@@ -15,7 +15,7 @@
 		<?php echo $form->error($model, 'name'); ?></td>
   </tr>
   <tr>
-    <td colspan="2"><p class="hint"><?php echo Rights::t('core', 'Do not change the name unless you know what you are doing.'); ?></p></td>
+    <td colspan="2"><p class="hint"><?php echo Yii::t('app', 'Do not change the name unless you know what you are doing.'); ?></p></td>
     </tr>
   <tr>
     <td><?php echo $form->labelEx($model, 'description'); ?></td>
@@ -24,7 +24,7 @@
   </tr>
  
   <tr>
-    <td colspan="2"><p class="hint"><?php echo Rights::t('core', 'A descriptive name for this item.'); ?></p></td>
+    <td colspan="2"><p class="hint"><?php echo Yii::t('app', 'A descriptive name for this item.'); ?></p></td>
    
   </tr>
   <?php if( Rights::module()->enableBizRule===true ): ?>
@@ -34,7 +34,7 @@
 			<?php echo $form->error($model, 'bizRule'); ?></td>
   </tr>
   <tr>
-    <td colspan="2"><p class="hint"><?php echo Rights::t('core', 'Code that will be executed when performing access checking.'); ?></p></td>
+    <td colspan="2"><p class="hint"><?php echo Yii::t('app', 'Code that will be executed when performing access checking.'); ?></p></td>
     
   </tr>
   <?php endif; ?>
@@ -45,14 +45,14 @@
 			<?php echo $form->error($model, 'data'); ?></td>
   </tr>
   <tr>
-  	<td colspan="2"><p class="hint"><?php echo Rights::t('core', 'Additional data available when executing the business rule.'); ?></p></td>
+  	<td colspan="2"><p class="hint"><?php echo Yii::t('app', 'Additional data available when executing the business rule.'); ?></p></td>
   </tr>
 </table>
 
 	<?php endif; ?>
 </div>
 <div style="padding-top:10px;">
-		<?php echo CHtml::submitButton(Rights::t('core', 'Save'),array('class'=>'formbut')); ?> | <?php echo CHtml::link(Rights::t('core', 'Cancel'), Yii::app()->user->rightsReturnUrl,array('class'=>'greenbutton')); ?>
+		<?php echo CHtml::submitButton(Yii::t('app', 'Save'),array('class'=>'formbut')); ?> | <?php echo CHtml::link(Yii::t('app', 'Cancel'), Yii::app()->user->rightsReturnUrl,array('class'=>'greenbutton')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

@@ -31,7 +31,7 @@ class GuardiansController extends RController
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','guardiandelete','search'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -50,9 +50,13 @@ class GuardiansController extends RController
 	 */
 	public function actionView($id)
 	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
+		if(isset($_REQUEST['id']) and $_REQUEST['id'] != NULL){
+			$this->render('view',array('model'=>$this->loadModel($id)));
+		}
+		else{
+			throw new CHttpException(400, Yii::t('app','Invalid request. Please do not repeat this request again.'));
+		}
+		
 	}
 
 	/**
@@ -61,165 +65,309 @@ class GuardiansController extends RController
 	 */
 	public function actionCreate()
 	{
-		$model=new Guardians;
-        $check_flag = 0;
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-		if($_POST['student_id'])
-		{
-			$guardian = Students::model()->findByAttributes(array('id'=>$_POST['student_id']));
-			$gid = $guardian->parent_id;			
-		}
-		elseif($_POST['guardian_id'])
-		{
-			$gid = $_POST['guardian_id'];
-		}
-		elseif($_POST['guardian_mail'])
-		{
-			$gid = $_POST['guardian_mail'];
+		$model					= new Guardians;
+		$settings				= UserSettings::model()->findByAttributes(array('user_id'=>Yii::app()->user->id));
+        $check_flag 			= 0;
+		$guardian_exist_flag 	= 0; 
+		//In case of Already Existing Parent			
+		if($_POST['student_id']){ //Search based on Siblings
+			$current_student_guradians = Guardians::model()->getGuardians($_REQUEST['id']);			
+			$criteria 				= new CDbCriteria;		
+			$criteria->join 		= 'JOIN guardian_list t1 ON t.id = t1.guardian_id'; 
+			$criteria->condition 	= 't1.student_id=:student_id AND t.is_delete=:is_delete';
+			$criteria->params 		= array(':student_id'=>$_POST['student_id'],'is_delete'=>0);
 			
-		}
-		
-		if($gid!=NULL and $gid!=0)
-		{
-			$model = Guardians::model()->findByAttributes(array('id'=>$gid));
-			$this->render('create',array(
-			'model'=>$model,'radio_flag'=>1,'guardian_id'=>$gid
-			));	
-		}
-		elseif((isset($_POST['student_id']) or isset($_POST['guardian_id']) or isset($_POST['guardian_mail'])) and ($gid==NULL or $gid==0))
-		{
-			Yii::app()->user->setFlash('errorMessage',UserModule::t("Guardian not found..!"));
-		}
-		
-		if(isset($_POST['Guardians']))
-		{
+			$guardians 				= Guardians::model()->findAll($criteria);//This is for checking, the guardians are already assigned
+				
+			$criteria->addNotInCondition('t.id', $current_student_guradians);			
+			$criteria->order		= 't.id ASC';
+			$existing_guardians 	= Guardians::model()->findAll($criteria);	
 			
-			$model->attributes=$_POST['Guardians'];
-			$model->validate();
-			if($_POST['Guardians']['user_create']==1)
-			{
-				$check_flag = 1;
-			}
-			//print_r($_POST['Guardians']); exit;
-			if($model->save())
-			{
-				//echo $model->ward_id; exit;
-				$student = Students::model()->findByAttributes(array('id'=>$model->ward_id));
-				$student->saveAttributes(array('parent_id'=>$model->id));
-				
-				if($_POST['Guardians']['user_create']==0)
-				{
-				
-					//adding user for current guardian
-					$user=new User;
-					$profile=new Profile;
-					$user->username = substr(md5(uniqid(mt_rand(), true)), 0, 10);
-					$user->email = $model->email;
-					$user->activkey=UserModule::encrypting(microtime().$model->first_name);
-					$password = substr(md5(uniqid(mt_rand(), true)), 0, 10);
-					$user->password=UserModule::encrypting($password);
-					$user->superuser=0;
-					$user->status=1;
-					
-					if($user->save())
-					{
-						
-					//assign role
-					$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
-					$authorizer->authManager->assign('parent', $user->id);
-					
-					//profile
-					$profile->firstname = $model->first_name;
-					$profile->lastname = $model->last_name;
-					$profile->user_id=$user->id;
-					$profile->save();
-					
-					//saving user id to guardian table.
-					$model->saveAttributes(array('uid'=>$user->id));
-					//$model->uid = $user->id;
-					//$model->save();
-					
-					// for sending sms
-					$sms_settings = SmsSettings::model()->findAll();
-					$to = '';
-					if($sms_settings[0]->is_enabled=='1' and $sms_settings[2]->is_enabled=='1'){ // Checking if SMS is enabled.
-						if($model->mobile_phone){
-							$to = $model->mobile_phone;	
-						}
-						
-						if($to!=''){ // Send SMS if phone number is provided
-							$college=Configurations::model()->findByPk(1);
-							$from = $college->config_value;
-							$message = 'Welcome to '.$college->config_value;
-							SmsSettings::model()->sendSms($to,$from,$message);
-						} // End send SMS
-					} // End check if SMS is enabled
-					
-					UserModule::sendMail($model->email,UserModule::t("You registered from {site_name}",array('{site_name}'=>Yii::app()->name)),UserModule::t("Please login to your account with your email id as username and password {password}",array('{password}'=>$password)));
+			if($guardians){
+				foreach($guardians as $guardian1){
+					if(in_array($guardian1->id, $current_student_guradians)){
+						$guardian_exist_flag = 1;
 					}
-						
 				}
-				$this->redirect(array('addguardian','id'=>$model->ward_id));
+			}
+		}
+		elseif($_POST['guardian_id']){	//Search based on Parent Name
+			$existing_guardians = '';	
+			$current_student_guradians = Guardians::model()->getGuardians($_REQUEST['id']);	
+			if(!in_array($_POST['guardian_id'], $current_student_guradians)){	
+				$existing_guardians		= Guardians::model()->findAllByAttributes(array('id'=>$_POST['guardian_id']));			
+			}
+			if(in_array($_POST['guardian_id'], $current_student_guradians)){
+				$guardian_exist_flag = 1;
+			}
+		}
+		elseif($_POST['guardian_mail']){ //Search based on Parent email
+			$current_student_guradians = Guardians::model()->getGuardians($_REQUEST['id']);	
+			$existing_guardians = '';
+			if(!in_array($_POST['guardian_mail'], $current_student_guradians)){	
+				$existing_guardians		= Guardians::model()->findAllByAttributes(array('id'=>$_POST['guardian_mail']));			
+			}	
+			if(in_array($_POST['guardian_mail'], $current_student_guradians)){
+				$guardian_exist_flag = 1;
+			}								
+		}
+		
+		if($existing_guardians!=NULL){			           
+			$this->render('create',array('existing_guardians'=>$existing_guardians,'radio_flag'=>1));	
+			exit;
+		}		
+		elseif((isset($_POST['student_id']) or isset($_POST['guardian_id']) or isset($_POST['guardian_mail'])) and ($existing_guardians==NULL)){			
+			if($guardian_exist_flag == 1){ //if existing guardian already added to the new student
+				Yii::app()->user->setFlash('errorMessage',Yii::t('app',"Guardian Already Assigned!"));
+			}
+			else{
+				Yii::app()->user->setFlash('errorMessage',Yii::t('app',"Guardian Not Found..!"));
+			}
+		}
+		
+		if(isset($_POST['ex_submit_btn'])){			
+			$current_student = Students::model()->findByPk($_REQUEST['id']);
+			if(count($_POST['ex_guardian_id']) > 0 and $current_student != NULL){								
+				for($i = 0; $i < count($_POST['ex_guardian_id']); $i++){
+					if($current_student->parent_id == 0){ //Save Primary Guradian
+						$current_student->saveAttributes(array('parent_id'=>$_POST['ex_guardian_id'][$i]));
+					}
+					if($current_student->immediate_contact_id == NULL){
+						$current_student->saveAttributes(array('immediate_contact_id'=>$_POST['ex_guardian_id'][$i]));
+					}
+					$guardian 		= Guardians::model()->findByPk($_POST['ex_guardian_id'][$i]); 
+					$is_relation	= GuardianList::model()->findByAttributes(array('student_id'=>$current_student->id, 'guardian_id'=>$_POST['ex_guardian_id'][$i]));
+					if($is_relation == NULL){
+						$guardian_list 	= new GuardianList;
+						$guardian_list->guardian_id = $_POST['ex_guardian_id'][$i];
+						$guardian_list->student_id	= $current_student->id;
+						$guardian_list->relation	= $guardian->relation;
+						$guardian_list->save();
+					}
+				}	
+				if(isset($_REQUEST['status']) and $_REQUEST['status'] == 1){
+					$this->redirect(array('/students/guardians/create','id'=>$_REQUEST['id'],'status'=>1));			
+				}
+				else{
+					$this->redirect(array('/students/guardians/create','id'=>$_REQUEST['id']));			
+				}
+			}
+		}
+		
+		//In case of New Parent
+		if(isset($_POST['Guardians']))
+		{                                              
+			$model->attributes 	= $_POST['Guardians'];
+			$model->ward_id		= $_POST['Guardians']['ward_id'];
+			if($_POST['Guardians']['relation']== 'Others' and $_POST['Guardians']['relation_other'] != NULL)
+			{
+				$model->relation		= $_POST['Guardians']['relation_other'];
+				$model->relation_other	= $model->relation;
+			}
+			
+			if(isset($_POST['Guardians']['dob']) and $_POST['Guardians']['dob']!=NULL){
+				$model->dob = date('Y-m-d',strtotime($_POST['Guardians']['dob']));
+			}
+			
+			//dynamic fields
+			$fields   = FormFields::model()->getDynamicFields(2, 1, "forAdminRegistration");
+			foreach ($fields as $key => $field) {			
+				if($field->form_field_type==6){  // date value
+					$field_name = $field->varname;
+					if($model->$field_name!=NULL and $model->$field_name!="0000-00-00" and $settings!=NULL){
+						$model->$field_name = date('Y-m-d',strtotime($model->$field_name));
+					}
+				}
+			}
+			
+			$fields   = FormFields::model()->getDynamicFields(2, 2, "forAdminRegistration");
+			foreach ($fields as $key => $field) {			
+				if($field->form_field_type==6){  // date value
+					$field_name = $field->varname;
+					if($model->$field_name!=NULL and $model->$field_name!="0000-00-00" and $settings!=NULL){
+						$model->$field_name = date('Y-m-d',strtotime($model->$field_name));
+					}
+				}
+			}
+			
+			if($model->save()){				
+				//Save data to guardian list table - for multiple guardian referance
+				$guardian_list				= new GuardianList;
+				$guardian_list->student_id	= $model->ward_id;
+				$guardian_list->guardian_id	= $model->id;
+				$guardian_list->relation	= $model->relation;
+				$guardian_list->save();
+                            				
+				$student = Students::model()->findByAttributes(array('id'=>$_REQUEST['id']));
+				if($student->parent_id == 0){					
+					$student->saveAttributes(array('parent_id'=>$model->id));
+				}
+				if($student->immediate_contact_id == NULL){					
+					$student->saveAttributes(array('immediate_contact_id'=>$model->id));				
+				}
+				
+				if(isset($_POST['which_btn']) and $_POST['which_btn']==1){ //In case of Save & Continue Button click
+					$this->redirect(array('/students/studentPreviousDatas/create','id'=>$_REQUEST['id']));
+				}else{
+					if(isset($_REQUEST['status']) and $_REQUEST['status'] == 1){
+						$this->redirect(array('create','id'=>$_REQUEST['id'],'status'=>1));//In case of adding guardians from student profile
+					}
+					else{
+						$this->redirect(array('create','id'=>$_REQUEST['id']));//In case of Save & Add Another Button click
+					}
+				}
 			}
 		}
 
-		$this->render('create',array(
-			'model'=>$model,'check_flag'=>$check_flag
-		));
+		$fields   = FormFields::model()->getDynamicFields(2, 1, "forAdminRegistration");
+		foreach ($fields as $key => $field) {			
+			if($field->form_field_type == 6){  // date value
+				$field_name = $field->varname;
+				if($model->$field_name!=NULL and $model->$field_name!="0000-00-00" and $settings!=NULL){
+					$model->$field_name = date($settings->displaydate,strtotime($model->$field_name));
+				}
+				else{
+					$model->$field_name=NULL;
+				}
+			}
+		}
+	
+		$fields   = FormFields::model()->getDynamicFields(2, 2, "forAdminRegistration");
+		foreach ($fields as $key => $field) {			
+			if($field->form_field_type==6){  // date value
+				$field_name = $field->varname;
+				if($model->$field_name!=NULL and $model->$field_name!="0000-00-00" and $settings!=NULL){
+					$model->$field_name = date($settings->displaydate,strtotime($model->$field_name));
+				}
+				else{
+					$model->$field_name=NULL;
+				}
+			}
+		}
+		
+		$this->render('create',array('model'=>$model,'check_flag'=>$check_flag));		
 	}
-
+        
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
 	public function actionUpdate($id)
-	{
-		
-		$model=$this->loadModel($id);
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Guardians']))
-		{
-			
-			$model->attributes=$_POST['Guardians'];
-			if($model->save())
-			{
-				if($_REQUEST['std']==NULL)
-				{
-					$student = Students::model()->findByAttributes(array('id'=>$_REQUEST['sid']));
-					$student->saveAttributes(array('parent_id'=>$_REQUEST['id']));
-					//echo $_REQUEST['id'].'/'.$student->first_name; exit;
-					$this->redirect(array('addguardian','id'=>$_REQUEST['sid'],'gid'=>$_REQUEST['id']));
-				}
-				{
-					$this->redirect(array('students/view','id'=>$_REQUEST['std']));
+	{		
+		$model		= $this->loadModel($id);
+		$settings	= UserSettings::model()->findByAttributes(array('user_id'=>Yii::app()->user->id));		
+		if(isset($_POST['Guardians'])){                                
+			$old_model 			= $model->attributes;
+			$model->attributes 	= $_POST['Guardians'];
+			if($_POST['Guardians']['relation']== 'Others' and $_POST['Guardians']['relation_other'] != NULL){
+				$model->relation		= $_POST['Guardians']['relation_other'];
+				$model->relation_other	= $model->relation;
+			}
+			if(isset($_POST['Guardians']['dob']) and $_POST['Guardians']['dob']!=NULL){
+				$model->dob = date('Y-m-d',strtotime($_POST['Guardians']['dob']));
+			}			
+			//dynamic fields
+			$fields   = FormFields::model()->getDynamicFields(2, 1, "forAdminRegistration");
+			foreach ($fields as $key => $field) {			
+				if($field->form_field_type==6){  // date value
+					$field_name = $field->varname;
+					if($model->$field_name!=NULL and $model->$field_name!="0000-00-00" and $settings!=NULL){
+						$model->$field_name = date('Y-m-d',strtotime($model->$field_name));
+					}
 				}
 			}
+			
+			$fields   = FormFields::model()->getDynamicFields(2, 2, "forAdminRegistration");
+			foreach ($fields as $key => $field) {			
+				if($field->form_field_type==6){  // date value
+					$field_name = $field->varname;
+					if($model->$field_name!=NULL and $model->$field_name!="0000-00-00" and $settings!=NULL){
+						$model->$field_name = date('Y-m-d',strtotime($model->$field_name));
+					}
+				}
+			}
+			
+			if($model->save()){
+                //In case of update from student registration
+				if(isset($_REQUEST['sid']) and $_REQUEST['sid'] != NULL){
+					$guardian_list	= GuardianList::model()->findByAttributes(array('student_id'=>$_REQUEST['sid'],'guardian_id'=>$model->id));
+					if($guardian_list){
+						$guardian_list->saveAttributes(array('relation'=>$model->relation));
+					}
+					else{
+						$guardian_list				= new GuardianList;
+						$guardian_list->student_id	= $_REQUEST['sid'];
+						$guardian_list->guardian_id	= $model->id;
+						$guardian_list->relation	= $model->relation;
+						$guardian_list->save();
+					}
+				}				
+				
+				if(isset($_REQUEST['sid']) and $_REQUEST['sid'] != NULL){	 //In case of update from student registration	
+					Yii::app()->user->setFlash('errorMessage',Yii::t('app',"Guardian Updated Successfully!"));	
+					if(isset($_REQUEST['status']) and $_REQUEST['status'] == 1){	
+						$this->redirect(array('/students/guardians/create','id'=>$_REQUEST['sid'], 'status'=>1));
+					}	
+					else{	
+                		$this->redirect(array('/students/guardians/create','id'=>$_REQUEST['sid']));                    
+					}
+				}
+				else{
+					//In case of update from guardian list			
+					//Saving to activity feed
+					$results = array_diff_assoc($_POST['Guardians'],$old_model); // To get the fields that are modified.					
+					foreach($results as $key => $value){
+						if($key != 'updated_at'){							
+							if($key == 'country_id'){
+								$value 				= Countries::model()->findByAttributes(array('id'=>$value));
+								$value 				= $value->name;								
+								$old_model_value 	= Countries::model()->findByAttributes(array('id'=>$old_model[$key]));
+								$old_model[$key] 	= $old_model_value->name;
+							}
+						}
+					}															
+					$this->redirect(array('/students/guardians/view','id'=>$model->id));
+				}
+			}                        
 		}
-
-		$this->render('update',array(
-			'model'=>$model,
-		));
-	}
-	public function actionAddguardian()
-	{
-		$model=new Guardians;
-		  if(isset($_POST['Guardians']))
-		   {
-			   $list = $_POST['Guardians'];
-			   $student = Students::model()->findByAttributes(array("id"=>$list['ward_id']));
-			   $student->immediate_contact_id = $list['radio'];
-			   $student->save();
-			   $this->redirect(array('studentPreviousDatas/create','id'=>$list['ward_id']));
-				//$this->redirect(array('students/view','id'=>$list['ward_id']));
-			   
-		   }
-		$this->render('addguardian',array('model'=>$model));
-	}
+		
+		if($model->dob != NULL and $model->dob == '0000-00-00'){
+			$model->dob = '';
+		}
+		if($settings!=NULL and $model->dob!=NULL and $model->dob != '0000-00-00'){				
+			$date1=date($settings->displaydate,strtotime($model->dob));
+			$model->dob=$date1;
+		}
+		
+		$fields   = FormFields::model()->getDynamicFields(2, 1, "forAdminRegistration");
+        foreach ($fields as $key => $field) {			
+			if($field->form_field_type==6){  // date value
+				$field_name = $field->varname;
+				if($model->$field_name!=NULL and $model->$field_name!="0000-00-00" and $settings!=NULL){
+					$model->$field_name = date($settings->displaydate,strtotime($model->$field_name));
+				}
+				else{
+					$model->$field_name=NULL;
+				}
+			}
+        }
+		
+		$fields   = FormFields::model()->getDynamicFields(2, 2, "forAdminRegistration");
+        foreach ($fields as $key => $field) {			
+			if($field->form_field_type==6){  // date value
+				$field_name = $field->varname;
+				if($model->$field_name!=NULL and $model->$field_name!="0000-00-00" and $settings!=NULL){
+					$model->$field_name = date($settings->displaydate,strtotime($model->$field_name));
+				}
+				else{
+					$model->$field_name=NULL;
+				}
+			}
+        }
+		
+		$this->render('update',array('model'=>$model));
+	}        	
 
 	/**
 	 * Deletes a particular model.
@@ -228,17 +376,121 @@ class GuardiansController extends RController
 	 */
 	public function actionDelete($id)
 	{
-		if(Yii::app()->request->isPostRequest)
-		{
-			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
-
+		if(Yii::app()->request->isPostRequest){	
+			$model = Guardians::model()->findByAttributes(array('id'=>$id));			
+			if($model->saveAttributes(array('is_delete'=>1))){
+				
+				//Remove primary contact
+				$students = Students::model()->findAllByAttributes(array('parent_id'=>$model->id));
+				if($students){
+					foreach($students as $student){
+						$student->saveAttributes(array('parent_id'=>0));
+					}
+				}
+				
+				//Remove Immidiate contact
+				$students = Students::model()->findAllByAttributes(array('immediate_contact_id'=>$model->id));
+				if($students){
+					foreach($students as $student){
+						$student->saveAttributes(array('immediate_contact_id'=>0));
+					}
+				}
+				
+				//Remove guardian relation
+				$guardian_lists = GuardianList::model()->findAllByAttributes(array('guardian_id'=>$model->id));
+				if($guardian_lists){
+					foreach($guardian_lists as $guardian_list){
+						$guardian_list->delete();
+					}
+				}
+			}			
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-			if(!isset($_GET['ajax']))
+			if(!isset($_GET['ajax'])){
 				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			}
 		}
-		else
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+		else{
+			throw new CHttpException(400,Yii::t('app','Invalid request. Please do not repeat this request again.'));
+		}
+	}
+        
+    //Remove guardian in the time of student registration     
+	public function actionRemoveGuardian()
+	{
+		if(Yii::app()->request->isPostRequest){
+			$guardian_list = GuardianList::model()->findByAttributes(array('student_id'=>$_REQUEST['sid'], 'guardian_id'=>$_REQUEST['id']));
+			if($guardian_list){
+				if($guardian_list->delete()){
+					$student = Students::model()->findByPk($_REQUEST['sid']);
+					if($student){
+						if($student->parent_id == $_REQUEST['id']){
+							$student->saveAttributes(array('parent_id'=>0));
+						}
+						if($student->immediate_contact_id == $_REQUEST['id']){
+							$student->saveAttributes(array('immediate_contact_id'=>NULL));
+						}
+					}
+					Yii::app()->user->setFlash('errorMessage',Yii::t('app',"Guardian Removed Successfully!"));
+				}				
+			}
+			if(isset($_REQUEST['status']) and $_REQUEST['status'] == 1){	
+				$this->redirect(array('/students/guardians/create','id'=>$_REQUEST['sid'], 'status'=>1));
+			}
+			else{
+				$this->redirect(array('/students/guardians/create','id'=>$_REQUEST['sid']));
+			}
+		}
+		else{
+			throw new CHttpException(400,Yii::t('app','Invalid request. Please do not repeat this request again.'));
+		}
+	}
+	
+	//Set guradian as Primary Contact
+	public function actionMakePrimary()
+	{
+		if(Yii::app()->request->isPostRequest){
+			if($_REQUEST['id'] != NULL and $_REQUEST['sid'] != NULL){
+				$student = Students::model()->findByPk($_REQUEST['sid']);
+				if($student){
+					if($student->saveAttributes(array('parent_id'=>$_REQUEST['id']))){
+						Yii::app()->user->setFlash('errorMessage',Yii::t('app',"Action Performed Successfully!"));	
+					}
+				}
+			}
+			if(isset($_REQUEST['status']) and $_REQUEST['status'] == 1){	
+				$this->redirect(array('/students/guardians/create','id'=>$_REQUEST['sid'], 'status'=>1));
+			}
+			else{
+				$this->redirect(array('/students/guardians/create','id'=>$_REQUEST['sid']));			
+			}
+		}
+		else{
+			throw new CHttpException(400,Yii::t('app','Invalid request. Please do not repeat this request again.'));
+		}
+	}
+	
+	//Set guradian as Emergency Contact
+	public function actionMakeEmergency()
+	{
+		if(Yii::app()->request->isPostRequest){
+			if($_REQUEST['id'] != NULL and $_REQUEST['sid'] != NULL){
+				$student = Students::model()->findByPk($_REQUEST['sid']);
+				if($student){
+					if($student->saveAttributes(array('immediate_contact_id'=>$_REQUEST['id']))){
+						Yii::app()->user->setFlash('errorMessage',Yii::t('app',"Action Performed Successfully!"));	
+					}
+				}
+			}	
+			if(isset($_REQUEST['status']) and $_REQUEST['status'] == 1){	
+				$this->redirect(array('/students/guardians/create','id'=>$_REQUEST['sid'], 'status'=>1));
+			}
+			else{
+				$this->redirect(array('/students/guardians/create','id'=>$_REQUEST['sid']));			
+			}
+		}
+		else{
+			throw new CHttpException(400,Yii::t('app','Invalid request. Please do not repeat this request again.'));
+		}
 	}
 
 	/**
@@ -276,7 +528,7 @@ class GuardiansController extends RController
 	{
 		$model=Guardians::model()->findByPk($id);
 		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+			throw new CHttpException(404,Yii::t('app','The requested page does not exist.'));
 		return $model;
 	}
 
@@ -292,4 +544,57 @@ class GuardiansController extends RController
 			Yii::app()->end();
 		}
 	}
+        
+        public function actionSearch()
+        {
+            if(isset($_GET['name']) and $_GET['name']!=NULL)
+		{
+			$name_lists = array();
+			$criteria = new CDbCriteria;
+			if((substr_count( $_GET['name'],' '))==0)
+			{ 	
+				$criteria->condition='first_name LIKE :name or middle_name LIKE :name or last_name LIKE :name';
+				$criteria->params[':name'] = $_GET['name'].'%';
+			}
+			else if((substr_count( $_GET['name'],' '))>=1)
+			{
+				$name=explode(" ",$_GET['name']);
+				$criteria->condition='first_name LIKE :name or middle_name LIKE :name or last_name LIKE :name';
+				$criteria->params[':name'] = $name[0].'%';
+				$criteria->condition=$criteria->condition.' and '.'(first_name LIKE :name1 or middle_name LIKE :name1 or last_name LIKE :name1)';
+				$criteria->params[':name1'] = $name[1].'%';			
+			}
+			$names = Students::model()->findAll($criteria);
+			foreach($names as $student_name)
+			{
+                            $list_model= GuardianList::model()->findAllByAttributes(array('student_id'=>$student_name->id));
+                            foreach($list_model as $data)
+                            {
+				$name_lists[] = $data->guardian_id;
+                            }
+			}  
+                        
+                        $criteria2= new CDbCriteria();
+			$criteria2->addInCondition('id', $name_lists); 
+                        $total = Guardians::model()->count($criteria2);
+                        $pages = new CPagination($total);
+                        $pages->setPageSize(Yii::app()->params['listPerPage']);
+                        $pages->applyLimit($criteria2);
+                        
+                        
+                        
+                        $model = Guardians::model()->findAll($criteria2);                                                
+                        $this->render('search',array('model'=>$model,                                       
+                                        'pages' => $pages,
+                                        'item_count'=>$total,
+                                        'page_size'=>Yii::app()->params['listPerPage'],)) ;
+
+                                        }	
+            else {
+                                            $this->render('search');
+                
+            }
+                
+            
+        }
 }

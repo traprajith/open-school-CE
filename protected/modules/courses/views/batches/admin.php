@@ -1,12 +1,12 @@
 <?php
 $this->breadcrumbs=array(
-	'Batches'=>array('/courses'),
-	'Manage',
+	Yii::app()->getModule('students')->fieldLabel("Students", "batch_id")=>array('/courses'),
+	Yii::t('app','Manage'),
 );
 
 $this->menu=array(
-	array('label'=>'List Batches', 'url'=>array('index')),
-	array('label'=>'Create Batches', 'url'=>array('create')),
+	array('label'=>'List'.' '.Yii::app()->getModule('students')->fieldLabel("Students", "batch_id"), 'url'=>array('index')),
+	array('label'=>'Create'.' '.Yii::app()->getModule('students')->fieldLabel("Students", "batch_id"), 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -23,7 +23,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1><?php echo Yii::t('app','Manage Batches');?></h1>
+<h1><?php echo Yii::t('app','Manage').' '.Yii::app()->getModule('students')->fieldLabel("Students", "batch_id")?></h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>

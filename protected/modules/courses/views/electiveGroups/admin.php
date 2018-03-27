@@ -1,12 +1,12 @@
 <?php
 $this->breadcrumbs=array(
-	'Elective Groups'=>array('/courses'),
-	'Manage',
+	Yii::t('app','Elective Groups')=>array('index'),
+	Yii::t('app','Manage'),
 );
 
 $this->menu=array(
-	array('label'=>'List ElectiveGroups', 'url'=>array('index')),
-	array('label'=>'Create ElectiveGroups', 'url'=>array('create')),
+	array('label'=>Yii::t('app','List ElectiveGroups'),'url'=>array('index')),
+	array('label'=>Yii::t('app','Create ElectiveGroups'),'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -23,7 +23,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Elective Groups</h1>
+<h1><?php echo Yii::t('app','Manage Elective Groups'); ?></h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>

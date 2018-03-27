@@ -1,14 +1,14 @@
 <?php
 $this->breadcrumbs=array(
-	'Configurations'=>array('index'),
+	Yii::t('app','Configurations')=>array('index'),
 	$model->id,
 );
 
 $this->menu=array(
-	array('label'=>'List Configurations', 'url'=>array('index')),
-	array('label'=>'Create Configurations', 'url'=>array('create')),
-	array('label'=>'Update Configurations', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete Configurations', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>Yii::t('app','List Configurations'), 'url'=>array('index')),
+	array('label'=>Yii::t('app','Create Configurations'), 'url'=>array('create')),
+	array('label'=>Yii::t('app','Update Configurations'), 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>Yii::t('app','Delete Configurations'), 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>Yii::t('app','Are you sure you want to delete this item?'))),
 	array('label'=>'Manage Configurations', 'url'=>array('admin')),
 );
 ?>
@@ -21,7 +21,7 @@ $this->menu=array(
     </td>
     <td valign="top">
     <div class="cont_right formWrapper">
-<h1>View Configurations #<?php echo $model->id; ?></h1>
+<h1><?php echo Yii::t('app','View Configurations').' #';?><?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

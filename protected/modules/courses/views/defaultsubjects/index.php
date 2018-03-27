@@ -14,7 +14,7 @@
  */
 ?><?php
 $this->breadcrumbs=array(
-	'Subject Names'=>array('/courses'),
+	Yii::t('app','Subject Names')=>array('/courses'),
 	
 );
 ?>
@@ -62,7 +62,7 @@ $('.search-form form').submit(function(){
     <ul>
     
     <li>
-    <?php echo CHtml::link(Yii::t('Timing','Subjects'), array('/courses/subject','id'=>$_REQUEST['id']),array('class'=>'addbttn last')) ?>
+    <?php echo CHtml::link(Yii::t('app','Subjects'), array('/courses/subject','id'=>$_REQUEST['id']),array('class'=>'addbttn last')) ?>
     
 	</li>
     
@@ -74,12 +74,12 @@ $('.search-form form').submit(function(){
     <div >
 
 <div  > 
-<h3>All Subjects</h3>
+<h3><?php echo Yii::t('app','All Subjects'); ?></h3>
 
 <div class="right" align="right">
                
                
-            <?php echo CHtml::link(Yii::t('Timing','Add New Subject'), array('#'),array('id'=>'add_subject-name','class'=>'cbut')) ?>
+            <?php echo CHtml::link(Yii::t('app','Add New Subject'), array('#'),array('id'=>'add_subject-name','class'=>'cbut')) ?>
     
            
 </div>
@@ -88,10 +88,10 @@ $('.search-form form').submit(function(){
 
 <?php
 //Strings for the delete confirmation dialog.
-$del_con = Yii::t('admin_subject-name', 'Are you sure you want to delete this?');
-$del_title=Yii::t('admin_subject-name', 'Delete Confirmation');
- $del=Yii::t('admin_subject-name', 'Delete');
- $cancel=Yii::t('admin_subject-name', 'Cancel');
+$del_con = Yii::t('app', 'Are you sure you want to delete this?');
+$del_title=Yii::t('app', 'Delete Confirmation');
+ $del=Yii::t('app', 'Delete');
+ $cancel=Yii::t('app', 'Cancel');
    ?>
 <?php
     $this->widget('zii.widgets.grid.CGridView', array(
@@ -110,22 +110,22 @@ $del_title=Yii::t('admin_subject-name', 'Delete Confirmation');
                    'class' => 'CButtonColumn',
                     'buttons' => array(
                                                      'subject-name_delete' => array(
-                                                     'label' => Yii::t('admin_subject-name', 'Delete'), // text label of the button
+                                                     'label' => Yii::t('app', 'Delete'), // text label of the button
                                                       'url' => '$data->id', // a PHP expression for generating the URL of the button
                                                       'imageUrl' =>Yii::app()->request->baseUrl .'/js_plugins/ajaxform/images/icons/cross.png', // image URL of the button.   If not set or false, a text link is used
-                                                      'options' => array("class" => "fan_del", 'title' => Yii::t('admin_subject-name', 'Delete')), // HTML options for the button   tag
+                                                      'options' => array("class" => "fan_del", 'title' => Yii::t('app', 'Delete')), // HTML options for the button   tag
                                                       ),
                                                      'subject-name_update' => array(
-                                                     'label' => Yii::t('admin_subject-name', 'Update'), // text label of the button
+                                                     'label' => Yii::t('app', 'Update'), // text label of the button
                                                      'url' => '$data->id', // a PHP expression for generating the URL of the button
                                                      'imageUrl' =>Yii::app()->request->baseUrl .'/js_plugins/ajaxform/images/icons/pencil.png', // image URL of the button.   If not set or false, a text link is used
-                                                     'options' => array("class" => "fan_update", 'title' => Yii::t('admin_subject-name', 'Update')), // HTML options for the    button tag
+                                                     'options' => array("class" => "fan_update", 'title' => Yii::t('app', 'Update')), // HTML options for the    button tag
                                                         ),
                                                      'subject-name_view' => array(
-                                                      'label' => Yii::t('admin_subject-name', 'View'), // text label of the button
+                                                      'label' => Yii::t('app', 'View'), // text label of the button
                                                       'url' => '$data->id', // a PHP expression for generating the URL of the button
                                                       'imageUrl' =>Yii::app()->request->baseUrl .'/js_plugins/ajaxform/images/icons/properties.png', // image URL of the button.   If not set or false, a text link is used
-                                                      'options' => array("class" => "fan_view", 'title' => Yii::t('admin_subject-name', 'View')), // HTML options for the    button tag
+                                                      'options' => array("class" => "fan_view", 'title' => Yii::t('app', 'View')), // HTML options for the    button tag
                                                         )
                                                     ),
                    'template' => '{subject-name_view}{subject-name_update}{subject-name_delete}',

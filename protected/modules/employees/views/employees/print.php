@@ -1,17 +1,13 @@
 <style>
-.listbxtop_hdng
-{
-	font-size:15px;	
-	/*color:#1a7701;*/
-	/*text-shadow: 0.1em 0.1em #FFFFFF;*/
-	/*font-weight:bold;*/
-	text-align:left;
-	
+table.table_listbx{
+	  border-collapse:collapse;	
 }
 .table_listbx tr td, tr th {
-border-left:1px solid #ccc;
-border-top:1px solid #ccc;
-border-right:1px solid #ccc;
+border-left:1px solid #C5CED9;
+border-top:1px solid #C5CED9;
+border-right:1px solid #C5CED9;
+border-bottom:1px solid #C5CED9;
+padding:10px 10px;
 
 }
 td.listbx_subhdng
@@ -25,13 +21,13 @@ td.listbx_subhdng
 
 .odd
 {
-	background:#DFDFDF;
+	background:#DCE6F2;
 }
 td.subhdng_nrmal
 {
 	color:#333333;
 	font-size:14px;
-	width:450px;	
+	width:510px;	
 }
 .table_listbx
 {
@@ -61,67 +57,69 @@ td.subhdng_nrmal
 }
 .last
 {
-	border-bottom:1px solid #ccc;
+	border-bottom:1px solid #C5CED9;
 }
 .first
 {
 	border:none;
 }
+hr{ border-bottom:1px solid #ccc; border-top:0px solid #fff;}
 </style>
-<div class="atnd_Con" style="padding-left:20px; padding-top:30px;">
+
+
 <!-- Header -->
-	<div style="border-bottom:#666 1px; width:700px; padding-bottom:20px;">
+	
         <table width="100%" cellspacing="0" cellpadding="0">
             <tr>
-                <td class="first">
-                           <?php $logo=Logo::model()->findAll();?>
-                            <?php
-                            if($logo!=NULL)
+                <td class="first" width="100">
+                      <?php $filename=  Logo::model()->getLogo();
+							if($filename!=NULL)
                             {
                                 //Yii::app()->runController('Configurations/displayLogoImage/id/'.$logo[0]->primaryKey);
-                                echo '<img src="uploadedfiles/school_logo/'.$logo[0]->photo_file_name.'" alt="'.$logo[0]->photo_file_name.'" class="imgbrder" width="100%" />';
+                                echo '<img src="uploadedfiles/school_logo/'.$filename[2].'" alt="'.$filename[2].'" class="imgbrder" height="100" />';
                             }
                             ?>
                 </td>
-                <td align="center" valign="middle" class="first" style="width:300px;">
+                <td valign="middle">
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
-                            <td class="listbxtop_hdng first" style="text-align:left; font-size:22px; width:300px;  padding-left:10px;">
+                            <td class="listbxtop_hdng first" >
                                 <?php $college=Configurations::model()->findAll(); ?>
                                 <?php echo $college[0]->config_value; ?>
                             </td>
                         </tr>
                         <tr>
-                            <td class="listbxtop_hdng first" style="text-align:left; font-size:14px; padding-left:10px;">
+                            <td class="listbxtop_hdng first">
                                 <?php echo $college[1]->config_value; ?>
                             </td>
                         </tr>
                         <tr>
-                            <td class="listbxtop_hdng first" style="text-align:left; font-size:14px; padding-left:10px;">
-                                <?php echo 'Phone: '.$college[2]->config_value; ?>
+                            <td class="listbxtop_hdng first" >
+                                <?php echo Yii::t('app','Phone:')." ".$college[2]->config_value; ?>
                             </td>
                         </tr>
                     </table>
                 </td>
             </tr>
         </table>
-    </div>
+  <hr />
+  <br />
     <!-- End Header -->
 <?php
   if(isset($_REQUEST['id']))
   {
 ?>
-	<br /><br />
-    <span align="center"><h4>EMPLOYEE PROFILE</h4></span>
+
+    <div align="center" style="display:block; text-align:center;"><?php echo Yii::t('app','TEACHER PROFILE');?></div><br />
     <table class="table_listbx" width="100%" cellspacing="0" cellpadding="0">
       
          <tr>
-            <td class="listbx_subhdng odd"><?php echo Yii::t('employees','<strong>Employee Name</strong>');?></td>
-           <td class="subhdng_nrmal odd"><?php echo ucfirst($model->first_name).' '.ucfirst($model->last_name); ?></td>    
+            <td width="200"><?php echo Yii::t('app','Teacher Name');?></td>
+           <td class="subhdng_nrmal odd"><?php echo Employees::model()->getTeachername($model->id); ?></td>    
         </tr>
         
 		<tr>
-            <td class="listbx_subhdng"><?php echo Yii::t('employees','<strong>Joining Date</strong>');?></td>
+            <td><?php echo Yii::t('app','Joining Date');?></td>
              <td class="subhdng_nrmal">
 			 <?php 
 			 	if($model->joining_date!=NULL)
@@ -145,7 +143,7 @@ td.subhdng_nrmal
         </tr>
         
         <tr>
-            <td class="listbx_subhdng odd"><?php echo Yii::t('employees','<strong>Date of Birth</strong>');?></td>
+            <td><?php echo Yii::t('app','Date of Birth');?></td>
            
             <td class="subhdng_nrmal odd">
 				<?php 
@@ -172,14 +170,14 @@ td.subhdng_nrmal
         </tr>
         
         <tr>
-            <td class="listbx_subhdng"><?php echo Yii::t('employees','<strong>Gender</strong>');?></td>
+            <td><?php echo Yii::t('app','Gender');?></td>
            
             <td class="subhdng_nrmal">
 				<?php 
 				if($model->gender=='M')
-					echo 'Male';
+					echo Yii::t('app','Male');
 				elseif($model->gender=='F') 
-					echo 'Female';	
+					echo Yii::t('app','Female');	
 				else
 					echo '-';
 				?>
@@ -187,7 +185,7 @@ td.subhdng_nrmal
         </tr>
         
         <tr>
-           <td class="listbx_subhdng odd"><?php echo Yii::t('employees','<strong>Department</strong>');?></td>
+           <td><?php echo Yii::t('app','Department');?></td>
            <td class="subhdng_nrmal odd">
 		   <?php
 			$dep  = EmployeeDepartments::model()->findByAttributes(array('id'=>$model->employee_department_id));
@@ -201,7 +199,7 @@ td.subhdng_nrmal
         
         
         <tr>
-           <td class="listbx_subhdng"><?php echo Yii::t('employees','<strong>Position</strong>');?></td>
+           <td><?php echo Yii::t('app','Position');?></td>
            <td class="subhdng_nrmal">
 		   <?php 
             $pos  = EmployeePositions::model()->findByAttributes(array('id'=>$model->employee_position_id));
@@ -217,7 +215,7 @@ td.subhdng_nrmal
 		</tr>
         
         <tr>
-           <td class="listbx_subhdng odd"><?php echo Yii::t('employees','<strong>Category</strong>');?></td>
+           <td><?php echo Yii::t('app','Category');?></td>
            <td class="subhdng_nrmal odd">
 		   		<?php
 				$posts=EmployeeCategories::model()->findByAttributes(array('id'=>$model->employee_category_id));
@@ -234,7 +232,7 @@ td.subhdng_nrmal
 		</tr>
         
         <tr>
-           <td class="listbx_subhdng"><?php echo Yii::t('employees','<strong>Grade</strong>');?></td>
+           <td><?php echo Yii::t('app','Grade');?></td>
            <td class="subhdng_nrmal">
 		   		<?php
 				$posts=EmployeeGrades::model()->findByAttributes(array('id'=>$model->employee_grade_id));
@@ -253,7 +251,7 @@ td.subhdng_nrmal
          
         
         <tr>
-           <td class="listbx_subhdng odd"><?php echo Yii::t('employees','<strong>Job Title</strong>');?></td>
+           <td><?php echo Yii::t('app','Job Title');?></td>
            <td class="subhdng_nrmal odd">
 		   		<?php
 				
@@ -272,7 +270,7 @@ td.subhdng_nrmal
         
         
          <tr>
-            <td class="listbx_subhdng"><?php echo Yii::t('employees','<strong>Qualification</strong>');?></td>
+            <td><?php echo Yii::t('app','Qualification');?></td>
           
             <td class="subhdng_nrmal">
 			<?php 
@@ -285,22 +283,24 @@ td.subhdng_nrmal
         </tr>
         
         <tr>
-            <td class="listbx_subhdng odd"><?php echo Yii::t('employees','<strong>Total Experiance</strong>');?></td>
+            <td><?php echo Yii::t('app','Total Experience');?></td>
            
             <td class="subhdng_nrmal odd">
-			<?php 
-			if($model->experience_year)
-				echo $model->experience_year.' year(s)';
-			elseif($model->experience_month)
-				echo ' '.$model->experience_month.' month(s)';
-			else
-				echo '-';
-			?>
+				<?php 
+                if($model->experience_year and !$model->experience_month)
+                    echo $model->experience_year." ".Yii::t('app','year(s)');
+                elseif(!$model->experience_year and $model->experience_month)
+                    echo ' '.$model->experience_month." ".Yii::t('app','month(s)');
+                elseif($model->experience_year and $model->experience_month)
+                    echo $model->experience_year." ".Yii::t('app','year(s)')." ".Yii::t('app','and')." ".$model->experience_month." ".Yii::t('app','month(s)');
+                else
+                    echo '-';
+                ?>
             </td>
         </tr>
         
         <tr>
-            <td class="listbx_subhdng"><?php echo Yii::t('employees','<strong>Experiance Info</strong>');?></td>
+            <td><?php echo Yii::t('app','Experience Info');?></td>
            
             <td class="subhdng_nrmal">
 			<?php 
@@ -313,13 +313,13 @@ td.subhdng_nrmal
         </tr>
         
         <tr>
-            <td class="listbx_subhdng odd"><?php echo Yii::t('employees','<strong>Nationality</strong>');?></td>
+            <td><?php echo Yii::t('app','Nationality');?></td>
            
             <td class="subhdng_nrmal odd">
 			<?php 
 			if($model->nationality_id!=NULL)
 			{
-				$nationality=Countries::model()->findByAttributes(array('id'=>$model->nationality_id));
+				$nationality=Nationality::model()->findByAttributes(array('id'=>$model->nationality_id));
 				if($nationality!=NULL)
 				{
 					echo $nationality->name;
@@ -339,7 +339,7 @@ td.subhdng_nrmal
         
         
         <tr>
-            <td class="listbx_subhdng"><?php echo Yii::t('employees','<strong>Address</strong>');?></td>
+            <td><?php echo Yii::t('app','Address');?></td>
           
             <td class="subhdng_nrmal" style="line-height:20px;">
 				<?php if($model->home_address_line1!=NULL){echo $model->home_address_line1."<br />";} ?>
@@ -353,7 +353,7 @@ td.subhdng_nrmal
         </tr>
         
         <tr>
-           <td class="listbx_subhdng odd"><?php echo Yii::t('employees','<strong>Email</strong>');?></td>
+           <td><?php echo Yii::t('app','Email');?></td>
            <td class="subhdng_nrmal odd">
 		   		<?php
 				
@@ -370,7 +370,7 @@ td.subhdng_nrmal
 		</tr>
         
          <tr>
-            <td class="listbx_subhdng"><?php echo Yii::t('employees','<strong>Mobile No.</strong>');?></td>
+            <td><?php echo Yii::t('app','Mobile No.');?></td>
            
             <td class="subhdng_nrmal">
 			<?php 
@@ -383,7 +383,7 @@ td.subhdng_nrmal
         </tr>
         
         <tr>
-            <td class="listbx_subhdng odd"><?php echo Yii::t('employees','<strong>Home Phone No.</strong>');?></td>
+            <td><?php echo Yii::t('app','Home Phone No.');?></td>
            
             <td class="subhdng_nrmal odd">
 			<?php 
@@ -396,7 +396,7 @@ td.subhdng_nrmal
         </tr>
         
         <tr>
-            <td class="listbx_subhdng"><?php echo Yii::t('employees','<strong>Office Phone 1</strong>');?></td>
+            <td><?php echo Yii::t('app','Office Phone 1');?></td>
            
             <td class="subhdng_nrmal">
 			<?php 
@@ -409,7 +409,7 @@ td.subhdng_nrmal
         </tr>
         
         <tr>
-            <td class="listbx_subhdng odd"><?php echo Yii::t('employees','<strong>Office Phone 2</strong>');?></td>
+            <td><?php echo Yii::t('app','Office Phone 2');?></td>
            
             <td class="subhdng_nrmal odd">
 			<?php 
@@ -422,7 +422,7 @@ td.subhdng_nrmal
         </tr>
         
         <tr>
-            <td class="listbx_subhdng"><?php echo Yii::t('employees','<strong>Fax</strong>');?></td>
+            <td><?php echo Yii::t('app','Fax');?></td>
            
             <td class="subhdng_nrmal">
 			<?php 
@@ -435,7 +435,7 @@ td.subhdng_nrmal
         </tr>
         
         <tr>
-            <td class="listbx_subhdng odd"><?php echo Yii::t('employees','<strong>Marital Status</strong>');?></td>
+            <td><?php echo Yii::t('app','Marital Status');?></td>
            
             <td class="subhdng_nrmal odd">
 			<?php 
@@ -448,7 +448,7 @@ td.subhdng_nrmal
         </tr>
         
         <tr>
-            <td class="listbx_subhdng"><?php echo Yii::t('employees','<strong>Children Count</strong>');?></td>
+            <td><?php echo Yii::t('app','Children Count');?></td>
            
             <td class="subhdng_nrmal">
 			<?php 
@@ -461,9 +461,9 @@ td.subhdng_nrmal
         </tr>
         
         <tr>
-            <td class="listbx_subhdng odd"><?php echo Yii::t('employees','<strong>Blood Group</strong>');?></td>
+            <td style="border-bottom:1px solid #C5CED9;"><?php echo Yii::t('app','Blood Group');?></td>
            
-            <td class="subhdng_nrmal odd">
+            <td class="subhdng_nrmal odd" style="border-bottom:1px solid #C5CED9;">
 			<?php 
 			if($model->blood_group!=NULL)
 				echo $model->blood_group;
@@ -473,10 +473,110 @@ td.subhdng_nrmal
             </td>
         </tr>
         
+        
+              
+         <?php /*?><tr>
+            <td class="listbx_subhdng last"><strong><?php echo Yii::t('employees','Date of Join');?></strong></td>
+           
+            <td class="subhdng_nrmal last">
+			<?php 
+			if($model->date_join!=NULL)
+				echo $model->date_join;
+			else
+				echo '-';
+			?>
+            </td>
+        </tr><?php */?>
+        
+        
+         <?php /*?><tr>
+            <td class="listbx_subhdng odd"><strong><?php echo Yii::t('employees','Salary Date');?></strong></td>
+           
+            <td class="subhdng_nrmal odd">
+			<?php 
+			if($model->salary_date!=NULL)
+				echo $model->salary_date;
+			else
+				echo '-';
+			?>
+            </td>
+        </tr>
+        
+        
+         <tr>
+            <td class="listbx_subhdng odd"><strong><?php echo Yii::t('employees','Bank Name');?></strong></td>
+           
+            <td class="subhdng_nrmal odd">
+			<?php 
+			if($model->bank_name!=NULL)
+				echo $model->bank_name;
+			else
+				echo '-';
+			?>
+            </td>
+        </tr>
+        
+         <tr>
+            <td class="listbx_subhdng odd"><strong><?php echo Yii::t('employees','Bank Account No');?></strong></td>
+           
+            <td class="subhdng_nrmal odd">
+			<?php 
+			if($model->bank_acc_no!=NULL)
+				echo $model->bank_acc_no;
+			else
+				echo '-';
+			?>
+            </td>
+        </tr>
+        
+        
+         <tr>
+            <td class="listbx_subhdng odd"><strong><?php echo Yii::t('employees','Basic Pay');?></strong></td>
+           
+            <td class="subhdng_nrmal odd">
+			<?php 
+			if($model->basic_pay!=NULL)
+				echo $model->basic_pay;
+			else
+				echo '-';
+			?>
+            </td>
+        </tr>
+        
+        
+         <tr>
+            <td class="listbx_subhdng odd"><strong><?php echo Yii::t('employees','PF');?></strong></td>
+           
+            <td class="subhdng_nrmal odd">
+			<?php 
+			if($model->PF!=NULL)
+				echo $model->PF;
+			else
+				echo '-';
+			?>
+            </td>
+        </tr>
+        
+        
+         <tr>
+            <td class="listbx_subhdng odd"><strong><?php echo Yii::t('employees','TDS');?></strong></td>
+           
+            <td class="subhdng_nrmal odd">
+			<?php 
+			if($model->TDS!=NULL)
+				echo $model->TDS;
+			else
+				echo '-';
+			?>
+            </td>
+        </tr>
+        <?php */?>
+        
+   
+        
     
     </table>
     
 <?php 
   }
 ?>
-</div>

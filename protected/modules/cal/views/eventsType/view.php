@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Events Types'=>array('index'),
+	Yii::t('app','Events Types')=>array('index'),
 	$model->name,
 );
 
@@ -13,7 +13,7 @@ $this->breadcrumbs=array(
 );*/
 ?>
 
-<h1>View EventsType #<?php echo $model->id; ?></h1>
+<h1><?php echo Yii::t('app','View Event Type:').$model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

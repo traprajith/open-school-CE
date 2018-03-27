@@ -60,9 +60,9 @@ class StudentAdditionalFields extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'status' => 'Status',
+			'id' => Yii::t("app",'ID'),
+			'name' => Yii::t("app",'Name'),
+			'status' => Yii::t("app",'Status'),
 		);
 	}
 

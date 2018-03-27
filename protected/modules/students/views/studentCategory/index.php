@@ -12,7 +12,8 @@
  */
 ?><?php
  $this->breadcrumbs=array(
-	 'Manage Student Categories'
+ 	Yii::t('app','Students')=>array('/students'),
+	 Yii::t('app','Manage Student Categories')
 );
 ?>
 <?php  
@@ -96,164 +97,223 @@ $(document).click(function() {
     
     </td>
     <td valign="top">
-    <div class="cont_right formWrapper">
+        <div class="cont_right formWrapper">
+        <h1><?php echo Yii::t('app','Manage Student Categories');?></h1>
+            <?php
+			$current_academic_yr = Configurations::model()->findByAttributes(array('id'=>35));
+            if(Yii::app()->user->year)
+			{
+				$year = Yii::app()->user->year;
+				//echo Yii::app()->user->year;
+			}
+			else
+			{
+				$year = $current_academic_yr->config_value;
+			}
+			$is_create = PreviousYearSettings::model()->findByAttributes(array('id'=>1));
+			if(($year == $current_academic_yr->config_value) or ($year != $current_academic_yr->config_value and $is_create->settings_value!=0))
+			{?>
+                                            
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                    
+                    <td valign="top">
+                        
+                        <div class="formWrapper">
+                    
+                   
+                    
+                    <div class="edit_bttns" style="right:15px; top:12px;">
 
-<h1><?php echo Yii::t('students','Manage Student Categories');?></h1>
+                        <ul>
+                        <li>
+                              
+                                </li>
+                        </ul>
+                        <div class="clear"></div>
+                       </div>
+<div class="button-bg">
+                        <?php 
+                       $criteria = new CDbCriteria;
+                        $criteria->order = 'id ASC';
+                        $total = StudentCategories::model()->count($criteria);
+                        $pages = new CPagination($total);
+                        $pages->setPageSize(Yii::app()->params['listPerPage']);
+                        $pages->applyLimit($criteria);  // the trick is here!
+                        //$datas = StudentCategories::model()->findAll($criteria);
+                        $page_size=Yii::app()->params['listPerPage'];
+                            
+                       ?>
+ <div class="top-hed-btn-left"> </div>
+                            <div class="top-hed-btn-right">
+                                    <ul>                                    
+                                        <li> <?php echo CHtml::link('<span>'. Yii::t('app','Create New Category').'</span>', array('#'),array('id'=>'add_student-categories','class'=>'a_tag-btn')) ?>
+                                         </li>
+                                
+                                    </ul>
+                                </div> 
 
-<div class="edit_bttns" style="right:15px; top:12px;">
-    <?php 
-   $criteria = new CDbCriteria;
-	$criteria->order = 'id DESC';
-	$total = StudentCategories::model()->count($criteria);
-	$pages = new CPagination($total);
-	$pages->setPageSize(Yii::app()->params['listPerPage']);
-	$pages->applyLimit($criteria);  // the trick is here!
-	//$datas = StudentCategories::model()->findAll($criteria);
-	$page_size=Yii::app()->params['listPerPage'];
-		
-   ?>
-    <ul>
-    <li>
-           <?php echo CHtml::link('<span>'. Yii::t('students','Create New Category').'</span>', array('#'),array('id'=>'add_student-categories','class'=>'addbttn last')) ?>
-            </li>
-    </ul>
-    <div class="clear"></div>
-   </div><div id="success_flash" align="center" style=" color:#F00; display:none;"><h4>Selected category Deleted Successfully !</h4>
- 
-   </div>
-    </div>
-    <?php $datas=StudentCategories::model()->findAll($criteria);?>
-    <div id="student-categories-grid">
-    <div class="grid_table_con">
-    	<table width="100%" border="0" cellspacing="0" cellpadding="0" id="example">
-  <tr>
-    
-    <th width="45%"><?php echo Yii::t('students','Category Name');?><a href="#" class="sort_but"></a></th>
-    <th width="16%"><?php echo Yii::t('students','Status');?><a href="#" class="sort_but"></a></th>
-    <th width="19%"><?php echo Yii::t('students','No. of Students');?><a href="#" class="sort_but"></a></th>
-    <th width="16%"><?php echo Yii::t('students','Actions');?></th>
-  </tr>
-  <?php if($datas!=NULL)
-  {
-  foreach($datas as $data)
-  { ?>
-  <?php $count=Students::model()->findAllByAttributes(array('student_category_id'=>$data->id)); ?>
-  <tr>
-    
-    <td><?php echo $data->name ?></td>
-    <?php echo $data->is_deleted ? '<td align="center" ><strong>Inactive' : '<td align="center" style="color:#093"><strong>Active' ?></strong></td>
-    <td align="center" class="ns">
-    <div style="position:relative" id="d<?php echo $data->id ?>"><span class="s_no"><?php echo count($count) ?><a href="#" class="s_no_but" id="<?php echo $data->id ?>"></a></span>
-		  <div class="ns_drop" id="<?php echo $data->id ?>l" style="display:none">
-    	<ul>
-        	<!--<li><!--<a href="#" class="add">Add Students-<?php echo $data->id ?></a></li>-->
-            <li><a href="<?php echo $data->id ?>" class="view">View Students</a></li>
-            <!--<li><!--<a href="#" class="fees">Create Fees</a></li>
-            <li><!--<a href="#" class="report">Create Report</a></li>-->
-        </ul>
-    </div>
-	</div>
-    </td>
-    <td align="center" class="act"><div style="position:relative"><span class="action_but" id="<?php echo $data->id ?>"></span>
-    	<div class="gridact_drop" id="<?php echo $data->id ?>a">
-        	<div class="gridact_arrow"></div>
-        	<ul>
-            	<!--<li><a href="#" class="grview">View</a></li>-->
-                <li><a href="<?php echo $data->id ?>" class="gredit">Edit</a></li>
-                <li><a href="<?php echo $data->id ?>" class="grdel">Delete</a></li>
-            </ul>
+                                
+                            </div>
+                       
+                       
+                       
+                       <div id="success_flash" align="center" style=" color:#689569; display:none;"><h4><?php echo Yii::t('app','Selected Category Deleted Successfully!'); ?></h4>
+                     
+                       </div>
+                       
+                        <?php $datas=StudentCategories::model()->findAll($criteria);?>
+                        <div id="student-categories-grid">
+                        <div class="grid_table_con">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" id="example">
+                      <tr>
+                        
+                        <th width="45%"><?php echo Yii::t('app','Category Name');?><a href="#" class="sort_but"></a></th>
+                       <?php /*?> <th width="16%"><?php echo Yii::t('students','Status');?><a href="#" class="sort_but"></a></th><?php */?>
+                        <th width="19%"><?php echo Yii::t('app','No. of Students');?><a href="#" class="sort_but"></a></th>
+                        <th width="16%"><?php echo Yii::t('app','Actions');?></th>
+                      </tr>
+                      <?php if($datas!=NULL)
+                      {
+                      foreach($datas as $data)
+                      { ?>
+                     <?php $count=Students::model()->findAllByAttributes(array('student_category_id'=>$data->id,'is_active'=>1,'is_deleted'=>0)); ?>
+                      <tr>
+                        
+                        <td><?php echo $data->name ?></td>
+                        <?php /*?><?php echo $data->is_deleted ? '<td align="center" ><strong>Inactive' : '<td align="center" style="color:#093"><strong>Active' ?></strong></td><?php */?>
+                        <td align="center" class="ns">
+                        <div style="position:relative" id="d<?php echo $data->id ?>"><span class="s_no"><?php echo count($count) ?><a href="#" class="s_no_but" id="<?php echo $data->id ?>"></a></span>
+                              <div class="ns_drop" id="<?php echo $data->id ?>l" style="display:none">
+                            <ul>
+                                <!--<li><!--<a href="#" class="add">Add Students-<?php echo $data->id ?></a></li>-->
+                                <li><a href="<?php echo $data->id ?>" class="view"><?php echo Yii::t('app','View Students'); ?></a></li>
+                                <!--<li><!--<a href="#" class="fees">Create Fees</a></li>
+                                <li><!--<a href="#" class="report">Create Report</a></li>-->
+                            </ul>
+                        </div>
+                        </div>
+                        </td>
+                        <td align="center" class="act">                        	
+                        	<div class="tt-wrapper-new">                                                                    
+                                <a href="<?php echo $data->id ?>" class="makeedit"><span><?php echo Yii::t('app','Edit'); ?></span></a>
+                                <a href="<?php echo $data->id ?>" class="makedelete"><span><?php echo Yii::t('app','Delete'); ?></span></a>
+                            </div>        
+                        </td>
+                      </tr>
+                      <?php }}?>
+                      
+                    </table>
+                    
+                        </div>
+                        
+                    
+                    <?php
+                    //Strings for the delete confirmation dialog.
+                    $del_con = Yii::t('app', 'Are you sure you want to delete this student category?');
+                    $del_title=Yii::t('app', 'Delete Confirmation');
+                    $del=Yii::t('app', 'Delete');
+                    $cancel=Yii::t('app', 'Cancel');
+                    ?>
+                      
+                    <div class="pagecon">
+                                                                     <?php 
+                                                                          $this->widget('CLinkPager', array(
+                                                                          'currentPage'=>$pages->getCurrentPage(),
+                                                                          'itemCount'=>$total,
+                                                                          'pageSize'=>$page_size,
+                                                                          'maxButtonCount'=>5,
+                                                                          //'nextPageLabel'=>'My text >',
+                                                                          'header'=>'',
+                                                                      'htmlOptions'=>array('class'=>'pages'),
+                                                                      ));?>
+                                                                      </div>
+                    
+                    <?php
+                        /*$this->widget('zii.widgets.grid.CGridView', array(
+                             'id' => 'student-categories-grid',
+                             'dataProvider' => $model->search(),
+                             'filter' => $model,
+                             'pager'=>array('cssFile'=>Yii::app()->baseUrl.'/css/formstyle.css'),
+                             'cssFile' => Yii::app()->baseUrl . '/css/formstyle.css',
+                             'htmlOptions'=>array('class'=>'grid-view clear'),
+                              'columns' => array(
+                                    
+                            'name',
+                            
+                            array(
+                                'name'=>'is_deleted',
+                                'header'=>'Status',
+                                'value'=>'$data->is_deleted ? "Inactive" : "Active"'
+                            ),
+                            array(            
+                                'name'=>'id',
+                                'header'=>'No. of Students',
+                                'type'=>'raw', //because of using html-code
+                                'filter'=>false,
+                                'value'=>array($this,'links'), //call this controller method for each row
+                            ),
+                    
+                        array(
+                                       'class' => 'CButtonColumn',
+                                        'buttons' => array(
+                                                                         'student-categories_delete' => array(
+                                                                         'label' => Yii::t('admin_student-categories', 'Delete'), // text label of the button
+                                                                          'url' => '$data->id', // a PHP expression for generating the URL of the button
+                                                                          'imageUrl' =>Yii::app()->request->baseUrl .'/js_plugins/ajaxform/images/icons/cross.png', // image URL of the button.   If not set or false, a text link is used
+                                                                          'options' => array("class" => "fan_del", 'title' => Yii::t('admin_student-categories', 'Delete')), // HTML options for the button   tag
+                                                                          ),
+                                                                         'student-categories_update' => array(
+                                                                         'label' => Yii::t('admin_student-categories', 'Update'), // text label of the button
+                                                                         'url' => '$data->id', // a PHP expression for generating the URL of the button
+                                                                         'imageUrl' =>Yii::app()->request->baseUrl .'/js_plugins/ajaxform/images/icons/pencil.png', // image URL of the button.   If not set or false, a text link is used
+                                                                         'options' => array("class" => "fan_update", 'title' => Yii::t('admin_student-categories', 'Update')), // HTML options for the    button tag
+                                                                            ),
+                                                                         'student-categories_view' => array(
+                                                                          'label' => Yii::t('admin_student-categories', 'View Students'), // text label of the button
+                                                                          'url' => '$data->id', // a PHP expression for generating the URL of the button
+                                                                          //'imageUrl' =>Yii::app()->request->baseUrl .'/js_plugins/ajaxform/images/icons/properties.png', // image URL of the button.   If not set or false, a text link is used
+                                                                          'options' => array("class" => "fan_view", 'title' => Yii::t('admin_student-categories', 'View')), // HTML options for the    button tag
+                                                                            )
+                                                                        ),
+                                       'template' => '{student-categories_view}{student-categories_update}{student-categories_delete}',
+                                       'header'=>'Actions',
+                                ),
+                        ),
+                               'afterAjaxUpdate'=>'js:function(id,data){$.bind_crud()}'
+                    
+                                                                ));
+                    */
+                    
+                       ?>
+                       </div> </div></td></tr></table>
+                       
+			<?php
+			
+			}
+			else
+			{
+			?>
+            	<div>
+                    <div class="yellow_bx" style="background-image:none;width:680px;padding-bottom:45px;">
+                        <div class="y_bx_head" style="width:650px;">
+                        <?php 
+							echo Yii::t('app','You are not viewing the current active year.'); 
+							echo Yii::t('app','To manage the student category, enable  manage the student category option in Previous Academic Year Settings.');
+						?>
+                        </div>
+                        <div class="y_bx_list" style="width:650px;">
+              <h1><?php echo CHtml::link(Yii::t('app','Previous Academic Year Settings'),array('/previousYearSettings/create')) ?></h1>
+                        </div>
+                    </div>
+				</div>
+            <?php
+			}
+			?>
         </div>
-    </div>
-    </td>
-  </tr>
-  <?php }}?>
-  
-</table>
-
-    </div>
+    </td></tr></table>
     
-
-<?php
-//Strings for the delete confirmation dialog.
-$del_con = Yii::t('students', 'Are you sure you want to delete this student category?');
-$del_title=Yii::t('students', 'Delete Confirmation');
-$del=Yii::t('students', 'Delete');
-$cancel=Yii::t('students', 'Cancel');
-?>
-  
-<div class="pagecon">
-                                                 <?php 
-	                                                  $this->widget('CLinkPager', array(
-													  'currentPage'=>$pages->getCurrentPage(),
-													  'itemCount'=>$total,
-													  'pageSize'=>$page_size,
-													  'maxButtonCount'=>5,
-													  //'nextPageLabel'=>'My text >',
-													  'header'=>'',
-												  'htmlOptions'=>array('class'=>'pages'),
-												  ));?>
-                                                  </div>
-
-<?php
-    /*$this->widget('zii.widgets.grid.CGridView', array(
-         'id' => 'student-categories-grid',
-         'dataProvider' => $model->search(),
-         'filter' => $model,
-		 'pager'=>array('cssFile'=>Yii::app()->baseUrl.'/css/formstyle.css'),
- 	     'cssFile' => Yii::app()->baseUrl . '/css/formstyle.css',
-         'htmlOptions'=>array('class'=>'grid-view clear'),
-          'columns' => array(
-          		
-		'name',
-		
-		array(
-            'name'=>'is_deleted',
-			'header'=>'Status',
-			'value'=>'$data->is_deleted ? "Inactive" : "Active"'
-        ),
-		array(            
-            'name'=>'id',
-			'header'=>'No. of Students',
-            'type'=>'raw', //because of using html-code
-			'filter'=>false,
-            'value'=>array($this,'links'), //call this controller method for each row
-        ),
-
-    array(
-                   'class' => 'CButtonColumn',
-                    'buttons' => array(
-                                                     'student-categories_delete' => array(
-                                                     'label' => Yii::t('admin_student-categories', 'Delete'), // text label of the button
-                                                      'url' => '$data->id', // a PHP expression for generating the URL of the button
-                                                      'imageUrl' =>Yii::app()->request->baseUrl .'/js_plugins/ajaxform/images/icons/cross.png', // image URL of the button.   If not set or false, a text link is used
-                                                      'options' => array("class" => "fan_del", 'title' => Yii::t('admin_student-categories', 'Delete')), // HTML options for the button   tag
-                                                      ),
-                                                     'student-categories_update' => array(
-                                                     'label' => Yii::t('admin_student-categories', 'Update'), // text label of the button
-                                                     'url' => '$data->id', // a PHP expression for generating the URL of the button
-                                                     'imageUrl' =>Yii::app()->request->baseUrl .'/js_plugins/ajaxform/images/icons/pencil.png', // image URL of the button.   If not set or false, a text link is used
-                                                     'options' => array("class" => "fan_update", 'title' => Yii::t('admin_student-categories', 'Update')), // HTML options for the    button tag
-                                                        ),
-                                                     'student-categories_view' => array(
-                                                      'label' => Yii::t('admin_student-categories', 'View Students'), // text label of the button
-                                                      'url' => '$data->id', // a PHP expression for generating the URL of the button
-                                                      //'imageUrl' =>Yii::app()->request->baseUrl .'/js_plugins/ajaxform/images/icons/properties.png', // image URL of the button.   If not set or false, a text link is used
-                                                      'options' => array("class" => "fan_view", 'title' => Yii::t('admin_student-categories', 'View')), // HTML options for the    button tag
-                                                        )
-                                                    ),
-                   'template' => '{student-categories_view}{student-categories_update}{student-categories_delete}',
-				   'header'=>'Actions',
-            ),
-    ),
-           'afterAjaxUpdate'=>'js:function(id,data){$.bind_crud()}'
-
-                                            ));
-*/
-
-   ?>
-   </div></td></tr></table>
-   
-
+    
 <script type="text/javascript">
 //document ready
 $(function() {
@@ -283,6 +343,7 @@ $(function() {
                                 "transitionOut" :"elastic",
                                 "speedIn"              : 600,
                                 "speedOut"         : 200,
+								
                                 "overlayShow"  : false,
                                 "hideOnContentClick": false
                             });//fancybox
@@ -291,11 +352,12 @@ $(function() {
             });//ajax
             return false;
         });
+		
     });
 
 //UPDATE
 
-    $('.gredit').each(function(index) {
+    $('.makeedit').each(function(index) {
         var id = $(this).attr('href');
         $(this).bind('click', function() {
             $.ajax({
@@ -313,6 +375,7 @@ $(function() {
                             {    "transitionIn"    :  "elastic",
                                  "transitionOut"  : "elastic",
                                  "speedIn"               : 600,
+								 
                                  "speedOut"           : 200,
                                  "overlayShow"    : false,
                                  "hideOnContentClick": false,
@@ -333,7 +396,7 @@ $(function() {
 
     var deletes = new Array();
     var dialogs = new Array();
-    $('.grdel').each(function(index) {
+    $('.makedelete').each(function(index) {
         var id = $(this).attr('href');
         deletes[id] = function() {
             $.ajax({

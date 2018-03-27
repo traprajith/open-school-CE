@@ -66,7 +66,7 @@ class CExistValidator extends CValidator
 		$finder=CActiveRecord::model($className);
 		$table=$finder->getTableSchema();
 		if(($column=$table->getColumn($attributeName))===null)
-			throw new CException(Yii::t('yii','Table "{table}" does not have a column named "{column}".',
+			throw new CException(Yii::t('app','Table "{table}" does not have a column named "{column}".',
 				array('{column}'=>$attributeName,'{table}'=>$table->name)));
 
 		$criteria=array('condition'=>$column->rawName.'=:vp','params'=>array(':vp'=>$value));
@@ -78,7 +78,7 @@ class CExistValidator extends CValidator
 
 		if(!$finder->exists($criteria))
 		{
-			$message=$this->message!==null?$this->message:Yii::t('yii','{attribute} "{value}" is invalid.');
+			$message=$this->message!==null?$this->message:Yii::t('app','{attribute} "{value}" is invalid.');
 			$this->addError($object,$attribute,$message,array('{value}'=>$value));
 		}
 	}

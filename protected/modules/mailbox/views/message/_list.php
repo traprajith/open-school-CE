@@ -59,10 +59,10 @@ else{
 }
 switch($itemCssClass)
 {
-	case 'msg-read': $status = ($this->getAction()->getId()=='sent')? 'Recipient has read your message' : 'Message has been read' ; break;
-	case 'msg-deliver':  $status = 'Recipient has not read your message yet';
-	case 'msg-new': $status =  ($this->getAction()->getId()=='sent')? 'Recipient has not read your message yet' : 'You received a new message'; break;
-	case 'msg-sent': $status = "You sent message {$username} a message";
+	case 'msg-read': $status = ($this->getAction()->getId()=='sent')? Yii::t('app','Recipient has read your message') : Yii::t('app','Message has been read') ; break;
+	case 'msg-deliver':  $status = Yii::t('app','Recipient has not read your message yet');
+	case 'msg-new': $status =  ($this->getAction()->getId()=='sent')? Yii::t('app','Recipient has not read your message yet') : Yii::t('app','You received a new message'); break;
+	case 'msg-sent': $status = Yii::t('app',"You sent message").$username.Yii::t('app',"a message");
 }
 
 /*

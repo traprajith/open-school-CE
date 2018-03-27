@@ -39,14 +39,13 @@ class Courses extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('is_deleted', 'numerical', 'integerOnly'=>true),
+			array('academic_yr_id, exam_format, is_deleted', 'numerical', 'integerOnly'=>true),
 			array('course_name, code, section_name', 'length', 'max'=>255),
-			array('created_at, updated_at', 'safe'),
-			array('course_name, code, section_name', 'required'),
-			
+			array('semester_enabled, created_at, updated_at, timetable_format', 'safe'),
+			array('course_name', 'required'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, course_name, code, section_name, is_deleted, created_at, updated_at', 'safe', 'on'=>'search'),
+			array('id, course_name, code, section_name, academic_yr_id, exam_format, is_deleted, created_at, updated_at', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,13 +70,17 @@ class Courses extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'course_name' => 'Course Name',
-			'code' => 'Code',
-			'section_name' => 'Section Name',
-			'is_deleted' => 'Is Deleted',
-			'created_at' => 'Created At',
-			'updated_at' => 'Updated At',
+			'id' => Yii::t("app",'ID'),
+			'course_name' => Yii::t("app",'Course Name'),
+			'code' => Yii::t("app",'Code'),
+			'exam_format' => Yii::t("app",'Exam Format'),
+			'section_name' => Yii::t("app",'Section Name'),
+			'semester_enabled' => Yii::t("app",'Enable semester system'),
+			'academic_yr_id' => Yii::t("app",'Academic Year ID'),
+			'is_deleted' => Yii::t("app",'Is Deleted'),
+			'created_at' => Yii::t("app",'Created At'),
+			'updated_at' => Yii::t("app",'Updated At'),
+			'timetable_format' => Yii::t('app', 'Timetable Format')
 		);
 	}
 
@@ -85,6 +88,14 @@ class Courses extends CActiveRecord
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
+	  public function getCoursename()
+	{
+		$CHtmlPurifier = new CHtmlPurifier();
+		$CHtmlPurifier->options = array('HTML.ForbiddenElements' => array('&amp;'));
+		$this->course_name = $CHtmlPurifier->purify($this->course_name);
+		
+			return htmlspecialchars_decode($this->course_name);exit;
+	}
 	public function search()
 	{
 		// Warning: Please modify the following code to remove attributes that
@@ -95,7 +106,9 @@ class Courses extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('course_name',$this->course_name,true);
 		$criteria->compare('code',$this->code,true);
+		$criteria->compare('exam_format',$this->exam_format,true);
 		$criteria->compare('section_name',$this->section_name,true);
+		$criteria->compare('academic_yr_id',$this->academic_yr_id,true);
 		$criteria->compare('is_deleted',0);
 		$criteria->compare('created_at',$this->created_at,true);
 		$criteria->compare('updated_at',$this->updated_at,true);

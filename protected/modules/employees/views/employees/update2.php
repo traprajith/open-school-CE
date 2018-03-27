@@ -1,8 +1,8 @@
 <?php
 $this->breadcrumbs=array(
-	'Employees'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	Yii::t('app','Teachers')=>array('index'),
+	//$model->id=>array('view','id'=>$model->id),
+	Yii::t('app','Update'),
 );
 
 
@@ -16,7 +16,7 @@ $this->breadcrumbs=array(
     </td>
     <td valign="top">
     <div class="cont_right formWrapper">
-<h1><?php echo Yii::t('employees','Update Employee ');?><?php echo $model->first_name; ?></h1>
+<h1><?php echo Yii::t('app','Enrolment ');?></h1>
 
 <?php echo $this->renderPartial('_form1', array('model'=>$model)); ?>
 </div>

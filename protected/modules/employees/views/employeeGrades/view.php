@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Employee Grades'=>array('admin'),
+	Yii::t('app','Teacher Grades')=>array('admin'),
 	$model->name,
 );
 
@@ -14,7 +14,7 @@ $this->breadcrumbs=array(
     </td>
     <td valign="top">
     <div class="cont_right formWrapper">
-<h1><?php echo Yii::t('employees','View EmployeeGrades');?></h1>
+<h1><?php echo Yii::t('app','View TeacherGrades');?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

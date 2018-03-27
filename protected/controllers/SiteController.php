@@ -36,7 +36,12 @@ class SiteController extends RController
 		$this->render('index');
 	}
 
-	/**
+        public function actionData()
+        {
+            var_dump(Yii::app()->session);
+        }
+
+                /**
 	 * This is the action to handle external exceptions.
 	 */
 	public function actionError()
@@ -63,7 +68,7 @@ class SiteController extends RController
 			{
 				$headers="From: {$model->email}\r\nReply-To: {$model->email}";
 				mail($model->email,$model->subject,$model->body,$headers);
-				Yii::app()->user->setFlash('contact','Thank you for contacting us. We will respond to you as soon as possible.');
+				Yii::app()->user->setFlash('contact',Yii::t("app",'Thank you for contacting us. We will respond to you as soon as possible.'));
 				$this->refresh();
 			}
 		}
@@ -115,10 +120,68 @@ class SiteController extends RController
 	}
 	public function actionSearch()
 	{
+		
 		if(isset($_POST['char']) and $_POST['char']!=NULL)
 		{
+		
 		$this->layout='column2';
-		$this->render('search');
+		$model=new Students;
+		$criteria = new CDbCriteria;
+		
+		if((substr_count( $_POST['char'],' '))==0){ 	
+			$criteria->condition='first_name LIKE :name or last_name LIKE :name or middle_name LIKE :name';
+			$criteria->params[':name'] = $_POST['char'].'%';
+		}else if((substr_count( $_POST['char'],' '))>=1){
+			$name=explode(" ",$_POST['char']);			
+			$criteria->condition='first_name LIKE :name or last_name LIKE :name or middle_name LIKE :name';
+			$criteria->params[':name'] = $name[0].'%';
+			$criteria->condition=$criteria->condition.' and '.'(first_name LIKE :name1 or last_name LIKE :name1 or middle_name LIKE :name1)';
+			$criteria->params[':name1'] = $name[1].'%';		 	
+		}
+		
+		
+		$criteria->addSearchCondition('is_active', 1);
+		$criteria->addSearchCondition('is_deleted', 0);
+		$criteria->order = 'first_name ASC';
+		$total = Students::model()->count($criteria);
+		$pages = new CPagination($total);
+        $pages->setPageSize(Yii::app()->params['listPerPage']);
+        $pages->applyLimit($criteria);  // the trick is here!
+		$posts = Students::model()->findAll($criteria);
+		
+		$emp=new Employees;
+		$criteria_1 = new CDbCriteria;
+		
+		if((substr_count( $_POST['char'],' '))==0){ 	
+			$criteria_1->condition='first_name LIKE :name or last_name LIKE :name or middle_name LIKE :name';
+			$criteria_1->params[':name'] = $_POST['char'].'%';
+		}else if((substr_count( $_POST['char'],' '))>=1){
+			$name=explode(" ",$_POST['char']);			
+			$criteria_1->condition='first_name LIKE :name or last_name LIKE :name or middle_name LIKE :name';
+			$criteria_1->params[':name'] = $name[0].'%';
+			$criteria_1->condition=$criteria_1->condition.' and '.'(first_name LIKE :name1 or last_name LIKE :name1 or middle_name LIKE :name1)';
+			$criteria_1->params[':name1'] = $name[1].'%';		 	
+		}
+		
+		//$criteria_1->addSearchCondition('is_deleted', 0);
+		$criteria_1->order = 'first_name ASC';
+		$tot = Employees::model()->count($criteria_1);
+		$pages_1 = new CPagination($total);
+        $pages_1->setPageSize(Yii::app()->params['listPerPage']);
+        $pages_1->applyLimit($criteria_1);  // the trick is here!
+		$posts_1 = Employees::model()->findAll($criteria_1);		
+		 
+		$this->render('search',array('model'=>$model,
+		'list'=>$posts,
+		'posts'=>$posts_1,
+		'pages' => $pages,
+		'item_count'=>$total,
+		'page_size'=>10,)) ;
+		
+		//$stud = Students::model()->findAll('first_name LIKE '.$_POST['char']);
+		//echo count($stud);
+		//exit;
+	//print_r($_POST);
 		}
 		else
 		{
@@ -126,18 +189,47 @@ class SiteController extends RController
 		}
 	}
 	
-	public function actionStudent()
+	public function actionSemstudent()
+	 {
+		 
+			$id			  =	$_REQUEST['id'];
+			$Student	  = Students::model()->findByAttributes(array('id'=>$_REQUEST['id'])); 
+			$student_name =	$Student->studentFullName("forStudentProfile").'@#$`'.$_REQUEST['id'];
+				
+			// semester details
+			$stu_batchs=BatchStudents::model()->findAllByAttributes(array("student_id"=>$id)); 
+			$datas=array();
+			
+			foreach($stu_batchs as $stu_batch)
+			{
+				$bid	=	$stu_batch->batch_id;
+				$batch	=	Batches::model()->findByPk($bid);
+				$sem	=	Semester::model()->findByPk($batch->semester_id);
+				if(isset($sem) and $sem!=NULL){
+				if(!in_array($sem->id,$data))
+					$data[]=$sem->id;
+				}
+					
+			}
+			$semester_data	=	CHtml::tag('option', array('value' => ''), CHtml::encode(Yii::t('app','Select Semester')), true);
+			for($i=0;$i<count($data);$i++){
+				$sems	=	Semester::model()->findByPk($data[$i]);
+				$semester_data.=CHtml::tag('option',array('value'=>$sems->id),CHtml::encode($sems->name),true);
+			}
+				
+			echo CJSON::encode(array('student_name'=>$student_name,'semester_data'=>$semester_data));	
+		
+	 }
+	 public function actionStudent()
 	 {
 		if(Yii::app()->request->isAjaxRequest)
 		{
-		$Student = Students::model()->findByAttributes(array('id'=>$_REQUEST['id'])); 
-		echo ucfirst($Student->first_name).' '.ucfirst($Student->middle_name).' '.ucfirst($Student->last_name).'@#$`'.$_REQUEST['id'];
-		
+			$Student = Students::model()->findByAttributes(array('id'=>$_REQUEST['id'])); 
+			echo $Student->studentFullName("forStudentProfile").'@#$`'.$_REQUEST['id'];
+			
 		}
 		
 	 }
-	 
-	 
 	public function actionExplorer()
 	{
 		if(Yii::app()->request->isAjaxRequest)
@@ -147,21 +239,29 @@ class SiteController extends RController
 	}
 	public function actionManage()
 	 {
-		 if(Yii::app()->request->isAjaxRequest)
+		if(Yii::app()->request->isAjaxRequest)
 		 {
 		
 		$name='';
 	    $bat='';
 	    $ad='';  		  
-		    
+		if(Yii::app()->user->year)
+		{
+			$year = Yii::app()->user->year;
+		}
+		else
+		{
+			$current_academic_yr = Configurations::model()->findByAttributes(array('id'=>35));
+			$year = $current_academic_yr->config_value;
+		}   
 		$model=new Students;
 		$criteria = new CDbCriteria;
 		$criteria->compare('is_deleted',0);  // normal DB field
-		$criteria->condition='is_deleted=:is_del';
-		 $criteria->params = array(':is_del'=>0);
-		if(isset($_REQUEST['val']))
+		$criteria->condition='is_deleted=:is_del AND is_active=:is_active';
+		 $criteria->params = array(':is_del'=>0,':is_active'=>1);
+		if(isset($_REQUEST['val']) and $_REQUEST['val']!=NULL)
 		{
-		 $criteria->condition=$criteria->condition.' and '.'first_name LIKE :match';
+		 $criteria->condition=$criteria->condition.' and first_name LIKE :match';
 		 $criteria->params[':match'] = $_REQUEST['val'].'%';
 		}
 		
@@ -292,57 +392,83 @@ class SiteController extends RController
 			$criteria->condition=$criteria->condition.' and '.'is_active = :status';
 		    $criteria->params[':status'] = $_REQUEST['Students']['status'];
 		}
-		
+		//accademic status check
+		$batch_stu = BatchStudents::model()->findAllByAttributes(array('result_status'=>0,'status'=>1,'academic_yr_id'=>$year));
+		$students	=array();
+		foreach($batch_stu as $stu)
+		{
+			$students[]	=	$stu->student_id;
+		}
+		$criteria->addInCondition('id',$students);
+		//end
 		$criteria->order = 'first_name ASC';
-		
+	
 		$total = Students::model()->count($criteria);
+		
 		//$pages = new CPagination($total);
         //$pages->setPageSize(Yii::app()->params['listPerPage']);
-        //$pages->applyLimit($criteria);  // the trick is here!
+       //$pages->applyLimit($criteria);  // the trick is here!
 		$posts = Students::model()->findAll($criteria);
 		
 		 
 		$this->renderPartial('student_panel',array('model'=>$model,
 		'list'=>$posts,
 		//'pages' => $pages,
-		'item_count'=>$total,'name'=>$name,'ad'=>$ad,'bat'=>$bat
-		//'page_size'=>Yii::app()->params['listPerPage']
+		//'item_count'=>$total,'name'=>$name,'ad'=>$ad,'bat'=>$bat,
+		//'page_size'=>10,
 		)) ;
-		
-		
 		
 		 }
 	 
 	 }
 	 public function actionAutocomplete() 
 	 {
+		 if(Yii::app()->user->year)
+		{
+			$year = Yii::app()->user->year;
+		}
+		else
+		{
+			$current_academic_yr = Configurations::model()->findByAttributes(array('id'=>35));
+			$year = $current_academic_yr->config_value;
+		}
 	  if (isset($_GET['term'])) {
 		$criteria=new CDbCriteria;
-		$criteria->alias = "first_name";
+		//$criteria->alias = "first_name";
 		$criteria->condition = "first_name   like '" . $_GET['term'] . "%'"." or last_name   like '" . $_GET['term'] . "%'";
 		$criteria->addSearchCondition('is_active', 1);
 		$criteria->addSearchCondition('is_deleted', 0);
+		//accademic status check
+		$batch_stu = BatchStudents::model()->findAllByAttributes(array('result_status'=>0,'status'=>1,'academic_yr_id'=>$year));
+		$students	=array();
+		foreach($batch_stu as $stu)
+		{
+			$students[]	=	$stu->student_id;
+		}
+		$criteria->addInCondition('id',$students);
+		//end
 		$criteria->order = 'first_name ASC';
 		$Students = Students::model()->findAll($criteria);
 	
 		$return_array = array();
 		foreach($Students as $Student) {
 		  $return_array[] = array(
-						'label'=>ucfirst($Student->first_name).' '.ucfirst($Student->middle_name).' '.ucfirst($Student->last_name) ,
+						'label'=>$Student->studentFullName('forStudentProfile'),
 						'id'=>$Student->id,
 						);
 		}
 		echo CJSON::encode($return_array);
+		Yii::app()->end();
 	  }
 	}
 	
 	public function actionParentautocomplete() 
 	 {
 	  if (isset($_GET['term'])) {
-		$criteria=new CDbCriteria;
-		$criteria->alias = "first_name";
-		$criteria->condition = "first_name   like '" . $_GET['term'] . "%'"." or last_name   like '" . $_GET['term'] . "%'";
-		$criteria->order = 'first_name ASC';
+		$criteria	= new CDbCriteria;
+		$criteria->condition	= '(first_name LIKE :name OR last_name LIKE :name) AND (is_delete=:is_delete)';
+		$criteria->params		= array(':name'=>$_GET['term'].'%', ':is_delete'=>0);			
+		$criteria->order 		= 'first_name ASC';
 		$guardians = Guardians::model()->findAll($criteria);
 	
 		$return_array = array();
@@ -353,16 +479,17 @@ class SiteController extends RController
 						);
 		}
 		echo CJSON::encode($return_array);
+		Yii::app()->end();
 	  }
 	}
 	
 	public function actionParentemailcomplete() 
 	 {
 	  if (isset($_GET['term'])) {
-		$criteria=new CDbCriteria;
-		$criteria->alias = "email";
-		$criteria->condition = "email like '".$_GET['term'] . "%'";
-		$criteria->order = 'email ASC';
+		$criteria	= new CDbCriteria;
+		$criteria->condition	= '(email LIKE :email) AND (is_delete=:is_delete)';
+		$criteria->params		= array(':email'=>$_GET['term'].'%', ':is_delete'=>0);		
+		$criteria->order 		= 'email ASC';
 		$guardians = Guardians::model()->findAll($criteria);
 		$return_array = array();
 		foreach($guardians as $guardian) {
@@ -372,14 +499,14 @@ class SiteController extends RController
 						);
 		}
 		echo CJSON::encode($return_array);
+		Yii::app()->end();
 	  }
 	}
 	
 	public function actionEmployeeautocomplete() 
 	 {
-	  if (isset($_GET['term'])) {
+	  if (isset($_GET['term'])) { 
 		$criteria=new CDbCriteria;
-		$criteria->alias = "first_name";
 		$criteria->condition = "first_name   like '" . $_GET['term'] . "%'"." or last_name   like '" . $_GET['term'] . "%'";
 		$criteria->addSearchCondition('is_deleted', 0);
 		$criteria->order = 'first_name ASC';
@@ -388,7 +515,7 @@ class SiteController extends RController
 		$return_array = array();
 		foreach($employees as $employee) {
 		  $return_array[] = array(
-						'label'=>ucfirst($employee->first_name).' '.ucfirst($employee->middle_name).' '.ucfirst($employee->last_name) ,
+						'label'=>Employees::model()->getTeachername($employee->id) ,
 						'id'=>$employee->id,
 						);
 		}
@@ -602,10 +729,27 @@ class SiteController extends RController
 	 
 	 }
 	 
+	 public function actionBmanage()
+	 {
+		 $this->renderPartial('batch_panel',array());
+	 }
+	 
 	 public function actionBookmark()
 	 {
 		 
-			 echo 'saved';
+			 echo Yii::t("app",'saved');
 		 
 	 }
+         
+         
+         public function actionOffline()
+         {
+             $this->render('offline');
+         }
+         
+         public function actionPdf()
+         {
+            $filename	= "report.pdf";
+            Yii::app()->osPdf->generate("application.views.site.printpdf", $filename, array(),1);
+         }
 }

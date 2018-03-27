@@ -23,7 +23,7 @@ root {
 .client-val-form input{
 /*     background: url("../images/bg-form-field.gif") repeat-x scroll left top #FFFFFF;*/
     border: 1px solid #D5D5D5;
-    border-radius: 4px 4px 4px 4px;
+    border-radius:0px;
     color: #333333;
     font-size: 13px;
     padding: 6px;
@@ -59,20 +59,43 @@ root {
                 }
 
 .success  {
-                background: #d6f6a9 no-repeat right url('images/icons/tick_circle.png')  ;
+                background: #d6f6a9;/* no-repeat right url('images/icons/tick_circle.png')  ;*/
                 color: #556652;
-				padding-right:20px;
-                }
-.png_bg{float:right; margin:-28px 20px 0px 0px;}
+				padding-right:0px;
+				margin-left:0px !important;
+ }
+ 
+.png_bg{float:right; margin:0px 18px 0px 50px;}
 .png_bg1{float:right;}
 
 .error-simple.png_bg{float:none; margin:0;}
 .errorshow {
-                background: #ffcece no-repeat url("images/icons/cross_circle.png");
+                background: #ffcece /*no-repeat url("images/icons/cross_circle.png"*/);
                 border-color: #df8f8f;
                 color: #665252;
-                  width: 98%;
+                  width: 89.1%;
+				  margin-right:10%
                 }
+
+.errorshow-fancy {
+	background: #ffcece /*no-repeat url("images/icons/cross_circle.png")*/;
+	border-color: #df8f8f;
+	color: #665252;
+	width:100% !important;
+	margin:0px !important;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.success-fancy  {
+                background: #d6f6a9/* no-repeat right url('images/icons/tick_circle.png')*/  ;
+                color: #556652;
+	width:100% !important;
+	margin:0px !important;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+ }
 
 
 
@@ -104,7 +127,7 @@ root {
 
 /* Notification for form inputs */
   .error-simple {
-     background: url("images/icons/cross_circle.png") repeat scroll 0 0 #FFCECE;
+    /* background: url("images/icons/cross_circle.png") repeat scroll 0 0 #FFCECE;*/
     border: medium none;
     color: #FC1818  !important;
                 }
@@ -188,3 +211,5 @@ div.ajax-sending * {
 
     
 }
+.fancybox-inner h1{ word-break:break-all;
+padding-right:20px;}

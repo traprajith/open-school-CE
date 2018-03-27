@@ -88,32 +88,44 @@ class Employees extends CActiveRecord
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
+		if(Yii::app()->controller->module->id == 'teachersportal' and Yii::app()->controller->action->id=='editprofile'){
+			return array(
+				array('first_name, last_name, gender, date_of_birth, home_address_line1, home_city, home_state, home_country_id, home_pin_code, email, mobile_phone, qualification','required'),
+				array('home_pin_code, office_pin_code, mobile_phone','numerical', 'integerOnly'=>true),
+				array('email','email'),
+				array('email','checkEmail'),					
+				array('mobile_phone','checkPhone'),				
+				array('date_of_birth','checkDateOfBirth'),				
+			);
+		}
 		if(Yii::app()->controller->action->id=='create2' or Yii::app()->controller->action->id=='update2'){
 			return array(
-				array('home_address_line1, home_city, home_state, home_country_id, home_pin_code, email, mobile_phone','required'),
-				array('mobile_phone','numerical', 'integerOnly'=>true),
-				//array('home_pin_code,office_pin_code','length', 'max'=>6),
-				array('email','email'),
+				array('home_address_line1, home_city, home_state, home_country_id, home_pin_code, mobile_phone, qualification','required'),
+				array('home_pin_code, office_pin_code, mobile_phone','numerical', 'integerOnly'=>true),						
+				array('mobile_phone','checkPhone'),
+				array('home_pin_code,office_pin_code','length', 'max'=>6),
+				array('home_address_line1, home_address_line2, home_city, home_state, home_pin_code, office_address_line1, office_address_line2, office_city, office_state, office_pin_code, office_phone1, office_phone2, mobile_phone, home_phone, fax, photo_file_name, photo_content_type', 'length', 'max'=>255),
+							
 			);
 		}
 		
 		return array(
-			array('employee_category_id, employee_position_id, employee_department_id, reporting_manager_id, employee_grade_id, experience_year, experience_month, children_count, nationality_id, home_country_id, office_country_id, photo_file_size, is_deleted, user_id, uid', 'numerical', 'integerOnly'=>true),
-			array('employee_number, gender, first_name, middle_name, last_name, job_title, qualification, status_description, marital_status, father_name, mother_name, husband_name, blood_group, home_address_line1, home_address_line2, home_city, home_state, home_pin_code, office_address_line1, office_address_line2, office_city, office_state, office_pin_code, office_phone1, office_phone2, mobile_phone, home_phone, email, fax, photo_file_name, photo_content_type', 'length', 'max'=>255),
+			array('employee_category_id, employee_position_id, employee_department_id, reporting_manager_id, employee_grade_id, experience_year, experience_month, children_count, nationality_id, home_country_id, home_pin_code, office_country_id, office_pin_code, photo_file_size, is_deleted, user_id, uid', 'numerical', 'integerOnly'=>true),
+			array('employee_number, gender, first_name, middle_name, last_name, job_title, qualification, status_description, marital_status, father_name, mother_name, husband_name, blood_group', 'length', 'max'=>255),
 			array('joining_date, experience_detail, date_of_birth, created_at, updated_at', 'safe'),
-			array('employee_number, first_name, last_name, gender, date_of_birth, employee_department_id', 'required'),
+			array('employee_number, first_name, last_name, gender, date_of_birth, employee_department_id, qualification, email', 'required'),
 			array('experience_year, experience_month', 'exp_validation'),
 			array('employee_number','unique'),
+			array('email','checkEmail'),	
+			array('date_of_birth','checkDateOfBirth'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('photo_data', 'file', 'types'=>'jpg, gif, png','allowEmpty' => true, 'maxSize' => 5242880),
-			array('id, employee_category_id, employee_number, joining_date, first_name, middle_name, last_name, gender, job_title, employee_position_id, employee_department_id, reporting_manager_id, employee_grade_id, qualification, experience_detail, experience_year, experience_month, status, status_description, date_of_birth, marital_status, children_count, father_name, mother_name, husband_name, blood_group, nationality_id, home_address_line1, home_address_line2, home_city, home_state, home_country_id, home_pin_code, office_address_line1, office_address_line2, office_city, office_state, office_country_id, office_pin_code, office_phone1, office_phone2, mobile_phone, home_phone, email, fax, photo_file_name, photo_content_type, photo_data, created_at, updated_at, photo_file_size, user_id', 'safe', 'on'=>'search'),
-			
+			array('id, employee_category_id, employee_number, joining_date, first_name, middle_name, last_name, gender, job_title, employee_position_id, employee_department_id, reporting_manager_id, employee_grade_id, qualification, experience_detail, experience_year, experience_month, status, status_description, date_of_birth, marital_status, children_count, father_name, mother_name, husband_name, blood_group, nationality_id, home_address_line1, home_address_line2, home_city, home_state, home_country_id, home_pin_code, office_address_line1, office_address_line2, office_city, office_state, office_country_id, office_pin_code, office_phone1, office_phone2, mobile_phone, home_phone, email, fax, photo_file_name, photo_content_type, photo_data, created_at, updated_at, photo_file_size, user_id', 'safe', 'on'=>'search'),			
 			array('email','email'),
-			array('experience_detail', 'exp_details_validation', 'on' => 'hasExperience'),
+			array('experience_detail', 'exp_details_validation', 'on' => 'hasExperience'),			
+			//array('basic_pay,HRA,PF,TDS,others1,others2,DA', 'match', 'pattern'=>'/([1-9][0-9]*?)(\.[0-9]{2})?/'),
 			//array('photo_data', 'file', 'allowEmpty'=>true, 'types'=>'jpg, jpeg, gif, png')
-
-
 		);
 	}
 
@@ -127,65 +139,134 @@ class Employees extends CActiveRecord
 		return array(
 		);
 	}
+	
+	//Check the date of birth is less than today
+	public function checkDateOfBirth($attribute,$params)
+	{
+		if($this->$attribute != ''){
+			$today			= date('Y-m-d'); 
+			$selected_date	= date('Y-m-d', strtotime($this->$attribute));
+			if($selected_date >= $today){
+				$settings	= UserSettings::model()->findByAttributes(array('user_id'=>1));
+				if($settings != NULL){
+					$date = date($settings->displaydate, strtotime($selected_date));
+				}
+				else{
+					$date = $this->$attribute; 
+				}
+				$this->addError($attribute,$this->getAttributeLabel('date_of_birth').' '.'"'.$date.'"'.' '.Yii::t('app','is invalid'));
+			}
+		}
+	}
+	
+	//Check the email is unique
+	public function checkEmail($attribute,$params)
+	{
+		if($this->$attribute != ''){
+			$student	= StudentsUser::model()->findByAttributes(array('email'=>$this->$attribute,'is_deleted'=>0)); //This model is for checking all Students(Both normal & online)								
+			$employee	= Employees::model()->findByAttributes(array('email'=>$this->$attribute,'is_deleted'=>0));
+			$parent		= Guardians::model()->findByAttributes(array('email'=>$this->$attribute,'is_delete'=>0));
+			$user		= User::model()->findByAttributes(array('email'=>$this->$attribute));
+			
+			if(($employee != NULL and $employee->id != $this->id) or $student != NULL or $parent != NULL or ($user != NULL and $user->id != $this->uid)){
+				$this->addError($attribute,$this->getAttributeLabel('email').' '.'"'.$this->$attribute.'"'.' '.Yii::t('app','has already been taken'));
+			}	
+		}
+	}
 
+	
+	//check the phone number is unique
+	public function checkPhone($attribute,$params)
+	{
+		if($this->$attribute!=''){				
+			$student	= StudentsUser::model()->findByAttributes(array('phone1'=>$this->$attribute,'is_deleted'=>0)); //This model is for checking all Students(Both normal & online)				
+			$employee	= Employees::model()->findByAttributes(array('mobile_phone'=>$this->$attribute,'is_deleted'=>0));
+			$parent		= Guardians::model()->findByAttributes(array('mobile_phone'=>$this->$attribute,'is_delete'=>0));
+			$user		= User::model()->findByAttributes(array('mobile_number'=>$this->$attribute));
+			if(($employee != NULL and $employee->id != $this->id) or $student != NULL or $parent != NULL or ($user != NULL and $user->id != $this->uid)){
+				$this->addError($attribute,$this->getAttributeLabel('mobile_phone').' '.'"'.$this->$attribute.'"'.' '.Yii::t('app','has already been taken'));
+			}
+		}
+	}
+	
+	public function defaultScope()
+	{
+		return array(
+						'condition'=> $this->getTableAlias(false, false).".user_type=:type",
+						'params' => array(":type"=>0)
+				);
+	}
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'employee_category_id' => 'Employee Category',
-			'employee_number' => 'Employee Number',
-			'joining_date' => 'Joining Date',
-			'first_name' => 'First Name',
-			'middle_name' => 'Middle Name',
-			'last_name' => 'Last Name',
-			'gender' => 'Gender',
-			'job_title' => 'Job Title',
-			'employee_position_id' => 'Employee Position',
-			'employee_department_id' => 'Employee Department',
-			'reporting_manager_id' => 'Reporting Manager',
-			'employee_grade_id' => 'Employee Grade',
-			'qualification' => 'Qualification',
-			'experience_detail' => 'Experience Detail',
-			'experience_year' => 'Experience Year',
-			'experience_month' => 'Experience Month',
-			'status' => 'Status',
-			'status_description' => 'Status Description',
-			'date_of_birth' => 'Date Of Birth',
-			'marital_status' => 'Marital Status',
-			'children_count' => 'Children Count',
-			'father_name' => 'Father Name',
-			'mother_name' => 'Mother Name',
-			'husband_name' => 'Husband Name',
-			'blood_group' => 'Blood Group',
-			'nationality_id' => 'Nationality',
-			'home_address_line1' => 'Home Address Line1',
-			'home_address_line2' => 'Home Address Line2',
-			'home_city' => 'Home City',
-			'home_state' => 'Home State',
-			'home_country_id' => 'Home Country',
-			'home_pin_code' => 'Home Post Code',
-			'office_address_line1' => 'Office Address Line1',
-			'office_address_line2' => 'Office Address Line2',
-			'office_city' => 'Office City',
-			'office_state' => 'Office State',
-			'office_country_id' => 'Office Country',
-			'office_pin_code' => 'Office Post Code',
-			'office_phone1' => 'Office Phone1',
-			'office_phone2' => 'Office Phone2',
-			'mobile_phone' => 'Mobile Phone',
-			'home_phone' => 'Home Phone',
-			'email' => 'Email',
-			'fax' => 'Fax',
-			'photo_file_name' => 'Photo File Name',
-			'photo_content_type' => 'Photo Content Type',
-			'photo_data' => 'Photo Data',
-			'created_at' => 'Created At',
-			'updated_at' => 'Updated At',
-			'photo_file_size' => 'Photo File Size',
-			'user_id' => 'User',
+			'id' => Yii::t("app",'ID'),
+			'employee_category_id' => Yii::t("app",'Teacher Category'),
+			'employee_number' => Yii::t("app",'Teacher Number'),
+			'joining_date' => Yii::t("app",'Joining Date'),
+			'first_name' => Yii::t("app",'First Name'),
+			'middle_name' => Yii::t("app",'Middle Name'),
+			'last_name' => Yii::t("app",'Last Name'),
+			'gender' => Yii::t("app",'Gender'),
+			'job_title' => Yii::t("app",'Job Title'),
+			'employee_position_id' => Yii::t("app",'Teacher Position'),
+			'employee_department_id' => Yii::t("app",'Teacher Department'),
+			'reporting_manager_id' => Yii::t("app",'Reporting Manager'),
+			'employee_grade_id' => Yii::t("app",'Teacher Grade'),
+			'qualification' => Yii::t("app",'Qualification'),
+			'experience_detail' => Yii::t("app",'Experience Details'),
+			'experience_year' => Yii::t("app",'Experience Year'),
+			'experience_month' => Yii::t("app",'Experience Month'),
+			'status' => Yii::t("app",'Status'),
+			'status_description' => Yii::t("app",'Status Description'),
+			'date_of_birth' => Yii::t("app",'Date Of Birth'),
+			'marital_status' => Yii::t("app",'Marital Status'),
+			'children_count' => Yii::t("app",'Children Count'),
+			'father_name' => Yii::t("app",'Father Name'),
+			'mother_name' => Yii::t("app",'Mother Name'),
+			'husband_name' => Yii::t("app",'Spouse Name'),
+			'blood_group' => Yii::t("app",'Blood Group'),
+			'nationality_id' => Yii::t("app",'Nationality'),
+			'home_address_line1' => Yii::t("app",'Home Address Line 1'),
+			'home_address_line2' => Yii::t("app",'Home Address Line 2'),
+			'home_city' => Yii::t("app",'Home City'),
+			'home_state' => Yii::t("app",'Home State'),
+			'home_country_id' => Yii::t("app",'Home Country'),
+			'home_pin_code' => Yii::t("app",'Home Pin Code'),
+			'office_address_line1' => Yii::t("app",'Office Address Line 1'),
+			'office_address_line2' => Yii::t("app",'Office Address Line 2'),
+			'office_city' => Yii::t("app",'Office City'),
+			'office_state' => Yii::t("app",'Office State'),
+			'office_country_id' => Yii::t("app",'Office Country'),
+			'office_pin_code' => Yii::t("app",'Office Pin Code'),
+			'office_phone1' => Yii::t("app",'Office Phone 1'),
+			'office_phone2' => Yii::t("app",'Office Phone 2'),
+			'mobile_phone' => Yii::t("app",'Mobile Phone'),
+			'home_phone' => Yii::t("app",'Home Phone'),
+			'email' => Yii::t("app",'Email'),
+			'fax' => Yii::t("app",'Fax'),
+			'photo_file_name' => Yii::t("app",'Photo File Name'),
+			'photo_content_type' => Yii::t("app",'Photo Content Type'),
+			'photo_data' => Yii::t("app",'Photo Data'),
+			'created_at' => Yii::t("app",'Created At'),
+			'updated_at' => Yii::t("app",'Updated At'),
+			'photo_file_size' => Yii::t("app",'Photo File Size'),
+			'user_id' => Yii::t("app",'User'),
+			
+			'date_join' => Yii::t("app",'Date of Join'),
+			'salary_date' => Yii::t("app",'Salary Date'),
+			'bank_name' => Yii::t("app",'Bank Name'),
+			'bank_acc_no' => Yii::t("app",'Bank Account No'),
+			'basic_pay' => Yii::t("app",'Basic Pay'),
+			//'HRA' => Yii::t("app",'HRA'),
+			//'PF' => Yii::t("app",'PF'),
+			//'TDS' => Yii::t("app",'TDS'),
+			'others1' => Yii::t("app",'Others'),
+			'others2' => Yii::t("app",'Others'),
+			'DA' => Yii::t("app",'DA')
+			
 		);
 	}
 
@@ -252,26 +333,60 @@ class Employees extends CActiveRecord
 		$criteria->compare('updated_at',$this->updated_at,true);
 		$criteria->compare('photo_file_size',$this->photo_file_size);
 		$criteria->compare('user_id',$this->user_id);
+		$criteria->compare('user_type',0);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
 	
-	public function exp_validation(){
-    if($this->experience_year == ''&&$this->experience_month == ''){
-         $this->addError('experience_month', 'Enter experience details');
-   	 }
+	public function exp_validation()
+	{
+		if($this->experience_year == '' ){
+			$this->addError('experience_year', Yii::t("app",'Enter experience details'));
+		}
+                
+                if($this->experience_month == ''){
+			$this->addError('experience_month', Yii::t("app",'Enter experience details'));
+		}
 	}
 	
-	public function exp_details_validation(){
-    if(!$this->experience_detail){
-         $this->addError('experience_detail', 'Enter experience details');
-    }
-   }
-   
-   public function getConcatened()
+	public function exp_details_validation()
 	{
-			return $this->first_name.' '.$this->middle_name.' '.$this->last_name;
+		if(!$this->experience_detail){
+			$this->addError('experience_detail', Yii::t("app",'Enter experience details'));
+		}
 	}
+   
+	public function getConcatened()
+	{
+		return $this->first_name.' '.$this->middle_name.' '.$this->last_name;
+	}
+	
+//Employee Profile Image Path
+	public function getProfileImagePath($id){
+		$model = Employees::model()->findByPk($id);
+		$path = 'uploadedfiles/employee_profile_image/'.$model->id.'/'.$model->photo_file_name;	
+		return $path;
+	}
+	
+	public function getFullname()
+	{		           
+		$name = ucfirst($this->first_name).' '.ucfirst($this->middle_name).' '.ucfirst($this->last_name);		   
+		return $name;
+	}
+	public function getTeachername($id,$type = 0)
+	{
+		$model = Employees::model()->findByPk($id);
+		if($type == 0){	           
+			$name = ucfirst($model->first_name).' '.ucfirst($model->middle_name).' '.ucfirst($model->last_name);
+		}
+		if($type == 1){	           
+			$name = ucfirst($model->first_name);
+		}
+		if($type == 2){	           
+			$name = ucfirst($model->last_name);
+		}
+		return $name;
+	}					
 }

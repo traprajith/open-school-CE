@@ -1,4 +1,4 @@
-<!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,400italic' rel='stylesheet' type='text/css'>-->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,400italic' rel='stylesheet' type='text/css'>
 <style type="text/css">
 		label {margin-right:20px;}
 		input[type=checkbox].css-checkbox {

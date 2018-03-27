@@ -64,11 +64,11 @@ class Savedsearches extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'user_id' => 'User',
-			'url' => 'Url',
-			'type' => 'Type',
-			'name' => 'Name',
+			'id' => Yii::t("app",'ID'),
+			'user_id' => Yii::t("app",'User'),
+			'url' => Yii::t("app",'Url'),
+			'type' => Yii::t("app",'Type'),
+			'name' => Yii::t("app",'Name'),
 		);
 	}
 

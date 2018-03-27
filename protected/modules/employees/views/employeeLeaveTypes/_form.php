@@ -9,16 +9,16 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note"><?php echo Yii::t('app','Fields with'); ?><span class="required">*</span> <?php echo Yii::t('app','are required.') ;?></p>
 
-	<?php echo $form->errorSummary($model); ?>
+	
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','name')); ?></td>
+    <td><?php echo $form->labelEx($model,'name'); ?></td>
     <td><?php echo $form->textField($model,'name',array('size'=>30,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'name'); ?></td>
   
-    <td><?php echo $form->labelEx($model,Yii::t('employees','code')); ?></td>
+    <td><?php echo $form->labelEx($model,'code'); ?></td>
     <td><?php echo $form->textField($model,'code',array('size'=>30,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'code'); ?></td>
   </tr>
@@ -29,15 +29,15 @@
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','max_leave_count')); ?></td>
+    <td><?php echo $form->labelEx($model,'max_leave_count'); ?></td>
     <td><?php echo $form->textField($model,'max_leave_count',array('size'=>30,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'max_leave_count'); ?></td>
  
-    <td colspan="2" class="cr_align">
-		<?php echo $form->checkBox($model,Yii::t('employees','carry_forward')); ?>
+   <?php /*?> <td colspan="2" class="cr_align">
+		<?php echo $form->checkBox($model,'carry_forward'); ?>
 		<?php echo $form->error($model,'carry_forward'); ?>
         <?php echo $form->labelEx($model,'carry_forward'); ?>
-        </td>
+        </td><?php */?>
     
   </tr>
    <tr>
@@ -48,15 +48,15 @@
   </tr>
 </table>
 <div class="cr_align" >
-		<?php echo $form->labelEx($model,Yii::t('employees','status')); ?>
-		<?php echo $form->radioButtonList($model,'status',array('1'=>'Active','2'=>'Inactive'),array('separator'=>' ')); ?>
+		<?php echo $form->labelEx($model,'status'); ?>
+		<?php echo $form->radioButtonList($model,'status',array('1'=>Yii::t('app','Active'),'2'=>Yii::t('app','Inactive')),array('separator'=>' ')); ?>
 		<?php echo $form->error($model,'status'); ?>
 	</div>
 
 	<div class="clear"></div>
 
 	<div style="padding:20px 0 0 0px;">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save',array('class'=>'formbut')); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('app','Create') : Yii::t('app','Save'),array('class'=>'formbut')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

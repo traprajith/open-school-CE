@@ -35,10 +35,10 @@ class AuthItemForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
-			'name'			=> Rights::t('core', 'Name'),
-			'description'	=> Rights::t('core', 'Description'),
-			'bizRule'		=> Rights::t('core', 'Business rule'),
-			'data'			=> Rights::t('core', 'Data'),
+			'name'			=> Yii::t('app', 'Name'),
+			'description'	=> Yii::t('app', 'Description'),
+			'bizRule'		=> Yii::t('app', 'Business rule'),
+			'data'			=> Yii::t('app', 'Data'),
 		);
 	}
 
@@ -50,7 +50,7 @@ class AuthItemForm extends CFormModel
 	{
 		// Make sure that an authorization item with the name does not already exist
 		if( Rights::getAuthorizer()->authManager->getAuthItem($this->name)!==null )
-			$this->addError('name', Rights::t('core', 'An item with this name already exists.', array(':name'=>$this->name)));
+			$this->addError('name', Yii::t('app', 'An item with this name already exists.', array(':name'=>$this->name)));
 	}
 
 	/**
@@ -70,7 +70,7 @@ class AuthItemForm extends CFormModel
 	public function isSuperuser($attribute, $params)
 	{
 		if( strtolower($_GET['name'])!==strtolower($this->name) && strtolower($_GET['name'])===strtolower(Rights::module()->superuserName) )
-			$this->addError('name', Rights::t('core', 'Name of the superuser cannot be changed.'));
+			$this->addError('name', Yii::t('app', 'Name of the superuser cannot be changed.'));
 	}
 
 	/**
@@ -80,7 +80,7 @@ class AuthItemForm extends CFormModel
 	public function bizRuleNotEmpty($attribute, $params)
 	{
 		if( empty($this->data)===false && empty($this->bizRule)===true )
-			$this->addError('data', Rights::t('core', 'Business rule cannot be empty.'));
+			$this->addError('data', Yii::t('app', 'Business rule cannot be empty.'));
 	}
 }
 

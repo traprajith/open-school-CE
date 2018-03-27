@@ -47,6 +47,7 @@ class AssignmentController extends RController
 					'view',
 					'user',
 					'revoke',
+					'revokemultiple',
 				),
 				'users'=>$this->_authorizer->getSuperusers(),
 			),
@@ -79,6 +80,8 @@ class AssignmentController extends RController
 	*/
 	public function actionUser()
 	{
+		
+		$this->layout = 'rights.views.layouts.main_config';
 		// Create the user model and attach the required behavior
 		$userClass = $this->module->userClass;
 		$model = CActiveRecord::model($userClass)->findByPk($_GET['id']);
@@ -104,11 +107,15 @@ class AssignmentController extends RController
 					$item = $this->_authorizer->authManager->getAuthItem($formModel->itemname);
 					$item = $this->_authorizer->attachAuthItemBehavior($item);
 
-					Yii::app()->user->setFlash($this->module->flashSuccessKey,
+					/*Yii::app()->user->setFlash($this->module->flashSuccessKey,
 						Rights::t('core', 'Permission :name assigned.', array(':name'=>$item->getNameText()))
+					);*/
+					Yii::app()->user->setFlash($this->module->flashSuccessKey,
+						Rights::t('app', 'Permission :name assigned.', array(':name'=>$item->getNameText()))
 					);
-
+					
 					$this->redirect(array('assignment/user', 'id'=>$model->getId()));
+					
 				}
 			}
 		}
@@ -122,14 +129,25 @@ class AssignmentController extends RController
 		$dataProvider = new RAuthItemDataProvider('assignments', array(
 			'userId'=>$model->getId(),
 		));
-
+		
+		$roles=Rights::getAssignedRoles($_GET['id']);
+		
+		
+		if(sizeof($roles)!=0)
+		{
 		// Render the view
 		$this->render('user', array(
 			'model'=>$model,
 			'dataProvider'=>$dataProvider,
 			'formModel'=>$formModel,
+			'rolename'=>key($roles),
 			'assignSelectOptions'=>$assignSelectOptions,
 		));
+		}
+		else
+		{
+			$this->redirect(array('authItem/assignrole', 'id'=>$model->getId()));
+		}
 	}
 
 	/**
@@ -137,9 +155,13 @@ class AssignmentController extends RController
 	*/
 	public function actionRevoke()
 	{
+		$user_times = UserSettings::model()->findAllByAttributes(array('user_id'=>$_GET['id']));
 		// We only allow deletion via POST request
 		if( Yii::app()->request->isPostRequest===true )
 		{
+			foreach($user_times as $user_time){
+				$user_time->delete();
+			}
 			$itemName = $this->getItemName();
 			
 			// Revoke the item from the user and load it
@@ -149,16 +171,21 @@ class AssignmentController extends RController
 
 			// Set flash message for revoking the item
 			Yii::app()->user->setFlash($this->module->flashSuccessKey,
-				Rights::t('core', 'Permission :name revoked.', array(':name'=>$item->getNameText()))
+				Rights::t('app', 'Permission :name revoked.', array(':name'=>$item->getNameText()))
 			);
+			
+			/*Yii::app()->user->setFlash($this->module->flashSuccessKey,
+				Yii::t('app', 'Permission').':name'.' '.Yii::t('app','revoked.'), array(':name'=>$item->getNameText())
+			);*/
 
 			// if AJAX request, we should not redirect the browser
 			if( isset($_POST['ajax'])===false )
-				$this->redirect(array('assignment/user', 'id'=>$_GET['id']));
+				$this->redirect(array('authItem/assignrole', 'id'=>$_GET['id']));
+			
 		}
 		else
 		{
-			throw new CHttpException(400, Rights::t('core', 'Invalid request. Please do not repeat this request again.'));
+			throw new CHttpException(400, Yii::t('app', 'Invalid request. Please do not repeat this request again.'));
 		}
 	}
 	
@@ -168,5 +195,24 @@ class AssignmentController extends RController
 	public function getItemName()
 	{
 		return isset($_GET['name'])===true ? urldecode($_GET['name']) : null;
+	}
+	
+	public function actionRevokemultiple(){ 
+		$users = AuthAssignment::model()->findAllByAttributes(array('itemname'=>$_GET['rname']));
+		foreach($users as $user){
+			
+			$user_times = UserSettings::model()->findAllByAttributes(array('user_id'=>$user->userid));
+		
+			foreach($user_times as $user_time){
+				$user_time->delete();
+			}
+			$itemName = $this->getItemName();
+			
+			// Revoke the item from the user and load it
+			$this->_authorizer->authManager->revoke($itemName, $_GET['id']);
+			$item = $this->_authorizer->authManager->getAuthItem($itemName);
+			$item = $this->_authorizer->attachAuthItemBehavior($item);
+			
+		}
 	}
 }

@@ -72,15 +72,15 @@ class CLinkPager extends CBasePager
 	public function init()
 	{
 		if($this->nextPageLabel===null)
-			$this->nextPageLabel=Yii::t('yii','Next &gt;');
+			$this->nextPageLabel=Yii::t('app','Next &gt;');
 		if($this->prevPageLabel===null)
-			$this->prevPageLabel=Yii::t('yii','&lt; Previous');
+			$this->prevPageLabel=Yii::t('app','&lt; Previous');
 		if($this->firstPageLabel===null)
-			$this->firstPageLabel=Yii::t('yii','&lt;&lt; First');
+			$this->firstPageLabel=Yii::t('app','&lt;&lt; First');
 		if($this->lastPageLabel===null)
-			$this->lastPageLabel=Yii::t('yii','Last &gt;&gt;');
+			$this->lastPageLabel=Yii::t('app','Last &gt;&gt;');
 		if($this->header===null)
-			$this->header=Yii::t('yii','Go to page: ');
+			$this->header=Yii::t('app','Go to page: ');
 
 		if(!isset($this->htmlOptions['id']))
 			$this->htmlOptions['id']=$this->getId();

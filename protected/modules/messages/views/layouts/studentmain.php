@@ -2,7 +2,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>::St Johns School::</title>
+<title>
+
+tanuja [10:19 AM]
+<title><?php $college=Configurations::model()->findByPk(1); ?><?php echo $college->config_value ; ?>     </title>
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/portal/style.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/formstyle.css" />
  <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/dashboard.css" />
@@ -64,12 +67,12 @@ Welcome <strong><?php echo ucfirst($student->last_name.' '.$student->first_name)
 	 <!--navigation ends here-->
      <!--banner starts here-->
   <?php echo $content;?>
-      <!--bottomsection ends here-->
-<footer>
+  <footer>
 	
       	<div class="fright">
 
-<div class="cright">Copyright © 2012 St Johns School. Powered By <a href="http://www.evisionegypt.com" target="_self">evision</a>. </div></div>
-      </footer>
+<div class="cright">Copyright © <?php echo date('Y').' '.$college->config_value ; ?>. Powered By <a href="http://www.wiwoinc.com" target="_self">WIWO Inc</a>. </div></div>      </footer>
+
 </body>
 </html>
+

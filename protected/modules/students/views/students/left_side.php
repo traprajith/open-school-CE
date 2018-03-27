@@ -11,15 +11,15 @@
 			'activateItems'=>true,
 			'activeCssClass'=>'list_active',
 			'items'=>array(
-					array('label'=>''.Yii::t('students','Set grading levels').'<span>'.Yii::t('students','Manage your Dashboard').'</span>', 'url'=>array('students/manage') ,'linkOptions'=>array('class'=>'menu_0'),
+					array('label'=>''.Yii::t('app','Set grading levels').'<span>'.Yii::t('app','Manage your Dashboard').'</span>', 'url'=>array('students/manage') ,'linkOptions'=>array('class'=>'menu_0'),
                                    'active'=> ((Yii::app()->controller->id=='besite') && (in_array(Yii::app()->controller->action->id,array('index')))) ? true : false
 					    ),                               
 					
-					array('label'=>''.Yii::t('students','Exam Management').'<span>'.Yii::t('students','Manage your Dashboard').'</span>', 'url'=>'javascript:void(0);','linkOptions'=>array('id'=>'menu_2','class'=>'menu_2'),  'itemOptions'=>array('id'=>'menu_2'),
+					array('label'=>''.Yii::t('app','Exam Management').'<span>'.Yii::t('app','Manage your Dashboard').'</span>', 'url'=>'javascript:void(0);','linkOptions'=>array('id'=>'menu_2','class'=>'menu_2'),  'itemOptions'=>array('id'=>'menu_2'),
 					       'items'=>array(
-						array('label'=>Yii::t('students','New Exam'), 'url'=>array('/beterm/create')),
+						array('label'=>Yii::t('app','New Exam'), 'url'=>array('/beterm/create')),
 						
-						array('label'=>Yii::t('students','Connect Exams'), 'url'=>array('/beterm/admin'),
+						array('label'=>Yii::t('app','Connect Exams'), 'url'=>array('/beterm/admin'),
 							'active'=> ((Yii::app()->controller->id=='beterm') && (in_array(Yii::app()->controller->action->id,array('update','view','admin','index'))) ? true : false)                                                                                           
 						      ),
 							 
@@ -28,19 +28,19 @@
 					    ),
 					       
 					    ),
-						array('label'=>''.Yii::t('students','Additional Exams').'<span>'.Yii::t('students','Manage your Dashboard').'</span>', 'url'=>array('students/manage') ,'linkOptions'=>array('class'=>'menu_0'),
+						array('label'=>''.Yii::t('app','Additional Exams').'<span>'.Yii::t('app','Manage your Dashboard').'</span>', 'url'=>array('students/manage') ,'linkOptions'=>array('class'=>'menu_0'),
                                    'active'=> ((Yii::app()->controller->id=='besite') && (in_array(Yii::app()->controller->action->id,array('index')))) ? true : false
 					    ), 
-							array('label'=>''.Yii::t('students','Exam Wise Report').'<span>'.Yii::t('students','Manage your Dashboard').'</span>', 'url'=>array('students/manage') ,'linkOptions'=>array('class'=>'menu_0'),
+							array('label'=>''.Yii::t('app','Exam Wise Report').'<span>'.Yii::t('app','Manage your Dashboard').'</span>', 'url'=>array('students/manage') ,'linkOptions'=>array('class'=>'menu_0'),
                                    'active'=> ((Yii::app()->controller->id=='besite') && (in_array(Yii::app()->controller->action->id,array('index')))) ? true : false
 					    ),
-						array('label'=>''.Yii::t('students','Subject wise Report').'<span>'.Yii::t('students','Manage your Dashboard').'</span>', 'url'=>array('students/manage') ,'linkOptions'=>array('class'=>'menu_0'),
+						array('label'=>''.Yii::t('app','Subject wise Report').'<span>'.Yii::t('app','Manage your Dashboard').'</span>', 'url'=>array('students/manage') ,'linkOptions'=>array('class'=>'menu_0'),
                                    'active'=> ((Yii::app()->controller->id=='besite') && (in_array(Yii::app()->controller->action->id,array('index')))) ? true : false
 					    ),
-						array('label'=>''.Yii::t('students','Grouped exam Reports').'<span>'.Yii::t('students','Manage your Dashboard').'</span>', 'url'=>array('students/manage') ,'linkOptions'=>array('class'=>'menu_0'),
+						array('label'=>''.Yii::t('app','Grouped exam Reports').'<span>'.Yii::t('app','Manage your Dashboard').'</span>', 'url'=>array('students/manage') ,'linkOptions'=>array('class'=>'menu_0'),
                                    'active'=> ((Yii::app()->controller->id=='besite') && (in_array(Yii::app()->controller->action->id,array('index')))) ? true : false
 					    ),
-						array('label'=>''.Yii::t('students','Archived Student Reports').'<span>'.Yii::t('students','Manage your Dashboard').'</span>', 'url'=>array('students/manage') ,'linkOptions'=>array('class'=>'menu_0'),
+						array('label'=>''.Yii::t('app','Archived Student Reports').'<span>'.Yii::t('app','Manage your Dashboard').'</span>', 'url'=>array('students/manage') ,'linkOptions'=>array('class'=>'menu_0'),
                                    'active'=> ((Yii::app()->controller->id=='besite') && (in_array(Yii::app()->controller->action->id,array('index')))) ? true : false
 					    ),
 					

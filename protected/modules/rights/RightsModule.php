@@ -73,6 +73,8 @@ class RightsModule extends CWebModule
 	/**
 	* @property string the path to the layout file to use for displaying Rights.
 	*/
+	
+	
 	public $layout = 'rights.views.layouts.main';
 	/**
 	* @property string the path to the application layout file.
@@ -94,6 +96,7 @@ class RightsModule extends CWebModule
 	*/
 	public function init()
 	{
+		//echo Yii::app()->controller->id;exit;
 		// Set required classes for import.
 		$this->setImport(array(
 			'rights.components.*',
@@ -215,4 +218,5 @@ class RightsModule extends CWebModule
 	{
 		return '1.3.0';
 	}
+	
 }

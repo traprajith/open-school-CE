@@ -64,13 +64,13 @@ class RoomDetails extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'room_no' => 'Room No',
-			 'bed_no' => 'Bed No',
-			'no_of_floors' => 'No Of Floors',
-			'mode_of_allotment' => 'Mode Of Allotment',
-			'created' => 'Created',
-			'status' => 'Status',
+			'id' => Yii::t('app','ID'),
+			'room_no' => Yii::t('app','Room No'),
+			 'bed_no' => Yii::t('app','Bed No'),
+			'no_of_floors' => Yii::t('app','No Of Floors'),
+			'mode_of_allotment' => Yii::t('app','Mode Of Allotment'),
+			'created' => Yii::t('app','Created'),
+			'status' => Yii::t('app','Status'),
 		);
 	}
 

@@ -6,7 +6,7 @@
 
 <?php
 $this->breadcrumbs=array(
-	'Subject Names'=>array('/courses'),
+	Yii::t('app','Subject Names')=>array('/courses'),
 	$model->name,
 );
 
@@ -19,7 +19,7 @@ $this->breadcrumbs=array(
 );*/
 ?>
 
-<h1>View SubjectName #<?php echo $model->id; ?></h1>
+<h1><?php echo Yii::t('app','View Subject Name').' #'.$model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,

@@ -60,14 +60,14 @@ class UserSettings extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'user_id' => 'User',
-			'dateformat' => 'Date Format',
-			'displaydate' => 'Display Date',
-			'timezone' => 'Time Zone',
-			'timeformat' => 'Time Format',
-			'name_format' => 'Name Format',
-			'language' => 'Language',
+			'id' => Yii::t("app",'ID'),
+			'user_id' => Yii::t("app",'User'),
+			'dateformat' => Yii::t("app",'Date Format'),
+			'displaydate' => Yii::t("app",'Display Date'),
+			'timezone' => Yii::t("app",'Time Zone'),
+			'timeformat' => Yii::t("app",'Time Format'),
+			'name_format' => Yii::t("app",'Name Format'),
+			'language' => Yii::t("app",'Language'),
 			
 			
 		);

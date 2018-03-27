@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	ucfirst($this->module->id)=>array('message/inbox'),
-	'Message',
+	Yii::t('app',ucfirst($this->module->id))=>array('message/inbox'),
+	Yii::t('app','Message'),
 );
 ?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -18,7 +18,7 @@ $this->breadcrumbs=array(
         <div class="cont_right formWrapper" style="padding:0px; width:753px;">
       <div id="parent_rightSect">
       <div class="parentright_innercon">
-      <div class="mail_head">Mailbox<span>Check your mails here.</span></div>
+      <div class="mail_head"><?php echo Yii::t('app','Mailbox');?><span><?php echo Yii::t('app','Check your mails here.');?></span></div>
 <?php
 
 $this->renderPartial('_menu'); 
@@ -52,9 +52,23 @@ foreach($conv->messages as $msg):
 	<div class="msgfeed">
 	<div class="mailbox-message-header">
 		<div class="message-sender">
-<?php	echo ($msg->sender_id == Yii::app()->user->id)? 'You' : ucfirst($sender);
-	echo ($first_message)? ' said' : ' replied'; ?></div>
-		<div class="message-date"><?php echo date("Y-m-d H:i a",$msg->created); ?></div>
+<?php	echo ($msg->sender_id == Yii::app()->user->id)? Yii::t('app','You') : ucfirst($sender);
+	echo ($first_message)? ' '.Yii::t('app','said') : ' '.Yii::t('app','replied'); ?></div>
+<?php 
+	$settings=UserSettings::model()->findByAttributes(array('user_id'=>1));
+	$timezone = Timezone::model()->findByAttributes(array('id'=>$settings->timezone));		
+	date_default_timezone_set($timezone->timezone);
+	$date = date($settings->displaydate,$msg->created);	
+	$time = date($settings->timeformat,$msg->created); 
+	   
+?>    
+		<div class="message-date">
+			<?php 
+				echo $date.' '.$time;
+				
+				//echo date("Y-m-d H:i a",$msg->created); 
+			?>
+        </div>
 		<br />
 	</div>
 	<div class="mailbox-message-text"><?php echo $msg->text; ?></div>
@@ -70,7 +84,7 @@ else
 
 if($authReply)
 {
-	echo $this->getAction()->getId();
+	echo Yii::t('app',$this->getAction()->getId());
 	
 	if($this->getAction()->getId()!='trash'){	
 $form=$this->beginWidget('CActiveForm', array(
@@ -82,10 +96,10 @@ $form=$this->beginWidget('CActiveForm', array(
 	<?php /* echo $form->errorSummary(array($reply,$conv));*/ ?>
 	<?php echo $form->error($reply,'text'); ?>
 		<div class="mailbox-textarea-wrap ui-helper-clearfix">
-			<textarea name="text" cols="50" rows="7" placeholder="Reply here..."></textarea>
+			<textarea name="text" cols="50" rows="7" placeholder="<?php echo Yii::t('app','Reply here...'); ?>"></textarea>
 		</div>
         <div class="clear"></div>
-	<div id="mform" ><input type="submit" value="Send Reply" /></div>
+	<div id="mform" ><input type="submit" value="<?php echo Yii::t('app','Send Reply');?>" /></div>
 	</div>
 
 

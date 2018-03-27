@@ -1,24 +1,25 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" >
-<head>	    
-	<?php 
-        
-        $this->renderPartial('/layouts/header'); 
-        
-        ?>
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<?php 
+ //check fav icon set
+  $fav=  Favicon::model()->find();
+  if(isset($fav->icon) and $fav->icon!="")
+  { 
+      ?>
+      <link rel="icon" type="image/ico" href="<?php echo Yii::app()->request->baseUrl; ?>/uploadedfiles/school_favicon/<?php echo $fav->icon; ?>"/>
+  <?php 
+  }
+  else
+  {
+      ?>
+          <link rel="icon" type="image/ico" href="<?php echo Yii::app()->request->baseUrl; ?>/uploadedfiles/school_logo/favicon.ico"/>
+          <?php
+  }
+ ?>
 </head>
 <body>
-<div class="container" id="page">
-	<div id="header-login" style="margin:0 auto; text-align: center" >		
-		<div style="padding-top:60px">
-		<img src="/images/logo.png" />
-		</div>
-	</div>
-	<div id="site-content" style="margin:0 auto; width:400px; border-top:0px">
-            	<?php echo $content; ?>		
-	</div>
-
-</div><!-- page -->
- 
+    <?php echo $content; ?>
 </body>
 </html>

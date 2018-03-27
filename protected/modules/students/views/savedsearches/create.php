@@ -6,7 +6,7 @@
 $this->beginWidget('zii.widgets.jui.CJuiDialog',array(
                 'id'=>'jobDialog',
                 'options'=>array(
-                    'title'=>Yii::t('job','<h2>Save Search</h2>'),
+                    'title'=>''.Yii::t('job','Save Filter').'',
                     'autoOpen'=>true,
                     'modal'=>'true',
                     'width'=>'auto',

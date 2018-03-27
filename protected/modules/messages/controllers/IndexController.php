@@ -27,7 +27,7 @@ class IndexController extends RController {
 				  $config->save();
 				}
 			}
-			$this->redirect(array('/mailbox'));
+			$this->redirect(array('/dashboard'));
 		}
 		
 		//check
@@ -37,7 +37,7 @@ class IndexController extends RController {
 			{
 				if($config->config_value)
 				{
-					$this->redirect(array('/mailbox'));
+					$this->redirect(array('/dashboard'));
 				}
 			}
 		}

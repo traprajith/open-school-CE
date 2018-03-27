@@ -2,6 +2,9 @@
 
 class HostelModule extends CWebModule
 {
+	public $subjectMaxCharsDisplay = 100;
+	public $ellipsis = '...';
+	public $allowableCharsSubject = '0-9a-z.,!?@\s*$%#&;:+=_(){}\[\]\/\\-';
 	public function init()
 	{
 		// this method is called when the module is being created
@@ -24,7 +27,7 @@ class HostelModule extends CWebModule
 						    if(sizeof($roles)==1 and $role->name == 'student')
 						   { 
 		
-		                    $controller->layout='studentmain';
+		                    $controller->layout='application.views.portallayouts.studentmain';
 						   }
 						  }
 		if(parent::beforeControllerAction($controller, $action))

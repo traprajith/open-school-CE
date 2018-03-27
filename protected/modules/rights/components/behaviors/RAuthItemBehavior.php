@@ -38,7 +38,7 @@ class RAuthItemBehavior extends CBehavior
 	*/
 	public function getNameText()
 	{
-		return (Rights::module()->displayDescription===true && $this->owner->description!==null) ? $this->owner->description : $this->owner->name;
+		return (Rights::module()->displayDescription===false && $this->owner->description!==null && $this->owner->description!=='') ? $this->owner->name.'('.$this->owner->description.')' : $this->owner->name;
 	}
 
 	/**

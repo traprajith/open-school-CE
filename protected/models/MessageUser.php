@@ -61,9 +61,9 @@ class MessageUser extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'message_id' => 'Message',
-			'user_id' => 'User',
+			'id' => Yii::t("app",'ID'),
+			'message_id' => Yii::t("app",'Message'),
+			'user_id' => Yii::t("app",'User'),
 		);
 	}
 

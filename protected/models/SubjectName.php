@@ -62,9 +62,9 @@ class SubjectName extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'code' => 'Code',
+			'id' => Yii::t("app",'ID'),
+			'name' => Yii::t("app",'Name'),
+			'code' => Yii::t("app",'Code'),
 		);
 	}
 

@@ -3,6 +3,9 @@
 class CoursesModule extends CWebModule
 {
 	public $defaultController = 'courses/managecourse';
+	public $subjectMaxCharsDisplay = 100;
+	public $ellipsis = '...';
+	public $allowableCharsSubject = '0-9a-z.,!?@\s*$%#&;:+=_(){}\[\]\/\\-';
 	public function init()
 	{
 		// this method is called when the module is being created

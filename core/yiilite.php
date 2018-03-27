@@ -63,7 +63,7 @@ class YiiBase
 		if(self::$_app===null || $app===null)
 			self::$_app=$app;
 		else
-			throw new CException(Yii::t('yii','Yii application can only be created once.'));
+			throw new CException(Yii::t('app','Yii application can only be created once.'));
 	}
 	public static function getFrameworkPath()
 	{
@@ -82,7 +82,7 @@ class YiiBase
 			unset($config['class']);
 		}
 		else
-			throw new CException(Yii::t('yii','Object configuration must be an array containing a "class" element.'));
+			throw new CException(Yii::t('app','Object configuration must be an array containing a "class" element.'));
 		if(!class_exists($type,false))
 			$type=Yii::import($type,true);
 		if(($n=func_num_args())>1)
@@ -126,7 +126,7 @@ class YiiBase
 					if(is_file($classFile))
 						require($classFile);
 					else
-						throw new CException(Yii::t('yii','Alias "{alias}" is invalid. Make sure it points to an existing PHP file.',array('{alias}'=>$alias)));
+						throw new CException(Yii::t('app','Alias "{alias}" is invalid. Make sure it points to an existing PHP file.',array('{alias}'=>$alias)));
 					self::$_imports[$alias]=$alias;
 				}
 				else
@@ -134,7 +134,7 @@ class YiiBase
 				return $alias;
 			}
 			else
-				throw new CException(Yii::t('yii','Alias "{alias}" is invalid. Make sure it points to an existing directory.',
+				throw new CException(Yii::t('app','Alias "{alias}" is invalid. Make sure it points to an existing directory.',
 					array('{alias}'=>$namespace)));
 		}
 		if(($pos=strrpos($alias,'.'))===false)  // a simple class name
@@ -156,7 +156,7 @@ class YiiBase
 					if(is_file($path.'.php'))
 						require($path.'.php');
 					else
-						throw new CException(Yii::t('yii','Alias "{alias}" is invalid. Make sure it points to an existing PHP file.',array('{alias}'=>$alias)));
+						throw new CException(Yii::t('app','Alias "{alias}" is invalid. Make sure it points to an existing PHP file.',array('{alias}'=>$alias)));
 					self::$_imports[$alias]=$className;
 				}
 				else
@@ -178,7 +178,7 @@ class YiiBase
 			}
 		}
 		else
-			throw new CException(Yii::t('yii','Alias "{alias}" is invalid. Make sure it points to an existing directory or file.',
+			throw new CException(Yii::t('app','Alias "{alias}" is invalid. Make sure it points to an existing directory or file.',
 				array('{alias}'=>$alias)));
 	}
 	public static function getPathOfAlias($alias)
@@ -584,7 +584,7 @@ class CComponent
 					return $object->$name;
 			}
 		}
-		throw new CException(Yii::t('yii','Property "{class}.{property}" is not defined.',
+		throw new CException(Yii::t('app','Property "{class}.{property}" is not defined.',
 			array('{class}'=>get_class($this), '{property}'=>$name)));
 	}
 	public function __set($name,$value)
@@ -609,10 +609,10 @@ class CComponent
 			}
 		}
 		if(method_exists($this,'get'.$name))
-			throw new CException(Yii::t('yii','Property "{class}.{property}" is read only.',
+			throw new CException(Yii::t('app','Property "{class}.{property}" is read only.',
 				array('{class}'=>get_class($this), '{property}'=>$name)));
 		else
-			throw new CException(Yii::t('yii','Property "{class}.{property}" is not defined.',
+			throw new CException(Yii::t('app','Property "{class}.{property}" is not defined.',
 				array('{class}'=>get_class($this), '{property}'=>$name)));
 	}
 	public function __isset($name)
@@ -663,7 +663,7 @@ class CComponent
 			}
 		}
 		else if(method_exists($this,'get'.$name))
-			throw new CException(Yii::t('yii','Property "{class}.{property}" is read only.',
+			throw new CException(Yii::t('app','Property "{class}.{property}" is read only.',
 				array('{class}'=>get_class($this), '{property}'=>$name)));
 	}
 	public function __call($name,$parameters)
@@ -678,7 +678,7 @@ class CComponent
 		}
 		if(class_exists('Closure', false) && $this->canGetProperty($name) && $this->$name instanceof Closure)
 			return call_user_func_array($this->$name, $parameters);
-		throw new CException(Yii::t('yii','{class} and its behaviors do not have a method or closure named "{name}".',
+		throw new CException(Yii::t('app','{class} and its behaviors do not have a method or closure named "{name}".',
 			array('{class}'=>get_class($this), '{name}'=>$name)));
 	}
 	public function asa($behavior)
@@ -774,7 +774,7 @@ class CComponent
 			return $this->_e[$name];
 		}
 		else
-			throw new CException(Yii::t('yii','Event "{class}.{event}" is not defined.',
+			throw new CException(Yii::t('app','Event "{class}.{event}" is not defined.',
 				array('{class}'=>get_class($this), '{event}'=>$name)));
 	}
 	public function attachEventHandler($name,$handler)
@@ -808,14 +808,14 @@ class CComponent
 						else if(method_exists($object,$method))
 							$object->$method($event);
 						else
-							throw new CException(Yii::t('yii','Event "{class}.{event}" is attached with an invalid handler "{handler}".',
+							throw new CException(Yii::t('app','Event "{class}.{event}" is attached with an invalid handler "{handler}".',
 								array('{class}'=>get_class($this), '{event}'=>$name, '{handler}'=>$handler[1])));
 					}
 					else // PHP 5.3: anonymous function
 						call_user_func($handler,$event);
 				}
 				else
-					throw new CException(Yii::t('yii','Event "{class}.{event}" is attached with an invalid handler "{handler}".',
+					throw new CException(Yii::t('app','Event "{class}.{event}" is attached with an invalid handler "{handler}".',
 						array('{class}'=>get_class($this), '{event}'=>$name, '{handler}'=>gettype($handler))));
 				// stop further handling if param.handled is set true
 				if(($event instanceof CEvent) && $event->handled)
@@ -823,7 +823,7 @@ class CComponent
 			}
 		}
 		else if(YII_DEBUG && !$this->hasEvent($name))
-			throw new CException(Yii::t('yii','Event "{class}.{event}" is not defined.',
+			throw new CException(Yii::t('app','Event "{class}.{event}" is not defined.',
 				array('{class}'=>get_class($this), '{event}'=>$name)));
 	}
 	public function evaluateExpression($_expression_,$_data_=array())
@@ -920,7 +920,7 @@ abstract class CModule extends CComponent
 	public function setBasePath($path)
 	{
 		if(($this->_basePath=realpath($path))===false || !is_dir($this->_basePath))
-			throw new CException(Yii::t('yii','Base path "{path}" is not a valid directory.',
+			throw new CException(Yii::t('app','Base path "{path}" is not a valid directory.',
 				array('{path}'=>$path)));
 	}
 	public function getParams()
@@ -950,7 +950,7 @@ abstract class CModule extends CComponent
 	public function setModulePath($value)
 	{
 		if(($this->_modulePath=realpath($value))===false || !is_dir($this->_modulePath))
-			throw new CException(Yii::t('yii','The module path "{path}" is not a valid directory.',
+			throw new CException(Yii::t('app','The module path "{path}" is not a valid directory.',
 				array('{path}'=>$value)));
 	}
 	public function setImport($aliases)
@@ -1173,7 +1173,7 @@ abstract class CApplication extends CModule
 	public function setBasePath($path)
 	{
 		if(($this->_basePath=realpath($path))===false || !is_dir($this->_basePath))
-			throw new CException(Yii::t('yii','Application base path "{path}" is not a valid directory.',
+			throw new CException(Yii::t('app','Application base path "{path}" is not a valid directory.',
 				array('{path}'=>$path)));
 	}
 	public function getRuntimePath()
@@ -1189,7 +1189,7 @@ abstract class CApplication extends CModule
 	public function setRuntimePath($path)
 	{
 		if(($runtimePath=realpath($path))===false || !is_dir($runtimePath) || !is_writable($runtimePath))
-			throw new CException(Yii::t('yii','Application runtime path "{path}" is not valid. Please make sure it is a directory writable by the Web server process.',
+			throw new CException(Yii::t('app','Application runtime path "{path}" is not valid. Please make sure it is a directory writable by the Web server process.',
 				array('{path}'=>$path)));
 		$this->_runtimePath=$runtimePath;
 	}
@@ -1200,7 +1200,7 @@ abstract class CApplication extends CModule
 	public function setExtensionPath($path)
 	{
 		if(($extensionPath=realpath($path))===false || !is_dir($extensionPath))
-			throw new CException(Yii::t('yii','Extension path "{path}" does not exist.',
+			throw new CException(Yii::t('app','Extension path "{path}" does not exist.',
 				array('{path}'=>$path)));
 		Yii::setPathOfAlias('ext',$extensionPath);
 	}
@@ -1687,7 +1687,7 @@ class CWebApplication extends CApplication
 			$this->_controller=$oldController;
 		}
 		else
-			throw new CHttpException(404,Yii::t('yii','Unable to resolve the request "{route}".',
+			throw new CHttpException(404,Yii::t('app','Unable to resolve the request "{route}".',
 				array('{route}'=>$route===''?$this->defaultController:$route)));
 	}
 	public function createController($route,$owner=null)
@@ -1772,7 +1772,7 @@ class CWebApplication extends CApplication
 	public function setControllerPath($value)
 	{
 		if(($this->_controllerPath=realpath($value))===false || !is_dir($this->_controllerPath))
-			throw new CException(Yii::t('yii','The controller path "{path}" is not a valid directory.',
+			throw new CException(Yii::t('app','The controller path "{path}" is not a valid directory.',
 				array('{path}'=>$value)));
 	}
 	public function getViewPath()
@@ -1785,7 +1785,7 @@ class CWebApplication extends CApplication
 	public function setViewPath($path)
 	{
 		if(($this->_viewPath=realpath($path))===false || !is_dir($this->_viewPath))
-			throw new CException(Yii::t('yii','The view path "{path}" is not a valid directory.',
+			throw new CException(Yii::t('app','The view path "{path}" is not a valid directory.',
 				array('{path}'=>$path)));
 	}
 	public function getSystemViewPath()
@@ -1798,7 +1798,7 @@ class CWebApplication extends CApplication
 	public function setSystemViewPath($path)
 	{
 		if(($this->_systemViewPath=realpath($path))===false || !is_dir($this->_systemViewPath))
-			throw new CException(Yii::t('yii','The system view path "{path}" is not a valid directory.',
+			throw new CException(Yii::t('app','The system view path "{path}" is not a valid directory.',
 				array('{path}'=>$path)));
 	}
 	public function getLayoutPath()
@@ -1811,7 +1811,7 @@ class CWebApplication extends CApplication
 	public function setLayoutPath($path)
 	{
 		if(($this->_layoutPath=realpath($path))===false || !is_dir($this->_layoutPath))
-			throw new CException(Yii::t('yii','The layout path "{path}" is not a valid directory.',
+			throw new CException(Yii::t('app','The layout path "{path}" is not a valid directory.',
 				array('{path}'=>$path)));
 	}
 	public function beforeControllerAction($controller,$action)
@@ -1892,7 +1892,7 @@ class CMap extends CComponent implements IteratorAggregate,ArrayAccess,Countable
 				$this->_d[$key]=$value;
 		}
 		else
-			throw new CException(Yii::t('yii','The map is read only.'));
+			throw new CException(Yii::t('app','The map is read only.'));
 	}
 	public function remove($key)
 	{
@@ -1912,7 +1912,7 @@ class CMap extends CComponent implements IteratorAggregate,ArrayAccess,Countable
 			}
 		}
 		else
-			throw new CException(Yii::t('yii','The map is read only.'));
+			throw new CException(Yii::t('app','The map is read only.'));
 	}
 	public function clear()
 	{
@@ -1939,7 +1939,7 @@ class CMap extends CComponent implements IteratorAggregate,ArrayAccess,Countable
 				$this->add($key,$value);
 		}
 		else if($data!==null)
-			throw new CException(Yii::t('yii','Map data must be an array or an object implementing Traversable.'));
+			throw new CException(Yii::t('app','Map data must be an array or an object implementing Traversable.'));
 	}
 	public function mergeWith($data,$recursive=true)
 	{
@@ -1966,7 +1966,7 @@ class CMap extends CComponent implements IteratorAggregate,ArrayAccess,Countable
 			}
 		}
 		else if($data!==null)
-			throw new CException(Yii::t('yii','Map data must be an array or an object implementing Traversable.'));
+			throw new CException(Yii::t('app','Map data must be an array or an object implementing Traversable.'));
 	}
 	public static function mergeArray($a,$b)
 	{
@@ -2111,7 +2111,7 @@ class CLogger extends CComponent
 					$this->_timings[]=array($message,$category,$delta);
 				}
 				else
-					throw new CException(Yii::t('yii','CProfileLogRoute found a mismatching code block "{token}". Make sure the calls to Yii::beginProfile() and Yii::endProfile() be properly nested.',
+					throw new CException(Yii::t('app','CProfileLogRoute found a mismatching code block "{token}". Make sure the calls to Yii::beginProfile() and Yii::endProfile() be properly nested.',
 						array('{token}'=>$token)));
 			}
 		}
@@ -2291,7 +2291,7 @@ class CHttpRequest extends CApplicationComponent
 			else if(isset($_SERVER['DOCUMENT_ROOT']) && strpos($_SERVER['SCRIPT_FILENAME'],$_SERVER['DOCUMENT_ROOT'])===0)
 				$this->_scriptUrl=str_replace('\\','/',str_replace($_SERVER['DOCUMENT_ROOT'],'',$_SERVER['SCRIPT_FILENAME']));
 			else
-				throw new CException(Yii::t('yii','CHttpRequest is unable to determine the entry script URL.'));
+				throw new CException(Yii::t('app','CHttpRequest is unable to determine the entry script URL.'));
 		}
 		return $this->_scriptUrl;
 	}
@@ -2316,7 +2316,7 @@ class CHttpRequest extends CApplicationComponent
 			else if(strpos($_SERVER['PHP_SELF'],$scriptUrl)===0)
 				$pathInfo=substr($_SERVER['PHP_SELF'],strlen($scriptUrl));
 			else
-				throw new CException(Yii::t('yii','CHttpRequest is unable to determine the path info of the request.'));
+				throw new CException(Yii::t('app','CHttpRequest is unable to determine the path info of the request.'));
 			$this->_pathInfo=trim($pathInfo,'/');
 		}
 		return $this->_pathInfo;
@@ -2345,7 +2345,7 @@ class CHttpRequest extends CApplicationComponent
 					$this->_requestUri.='?'.$_SERVER['QUERY_STRING'];
 			}
 			else
-				throw new CException(Yii::t('yii','CHttpRequest is unable to determine the request URI.'));
+				throw new CException(Yii::t('app','CHttpRequest is unable to determine the request URI.'));
 		}
 		return $this->_requestUri;
 	}
@@ -2557,7 +2557,7 @@ class CHttpRequest extends CApplicationComponent
 			else
 				$valid=false;
 			if(!$valid)
-				throw new CHttpException(400,Yii::t('yii','The CSRF token could not be verified.'));
+				throw new CHttpException(400,Yii::t('app','The CSRF token could not be verified.'));
 		}
 	}
 }
@@ -2604,7 +2604,7 @@ class CCookieCollection extends CMap
 				$this->addCookie($cookie);
 		}
 		else
-			throw new CException(Yii::t('yii','CHttpCookieCollection can only hold CHttpCookie objects.'));
+			throw new CException(Yii::t('app','CHttpCookieCollection can only hold CHttpCookie objects.'));
 	}
 	public function remove($name)
 	{
@@ -2762,7 +2762,7 @@ class CUrlManager extends CApplicationComponent
 					return isset($_GET[$this->routeVar]) ? $_GET[$this->routeVar] : $r;
 			}
 			if($this->useStrictParsing)
-				throw new CHttpException(404,Yii::t('yii','Unable to resolve the request "{route}".',
+				throw new CHttpException(404,Yii::t('app','Unable to resolve the request "{route}".',
 					array('{route}'=>$pathInfo)));
 			else
 				return $pathInfo;
@@ -2850,7 +2850,7 @@ class CUrlManager extends CApplicationComponent
 		if($value===self::PATH_FORMAT || $value===self::GET_FORMAT)
 			$this->_urlFormat=$value;
 		else
-			throw new CException(Yii::t('yii','CUrlManager.UrlFormat must be either "path" or "get".'));
+			throw new CException(Yii::t('app','CUrlManager.UrlFormat must be either "path" or "get".'));
 	}
 }
 abstract class CBaseUrlRule extends CComponent
@@ -2924,7 +2924,7 @@ class CUrlRule extends CBaseUrlRule
 		if($this->references!==array())
 			$this->routePattern='/^'.strtr($this->route,$tr2).'$/u';
 		if(YII_DEBUG && @preg_match($this->pattern,'test')===false)
-			throw new CException(Yii::t('yii','The URL pattern "{pattern}" for route "{route}" is not a valid regular expression.',
+			throw new CException(Yii::t('app','The URL pattern "{pattern}" for route "{route}" is not a valid regular expression.',
 				array('{route}'=>$route,'{pattern}'=>$pattern)));
 	}
 	public function createUrl($manager,$route,$params,$ampersand)
@@ -3054,7 +3054,7 @@ abstract class CBaseController extends CComponent
 		else
 		{
 			$widget=end($this->_widgetStack);
-			throw new CException(Yii::t('yii','{controller} contains improperly nested widget tags in its view "{view}". A {widget} widget does not have an endWidget() call.',
+			throw new CException(Yii::t('app','{controller} contains improperly nested widget tags in its view "{view}". A {widget} widget does not have an endWidget() call.',
 				array('{controller}'=>get_class($this), '{view}'=>$viewFile, '{widget}'=>get_class($widget))));
 		}
 	}
@@ -3112,7 +3112,7 @@ abstract class CBaseController extends CComponent
 			return $widget;
 		}
 		else
-			throw new CException(Yii::t('yii','{controller} has an extra endWidget({id}) call in its view.',
+			throw new CException(Yii::t('app','{controller} has an extra endWidget({id}) call in its view.',
 				array('{controller}'=>get_class($this),'{id}'=>$id)));
 	}
 	public function beginClip($id,$properties=array())
@@ -3233,7 +3233,7 @@ class CController extends CBaseController
 	}
 	public function invalidActionParams($action)
 	{
-		throw new CHttpException(400,Yii::t('yii','Your request is invalid.'));
+		throw new CHttpException(400,Yii::t('app','Your request is invalid.'));
 	}
 	public function processOutput($output)
 	{
@@ -3278,7 +3278,7 @@ class CController extends CBaseController
 		{
 			$action=$this->createActionFromMap($this->actions(),$actionID,$actionID);
 			if($action!==null && !method_exists($action,'run'))
-				throw new CException(Yii::t('yii', 'Action class {class} must implement the "run" method.', array('{class}'=>get_class($action))));
+				throw new CException(Yii::t('app', 'Action class {class} must implement the "run" method.', array('{class}'=>get_class($action))));
 			return $action;
 		}
 	}
@@ -3311,14 +3311,14 @@ class CController extends CBaseController
 			}
 		}
 		else
-			throw new CException(Yii::t('yii','Object configuration must be an array containing a "class" element.'));
+			throw new CException(Yii::t('app','Object configuration must be an array containing a "class" element.'));
 		$class=Yii::import($providerType,true);
 		$map=call_user_func(array($class,'actions'));
 		return $this->createActionFromMap($map,$actionID,$requestActionID,$config);
 	}
 	public function missingAction($actionID)
 	{
-		throw new CHttpException(404,Yii::t('yii','The system is unable to find the requested action "{action}".',
+		throw new CHttpException(404,Yii::t('app','The system is unable to find the requested action "{action}".',
 			array('{action}'=>$actionID==''?$this->defaultAction:$actionID)));
 	}
 	public function getAction()
@@ -3481,7 +3481,7 @@ class CController extends CBaseController
 				echo $output;
 		}
 		else
-			throw new CException(Yii::t('yii','{controller} cannot find the requested view "{view}".',
+			throw new CException(Yii::t('app','{controller} cannot find the requested view "{view}".',
 				array('{controller}'=>get_class($this), '{view}'=>$view)));
 	}
 	public function renderClip($name,$params=array(),$return=false)
@@ -3585,14 +3585,14 @@ class CController extends CBaseController
 		if(Yii::app()->getRequest()->getIsPostRequest())
 			$filterChain->run();
 		else
-			throw new CHttpException(400,Yii::t('yii','Your request is not valid.'));
+			throw new CHttpException(400,Yii::t('app','Your request is not valid.'));
 	}
 	public function filterAjaxOnly($filterChain)
 	{
 		if(Yii::app()->getRequest()->getIsAjaxRequest())
 			$filterChain->run();
 		else
-			throw new CHttpException(400,Yii::t('yii','Your request is not valid.'));
+			throw new CHttpException(400,Yii::t('app','Your request is not valid.'));
 	}
 	public function filterAccessControl($filterChain)
 	{
@@ -3787,7 +3787,7 @@ class CWebUser extends CApplicationComponent implements IWebUser
 				if($this->allowAutoLogin)
 					$this->saveToCookie($duration);
 				else
-					throw new CException(Yii::t('yii','{class}.allowAutoLogin must be set true in order to use cookie-based authentication.',
+					throw new CException(Yii::t('app','{class}.allowAutoLogin must be set true in order to use cookie-based authentication.',
 						array('{class}'=>get_class($this))));
 			}
 			$this->afterLogin(false);
@@ -3862,7 +3862,7 @@ class CWebUser extends CApplicationComponent implements IWebUser
 			$request->redirect($url);
 		}
 		else
-			throw new CHttpException(403,Yii::t('yii','Login Required'));
+			throw new CHttpException(403,Yii::t('app','Login Required'));
 	}
 	protected function beforeLogin($id,$states,$fromCookie)
 	{
@@ -4102,7 +4102,7 @@ class CHttpSession extends CApplicationComponent implements IteratorAggregate,Ar
 			@session_set_save_handler(array($this,'openSession'),array($this,'closeSession'),array($this,'readSession'),array($this,'writeSession'),array($this,'destroySession'),array($this,'gcSession'));
 		if(@session_start()===false && YII_DEBUG)
 		{
-			$message=Yii::t('yii','Failed to start session.');
+			$message=Yii::t('app','Failed to start session.');
 			if(function_exists('error_get_last'))
 			{
 				$error=error_get_last();
@@ -4158,7 +4158,7 @@ class CHttpSession extends CApplicationComponent implements IteratorAggregate,Ar
 		if(is_dir($value))
 			session_save_path($value);
 		else
-			throw new CException(Yii::t('yii','CHttpSession.savePath "{path}" is not a valid directory.',
+			throw new CException(Yii::t('app','CHttpSession.savePath "{path}" is not a valid directory.',
 				array('{path}'=>$value)));
 	}
 	public function getCookieParams()
@@ -4199,7 +4199,7 @@ class CHttpSession extends CApplicationComponent implements IteratorAggregate,Ar
 			ini_set('session.use_only_cookies','1');
 		}
 		else
-			throw new CException(Yii::t('yii','CHttpSession.cookieMode can only be "none", "allow" or "only".'));
+			throw new CException(Yii::t('app','CHttpSession.cookieMode can only be "none", "allow" or "only".'));
 	}
 	public function getGCProbability()
 	{
@@ -4214,7 +4214,7 @@ class CHttpSession extends CApplicationComponent implements IteratorAggregate,Ar
 			ini_set('session.gc_divisor','100');
 		}
 		else
-			throw new CException(Yii::t('yii','CHttpSession.gcProbability "{value}" is invalid. It must be an integer between 0 and 100.',
+			throw new CException(Yii::t('app','CHttpSession.gcProbability "{value}" is invalid. It must be an integer between 0 and 100.',
 				array('{value}'=>$value)));
 	}
 	public function getUseTransparentSessionID()
@@ -5010,7 +5010,7 @@ EOD;
 		if($content!=='')
 		{
 			if($header===null)
-				$header='<p>'.Yii::t('yii','Please fix the following input errors:').'</p>';
+				$header='<p>'.Yii::t('app','Please fix the following input errors:').'</p>';
 			if(!isset($htmlOptions['class']))
 				$htmlOptions['class']=self::$errorSummaryCss;
 			return self::tag('div',$htmlOptions,$header."\n<ul>\n$content</ul>".$footer);
@@ -5493,7 +5493,7 @@ class CWidget extends CBaseController
 		if(($viewFile=$this->getViewFile($view))!==false)
 			return $this->renderFile($viewFile,$data,$return);
 		else
-			throw new CException(Yii::t('yii','{widget} cannot find the view "{view}".',
+			throw new CException(Yii::t('app','{widget} cannot find the view "{view}".',
 				array('{widget}'=>get_class($this), '{view}'=>$view)));
 	}
 }
@@ -5920,7 +5920,7 @@ class CList extends CComponent implements IteratorAggregate,ArrayAccess,Countabl
 		else if($index>=0 && $index<$this->_c) // in case the value is null
 			return $this->_d[$index];
 		else
-			throw new CException(Yii::t('yii','List index "{index}" is out of bound.',
+			throw new CException(Yii::t('app','List index "{index}" is out of bound.',
 				array('{index}'=>$index)));
 	}
 	public function add($item)
@@ -5940,11 +5940,11 @@ class CList extends CComponent implements IteratorAggregate,ArrayAccess,Countabl
 				$this->_c++;
 			}
 			else
-				throw new CException(Yii::t('yii','List index "{index}" is out of bound.',
+				throw new CException(Yii::t('app','List index "{index}" is out of bound.',
 					array('{index}'=>$index)));
 		}
 		else
-			throw new CException(Yii::t('yii','The list is read only.'));
+			throw new CException(Yii::t('app','The list is read only.'));
 	}
 	public function remove($item)
 	{
@@ -5973,11 +5973,11 @@ class CList extends CComponent implements IteratorAggregate,ArrayAccess,Countabl
 				}
 			}
 			else
-				throw new CException(Yii::t('yii','List index "{index}" is out of bound.',
+				throw new CException(Yii::t('app','List index "{index}" is out of bound.',
 					array('{index}'=>$index)));
 		}
 		else
-			throw new CException(Yii::t('yii','The list is read only.'));
+			throw new CException(Yii::t('app','The list is read only.'));
 	}
 	public function clear()
 	{
@@ -6011,7 +6011,7 @@ class CList extends CComponent implements IteratorAggregate,ArrayAccess,Countabl
 				$this->add($item);
 		}
 		else if($data!==null)
-			throw new CException(Yii::t('yii','List data must be an array or an object implementing Traversable.'));
+			throw new CException(Yii::t('app','List data must be an array or an object implementing Traversable.'));
 	}
 	public function mergeWith($data)
 	{
@@ -6023,7 +6023,7 @@ class CList extends CComponent implements IteratorAggregate,ArrayAccess,Countabl
 				$this->add($item);
 		}
 		else if($data!==null)
-			throw new CException(Yii::t('yii','List data must be an array or an object implementing Traversable.'));
+			throw new CException(Yii::t('app','List data must be an array or an object implementing Traversable.'));
 	}
 	public function offsetExists($offset)
 	{
@@ -6078,7 +6078,7 @@ class CFilterChain extends CList
 			else if(is_array($filter))  // array('path.to.class [+|- action1, action2]','param1'=>'value1',...)
 			{
 				if(!isset($filter[0]))
-					throw new CException(Yii::t('yii','The first element in a filter configuration must be the filter class.'));
+					throw new CException(Yii::t('app','The first element in a filter configuration must be the filter class.'));
 				$filterClass=$filter[0];
 				unset($filter[0]);
 				if(($pos=strpos($filterClass,'+'))!==false || ($pos=strpos($filterClass,'-'))!==false)
@@ -6105,7 +6105,7 @@ class CFilterChain extends CList
 		if($item instanceof IFilter)
 			parent::insertAt($index,$item);
 		else
-			throw new CException(Yii::t('yii','CFilterChain can only take objects implementing the IFilter interface.'));
+			throw new CException(Yii::t('app','CFilterChain can only take objects implementing the IFilter interface.'));
 	}
 	public function run()
 	{
@@ -6151,7 +6151,7 @@ class CInlineFilter extends CFilter
 			return $filter;
 		}
 		else
-			throw new CException(Yii::t('yii','Filter "{filter}" is invalid. Controller "{class}" does not have the filter method "filter{filter}".',
+			throw new CException(Yii::t('app','Filter "{filter}" is invalid. Controller "{class}" does not have the filter method "filter{filter}".',
 				array('{filter}'=>$filterName, '{class}'=>get_class($controller))));
 	}
 	public function filter($filterChain)
@@ -6213,7 +6213,7 @@ class CAccessControlFilter extends CFilter
 		else if($this->message!==null)
 			return $this->message;
 		else
-			return Yii::t('yii','You are not authorized to perform this action.');
+			return Yii::t('app','You are not authorized to perform this action.');
 	}
 	protected function accessDenied($user,$message)
 	{
@@ -6395,7 +6395,7 @@ abstract class CModel extends CComponent implements IteratorAggregate, ArrayAcce
 			if(isset($rule[0],$rule[1]))  // attributes, validator name
 				$validators->add(CValidator::createValidator($rule[1],$this,$rule[0],array_slice($rule,2)));
 			else
-				throw new CException(Yii::t('yii','{class} has an invalid validation rule. The rule must specify attributes to be validated and the validator name.',
+				throw new CException(Yii::t('app','{class} has an invalid validation rule. The rule must specify attributes to be validated and the validator name.',
 					array('{class}'=>get_class($this))));
 		}
 		return $validators;
@@ -6506,7 +6506,7 @@ abstract class CModel extends CComponent implements IteratorAggregate, ArrayAcce
 	public function onUnsafeAttribute($name,$value)
 	{
 		if(YII_DEBUG)
-			Yii::log(Yii::t('yii','Failed to set unsafe attribute "{attribute}" of "{class}".',array('{attribute}'=>$name, '{class}'=>get_class($this))),CLogger::LEVEL_WARNING);
+			Yii::log(Yii::t('app','Failed to set unsafe attribute "{attribute}" of "{class}".',array('{attribute}'=>$name, '{class}'=>get_class($this))),CLogger::LEVEL_WARNING);
 	}
 	public function getScenario()
 	{
@@ -6667,7 +6667,7 @@ abstract class CActiveRecord extends CModel
 			return $this->_related[$name];
 		$md=$this->getMetaData();
 		if(!isset($md->relations[$name]))
-			throw new CDbException(Yii::t('yii','{class} does not have relation "{name}".',
+			throw new CDbException(Yii::t('app','{class} does not have relation "{name}".',
 				array('{class}'=>get_class($this), '{name}'=>$name)));
 		$relation=$md->relations[$name];
 		if($this->getIsNewRecord() && !$refresh && ($relation instanceof CHasOneRelation || $relation instanceof CHasManyRelation))
@@ -6809,7 +6809,7 @@ abstract class CActiveRecord extends CModel
 			if(self::$db instanceof CDbConnection)
 				return self::$db;
 			else
-				throw new CDbException(Yii::t('yii','Active Record requires a "db" CDbConnection application component.'));
+				throw new CDbException(Yii::t('app','Active Record requires a "db" CDbConnection application component.'));
 		}
 	}
 	public function getActiveRelation($name)
@@ -6984,7 +6984,7 @@ abstract class CActiveRecord extends CModel
 	public function insert($attributes=null)
 	{
 		if(!$this->getIsNewRecord())
-			throw new CDbException(Yii::t('yii','The active record cannot be inserted to database because it is not new.'));
+			throw new CDbException(Yii::t('app','The active record cannot be inserted to database because it is not new.'));
 		if($this->beforeSave())
 		{
 			$builder=$this->getCommandBuilder();
@@ -7021,7 +7021,7 @@ abstract class CActiveRecord extends CModel
 	public function update($attributes=null)
 	{
 		if($this->getIsNewRecord())
-			throw new CDbException(Yii::t('yii','The active record cannot be updated because it is new.'));
+			throw new CDbException(Yii::t('app','The active record cannot be updated because it is new.'));
 		if($this->beforeSave())
 		{
 			if($this->_pk===null)
@@ -7057,7 +7057,7 @@ abstract class CActiveRecord extends CModel
 				return false;
 		}
 		else
-			throw new CDbException(Yii::t('yii','The active record cannot be updated because it is new.'));
+			throw new CDbException(Yii::t('app','The active record cannot be updated because it is new.'));
 	}
 	public function saveCounters($counters)
 	{
@@ -7088,7 +7088,7 @@ abstract class CActiveRecord extends CModel
 				return false;
 		}
 		else
-			throw new CDbException(Yii::t('yii','The active record cannot be deleted because it is new.'));
+			throw new CDbException(Yii::t('app','The active record cannot be deleted because it is new.'));
 	}
 	public function refresh()
 	{
@@ -7608,7 +7608,7 @@ class CActiveRecordMetaData
 		$this->_model=$model;
 		$tableName=$model->tableName();
 		if(($table=$model->getDbConnection()->getSchema()->getTable($tableName))===null)
-			throw new CDbException(Yii::t('yii','The table "{table}" for active record class "{class}" cannot be found in the database.',
+			throw new CDbException(Yii::t('app','The table "{table}" for active record class "{class}" cannot be found in the database.',
 				array('{class}'=>get_class($model),'{table}'=>$tableName)));
 		if($table->primaryKey===null)
 		{
@@ -7641,7 +7641,7 @@ class CActiveRecordMetaData
 		if(isset($config[0],$config[1],$config[2]))  // relation class, AR class, FK
 			$this->relations[$name]=new $config[0]($name,$config[1],$config[2],array_slice($config,3));
 		else
-			throw new CDbException(Yii::t('yii','Active record "{class}" has an invalid configuration for relation "{relation}". It must specify the relation type, the related active record class and the foreign key.', array('{class}'=>get_class($this->_model),'{relation}'=>$name)));
+			throw new CDbException(Yii::t('app','Active record "{class}" has an invalid configuration for relation "{relation}". It must specify the relation type, the related active record class and the foreign key.', array('{class}'=>get_class($this->_model),'{relation}'=>$name)));
 	}
 	public function hasRelation($name)
 	{
@@ -7735,7 +7735,7 @@ class CDbConnection extends CApplicationComponent
 		if($this->_pdo===null)
 		{
 			if(empty($this->connectionString))
-				throw new CDbException(Yii::t('yii','CDbConnection.connectionString cannot be empty.'));
+				throw new CDbException(Yii::t('app','CDbConnection.connectionString cannot be empty.'));
 			try
 			{
 				$this->_pdo=$this->createPdoInstance();
@@ -7746,13 +7746,13 @@ class CDbConnection extends CApplicationComponent
 			{
 				if(YII_DEBUG)
 				{
-					throw new CDbException(Yii::t('yii','CDbConnection failed to open the DB connection: {error}',
+					throw new CDbException(Yii::t('app','CDbConnection failed to open the DB connection: {error}',
 						array('{error}'=>$e->getMessage())),(int)$e->getCode(),$e->errorInfo);
 				}
 				else
 				{
 					Yii::log($e->getMessage(),CLogger::LEVEL_ERROR,'exception.CDbException');
-					throw new CDbException(Yii::t('yii','CDbConnection failed to open the DB connection.'),(int)$e->getCode(),$e->errorInfo);
+					throw new CDbException(Yii::t('app','CDbConnection failed to open the DB connection.'),(int)$e->getCode(),$e->errorInfo);
 				}
 			}
 		}
@@ -7826,7 +7826,7 @@ class CDbConnection extends CApplicationComponent
 			if(isset($this->driverMap[$driver]))
 				return $this->_schema=Yii::createComponent($this->driverMap[$driver], $this);
 			else
-				throw new CDbException(Yii::t('yii','CDbConnection does not support reading schema for {driver} database.',
+				throw new CDbException(Yii::t('app','CDbConnection does not support reading schema for {driver} database.',
 					array('{driver}'=>$driver)));
 		}
 	}
@@ -8113,7 +8113,7 @@ abstract class CDbSchema extends CComponent
 	}
 	protected function findTableNames($schema='')
 	{
-		throw new CDbException(Yii::t('yii','{class} does not support fetching all table names.',
+		throw new CDbException(Yii::t('app','{class} does not support fetching all table names.',
 			array('{class}'=>get_class($this))));
 	}
     public function getColumnType($type)
@@ -8343,23 +8343,23 @@ class CSqliteSchema extends CDbSchema
 	}
 	public function dropColumn($table, $column)
 	{
-		throw new CDbException(Yii::t('yii', 'Dropping DB column is not supported by SQLite.'));
+		throw new CDbException(Yii::t('app', 'Dropping DB column is not supported by SQLite.'));
 	}
 	public function renameColumn($table, $name, $newName)
 	{
-		throw new CDbException(Yii::t('yii', 'Renaming a DB column is not supported by SQLite.'));
+		throw new CDbException(Yii::t('app', 'Renaming a DB column is not supported by SQLite.'));
 	}
 	public function addForeignKey($name, $table, $columns, $refTable, $refColumns, $delete=null, $update=null)
 	{
-		throw new CDbException(Yii::t('yii', 'Adding a foreign key constraint to an existing table is not supported by SQLite.'));
+		throw new CDbException(Yii::t('app', 'Adding a foreign key constraint to an existing table is not supported by SQLite.'));
 	}
 	public function dropForeignKey($name, $table)
 	{
-		throw new CDbException(Yii::t('yii', 'Dropping a foreign key constraint is not supported by SQLite.'));
+		throw new CDbException(Yii::t('app', 'Dropping a foreign key constraint is not supported by SQLite.'));
 	}
 	public function alterColumn($table, $column, $type)
 	{
-		throw new CDbException(Yii::t('yii', 'Altering a DB column is not supported by SQLite.'));
+		throw new CDbException(Yii::t('app', 'Altering a DB column is not supported by SQLite.'));
 	}
 	public function dropIndex($name, $table)
 	{
@@ -8459,7 +8459,7 @@ class CDbCommand extends CComponent
 			{
 				Yii::log('Error in preparing SQL: '.$this->getText(),CLogger::LEVEL_ERROR,'system.db.CDbCommand');
                 $errorInfo = $e instanceof PDOException ? $e->errorInfo : null;
-				throw new CDbException(Yii::t('yii','CDbCommand failed to prepare the SQL statement: {error}',
+				throw new CDbException(Yii::t('app','CDbCommand failed to prepare the SQL statement: {error}',
 					array('{error}'=>$e->getMessage())),(int)$e->getCode(),$errorInfo);
 			}
 		}
@@ -8533,11 +8533,11 @@ class CDbCommand extends CComponent
 				Yii::endProfile('system.db.CDbCommand.execute('.$this->getText().')','system.db.CDbCommand.execute');
             $errorInfo = $e instanceof PDOException ? $e->errorInfo : null;
             $message = $e->getMessage();
-			Yii::log(Yii::t('yii','CDbCommand::execute() failed: {error}. The SQL statement executed was: {sql}.',
+			Yii::log(Yii::t('app','CDbCommand::execute() failed: {error}. The SQL statement executed was: {sql}.',
 				array('{error}'=>$message, '{sql}'=>$this->getText().$par)),CLogger::LEVEL_ERROR,'system.db.CDbCommand');
             if(YII_DEBUG)
             	$message .= '. The SQL statement executed was: '.$this->getText().$par;
-			throw new CDbException(Yii::t('yii','CDbCommand failed to execute the SQL statement: {error}',
+			throw new CDbException(Yii::t('app','CDbCommand failed to execute the SQL statement: {error}',
 				array('{error}'=>$message)),(int)$e->getCode(),$errorInfo);
 		}
 	}
@@ -8619,11 +8619,11 @@ class CDbCommand extends CComponent
 				Yii::endProfile('system.db.CDbCommand.query('.$this->getText().$par.')','system.db.CDbCommand.query');
             $errorInfo = $e instanceof PDOException ? $e->errorInfo : null;
             $message = $e->getMessage();
-			Yii::log(Yii::t('yii','CDbCommand::{method}() failed: {error}. The SQL statement executed was: {sql}.',
+			Yii::log(Yii::t('app','CDbCommand::{method}() failed: {error}. The SQL statement executed was: {sql}.',
 				array('{method}'=>$method, '{error}'=>$message, '{sql}'=>$this->getText().$par)),CLogger::LEVEL_ERROR,'system.db.CDbCommand');
             if(YII_DEBUG)
             	$message .= '. The SQL statement executed was: '.$this->getText().$par;
-			throw new CDbException(Yii::t('yii','CDbCommand failed to execute the SQL statement: {error}',
+			throw new CDbException(Yii::t('app','CDbCommand failed to execute the SQL statement: {error}',
 				array('{error}'=>$message)),(int)$e->getCode(),$errorInfo);
 		}
 	}
@@ -8634,7 +8634,7 @@ class CDbCommand extends CComponent
 		if(isset($query['from']))
 			$sql.="\nFROM ".$query['from'];
 		else
-			throw new CDbException(Yii::t('yii','The DB query must contain the "from" portion.'));
+			throw new CDbException(Yii::t('app','The DB query must contain the "from" portion.'));
 		if(isset($query['join']))
 			$sql.="\n".(is_array($query['join']) ? implode("\n",$query['join']) : $query['join']);
 		if(isset($query['where']))
@@ -9052,7 +9052,7 @@ class CDbCommand extends CComponent
 				$expressions[]=$column.' '.$operator.' '.$this->_connection->quoteValue($value);
 			return implode($andor,$expressions);
 		}
-		throw new CDbException(Yii::t('yii', 'Unknown operator "{operator}".', array('{operator}'=>$operator)));
+		throw new CDbException(Yii::t('app', 'Unknown operator "{operator}".', array('{operator}'=>$operator)));
 	}
 	private function joinInternal($type, $table, $conditions='', $params=array())
 	{
@@ -9262,17 +9262,17 @@ class CStringValidator extends CValidator
 			$length=strlen($value);
 		if($this->min!==null && $length<$this->min)
 		{
-			$message=$this->tooShort!==null?$this->tooShort:Yii::t('yii','{attribute} is too short (minimum is {min} characters).');
+			$message=$this->tooShort!==null?$this->tooShort:Yii::t('app','{attribute} is too short (minimum is {min} characters).');
 			$this->addError($object,$attribute,$message,array('{min}'=>$this->min));
 		}
 		if($this->max!==null && $length>$this->max)
 		{
-			$message=$this->tooLong!==null?$this->tooLong:Yii::t('yii','{attribute} is too long (maximum is {max} characters).');
+			$message=$this->tooLong!==null?$this->tooLong:Yii::t('app','{attribute} is too long (maximum is {max} characters).');
 			$this->addError($object,$attribute,$message,array('{max}'=>$this->max));
 		}
 		if($this->is!==null && $length!==$this->is)
 		{
-			$message=$this->message!==null?$this->message:Yii::t('yii','{attribute} is of the wrong length (should be {length} characters).');
+			$message=$this->message!==null?$this->message:Yii::t('app','{attribute} is of the wrong length (should be {length} characters).');
 			$this->addError($object,$attribute,$message,array('{length}'=>$this->is));
 		}
 	}
@@ -9280,19 +9280,19 @@ class CStringValidator extends CValidator
 	{
 		$label=$object->getAttributeLabel($attribute);
 		if(($message=$this->message)===null)
-			$message=Yii::t('yii','{attribute} is of the wrong length (should be {length} characters).');
+			$message=Yii::t('app','{attribute} is of the wrong length (should be {length} characters).');
 		$message=strtr($message, array(
 			'{attribute}'=>$label,
 			'{length}'=>$this->is,
 		));
 		if(($tooShort=$this->tooShort)===null)
-			$tooShort=Yii::t('yii','{attribute} is too short (minimum is {min} characters).');
+			$tooShort=Yii::t('app','{attribute} is too short (minimum is {min} characters).');
 		$tooShort=strtr($tooShort, array(
 			'{attribute}'=>$label,
 			'{min}'=>$this->min,
 		));
 		if(($tooLong=$this->tooLong)===null)
-			$tooLong=Yii::t('yii','{attribute} is too long (maximum is {max} characters).');
+			$tooLong=Yii::t('app','{attribute} is too long (maximum is {max} characters).');
 		$tooLong=strtr($tooLong, array(
 			'{attribute}'=>$label,
 			'{max}'=>$this->max,
@@ -9344,14 +9344,14 @@ class CRequiredValidator extends CValidator
 		{
 			if(!$this->strict && $value!=$this->requiredValue || $this->strict && $value!==$this->requiredValue)
 			{
-				$message=$this->message!==null?$this->message:Yii::t('yii','{attribute} must be {value}.',
+				$message=$this->message!==null?$this->message:Yii::t('app','{attribute} must be {value}.',
 					array('{value}'=>$this->requiredValue));
 				$this->addError($object,$attribute,$message);
 			}
 		}
 		else if($this->isEmpty($value,true))
 		{
-			$message=$this->message!==null?$this->message:Yii::t('yii','{attribute} cannot be blank.');
+			$message=$this->message!==null?$this->message:Yii::t('app','{attribute} cannot be blank.');
 			$this->addError($object,$attribute,$message);
 		}
 	}
@@ -9361,7 +9361,7 @@ class CRequiredValidator extends CValidator
 		if($this->requiredValue!==null)
 		{
 			if($message===null)
-				$message=Yii::t('yii','{attribute} must be {value}.');
+				$message=Yii::t('app','{attribute} must be {value}.');
 			$message=strtr($message, array(
 				'{value}'=>$this->requiredValue,
 				'{attribute}'=>$object->getAttributeLabel($attribute),
@@ -9375,7 +9375,7 @@ if(value!=" . CJSON::encode($this->requiredValue) . ") {
 		else
 		{
 			if($message===null)
-				$message=Yii::t('yii','{attribute} cannot be blank.');
+				$message=Yii::t('app','{attribute} cannot be blank.');
 			$message=strtr($message, array(
 				'{attribute}'=>$object->getAttributeLabel($attribute),
 			));
@@ -9406,7 +9406,7 @@ class CNumberValidator extends CValidator
 		{
 			if(!preg_match($this->integerPattern,"$value"))
 			{
-				$message=$this->message!==null?$this->message:Yii::t('yii','{attribute} must be an integer.');
+				$message=$this->message!==null?$this->message:Yii::t('app','{attribute} must be an integer.');
 				$this->addError($object,$attribute,$message);
 			}
 		}
@@ -9414,18 +9414,18 @@ class CNumberValidator extends CValidator
 		{
 			if(!preg_match($this->numberPattern,"$value"))
 			{
-				$message=$this->message!==null?$this->message:Yii::t('yii','{attribute} must be a number.');
+				$message=$this->message!==null?$this->message:Yii::t('app','{attribute} must be a number.');
 				$this->addError($object,$attribute,$message);
 			}
 		}
 		if($this->min!==null && $value<$this->min)
 		{
-			$message=$this->tooSmall!==null?$this->tooSmall:Yii::t('yii','{attribute} is too small (minimum is {min}).');
+			$message=$this->tooSmall!==null?$this->tooSmall:Yii::t('app','{attribute} is too small (minimum is {min}).');
 			$this->addError($object,$attribute,$message,array('{min}'=>$this->min));
 		}
 		if($this->max!==null && $value>$this->max)
 		{
-			$message=$this->tooBig!==null?$this->tooBig:Yii::t('yii','{attribute} is too big (maximum is {max}).');
+			$message=$this->tooBig!==null?$this->tooBig:Yii::t('app','{attribute} is too big (maximum is {max}).');
 			$this->addError($object,$attribute,$message,array('{max}'=>$this->max));
 		}
 	}
@@ -9433,18 +9433,18 @@ class CNumberValidator extends CValidator
 	{
 		$label=$object->getAttributeLabel($attribute);
 		if(($message=$this->message)===null)
-			$message=$this->integerOnly ? Yii::t('yii','{attribute} must be an integer.') : Yii::t('yii','{attribute} must be a number.');
+			$message=$this->integerOnly ? Yii::t('app','{attribute} must be an integer.') : Yii::t('app','{attribute} must be a number.');
 		$message=strtr($message, array(
 			'{attribute}'=>$label,
 		));
 		if(($tooBig=$this->tooBig)===null)
-			$tooBig=Yii::t('yii','{attribute} is too big (maximum is {max}).');
+			$tooBig=Yii::t('app','{attribute} is too big (maximum is {max}).');
 		$tooBig=strtr($tooBig, array(
 			'{attribute}'=>$label,
 			'{max}'=>$this->max,
 		));
 		if(($tooSmall=$this->tooSmall)===null)
-			$tooSmall=Yii::t('yii','{attribute} is too small (minimum is {min}).');
+			$tooSmall=Yii::t('app','{attribute} is too small (minimum is {min}).');
 		$tooSmall=strtr($tooSmall, array(
 			'{attribute}'=>$label,
 			'{min}'=>$this->min,

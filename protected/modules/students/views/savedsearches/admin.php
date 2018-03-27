@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	'Savedsearches'=>array('index'),
-	'Manage',
+	Yii::t('app','Savedsearches')=>array('index'),
+	Yii::t('app','Manage'),
 );
 
 $this->menu=array(

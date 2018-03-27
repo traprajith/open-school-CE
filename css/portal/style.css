@@ -80,7 +80,7 @@ header{
 }
 .logo{
 	position:absolute;
-	bottom:20px;
+	bottom:14px;
 	left:0px;
 	width:190px;
 	height:32px;
@@ -89,7 +89,7 @@ header{
 	width:400px;
 	height:35px;
 	position:absolute;
-	bottom:25px;
+	bottom:35px;
 	right:0px;
 }
 .loginBox a{color:#FC0;}
@@ -705,7 +705,7 @@ border-bottom-right-radius: 3px;
 	background:#FFF;
 }
 .atnd_Con td:hover{background-color:#fff;}
-.atnd_Con td.name{ text-align:center;background:#fff; color:#000; padding:10px 0px; font-size:11px; font-weight:bold; display:block}
+.atnd_Con td.name{ text-align:center;background:#fff; color:#000; padding:20px 0px; font-size:11px; font-weight:bold; display:block}
 .atnd_Con th{
 	border-right:1px #aec3d3 solid;
 	border-bottom:1px #aec3d3 solid;
@@ -722,6 +722,7 @@ border-bottom-right-radius: 3px;
 .atnd_Con td a.at_abs{display:block; background:#FFF; padding:10px 0px; text-indent:-999999px;}
 .atnd_Con td a.at_abs:hover{background:#FEFBE7}
 span.abs{display:block; background:url(../../images/abs_cross.png) no-repeat center; width:20px; height:30px; margin:0 auto;}
+span.tick{display:block; background:url(../../images/abs_tick.png) no-repeat center; width:20px; height:30px; margin:0 auto;}
 
 .name_div{
 	top:-50px;
@@ -1128,6 +1129,7 @@ box-shadow:  0px 1px 1px #000;
 	 font-size:12px;
 	 font-weight:bold;
 	 text-align:center;
+	 word-break:break-all;
 }
 .inner_new_table th{
 	  border-right:1px #D9D9D9 solid;
@@ -1305,3 +1307,30 @@ ul.yiiPager li.selected a{ /*background-color:#666; background: -moz-linear-grad
 	background: -webkit-gradient(linear, left top, left bottom, from(#909090), to(#6e6e6e));border-left:1px solid #909090;*/color:#069; font-weight:bold; font-size:13px;
 }
 ul.yiiPager li.last a{border:1px solid #e7ecee;}
+
+/*filter style*/
+
+.filtercontner
+{
+	width:100%;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	border:#ddd solid 1px;
+	/*background: url(../images/filtrebxbg.png) repeat;*/
+	padding:0px;
+	margin:6px 0px 20px 0px; /* For IE8 and earlier */
+	background:#F3F3F3;
+}
+
+.cont_right
+{
+	margin:0px;
+	padding:15px 20px 20px 20px;
+	width:712px;
+	position:relative;
+	/*min-height:600px;
+	background:url(../images/cont_rht_bg.png) repeat;
+	border-left:#FFF solid 1px;
+	border-top:#FFF solid 1px;*/
+}

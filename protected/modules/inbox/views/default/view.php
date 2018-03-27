@@ -1,7 +1,7 @@
 <?php
  //echo 'View Page';
 ?>
-
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,400italic' rel='stylesheet' type='text/css'>
 <style>
 [placeholder]:focus::-webkit-input-placeholder {
   transition: opacity 0.5s 0.5s ease; 

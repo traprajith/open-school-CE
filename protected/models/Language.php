@@ -65,12 +65,12 @@ class Language extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'lang_id' => 'Lang',
-			'lang_name' => 'Lang Name',
-			'lang_desc' => 'Lang Desc',
-			'lang_required' => 'Lang Required',
-			'lang_active' => 'Lang Active',
-                        'lang_short' => 'Lang Shortcut',
+			'lang_id' => Yii::t("app",'Lang'),
+			'lang_name' => Yii::t("app",'Lang Name'),
+			'lang_desc' => Yii::t("app",'Lang Desc'),
+			'lang_required' => Yii::t("app",'Lang Required'),
+			'lang_active' => Yii::t("app",'Lang Active'),
+                        'lang_short' => Yii::t("app",'Lang Shortcut'),
 		);
 	}
 

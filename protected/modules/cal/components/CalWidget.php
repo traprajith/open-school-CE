@@ -63,7 +63,7 @@ background: url(images/tx_bg.png) repeat scroll 0 0 transparent;
 .row{
 	padding:10px 0px;
 }
-select{
+#dlg_EventCal select{
 	margin-left:30px;
 }
 
@@ -96,16 +96,25 @@ class CalWidget extends CWidget
 
     function translateArray($arr)
     {
+		//for translation Yii::t('app') is given in CalModule seperately -vineeth
         foreach ($arr as $key => $data)
         {
-            if (is_array($data))
-            {
-                foreach ($data as $k => $d)
-                    $data[$k] = Yii::t('CalModule.fullCal', $d);
-                $arr[$key] = $data;
-            }
-            else
-                $arr[$key] = Yii::t('CalModule.fullCal', $data);
+			if($key=='dayNames' or $key=='dayNamesShort' or $key=='buttonText')
+			{
+				if (is_array($data))
+				{
+					foreach ($data as $k => $d)
+						
+						$data[$k] = Yii::t('app', $d);
+					$arr[$key] = $data;
+				}
+				else
+					$arr[$key] = Yii::t('app', $data);
+			}
+			else
+			{
+				$arr[$key] = $data;
+			}
         }
         return $arr;
     }

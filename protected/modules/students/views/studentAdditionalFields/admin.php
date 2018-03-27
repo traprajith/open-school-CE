@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	'Student Additional Fields'=>array('index'),
-	'Manage',
+	Yii::t('app','Student Additional Fields')=>array('index'),
+	Yii::t('app','Manage'),
 );
 
 $this->menu=array(

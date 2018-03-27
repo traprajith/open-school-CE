@@ -1,11 +1,10 @@
 <?php
 $this->breadcrumbs=array(
-'Messages'=>array('/message'),
-	
+	Yii::t('app', 'Message'),	
 );
 
 ?>
-<div style="background:#FFF;">
+<div style="background:#FFF; min-height:800px;">
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
@@ -13,55 +12,91 @@ $this->breadcrumbs=array(
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
           <td valign="top" >
-            <div style="padding:0px 20px 20px 20px;">
-            <div align="right">
-            <div style="padding:6px 0px;">
-            <?php $form=$this->beginWidget('CActiveForm'); ?>
-            	<table width="26%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td><input type="checkbox" name="dontshow" id="checkbox" />
-      <label for="checkbox"></label></td>
-    <td style="font-size:11px; color:#999"><strong>Don't show this messages again.</strong></td>
-    <td><input name="hide" type="submit" class="wel_subbut"  value="Hide" /></td>
-  </tr>
-</table>
-<?php $this->endWidget(); ?>
-</div>
-		
-            </div>	
-            
-              <div class="welcome_Con">
-                <h1>Congratulations, Your Open-School Setup is Complete !</h1>
-                <p>Your Open-School System is up and running. If you need live assistance when you're on the application, <br/>do click the chat box at the bottom right of the screen and ask away.</p>
+            <div>
+                <div class=" full-formWrapper opnsl_new_edtn_block">
+					<img class="latst_img_bnr" src="images/latest_news_bnr.png" />
+                    
+                    <div class="opnsl_modl_block">
+                    <div class="opnsl_tbl_editon_hd">
+            <h2>Upgrade to Open-School Premium Edition and help support future development of Open-School CE!</h2>
+            <p>Here is a comparison between Community edition and Premium edition.</p>
+                    </div>
+                    <div class="panel-body">
+                    	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="opnsl_tbl_editon">
+                        	<thead>
+                            	<tr>
+                                	<th></th>
+                                    <th>Community Edition</th>
+                                    <th>Premium Edition</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            	<tr class="odd">
+                                	<td>Version</td>
+                                    <td class="tabl_cnt">Older version of the application</td>
+                                    <td class="tabl_cnt">Latest version of the application</td>
+                                </tr>
+                            	<tr class="even">
+                                	<td>Modules</td>
+                                    <td class="tabl_cnt">6</td>
+                                    <td class="tabl_cnt">33</td>
+                                </tr>
+                            	<tr class="odd">
+                                	<td>Online Training</td>
+                                    <td class="tabl_cnt"><i class="fa fa-times" aria-hidden="true"></i></td>
+                                    <td class="tabl_cnt">Upto 5 hours</td>
+                                </tr>
+                                <tr class="even">
+                                    <td>Online Knowledgebase</td>
+                                    <td class="tabl_cnt"><i class="fa fa-times" aria-hidden="true"></i></td>
+                                    <td class="tabl_cnt"><i class="fa fa-check" aria-hidden="true"></i></td>  
+                                </tr>
+                            	<tr class="odd">
+                                	<td>Email and Chat Support</td>
+                                    <td class="tabl_cnt"><i class="fa fa-times" aria-hidden="true"></i></td>
+                                    <td class="tabl_cnt"><i class="fa fa-check" aria-hidden="true"></i></td>                                    
+                                </tr>
+                                <tr class="even">
+                                    <td>Software Implementation Assistance</td>
+                                    <td class="tabl_cnt"><i class="fa fa-times" aria-hidden="true"></i></td>
+                                    <td class="tabl_cnt">3</td>
+                                </tr>  
+                                <tr class="odd">
+                                    <td>Open-School Test Case Document</td>
+                                    <td class="tabl_cnt"><i class="fa fa-times" aria-hidden="true"></i></td>
+                                    <td class="tabl_cnt"><i class="fa fa-check" aria-hidden="true"></i></td>                                    
+                                </tr>  
+                                <tr class="even">
+                                    <td>Android & iOS Mobile Apps</td>
+                                    <td class="tabl_cnt">Not supported</i></td>
+                                    <td class="tabl_cnt">Supported</td>
+                                </tr>
+                                <tr class="odd">
+                                    <td>Customization Services</td>
+                                    <td class="tabl_cnt"><i class="fa fa-times" aria-hidden="true"></i></td>
+                                    <td class="tabl_cnt"><i class="fa fa-check" aria-hidden="true"></i></td>                                    
+                                </tr> 
+                                <tr class="even">
+                                    <td>Payment Gateway & SMS API</td>
+                                    <td class="tabl_cnt">Not supported</td>
+                                    <td class="tabl_cnt">Supported</i></td>
+                                </tr> 
+                                <tr class="odd">
+                                    <td>GPS based Vehicle Tracking</td>
+                                    <td class="tabl_cnt"><i class="fa fa-times" aria-hidden="true"></i></td>
+                                    <td class="tabl_cnt"><i class="fa fa-check" aria-hidden="true"></i></td>                                    
+                                </tr>                                  
+                            </tbody>
+                        </table>	
+                    </div>
+                    <div class="opnsl_tbl_editon_footer">
+                    <h2>Your Community Edition is feature-limited!</h2>
+                    <p>Buy our latest premium version and get access to all the above benefits and more!</p>
+                    <a href="https://open-school.org/pricing" target="_blank" class="upgrade_btn">Upgrade to Premium</a>
+                    </div>
+                    </div>
                 </div>
-              <div class="yellow_bx">
-                <div class="thakyo_strip"></div>
-                <div class="y_bx_head">
-                  It appears that this is the first time that you are using this Open-School setup. For any new installation we recommend that you configure the following:
-                  </div>
-                <div class="y_bx_list">
-                  <h1>Create Your School Configurations</h1>
-                  <p>Before Creating Timetable, Attendance and Examinations, make sure you completed your school configurations like School name, Logo and School Timings. <br/><?php echo CHtml::link('Application Configurations',array('/configurations/create')) ?></p>
-                  </div>
-                <div class="y_bx_list">
-                  <h1>Add New Course & Batch</h1>
-                  <p>After Creating your School Courses and Batches, You will be able to create attendance, Generate Timetable, Create Exams and Collect Fees.<br/><?php echo CHtml::link('Create New Course & Batch',array('/courses/courses/create')) ?></p>
-                  </div>
-                <div class="y_bx_list">
-                  <h1>Create New Students</h1>
-                  <p>Before Creating Students, make sure you created Student Categories and the Cources & Batches for enrolling Students.<br/><?php echo CHtml::link('Create New Student',array('/students/students/create')) ?></p>
-                  </div>
-                <div class="y_bx_list">
-                  <h1>Create New Employee</h1>
-                  <p>Before Creating Employees, make sure you created Employee Categories, Employee Departments
-                  and Employee Positions.<br/><?php echo CHtml::link('Create New Employee',array('/employees/employees/create')) ?></p>
-                  </div>
-                <div class="y_bx_list">
-                  <h1>Roles and Permissions</h1>
-                  <p>By using roles and, you have the ability to control who has access your Open-School installation.<br/><?php echo CHtml::link('User Management',array('/user/admin')) ?></p>
-                  </div>
-                
-                </div>
+              
             </div>
           </td>
           

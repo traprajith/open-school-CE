@@ -1,7 +1,7 @@
-<?php $this->pageTitle = Yii::app()->name.' - Database setup';?>
+<?php $this->pageTitle = Yii::app()->name.' - Database Setup';?>
 
 <h1>Database setup</h1>
-<p class="emphasize">We have all information we need. Before continue, back up your database if you need as existing data might be lost.</p>
+<p class="emphasize">We have all the information we need. Before continuing, backup your database if needed, as existing data will be overwritten.</p>
 <div class="form">
     <h3></h3>
     <div class="content">

@@ -132,7 +132,7 @@ class SubjectsController extends RController
 				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 		}
 		else
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+			throw new CHttpException(400,Yii::t('app','Invalid request. Please do not repeat this request again.'));
 	}
 
 	/**
@@ -218,7 +218,7 @@ class SubjectsController extends RController
 	{
 		$model=Subjects::model()->findByPk($id);
 		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+			throw new CHttpException(404,Yii::t('app','The requested page does not exist.'));
 		return $model;
 	}
 

@@ -100,8 +100,13 @@ abstract class CMessageSource extends CApplicationComponent
 		$key=$language.'.'.$category;
 		if(!isset($this->_messages[$key]))
 			$this->_messages[$key]=$this->loadMessages($category,$language);
-		if(isset($this->_messages[$key][$message]) && $this->_messages[$key][$message]!=='')
-			return $this->_messages[$key][$message];
+		
+		//converting array keys to lowercase for check with message
+		$this->_messages[$key]	= array_change_key_case($this->_messages[$key], CASE_LOWER);		
+		$t_message				= strtolower($message);
+		
+		if(isset($this->_messages[$key][$t_message]) && $this->_messages[$key][$t_message]!=='')
+			return $this->_messages[$key][$t_message];
 		else if($this->hasEventHandler('onMissingTranslation'))
 		{
 			$event=new CMissingTranslationEvent($this,$category,$message,$language);

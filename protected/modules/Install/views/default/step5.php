@@ -1,5 +1,5 @@
 <?php $this->pageTitle = Yii::app()->name.' - Register';?>
-<h1>Register with openschool</h1>
+<h1>Register with <?php echo Yii::app()->params['app_name']; ?></h1>
 <?php
 ?>    
 <div class="form">
@@ -18,7 +18,7 @@
     </div>
     <div class="input">
         <?php echo CHtml::activeLabel($model, 'country');?>
-        <?php echo CHtml::activeTextField($model, 'country',array('class' => 'text1'));?>
+        <?php echo CHtml::activeTextField($model, 'country', array('class' => 'text1'));?>
     </div>
     <div class="input">
         <?php echo CHtml::activeLabel($model, 'state');?>
@@ -28,16 +28,6 @@
         <?php echo CHtml::activeLabel($model, 'zip_postal_code');?>
         <?php echo CHtml::activeTextField($model, 'zip_postal_code', array('class' => 'text1'));?>
     </div>
-    <div class="input">
-        <?php echo CHtml::activeLabel($model, 'email');?>
-        <?php echo CHtml::activeTextField($model, 'email', array('class' => 'text1'));?>
-    </div>
-    
-    <div class="input">
-        <?php echo CHtml::activeLabel($model, 'phone');?>
-        <?php echo CHtml::activeTextField($model, 'phone', array('class' => 'text1'));?>
-    </div>
-    
     <div class="input">
         <?php echo CHtml::activeLabel($model, 'url');?>
         <?php echo CHtml::activeTextField($model, 'url', array('class' => 'text1'));?>

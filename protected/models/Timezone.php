@@ -58,8 +58,8 @@ class Timezone extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'timezone' => 'Timezone',
+			'id' => Yii::t("app",'ID'),
+			'timezone' => Yii::t("app",'Timezone'),
 		);
 	}
 

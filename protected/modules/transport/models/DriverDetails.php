@@ -10,7 +10,6 @@
  * @property string $last_name
  * @property string $address
  * @property string $dob
- * @property string $age
  * @property string $license_no
  * @property string $expiry_date
  */
@@ -40,13 +39,18 @@ class DriverDetails extends CActiveRecord
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
-		return array(
-		array('first_name, last_name, license_no ,expiry_date, dob', 'required'),
-			array('vehicle_id, first_name, last_name, address, dob, age, license_no,status', 'length', 'max'=>120),
-			array('expiry_date', 'safe'),
+			return array(
+				array('first_name, last_name, phn_no, license_no ,expiry_date, dob', 'required'),
+				array('vehicle_id, first_name, last_name, address, dob, license_no,status', 'length', 'max'=>120),
+				array('expiry_date', 'safe'),
+				array('phn_no', 'numerical', 'integerOnly'=>true),
+				array('phn_no','unique'),
+				array('license_no','unique'),
+				array('dob', 'dobvalid'),
+				array('expiry_date', 'checkexp'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, vehicle_id, first_name, last_name, address, dob, age, license_no, expiry_date, status', 'safe', 'on'=>'search'),
+				array('id, vehicle_id, first_name, last_name, address, phn_no, dob, license_no, expiry_date, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,15 +72,22 @@ class DriverDetails extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'vehicle_id' => 'Vehicle',
-			'first_name' => 'First Name',
-			'last_name' => 'Last Name',
-			'address' => 'Address',
-			'dob' => 'Dob',
-			'age' => 'Age',
-			'license_no' => 'License No',
-			'expiry_date' => 'Expiry Date',
-			'status' => 'Status',
+			'vehicle_id' =>  Yii::t('app','Vehicle'),
+			'first_name' =>  Yii::t('app','First name'),
+			'last_name' =>  Yii::t('app','Last Name'),
+			'address' =>  Yii::t('app','Address'),
+			'phn_no'=> Yii::t('app','Phone Number'),
+			'dob' =>  Yii::t('app','Dob'),
+			'age' =>  Yii::t('app','Age'),
+			'license_no' =>  Yii::t('app','License No'),
+			'expiry_date' =>  Yii::t('app','Expiry Date'),
+			'status' =>  Yii::t('app','Status'),
+			
+			
+			
+			
+			
+			
 		);
 	}
 
@@ -97,7 +108,6 @@ class DriverDetails extends CActiveRecord
 		$criteria->compare('last_name',$this->last_name,true);
 		$criteria->compare('address',$this->address,true);
 		$criteria->compare('dob',$this->dob,true);
-		$criteria->compare('age',$this->age,true);
 		$criteria->compare('license_no',$this->license_no,true);
 		$criteria->compare('expiry_date',$this->expiry_date,true);
 		$criteria->compare('status',$this->status,true);
@@ -105,5 +115,29 @@ class DriverDetails extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	public function checkexp($attribute, $params){
+		$date	= date("Y-m-d", strtotime($this->$attribute));
+		$today	= date("Y-m-d");
+		if($date<=$today){
+			$this->addError($attribute, Yii::t("app", "Expiry date should be a date greater than today's date"));
+		}
+	}
+	
+	public function dobvalid($attribute, $params){
+		$dob 	= new DateTime($this->$attribute);
+		$today	= new DateTime('today');
+		$age	= $dob->diff($today)->y;
+		if($age<18){
+			$this->addError($attribute, Yii::t("app", "Can't accept your date of birth.The minimum age will be 18"));
+		}
+	}
+	
+	public function getAge(){
+		$dob 	= new DateTime($this->dob);
+		$today	= new DateTime('today');
+		$age	= $dob->diff($today)->y;
+		return $age;
 	}
 }

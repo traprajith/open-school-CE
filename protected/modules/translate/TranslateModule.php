@@ -6,7 +6,7 @@ class TranslateModule extends CWebModule
      * the name of the translate component
      * change this in case you dont use the default name
      * */
-	 	
+    public $allowedModels	=	array();
     static $translateComponentId='translate';
 	 public $acceptedLanguages=array('en_us'=>'English',
                'vi_vn'=>'Tiếng Việt',
@@ -20,12 +20,19 @@ class TranslateModule extends CWebModule
 	 * @return
 	 */
 	public function init(){
-        $this->defaultController='default';
+        $this->defaultController='Translate';
 		$this->setImport(array(
             'translate.models.*',
             'translate.controllers.*',
             'translate.components.*',
         ));
+                
+                $this->allowedModels	=	array(
+			'MessageSource'=> array(
+                                'label'	=> Yii::t('app','Source Messages'),
+							
+                        ),                        			
+		);
         return parent::init();
 	}
     /**
@@ -36,7 +43,7 @@ class TranslateModule extends CWebModule
     static function translator(){
         $component=Yii::app()->getComponent(self::$translateComponentId);
         if($component===null)
-            throw new CException('Translate component must be defined');
+            throw new CException(Yii::t('app','Translate component must be defined'));
         return $component;
     }
     static function __callStatic($method,$args){

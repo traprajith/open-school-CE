@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	'Subjects'=>array('/courses'),
-	'Manage',
+	Yii::t('app','Subjects')=>array('/courses'),
+	Yii::t('app','Manage'),
 );
 
 

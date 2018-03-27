@@ -1,6 +1,12 @@
+<style type="text/css">
+.fancybox-outer h1{ font-size:19px;}
+
+.tableinnerlist td{ text-align:left;}
+</style>
+
 <?php
 $this->breadcrumbs=array(
-	'Subjects'=>array('/courses'),
+	Yii::t('app','Subjects')=>array('/courses'),
 	$model->name,
 );
 
@@ -13,7 +19,7 @@ $this->breadcrumbs=array(
 );*/
 ?>
 
-<h1><?php echo Yii::t('Subjects','View Subjects');?></h1>
+<h1><?php echo Yii::t('app','View Subject Details');?></h1>
 
 <?php /*?><?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
@@ -32,26 +38,39 @@ $this->breadcrumbs=array(
 )); 
 
 ?><?php */?>
-<div class="tableinnerlist" style="padding-right:25px;">
-<table width="100%" border="0" cellspacing="1" cellpadding="0">
+<div class="tableinnerlist" style="padding-right:15px;">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><?php echo Yii::t('Subjects','Subject Name');?></td>
+    <td><?php echo Yii::t('app','Subject Name');?></td>
     <td><?php echo $model->name; ?></td>
   </tr>
-    <tr>
-    <td><?php echo Yii::t('Subjects','Subject Code');?></td>
+  <?php /*?>  <tr>
+    <td><?php echo Yii::t('app','Subject Code');?></td>
     <td><?php echo $model->code; ?></td>
-  </tr>
+  </tr><?php */?>
     <tr>
-    <td><?php echo Yii::t('Subjects','Batch Name');?></td>
+    <td><?php echo Yii::app()->getModule('students')->fieldLabel("Students", "batch_id").' '.Yii::t('app','Name');?></td>
     <td><?php
     $posts=Batches::model()->findByAttributes(array('id'=>$model->batch_id));
 	echo $posts->name;
 	?></td>
   </tr>
-    <tr>
-    <td><?php echo Yii::t('Subjects','Max Weekly Classes');?></td>
+  <tr>
+    <td><?php echo Yii::t('app','Max Weekly Classes');?></td>
     <td><?php echo $model->max_weekly_classes; ?></td>
   </tr>
+  <?php
+	if(!$model->isNewRecord){
+		$common_cps	=	SubjectSplit::model()->findAllByAttributes(array('subject_id'=>$model->id));
+		foreach($common_cps as $common_cp){
+			?>
+            <tr>
+                <td><?php echo Yii::t('app','First Sub Category');?></td>
+                <td><?php echo $common_cp->split_name ?></td>
+            </tr>
+			<?php 
+		}
+	}
+  ?>
 </table>
 </div>

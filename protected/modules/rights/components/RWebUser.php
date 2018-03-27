@@ -16,6 +16,15 @@ class RWebUser extends CWebUser
 	public function afterLogin($fromCookie)
 	{
 		parent::afterLogin($fromCookie);
+		$year = Configurations::model()->findByAttributes(array('id'=>35));
+		if($year->config_value!=NULL)
+		{
+			$this->setState('year', $year->config_value);
+		}
+		else
+		{
+			$this->setState('year',0);
+		}
 
 		// Mark the user as a superuser if necessary.
 		if( Rights::getAuthorizer()->isSuperuser($this->getId())===true )

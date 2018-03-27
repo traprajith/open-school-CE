@@ -19,6 +19,7 @@ class Message extends CActiveRecord
 	const DELETED_BY_SENDER = 'sender';
 
 	public $userModel;
+
 	public $userModelRelation;
 
 	public $unreadMessagesCount;
@@ -90,14 +91,14 @@ class Message extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'sender_id' => 'Sender',
-			'receiver_id' => 'Receiver',
-			'subject' => 'Subject',
-			'body' => 'Body',
-			'is_read' => 'Is Read',
-			'deleted_by' => 'Deleted By',
-			'created_at' => 'Created At',
+			'id' => Yii::t("app",'ID'),
+			'sender_id' => Yii::t("app",'Sender'),
+			'receiver_id' => Yii::t("app",'Receiver'),
+			'subject' => Yii::t("app",'Subject'),
+			'body' => Yii::t("app",'Body'),
+			'is_read' => Yii::t("app",'Is Read'),
+			'deleted_by' => Yii::t("app",'Deleted By'),
+			'created_at' => Yii::t("app",'Created At'),
 		);
 	}
 

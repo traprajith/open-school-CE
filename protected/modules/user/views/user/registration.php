@@ -31,9 +31,9 @@ $this->breadcrumbs=array(
 	),
 	'htmlOptions' => array('enctype'=>'multipart/form-data'),
 )); ?>
+	<p style="padding-left:20px;"><?php echo Yii::t('User','Fields with');?><span class="required">*</span><?php echo Yii::t('User','are required.');?></p>
 
-	<p class="note"><?php echo UserModule::t('Fields with <span class="required">*</span> are required.'); ?></p>
-	
+
 	<?php echo $form->errorSummary(array($model,$profile)); ?>
 	
 	<div class="row">

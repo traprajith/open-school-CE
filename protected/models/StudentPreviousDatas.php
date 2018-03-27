@@ -13,6 +13,9 @@
  */
 class StudentPreviousDatas extends CActiveRecord
 {
+	private $_model;
+	private $_modelReg;
+	private $_rules = array();
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return StudentPreviousDatas the static model class
@@ -35,15 +38,47 @@ class StudentPreviousDatas extends CActiveRecord
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-			array('student_id', 'numerical', 'integerOnly'=>true),
-			array('institution, year, course, total_mark', 'length', 'max'=>255),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, student_id, institution, year, course, total_mark', 'safe', 'on'=>'search'),
-		);
+		if (!$this->_rules) {
+			$required = array();
+			$numerical = array();					
+			$decimal = array();
+			$safe	= array();
+			$rules = array();
+			
+			$model=$this->getFields();
+			
+			foreach ($model as $field) {
+				$field_rule 	= array();
+				$rule_added		= false;
+				if ($field->required==FormFields::REQUIRED_YES){
+					if ($field->form_field_type==5){
+						array_push($rules,array($field->varname, 'compare', 'compareValue'=>true, 'message'=>Yii::t('app', '{attribute} cannot be blank')));
+					}
+					array_push($required,$field->varname);
+					$rule_added		= true;
+				}
+				if ($field->field_type=='DECIMAL'){
+					array_push($decimal,$field->varname);
+					$rule_added		= true;
+				}
+				if ($field->field_type=='INTEGER'){
+					array_push($numerical,$field->varname);
+					$rule_added		= true;
+				}
+				
+				if($rule_added==false){
+					array_push($safe,$field->varname);
+				}
+			}
+			array_push($required, 'student_id');	//student id
+			array_push($rules,array(implode(',',$required), 'required'));
+			array_push($rules,array(implode(',',$numerical), 'numerical', 'integerOnly'=>true));			
+			array_push($rules,array(implode(',',$decimal), 'match', 'pattern' => '/^\s*[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?\s*$/'));			
+			array_push($rules,array(implode(',',$safe), 'safe'));
+			
+			$this->_rules = $rules;
+		}
+		return $this->_rules; 		
 	}
 
 	/**
@@ -62,14 +97,16 @@ class StudentPreviousDatas extends CActiveRecord
 	 */
 	public function attributeLabels()
 	{
-		return array(
-			'id' => 'ID',
-			'student_id' => 'Student',
-			'institution' => 'Institution',
-			'year' => 'Year',
-			'course' => 'Course',
-			'total_mark' => 'Total Mark',
+		$labels = array(			
+			'id' => Yii::t("app",'ID'),			
 		);
+		$model=$this->getFields();
+		
+		foreach ($model as $field){
+			$labels[$field->varname] = Yii::t('app',$field->title);
+		}
+			
+		return $labels;			
 	}
 
 	/**
@@ -97,11 +134,34 @@ class StudentPreviousDatas extends CActiveRecord
 	
 	public function getYears()
 	{
-			for ($i=date('Y');$i>=date('Y')-100;$i--)
-			{
-					$years["{$i}"]="{$i}";
-			}
-			return $years;                   
+		for ($i=date('Y');$i>=date('Y')-100;$i--)
+		{
+				$years["{$i}"]="{$i}";
+		}
+		return $years;                   
 	}
+	
+//Get the fiedls from form_fields	
+	public function getFields() {
+		$scope 		= NULL;
+		if(Yii::app()->controller->module->id == 'students'){
+			$scope 	= "forAdminRegistration";
+		}
+		if(Yii::app()->controller->module->id == 'onlineadmission'){
+			$scope 	= "forOnlineRegistration";
+		}
+		
+		$criteria	= new CDbCriteria;
+		$criteria->condition	= "`tab_selection`=:tab_selection AND `model`=:model";
+		$criteria->params		= array(':tab_selection'=>4, 'model'=>"StudentPreviousDatas");
+		if($scope!=NULL){
+			$this->_modelReg	= FormFields::model()->$scope()->findAll($criteria);
+		}
+		else{
+			$this->_modelReg	= FormFields::model()->findAll($criteria);
+		}
+
+		return $this->_modelReg;			
+	}		
 	
 }

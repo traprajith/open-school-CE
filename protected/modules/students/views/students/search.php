@@ -3,22 +3,22 @@
                 	<ul>
                     	<li><input class="searchbar" name="char" type="text" /></li>
                         <li><!--<input src="images/search.png" name="" type="image" />-->
-                        <input src="images/search.png" type="image" name="555" value="submit" />
+                        <input src="images/search.png" type="image" name="555" value="<?php echo Yii::t('app',"submit"); ?>" />
                         </li>
                     </ul>
                   </form>  
                 </div>
    
         
-          <h1><?php echo Yii::t('students','Search Result');?></h1><br /><br />
+          <h1><?php echo Yii::t('app','Search Result');?></h1><br /><br />
           <div class="formCon" style="width:100%">
             	<div class="formConInner">
-                	<h3<?php echo Yii::t('students','Studentsr');?>></h3>
+                	<h3<?php echo Yii::t('app','Students');?>></h3>
                     <div class="tableinnerlist">
 <table width="100%" cellpadding="0" cellspacing="0">
 <tr>
-<th width="50%"><?php echo Yii::t('students','Name');?></th>
-<th><?php echo Yii::t('students','Batch');?></th>
+<th width="50%"><?php echo Yii::t('app','Name');?></th>
+<th><?php echo Yii::app()->getModule('students')->fieldLabel("Students", "batch_id");?></th>
 </tr>
 <?php
 if(count($list)!=0)
@@ -36,18 +36,18 @@ if(count($list)!=0)
 else
 {
 	echo '<tr>';
-	echo '<td colspan="2">'.Yii::t('students','No Data found').'</td>';   
+	echo '<td colspan="2">'.Yii::t('app','No Data found').'</td>';   
 	echo '</tr>';
 }
 ?>
 </table>
 </div>
-<h3><?php echo Yii::t('students','Employees');?></h3>
+<h3><?php echo Yii::t('app','Teachers');?></h3>
 <div class="tableinnerlist">
 <table width="100%" cellpadding="0" cellspacing="0">
 <tr>
-<th width="50%"><?php echo Yii::t('students','Name');?></th>
-<th><?php echo Yii::t('students','Department');?></th>
+<th width="50%"><?php echo Yii::t('app','Name');?></th>
+<th><?php echo Yii::t('app','Department');?></th>
 </tr>
 <?php
 if(count($posts)!=0)
@@ -70,7 +70,7 @@ if(count($posts)!=0)
 else
 {
 	echo '<tr>';
-	echo '<td colspan="2">'.Yii::t('students','No Data found').'</td>';   
+	echo '<td colspan="2">'.Yii::t('app','No Data found').'</td>';   
 	echo '</tr>';
 }
 ?> 

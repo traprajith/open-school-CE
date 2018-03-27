@@ -266,7 +266,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+		<?php echo CHtml::submitButton(Yii::t('app','Search')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

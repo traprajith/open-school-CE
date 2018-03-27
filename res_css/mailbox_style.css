@@ -1,0 +1,118 @@
+.mbox-portal-con{
+	background:url(../images/portal/stud-port-bg.png) repeat-y right;
+}
+.mbox-portal-con td#port-left{
+	width:84px;
+}
+
+.mailbox-menu-newmsg{
+	-moz-box-shadow:inset 0px 0px 0px 0px #ffffff !important;
+	-webkit-box-shadow:inset 0px 0px 0px 0px #ffffff !important ;
+	box-shadow:inset 0px 0px 0px 0px #ffffff !important;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #1bb4fa), color-stop(1, #0994f0) ) !important;
+	background:-moz-linear-gradient( center top, #1bb4fa 5%, #0994f0 100% ) !important;
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1bb4fa', endColorstr='#0994f0') !important;
+	background-color:#1bb4fa !important;
+	-moz-border-radius:3px !important;
+	-webkit-border-radius:3px !important;
+	border-radius:3px !important;
+	border:1px solid #0c93d1 !important;
+	display:inline-block;
+	color:#ffffff !important;
+	font-family:arial;
+	font-size:12px;
+	font-weight:bold;
+	padding:5px 14px !important;
+	text-decoration:none;
+	position:absolute;
+	top:14px;
+	right:20px;
+	/*text-shadow:1px 0px 0px #0664a3;*/
+}
+.mailbox-menu-newmsg a{color:#fff !important; text-decoration:none !important; display:block;}
+.mailbox-menu-item{
+	/*margin-bottom: 15px;
+	background-color: #f9f9f9;
+	font-size: 1.2em;*/
+	text-align:center;
+	margin-right:5px;
+	margin-top:0px;
+	margin-left:5px;
+	float:left;
+	font-weight:bold;
+	cursor:pointer;
+	text-align: left;
+	border-right:1px #cbcbcb solid !important;
+	background:none !important;
+}
+/*.mailbox-menu-item a{
+	padding:9px 20px 9px 25px !important;
+	display:block;
+	color:#333;
+	text-decoration:none !important;
+}
+.mailbox-menu-item a:active
+{
+	color:#F30 !important;
+}
+.mailbox-menu-item a:hover{
+	padding:9px 20px 9px 25px !important;
+	
+	color:#F30 !important;
+}*/
+.ui-state-hover{font-size:12px; }
+/*.mailbox-menu{
+	padding:0px;
+	margin:0px 0px 0px 0px;
+	height:40px;
+}*/
+
+.mailbox-checkall-buttons{
+	float:left;
+	/*width:240px;*/
+	/*margin-left:10px;*/
+	padding:10px 0px 3px 0px;
+}
+.mailbox-summary{
+	float:left; padding-left:30px;
+	position:absolute;
+	top:75px;
+	right:220px;
+}
+.mailbox-sorter li a{
+	padding:6px 20px !important;
+	/*margin-bottom: 15px;
+	background-color: #f9f9f9;
+	font-size: 1.2em;*/
+	text-align:center;
+	margin-right:5px;
+	margin-top:5px;
+	margin-left:5px;
+	float:left;
+	font-weight:bold;
+	cursor:pointer;
+	text-align: left;
+	
+}
+#mform{
+	padding-top:10px;
+	padding-right:0px;
+}
+
+#mform input[type="submit"]{
+	padding:5px 10px !important;
+	margin:0px;
+	background:url(../images/fbut-bg.png) repeat-x  !important;
+	height:30px;
+	-webkit-border-radius: 4px !important;
+	-moz-border-radius: 4px !important;
+	border-radius: 4px !important;
+	border:1px #b58530 solid !important;
+	color:#633c15;
+	font-size:12px;
+	cursor:pointer;
+	text-shadow: 0.1em 0.1em #fdbd59;
+	font-weight:bold;
+	font-family:Arial, Helvetica, sans-serif;
+}
+#mform input[type="submit"]:hover{background:url(../images/fbut-bg-h.png) repeat-x;}

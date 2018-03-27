@@ -41,7 +41,7 @@ class EmployeeGrades extends CActiveRecord
 			array('priority, status, max_hours_day, max_hours_week', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>25),
 			array('max_hours_day,max_hours_week', 'length', 'max'=>10),
-			array('name','CRegularExpressionValidator', 'pattern'=>'/^[A-Za-z_ ]+$/','message'=>"{attribute} should contain only letters."),
+			//array('name','CRegularExpressionValidator', 'pattern'=>'/^[A-Za-z_ ]+$/','message'=>"{attribute} ".Yii::t("app","should contain only letters.")),
 			array('name, priority, status', 'required'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -66,12 +66,12 @@ class EmployeeGrades extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'priority' => 'Priority',
-			'status' => 'Status',
-			'max_hours_day' => 'Max Hours Day',
-			'max_hours_week' => 'Max Hours Week',
+			'id' => Yii::t("app",'ID'),
+			'name' => Yii::t("app",'Name'),
+			'priority' => Yii::t("app",'Priority'),
+			'status' => Yii::t("app",'Status'),
+			'max_hours_day' => Yii::t("app",'Max Hours Day'),
+			'max_hours_week' => Yii::t("app",'Max Hours Week'),
 		);
 	}
 

@@ -17,8 +17,8 @@ $this->menu=array(
  </td>
  <td valign="top">
 <div class="cont_right formWrapper">
-<h1><?php echo UserModule::t('View User').' "'.$model->username.'"'; ?></h1>
-
+<h1><?php // echo UserModule::t('View User').' "'.$model->username.'"'; ?></h1>
+	<?php echo Yii::t('UserModule','View User');?>
 <?php 
 
 // For all users

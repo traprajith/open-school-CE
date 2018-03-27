@@ -69,7 +69,7 @@ Welcome <strong><?php echo ucfirst($guard->last_name.' '.$guard->first_name);?><
 	
       	<div class="fright">
 
-<div class="cright">Copyright © 2012 St Johns School. Powered By <a href="http://www.evisionegypt.com" target="_blank">evision</a>. </div></div>
-      </footer>
+<div class="cright">Copyright © <?php echo date('Y').' '.$college->config_value ; ?>. Powered By <a href="http://www.wiwoinc.com" target="_self">WIWO Inc</a>. </div></div>      </footer>
+
 </body>
 </html>

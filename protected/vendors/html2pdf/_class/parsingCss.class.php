@@ -159,6 +159,7 @@ class HTML2PDF_parsingCss
 
         $this->value['xc'] = null;
         $this->value['yc'] = null;
+		$this->value['page-break-after'] = null;
     }
 
     /**
@@ -609,6 +610,10 @@ class HTML2PDF_parsingCss
         foreach ($styles as $nom => $val) {
             switch($nom)
             {
+				case 'page-break-after':
+			        $this->value[$nom] = $val;
+			        break;
+					
                 case 'font-family':
                     $val = explode(',', $val);
                     $val = trim($val[0]);

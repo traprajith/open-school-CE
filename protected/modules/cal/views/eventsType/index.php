@@ -1,3 +1,5 @@
+
+
 <?php 
 /**
  * Ajax Crud Administration
@@ -12,7 +14,7 @@
  */
 ?><?php
  $this->breadcrumbs=array(
-	 'Manage Events Types'
+	 Yii::t('app','Manage Events Types')
 );
 ?>
 <?php  
@@ -34,30 +36,39 @@ $('.search-form form').submit(function(){
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
         <td width="247" valign="top" id="port-left">
-        	<?php $this->renderPartial('/default/left_side');?>
+        	<?php 
+                $leftside = 'mailbox.views.default.left_side'; 
+                $this->renderPartial($leftside);
+            ?>
         </td>
         <td valign="top">
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
                     <td valign="top" width="75%">
-                    <div class="cont_right formWrapper" style="padding:10px;">
-                        <h1>Events Types </h1>
-                        <div class="edit_bttns">
-                        	<ul>
-                            	<li>
-                                    <!--<input id="add_events-type" type="button" style="display:block; clear: both;"
-                                    value="Create EventsType" class="addbttn last">-->
-                                    <?php echo CHtml::link('<span>'.Yii::t('Exam','Create Event Type').'</span>', array('#'),array('id'=>'add_events-type','class'=>'addbttn')) ?>
-                            	</li>
-							</ul>
+                    <div class="cont_right formWrapper">
+                        <h1><?php echo Yii::t('app','Events Types'); ?></h1>
+                        
+                        <div class="button-bg">
+                        <div class="top-hed-btn-right">
+                        <ul>                                    
+                        <li>
+                        </li>
+                        <li>
+                        </li>                                    
+                        </ul>
+                        </div> 
+                        <div class="top-hed-btn-left">
+                        <?php echo CHtml::link('<span>'.Yii::t('app','Create Event Type').'</span>', array('#'),array('id'=>'add_events-type','class'=>'a_tag-btn')) ?>
                         </div>
+                        
+                        </div>        
                         
                         <?php
                         //Strings for the delete confirmation dialog.
-                        $del_con = Yii::t('admin_events-type', 'Are you sure you want to delete this events-type?');
-                        $del_title=Yii::t('admin_events-type', 'Delete Confirmation');
-                        $del=Yii::t('admin_events-type', 'Delete');
-                        $cancel=Yii::t('admin_events-type', 'Cancel');
+                        $del_con = Yii::t('app', 'Are you sure you want to delete this events type?');
+                        $del_title=Yii::t('app', 'Delete Confirmation');
+                        $del=Yii::t('app', 'Delete');
+                        $cancel=Yii::t('app', 'Cancel');
                         ?>
                         <?php
                         $this->widget('zii.widgets.grid.CGridView', array(
@@ -70,31 +81,32 @@ $('.search-form form').submit(function(){
                         'columns' => array(
                         
 						array('name'=>'name',
-								'header' => 'Event Type'),
+								'header' => Yii::t('app','Event Type')),
 						array('name'=>'colour_code',
 							'value' => array($model,'color')
 								),
                         
                         array(
+						'header'=>Yii::t('app','Action'),
                         'class' => 'CButtonColumn',
                         'buttons' => array(
                                  'events-type_delete' => array(
-                                 'label' => Yii::t('admin_events-type', 'Delete'), // text label of the button
+                                 'label' => Yii::t('app', 'Delete'), // text label of the button
                                   'url' => '$data->id', // a PHP expression for generating the URL of the button
                                   'imageUrl' =>Yii::app()->request->baseUrl .'/js_plugins/ajaxform/images/icons/cross.png', // image URL of the button.   If not set or false, a text link is used
-                                  'options' => array("class" => "fan_del", 'title' => Yii::t('admin_events-type', 'Delete')), // HTML options for the button   tag
+                                  'options' => array("class" => "fan_del", 'title' => Yii::t('app', 'Delete')), // HTML options for the button   tag
                                   ),
                                  'events-type_update' => array(
-                                 'label' => Yii::t('admin_events-type', 'Update'), // text label of the button
+                                 'label' => Yii::t('app', 'Update'), // text label of the button
                                  'url' => '$data->id', // a PHP expression for generating the URL of the button
                                  'imageUrl' =>Yii::app()->request->baseUrl .'/js_plugins/ajaxform/images/icons/pencil.png', // image URL of the button.   If not set or false, a text link is used
-                                 'options' => array("class" => "fan_update", 'title' => Yii::t('admin_events-type', 'Update')), // HTML options for the    button tag
+                                 'options' => array("class" => "fan_update", 'title' => Yii::t('app', 'Update')), // HTML options for the    button tag
                                     ),
                                  'events-type_view' => array(
-                                  'label' => Yii::t('admin_events-type', 'View'), // text label of the button
+                                  'label' => Yii::t('app', 'View'), // text label of the button
                                   'url' => '$data->id', // a PHP expression for generating the URL of the button
                                   'imageUrl' =>Yii::app()->request->baseUrl .'/js_plugins/ajaxform/images/icons/properties.png', // image URL of the button.   If not set or false, a text link is used
-                                  'options' => array("class" => "fan_view", 'title' => Yii::t('admin_events-type', 'View')), // HTML options for the    button tag
+                                  'options' => array("class" => "fan_view", 'title' => Yii::t('app', 'View')), // HTML options for the    button tag
                                     )
                                 ),
                         'template' => '{events-type_update}{events-type_delete}',
@@ -128,7 +140,7 @@ $(function() {
         $(this).bind('click', function() {
             $.ajax({
                 type: "POST",
-                url: "<?php echo Yii::app()->request->baseUrl;?>/index.php?r=cal/eventstype/returnView",
+                url: "<?php echo Yii::app()->request->baseUrl;?>/index.php?r=cal/eventsType/returnView",
                 data:{"id":id,"YII_CSRF_TOKEN":"<?php echo Yii::app()->request->csrfToken;?>"},
                 beforeSend : function() {
                     $("#events-type-grid").addClass("ajax-sending");
@@ -159,7 +171,7 @@ $(function() {
         $(this).bind('click', function() {
             $.ajax({
                 type: "POST",
-                url: "<?php echo Yii::app()->request->baseUrl;?>/index.php?r=cal/eventstype/returnForm",
+                url: "<?php echo Yii::app()->request->baseUrl;?>/index.php?r=cal/eventsType/returnForm",
                 data:{"update_id":id,"YII_CSRF_TOKEN":"<?php echo Yii::app()->request->csrfToken;?>"},
                 beforeSend : function() {
                     $("#events-type-grid").addClass("ajax-sending");
@@ -177,7 +189,7 @@ $(function() {
                                  "hideOnContentClick": false,
                                 "afterClose":    function() {
                                    var page=$("li.selected  > a").text();
-                                $.fn.yiiGridView.update('events-type-grid', {url:'<?php echo Yii::app()->request->baseUrl;?>/index.php?r=cal/eventstype',data:{"EventsType_page":page}});
+                                $.fn.yiiGridView.update('events-type-grid', {url:'<?php echo Yii::app()->request->baseUrl;?>/index.php?r=cal/eventsType',data:{"EventsType_page":page}});
                                 }//onclosed
                             });//fancybox
                     //  console.log(data);
@@ -197,7 +209,7 @@ $(function() {
         deletes[id] = function() {
             $.ajax({
                 type: "POST",
-                url: "<?php echo Yii::app()->request->baseUrl;?>/index.php?r=cal/eventstype/ajax_delete",
+                url: "<?php echo Yii::app()->request->baseUrl;?>/index.php?r=cal/eventsType/ajax_delete",
                 data:{"id":id,"YII_CSRF_TOKEN":"<?php echo Yii::app()->request->csrfToken;?>"},
                     beforeSend : function() {
                     $("#events-type-grid").addClass("ajax-sending");
@@ -208,14 +220,14 @@ $(function() {
                 success: function(data) {
                     var res = jQuery.parseJSON(data);
                      var page=$("li.selected  > a").text();
-                    $.fn.yiiGridView.update('events-type-grid', {url:'<?php echo Yii::app()->request->baseUrl;?>/index.php?r=cal/eventstype',data:{"EventsType_page":page}});
+                    $.fn.yiiGridView.update('events-type-grid', {url:'<?php echo Yii::app()->request->baseUrl;?>/index.php?r=cal/eventsType',data:{"EventsType_page":page}});
                 }//success
             });//ajax
         };//end of deletes
 
         dialogs[id] =
                         $('<div style="text-align:center;"></div>')
-                        .html('<?php echo  $del_con; ?><br><br>' + '<h2 style="color:#999999">ID: ' + id + '</h2>')
+                        .html('<?php echo  $del_con; ?><br><br>' + '<h2 style="color:#999999"></h2>')
                        .dialog(
                         {
                             autoOpen: false,
@@ -258,7 +270,7 @@ $(function() {
     $('#add_events-type ').bind('click', function() {
         $.ajax({
             type: "POST",
-            url: "<?php echo Yii::app()->request->baseUrl;?>/index.php?r=cal/eventstype/returnForm",
+            url: "<?php echo Yii::app()->request->baseUrl;?>/index.php?r=cal/eventsType/returnForm",
             data:{"YII_CSRF_TOKEN":"<?php echo Yii::app()->request->csrfToken;?>"},
                 beforeSend : function() {
                     $("#events-type-grid").addClass("ajax-sending");
@@ -272,11 +284,12 @@ $(function() {
                             "transitionOut"   : "elastic",
                             "speedIn"                : 600,
                             "speedOut"            : 200,
+							
                             "overlayShow"     : false,
                             "hideOnContentClick": false,
                             "afterClose":    function() {
                                    var page=$("li.selected  > a").text();
-                                $.fn.yiiGridView.update('events-type-grid', {url:'<?php echo Yii::app()->request->baseUrl;?>/index.php?r=cal/eventstype',data:{"EventsType_page":page}});
+                                $.fn.yiiGridView.update('events-type-grid', {url:'<?php echo Yii::app()->request->baseUrl;?>/index.php?r=cal/eventsType',data:{"EventsType_page":page}});
                             } //onclosed function
                         });//fancybox
             } //success

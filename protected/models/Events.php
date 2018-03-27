@@ -68,15 +68,15 @@ class Events extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'user_id' => 'User',
-			'title' => 'Title',
-			'desc' => 'Desc',
-			'type' => 'Type',
-			'allDay' => 'All Day',
-			'start' => 'Start',
-			'end' => 'End',
-			'editable' => 'Editable',
+			'id' => Yii::t("app",'ID'),
+			'user_id' => Yii::t("app",'User'),
+			'title' => Yii::t("app",'Title'),
+			'desc' => Yii::t("app",'Desc'),
+			'type' => Yii::t("app",'Type'),
+			'allDay' => Yii::t("app",'All Day'),
+			'start' => Yii::t("app",'Start'),
+			'end' => Yii::t("app",'End'),
+			'editable' => Yii::t("app",'Editable'),
 		);
 	}
 

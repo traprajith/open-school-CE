@@ -27,52 +27,47 @@
 
 
 
-<!--upgrade_div_starts-->
-<div class="upgrade_bx">
-	<div class="up_banr_imgbx"><a href="https://open-school.org/pricing" target="_blank"><img src="http://tryopenschool.com/images/promo_bnnr_innerpage.png" width="231" height="200" /></a></div>
-	<div class="up_banr_firstbx">
-   	  <h1>You are Using Community Edition</h1>
-	  <a href="https://open-school.org/pricing" target="_blank">upgrade to premium version!</a>
-    </div>
-	
-</div>
-<!--upgrade_div_ends-->
 
 <div id="othleft-sidebar">
 <!--<div class="lsearch_bar">
              	<input type="text" value="Search" class="lsearch_bar_left" name="">
                 <input type="button" class="sbut" name="">
                 <div class="clear"></div>
-  </div> --> <h1><?php echo Yii::t('Courses','Manage Courses & Batches');?></h1>
+  </div> --> <h1><?php echo Yii::t('app','Manage').' '.Yii::app()->getModule("students")->labelCourseBatch();?></h1>
                     
                     <?php
-			function t($message, $category = 'cms', $params = array(), $source = null, $language = null) 
-{
-    return $message;
-}
+			
 
 			$this->widget('zii.widgets.CMenu',array(
 			'encodeLabel'=>false,
 			'activateItems'=>true,
 			'activeCssClass'=>'list_active',
-			'items'=>array(
-					
-                                                         
-					array('label'=>''.Yii::t('Courses','General Settings').'<span>'.Yii::t('Courses','Manage Configurations').'</span>',  'url'=>array('/configurations/index'), 'linkOptions'=>array('class'=>'gs_ico' ), 'itemOptions'=>array('id'=>'menu_1') 
-					       ),
-						   
-					
-					      
-						array('label'=>Yii::t('Courses','List Courses & Batches').'<span>'.Yii::t('Courses','All Courses & Batches Details').'</span>', 'url'=>array('courses/managecourse'), 'active'=> ((Yii::app()->controller->id=='courses') and (in_array(Yii::app()->controller->action->id,array('managecourse'))) ? true : false),'linkOptions'=>array('class'=>'lbook_ico' )),
+			'items'=>array(																   
+					array('label'=>Yii::t('app','List').' '.Yii::app()->getModule("students")->labelCourseBatch().'<span>'.Yii::t('app','Current Courses and').' '.$batch_label.' '.Yii::t('app','Details').'</span>', 'url'=>array('courses/managecourse'), 
+						   'active'=> ((Yii::app()->controller->id=='courses') and (in_array(Yii::app()->controller->action->id,array('managecourse'))) ? true : false),'linkOptions'=>array('class'=>'list-cours_ico' )),
 						
-						
-						array('label'=>Yii::t('Courses','Create Courses').'<span>'.Yii::t('Courses','Add New Course Details').'</span>', 'url'=>array('courses/create'),
-							'active'=> ((Yii::app()->controller->id=='courses') && (in_array(Yii::app()->controller->action->id,array('update','view','admin','index','create'))) ? true : false),'linkOptions'=>array('class'=>'abook_ico' )                                                                                           
-						      ),
+					array('label'=>Yii::t('app','Create Courses').'<span>'.Yii::t('app','Add New Course Details').'</span>', 'url'=>array('courses/create'),
+						  'active'=> ((Yii::app()->controller->id=='courses') && (in_array(Yii::app()->controller->action->id,array('update','view','admin','index','create'))) ? true : false),
+						  'linkOptions'=>array('class'=>'create-courses_ico' )                                                                                           
+						  ),
+						  
+				    array('label'=>Yii::t('app','Previous Year Courses').'<span>'.Yii::t('app','All Courses and').' '.$batch_label.' '.Yii::t('app','Details').'</span>', 'url'=>array('courses/allcourses'),
+							'active'=> ((Yii::app()->controller->id=='courses') && (in_array(Yii::app()->controller->action->id,array('allcourses'))) ? true : false),'linkOptions'=>array('class'=>'previous-courses_ico' )                          ),
+					
+					array('label'=>Yii::t('app','Deactivated').' '.$batch_label.'<span>'.Yii::t('app','Deactivated').' '.$batch_label.' '.Yii::t('app','Details').'</span>', 'url'=>array('courses/deactivatedbatches'), 
+						   'active'=> ((Yii::app()->controller->id=='courses') and (in_array(Yii::app()->controller->action->id,array('deactivatedbatches'))) ? true : false),
+						   'linkOptions'=>array('class'=>'deactive-course_ico' )),
+					array('label'=>Yii::t('app','Subjects Common Pool').'<span>'.Yii::t('app','Common Subject Details').'</span>', 'url'=>array('courses/commonsubjects'), 
+						   'active'=> ((Yii::app()->controller->id=='courses') and (in_array(Yii::app()->controller->action->id,array('commonsubjects'))) ? true : false),
+						   'linkOptions'=>array('class'=>'common-pool-course_ico' )),
+					array('label'=>''.Yii::t('app','General Settings').'<span>'.Yii::t('app','Manage Configurations').'</span>',  'url'=>array('/configurations/index'), 
+							'linkOptions'=>array('class'=>'genaral-setting_ico' ), 'itemOptions'=>array('id'=>'menu_1') 
+					       ),	   
+			),
 							 // array('label'=>t('Create Batches'), 'url'=>'#',
 							//'active'=> ((Yii::app()->controller->id=='beterm') && (in_array(Yii::app()->controller->action->id,array('update','view','admin','index'))) ? true : false)                                                                                           
 						     // ),
-						                                                                                    
+						                                                                                     
 		
 					   
 					
@@ -92,8 +87,20 @@
 						
 					
 					
-				),
-			)); ?>
+				
+				
+			)); 
+			$visible	=	Configurations::model()->isSemesterEnabled();
+			?>
+            
+             <ul>
+                <?php if($visible	==	1){ ?>
+                
+                <li class="<?php if(Yii::app()->controller->id=='semester') { echo "list_active"; } ?>">
+                    <?php echo CHtml::link(Yii::t('app','Manage Semesters').'<span>'.Yii::t('app','Semesters for the Courses ').'</span>',array('/courses/semester'),array('class'=>'gradebook_ico','active'=>(Yii::app()->controller->id=='semester'))); ?>
+                </li> 
+                <?php } ?>
+            </ul>
 		<div id="subject-name-ajax-grid"></div>
         
         

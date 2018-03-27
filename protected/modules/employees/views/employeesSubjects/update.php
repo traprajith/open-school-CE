@@ -1,13 +1,13 @@
 <?php
 $this->breadcrumbs=array(
-	'Employees Subjects'=>array('create'),
+	Yii::t('app','Teachers Subjects')=>array('create'),
 	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	Yii::t('app','Update'),
 );
 
 
 ?>
 
-<h1><?php echo Yii::t('employees','Update Employees Subjects ');?></h1>
+<h1><?php echo Yii::t('app','Update Teachers Subjects ');?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

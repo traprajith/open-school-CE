@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs=array(
-	'Employee Grades',
+	Yii::t('app','Teacher Grades'),
 );
 
 $this->menu=array(
-	array('label'=>'Create EmployeeGrades', 'url'=>array('create')),
-	array('label'=>'Manage EmployeeGrades', 'url'=>array('admin')),
+	array('label'=>Yii::t('app','Create TeacherGrades'), 'url'=>array('create')),
+	array('label'=>Yii::t('app','Manage TeacherGrades'), 'url'=>array('admin')),
 );
 ?>
 
-<h1>Employee Grades</h1>
+<h1><?php echo Yii::t('app','Teacher Grades'); ?></h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

@@ -37,8 +37,6 @@ class RegisterForm extends CFormModel {
     public $state;
     public $zip_postal_code;
     public $url;
-	public $email;
-	public $phone;
 
     /**
      * Returns the validation rules for attributes.
@@ -85,9 +83,7 @@ class RegisterForm extends CFormModel {
      */
     public function rules() {
         return array(
-            array('schoolname, address, state, country, zip_postal_code, url, email,phone', 'required'),
-			array('email', 'email'),
-			array('zip_postal_code , phone', 'numerical', 'integerOnly'=>true),
+            array('schoolname, address, state, country, zip_postal_code, url', 'required'),
             
         );
     }
@@ -111,9 +107,7 @@ class RegisterForm extends CFormModel {
             'State'=>'state',
             'Country'=>'country',
             'zip_postal_code'=>'Zip/Postal Code',
-			'url'=>'Application Url',
-			'email'=>'Admin Email',
-			'phone'=>'Admin Phone Number',
+			'url'=>'Url',
         );
     }
 }

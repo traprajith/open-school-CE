@@ -681,13 +681,42 @@ abstract class CActiveRecord extends CModel
 	 */
 	public function setAttribute($name,$value)
 	{
+		
+		//For preventing XSS- written by Rajith R
+		$p = new CHtmlPurifier();
+		$p->options = array('URI.AllowedSchemes'=>array(
+					  'http' => true,
+					  'https' => true,
+					),
+					'HTML.Allowed'=> 'p, b, strong, em, i, u, br, s, strike, sub, sup, ul, ol, li, blockquote'); //a, abbr, acronym, b, blockquote, caption, cite, code, dd, del, dfn, div, dl, dt, em, i, ins, kbd, li, ol, p, pre, s, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, u, ul, var
+		
+		
 		if(property_exists($this,$name))
+		{
+			if(is_array($value) or $name=='photo_data' or $name=='template')
+			$this->$name=$value;
+			else
+			$this->$name=$p->purify($value); //Apply by Rajith R
+		}
+		else if(isset($this->getMetaData()->columns[$name]))
+		{
+			if(is_array($value) or $name=='photo_data' or $name=='template')
+			$this->_attributes[$name]=$value;
+			else
+			$this->_attributes[$name]=$p->purify($value); //Apply by Rajith R
+		}
+		else
+			return false;
+		return true;
+	
+		//Commented default by Rajith R
+		/*if(property_exists($this,$name))
 			$this->$name=$value;
 		else if(isset($this->getMetaData()->columns[$name]))
 			$this->_attributes[$name]=$value;
 		else
 			return false;
-		return true;
+		return true;*/
 	}
 
 	/**

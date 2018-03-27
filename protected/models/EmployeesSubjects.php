@@ -59,9 +59,9 @@ class EmployeesSubjects extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'employee_id' => 'Employee',
-			'subject_id' => 'Subject',
+			'id' => Yii::t("app",'ID'),
+			'employee_id' => Yii::t("app",'Teacher'),
+			'subject_id' => Yii::t("app",'Subject'),
 		);
 	}
 
@@ -87,7 +87,7 @@ class EmployeesSubjects extends CActiveRecord
 	public function Employeenotassigned($id,$sub)
 	{
 		    $results=array();
-			$emp=Employees::model()->findAllByAttributes(array('employee_department_id'=>$id));
+			$emp=Employees::model()->findAllByAttributes(array('employee_department_id'=>$id,'is_deleted'=>0));
 			if($emp!=NULL)
 			{
 				$i=0;

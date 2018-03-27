@@ -1,5 +1,5 @@
 <?php $this->breadcrumbs = array(
-	'Rights'=>Rights::getBaseUrl(),
+	Yii::t('app','Rights')=>Rights::getBaseUrl(),
 	Rights::getAuthItemTypeNamePlural($model->type)=>Rights::getAuthItemRoute($model->type),
 	$model->name,
 ); ?>
@@ -11,7 +11,7 @@
   <tr>
     <td valign="top" >
     <div>
-    <h1><?php echo Rights::t('core', 'Update :name', array(
+    <h1><?php echo Yii::t('app', 'Update :name', array(
 		':name'=>$model->name,
 		':type'=>Rights::getAuthItemTypeName($model->type),
 	)); ?></h1>
@@ -24,31 +24,31 @@
  <tr>
     <td valign="top"><div ><div class="relations span-11 last">
 
-		<h3><?php echo Rights::t('core', 'Relations'); ?></h3>
+		<h3><?php echo Yii::t('app', 'Relations'); ?></h3>
 
 		<?php if( $model->name!==Rights::module()->superuserName ): ?>
 
 			<div class="parents" style="width:93%">
 
-				<h4><?php echo Rights::t('core', 'Parents'); ?></h4>
+				<h4><?php echo Yii::t('app', 'Parents'); ?></h4>
 
 				<?php $this->widget('zii.widgets.grid.CGridView', array(
 					'dataProvider'=>$parentDataProvider,
 					'template'=>'{items}',
 					'hideHeader'=>true,
-					'emptyText'=>Rights::t('core', 'This item has no parents.'),
+					'emptyText'=>Yii::t('app', 'This item has no parents.'),
 					'htmlOptions'=>array('class'=>'grid-view parent-table mini'),
 					'columns'=>array(
     					array(
     						'name'=>'name',
-    						'header'=>Rights::t('core', 'Name'),
+    						'header'=>Yii::t('app', 'Name'),
     						'type'=>'raw',
     						'htmlOptions'=>array('class'=>'name-column'),
     						'value'=>'$data->getNameLink()',
     					),
     					array(
     						'name'=>'type',
-    						'header'=>Rights::t('core', 'Type'),
+    						'header'=>Yii::t('app', 'Type'),
     						'type'=>'raw',
     						'htmlOptions'=>array('class'=>'type-column'),
     						'value'=>'$data->getTypeText()',
@@ -66,25 +66,25 @@
 
 			<div class="children"  style="width:93%">
 
-				<h4><?php echo Rights::t('core', 'Children'); ?></h4>
+				<h4><?php echo Yii::t('app', 'Children'); ?></h4>
 
 				<?php $this->widget('zii.widgets.grid.CGridView', array(
 					'dataProvider'=>$childDataProvider,
 					'template'=>'{items}',
 					'hideHeader'=>true,
-					'emptyText'=>Rights::t('core', 'This item has no children.'),
+					'emptyText'=>Yii::t('app', 'This item has no children.'),
 					'htmlOptions'=>array('class'=>'grid-view parent-table mini'),
 					'columns'=>array(
     					array(
     						'name'=>'name',
-    						'header'=>Rights::t('core', 'Name'),
+    						'header'=>Yii::t('app', 'Name'),
     						'type'=>'raw',
     						'htmlOptions'=>array('class'=>'name-column'),
     						'value'=>'$data->getNameLink()',
     					),
     					array(
     						'name'=>'type',
-    						'header'=>Rights::t('core', 'Type'),
+    						'header'=>Yii::t('app', 'Type'),
     						'type'=>'raw',
     						'htmlOptions'=>array('class'=>'type-column'),
     						'value'=>'$data->getTypeText()',
@@ -102,7 +102,7 @@
 
 			<div class="addChild">
 
-				<h5><?php echo Rights::t('core', 'Add Child'); ?></h5>
+				<h5><?php echo Yii::t('app', 'Add Child'); ?></h5>
 
 				<?php if( $childFormModel!==null ): ?>
 
@@ -113,7 +113,7 @@
 
 				<?php else: ?>
 
-					<p style="font-size:11px;"><?php echo Rights::t('core', 'No children available to be added to this item.'); ?>
+					<p style="font-size:11px;"><?php echo Yii::t('app', 'No children available to be added to this item.'); ?>
 
 				<?php endif; ?>
 
@@ -122,8 +122,8 @@
 		<?php else: ?>
 
 			<p class="info">
-				<?php echo Rights::t('core', 'No relations need to be set for the superuser role.'); ?><br />
-				<?php echo Rights::t('core', 'Super users are always granted access implicitly.'); ?>
+				<?php echo Yii::t('app', 'No relations need to be set for the superuser role.'); ?><br />
+				<?php echo Yii::t('app', 'Super users are always granted access implicitly.'); ?>
 			</p>
 
 		<?php endif; ?>

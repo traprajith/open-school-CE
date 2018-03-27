@@ -64,10 +64,12 @@ class BusLog extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'vehicle_id' => 'Vehicle',
-			'start_time_reading' => 'Start Time Reading',
-			'end_time_reading' => 'End Time Reading',
-			'fuel_consumption' => 'Fuel Consumption',
+			'vehicle_id' =>  Yii::t('app','Vehicle'),
+			'start_time_reading' =>  Yii::t('app','Start Time Reading'),
+			'end_time_reading' =>  Yii::t('app','End Time Reading'),
+			'fuel_consumption' =>  Yii::t('app','Fuel Consumption'),
+			
+			
 		);
 	}
 

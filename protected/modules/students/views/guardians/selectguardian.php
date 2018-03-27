@@ -1,4 +1,1 @@
-<?php
-echo 'hi';
-
-?>
+<?php echo Yii::t('app','Hi');?> 

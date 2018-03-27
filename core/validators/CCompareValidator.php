@@ -91,47 +91,47 @@ class CCompareValidator extends CValidator
 			case '==':
 				if(($this->strict && $value!==$compareValue) || (!$this->strict && $value!=$compareValue))
 				{
-					$message=$this->message!==null?$this->message:Yii::t('yii','{attribute} must be repeated exactly.');
+					$message=$this->message!==null?$this->message:Yii::t('app','{attribute} must be repeated exactly.');
 					$this->addError($object,$attribute,$message,array('{compareAttribute}'=>$compareTo));
 				}
 				break;
 			case '!=':
 				if(($this->strict && $value===$compareValue) || (!$this->strict && $value==$compareValue))
 				{
-					$message=$this->message!==null?$this->message:Yii::t('yii','{attribute} must not be equal to "{compareValue}".');
+					$message=$this->message!==null?$this->message:Yii::t('app','{attribute} must not be equal to "{compareValue}".');
 					$this->addError($object,$attribute,$message,array('{compareAttribute}'=>$compareTo,'{compareValue}'=>$compareValue));
 				}
 				break;
 			case '>':
 				if($value<=$compareValue)
 				{
-					$message=$this->message!==null?$this->message:Yii::t('yii','{attribute} must be greater than "{compareValue}".');
+					$message=$this->message!==null?$this->message:Yii::t('app','{attribute} must be greater than "{compareValue}".');
 					$this->addError($object,$attribute,$message,array('{compareAttribute}'=>$compareTo,'{compareValue}'=>$compareValue));
 				}
 				break;
 			case '>=':
 				if($value<$compareValue)
 				{
-					$message=$this->message!==null?$this->message:Yii::t('yii','{attribute} must be greater than or equal to "{compareValue}".');
+					$message=$this->message!==null?$this->message:Yii::t('app','{attribute} must be greater than or equal to "{compareValue}".');
 					$this->addError($object,$attribute,$message,array('{compareAttribute}'=>$compareTo,'{compareValue}'=>$compareValue));
 				}
 				break;
 			case '<':
 				if($value>=$compareValue)
 				{
-					$message=$this->message!==null?$this->message:Yii::t('yii','{attribute} must be less than "{compareValue}".');
+					$message=$this->message!==null?$this->message:Yii::t('app','{attribute} must be less than "{compareValue}".');
 					$this->addError($object,$attribute,$message,array('{compareAttribute}'=>$compareTo,'{compareValue}'=>$compareValue));
 				}
 				break;
 			case '<=':
 				if($value>$compareValue)
 				{
-					$message=$this->message!==null?$this->message:Yii::t('yii','{attribute} must be less than or equal to "{compareValue}".');
+					$message=$this->message!==null?$this->message:Yii::t('app','{attribute} must be less than or equal to "{compareValue}".');
 					$this->addError($object,$attribute,$message,array('{compareAttribute}'=>$compareTo,'{compareValue}'=>$compareValue));
 				}
 				break;
 			default:
-				throw new CException(Yii::t('yii','Invalid operator "{operator}".',array('{operator}'=>$this->operator)));
+				throw new CException(Yii::t('app','Invalid operator "{operator}".',array('{operator}'=>$this->operator)));
 		}
 	}
 
@@ -163,36 +163,36 @@ class CCompareValidator extends CValidator
 			case '=':
 			case '==':
 				if($message===null)
-					$message=Yii::t('yii','{attribute} must be repeated exactly.');
+					$message=Yii::t('app','{attribute} must be repeated exactly.');
 				$condition='value!='.$compareValue;
 				break;
 			case '!=':
 				if($message===null)
-					$message=Yii::t('yii','{attribute} must not be equal to "{compareValue}".');
+					$message=Yii::t('app','{attribute} must not be equal to "{compareValue}".');
 				$condition='value=='.$compareValue;
 				break;
 			case '>':
 				if($message===null)
-					$message=Yii::t('yii','{attribute} must be greater than "{compareValue}".');
+					$message=Yii::t('app','{attribute} must be greater than "{compareValue}".');
 				$condition='value<='.$compareValue;
 				break;
 			case '>=':
 				if($message===null)
-					$message=Yii::t('yii','{attribute} must be greater than or equal to "{compareValue}".');
+					$message=Yii::t('app','{attribute} must be greater than or equal to "{compareValue}".');
 				$condition='value<'.$compareValue;
 				break;
 			case '<':
 				if($message===null)
-					$message=Yii::t('yii','{attribute} must be less than "{compareValue}".');
+					$message=Yii::t('app','{attribute} must be less than "{compareValue}".');
 				$condition='value>='.$compareValue;
 				break;
 			case '<=':
 				if($message===null)
-					$message=Yii::t('yii','{attribute} must be less than or equal to "{compareValue}".');
+					$message=Yii::t('app','{attribute} must be less than or equal to "{compareValue}".');
 				$condition='value>'.$compareValue;
 				break;
 			default:
-				throw new CException(Yii::t('yii','Invalid operator "{operator}".',array('{operator}'=>$this->operator)));
+				throw new CException(Yii::t('app','Invalid operator "{operator}".',array('{operator}'=>$this->operator)));
 		}
 
 		$message=strtr($message,array(

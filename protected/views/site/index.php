@@ -82,7 +82,7 @@ along with Open-School.  If not, see <http://www.gnu.org/licenses/>.*/
   <div class="clear"></div>
           <div style="margin-top:20px; width:80%;" id="container"></div>
           <div class="pdtab_Con" style="width:97%">
-            <div style="font-size:13px; padding:5px 0px"><strong>Recent Employee Admissions</strong></div>
+            <div style="font-size:13px; padding:5px 0px"><strong>Recent Teacher Admissions</strong></div>
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tbody>
                 <tr class="pdtab-h">

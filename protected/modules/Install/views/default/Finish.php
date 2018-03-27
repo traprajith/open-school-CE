@@ -1,6 +1,6 @@
-<?php $this->pageTitle = Yii::app()->name.' - Congratulation, you made it!';?>
-<h1>Congratulation, you made it!</h1>
-<p class="emphasize">openschool has been installed. It is important that you rename or remove <?php echo Yii::getPathOfAlias('application.modules.Install');?> folder to avoid other to run the installation again and delete your database.</p>
+<?php $this->pageTitle = Yii::app()->name.' - Congratulations, you made it!';?>
+<h1>Congratulations, you made it!</h1>
+<p class="emphasize"><?php echo Yii::app()->params['app_name'].' '.Yii::app()->params['version']; ?> has been installed successfully.</p>
 <div class="form">
     <h3></h3>
     <div class="content">
@@ -16,13 +16,13 @@
         Yii::app()->session->remove('password');
 	    Yii::app()->session->remove('key');
 		?>
-        <div class="note">Note that Username and Password carefully! It is a random password that was generated just for you.</div>
+        <div class="note">Please make note of the Username and random password to login.</div>
     </div>
     <div class="input" align="center">
         <?php if ($htaccessUpdated === false):?>
-        <strong style="color: red">openschool uses SEO friendly URLs, you need to upload this file as <?php echo CHtml::link('.htaccess', array('default/htaccess'));?> to <?php echo Yii::getPathOfAlias('webroot');?> folder.</strong><br/>
+        <strong style="color: red"><?php echo Yii::app()->params['app_name'].' '.Yii::app()->params['version']; ?> uses SEO friendly URLs, you need to upload this file as <?php echo CHtml::link('.htaccess', array('default/htaccess'));?> to the <?php echo Yii::getPathOfAlias('webroot');?> folder.</strong><br/>
         <?php endif;?>
-        <a target="_blank" href="<?php echo Yii::app()->Request->getBaseUrl(true); ?>">Go to Site <img src="<?php echo Yii::app()->theme->baseUrl ?>/images/ext-link.png" /></a>
+        <a target="_blank" href="<?php echo Yii::app()->Request->getBaseUrl(true); ?>">Get started <img src="<?php echo Yii::app()->theme->baseUrl ?>/images/ext-link.png" /></a>
 	</div>
     </fieldset>
     </div>

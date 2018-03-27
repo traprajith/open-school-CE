@@ -1,4 +1,4 @@
-<?php $this->pageTitle = Yii::app()->name.' - Environment settings';?>
+<?php $this->pageTitle = Yii::app()->name.' - Environment Settings';?>
 <h1>Environment settings</h1>
 <p class="emphasize">All fields are required and case sensitive.</p>
 <div class="form">
@@ -13,7 +13,7 @@
     if ($model->baseUrl == 'http://') $model->baseUrl = Yii::app()->request->getBaseUrl(true);
     echo CHtml::activeTextField($model, 'baseUrl', array('class' => 'text1'));
     ?>
-    <div class="note">Base url to your Open-School site.</div>
+    <div class="note">Base url to your <?php echo Yii::app()->params['app_name']; ?> application.</div>
 </div>
 <div class="input">
     <?php echo CHtml::activeLabel($model, 'host'); ?>
@@ -28,7 +28,7 @@
 <div class="input">
     <?php echo CHtml::activeLabel($model, 'dbName'); ?>
     <?php echo CHtml::activeTextField($model, 'dbName', array('class' => 'text1')); ?>
-    <div class="note">openschool database name. Existing tables will be dropped!</div>
+    <div class="note"><?php echo Yii::app()->params['app_name']; ?> database name.</div>
 </div>
 <div class="input">
     <?php echo CHtml::activeLabel($model, 'username'); ?>

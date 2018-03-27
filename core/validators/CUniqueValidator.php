@@ -82,7 +82,7 @@ class CUniqueValidator extends CValidator
 		$finder=CActiveRecord::model($className);
 		$table=$finder->getTableSchema();
 		if(($column=$table->getColumn($attributeName))===null)
-			throw new CException(Yii::t('yii','Table "{table}" does not have a column named "{column}".',
+			throw new CException(Yii::t('app','Table "{table}" does not have a column named "{column}".',
 				array('{column}'=>$attributeName,'{table}'=>$table->name)));
 
 		$columnName=$column->rawName;
@@ -116,7 +116,7 @@ class CUniqueValidator extends CValidator
 
 		if($exists)
 		{
-			$message=$this->message!==null?$this->message:Yii::t('yii','{attribute} "{value}" has already been taken.');
+			$message=$this->message!==null?$this->message:Yii::t('app','{attribute} "{value}" has already been taken.');
 			$this->addError($object,$attribute,$message,array('{value}'=>$value));
 		}
 	}

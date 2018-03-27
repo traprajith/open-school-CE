@@ -70,7 +70,7 @@ class CNumberValidator extends CValidator
 		{
 			if(!preg_match($this->integerPattern,"$value"))
 			{
-				$message=$this->message!==null?$this->message:Yii::t('yii','{attribute} must be an integer.');
+				$message=$this->message!==null?$this->message:Yii::t('app','{attribute} must be an integer.');
 				$this->addError($object,$attribute,$message);
 			}
 		}
@@ -78,18 +78,18 @@ class CNumberValidator extends CValidator
 		{
 			if(!preg_match($this->numberPattern,"$value"))
 			{
-				$message=$this->message!==null?$this->message:Yii::t('yii','{attribute} must be a number.');
+				$message=$this->message!==null?$this->message:Yii::t('app','{attribute} must be a number.');
 				$this->addError($object,$attribute,$message);
 			}
 		}
 		if($this->min!==null && $value<$this->min)
 		{
-			$message=$this->tooSmall!==null?$this->tooSmall:Yii::t('yii','{attribute} is too small (minimum is {min}).');
+			$message=$this->tooSmall!==null?$this->tooSmall:Yii::t('app','{attribute} is too small (minimum is {min}).');
 			$this->addError($object,$attribute,$message,array('{min}'=>$this->min));
 		}
 		if($this->max!==null && $value>$this->max)
 		{
-			$message=$this->tooBig!==null?$this->tooBig:Yii::t('yii','{attribute} is too big (maximum is {max}).');
+			$message=$this->tooBig!==null?$this->tooBig:Yii::t('app','{attribute} is too big (maximum is {max}).');
 			$this->addError($object,$attribute,$message,array('{max}'=>$this->max));
 		}
 	}
@@ -107,20 +107,20 @@ class CNumberValidator extends CValidator
 		$label=$object->getAttributeLabel($attribute);
 
 		if(($message=$this->message)===null)
-			$message=$this->integerOnly ? Yii::t('yii','{attribute} must be an integer.') : Yii::t('yii','{attribute} must be a number.');
+			$message=$this->integerOnly ? Yii::t('app','{attribute} must be an integer.') : Yii::t('app','{attribute} must be a number.');
 		$message=strtr($message, array(
 			'{attribute}'=>$label,
 		));
 
 		if(($tooBig=$this->tooBig)===null)
-			$tooBig=Yii::t('yii','{attribute} is too big (maximum is {max}).');
+			$tooBig=Yii::t('app','{attribute} is too big (maximum is {max}).');
 		$tooBig=strtr($tooBig, array(
 			'{attribute}'=>$label,
 			'{max}'=>$this->max,
 		));
 
 		if(($tooSmall=$this->tooSmall)===null)
-			$tooSmall=Yii::t('yii','{attribute} is too small (minimum is {min}).');
+			$tooSmall=Yii::t('app','{attribute} is too small (minimum is {min}).');
 		$tooSmall=strtr($tooSmall, array(
 			'{attribute}'=>$label,
 			'{min}'=>$this->min,

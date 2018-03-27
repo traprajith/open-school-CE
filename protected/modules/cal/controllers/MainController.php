@@ -41,6 +41,7 @@ class MainController extends RController
      */
     public function actionBrowse()
     {
+        Yii::app()->clientScript->scriptMap['jquery-ui-1.8.17.custom.min.js'] = false;
         $userId = (isset($_POST['currentUser'])) ? $_POST['currentUser'] : Yii::app()->user->getId();
         Yii::app()->user->setState('calUserId', $userId);
 		
@@ -72,16 +73,13 @@ class MainController extends RController
 			if($_GET['type'])
 			{
             $criteria = new CDbCriteria(array(
-                        'condition' => 'user_id=:user_id and type=:type',
-                        'params'=>array(':user_id'=> Yii::app()->user->getState('calUserId'),':type'=>$_GET['type']),
+                        'condition' => 'type=:type',
+                        'params'=>array(':type'=>$_GET['type']),
                     ));
 			}
 			else
 			{
-				 $criteria = new CDbCriteria(array(
-                        'condition' => 'user_id=:user_id',
-                        'params'=>array(':user_id'=> Yii::app()->user->getState('calUserId')),
-                    ));
+				 $criteria = new CDbCriteria();
 				
 			}
             $criteria->addBetweenCondition('start', $start, $end);
@@ -118,28 +116,51 @@ class MainController extends RController
         $editable = ($_POST['editable'] == 'true') ? 1 : 0;
         $eventId = $_POST['eventId'];
 		$placeholder = $_POST['placeholder'];
+		$organizer= $_POST['organizer'];				
         if (Yii::app()->request->isAjaxRequest)
         {
             $event = ($eventId == 0) ? new Event : Event::model()->findByPk($eventId);
-            if ($title == '')
-            {
-               // $event->delete();
-                echo 0;
-            } else
-            {
-                $event->title = $title;
-				$event->desc = $desc;
-				$event->type = $type;
-                $event->user_id = $user_id;
-                $event->start = $start;
-                $event->end = $end;
-                $event->allDay = $allDay;
-                $event->editable = $editable;
-				$event->placeholder = $placeholder;
-                $event->save();
-                echo $event->id;
-                Yii::app()->end();
-            }
+			$event->title = $title;
+			$event->desc = $desc;
+			$event->type = $type;
+			$event->user_id = $user_id;
+			$event->start = $start;
+			$event->end = $end;
+			$event->allDay = $allDay;
+			$event->editable = $editable;
+			$event->placeholder = $placeholder;
+			$event->organizer=$organizer;			
+			if($event->save()){
+				
+					$users_arr = array();	
+					if($_POST['placeholder'] != '0'){
+						$criteria	= new CDbCriteria();
+						$criteria->condition 	= 'itemname=:itemname AND userid<>:userid';
+						$criteria->params		= array(':itemname'=>$_POST['placeholder'], ':userid'=>Yii::app()->user->id);
+						$users 					= AuthAssignment::model()->findAll($criteria);
+						if($users){
+							foreach($users as $user){
+								if(!in_array($user->userid, $users_arr)){
+									$users_arr[] = $user->userid;
+								}
+							}
+						}
+					}				
+					$criteria	= new CDbCriteria();					 
+					if($_POST['placeholder'] != '0'){
+						$criteria->addInCondition('uid', $users_arr);
+					}
+					else{
+						$criteria->condition		= 'uid<>:uid';
+						$criteria->params[':uid']	= Yii::app()->user->id;
+					}           
+
+				echo $event->id;
+			}
+			else{
+				echo json_encode($event->getErrors());					
+			}
+			Yii::app()->end();
         }
     }
 
@@ -150,7 +171,7 @@ class MainController extends RController
     {
         if (!Yii::app()->user->hasState('calUserId'))
             Yii::app()->end();
-
+		
         $delta = $_POST['delta'];
         $allDay = ($_POST['allDay'] == 'true') ? 1 : 0;
         $eventId = $_POST['eventId'];
@@ -208,24 +229,33 @@ class MainController extends RController
 	
 	public function actionDelete()
     {
-        if (Yii::app()->request->isAjaxRequest)
+         if (Yii::app()->request->isAjaxRequest)
         {
             if (!Yii::app()->user->hasState('calUserId'))
                 Yii::app()->end();
-
-            //$user_id = $_POST['ui'];
-            $user_id = Yii::app()->user->getState('calUserId');
-            $title = $_POST['title'];
-            $criteria = new CDbCriteria;
-            $criteria->condition = 'user_id=:user_id';
-            $criteria->params = array(':user_id' => $user_id);
-            $criteria->addSearchCondition('title', $title);
-            $eventsDelete = Events::model()->find($criteria);
-            $eventsDelete->delete();
+            
+            $user_id 	= Yii::app()->user->getState('calUserId');
+            $title 		= $_POST['title'];
+			$event_id	= $_POST['eventId'];
+			$event		= Events::model()->findByAttributes(array('id'=>$event_id));
+			if($event){
+				$event->delete();
+			}            
 			echo 0;
             Yii::app()->end();
         }
     }
+	
+	public function deletePermission()
+	{
+		$role = Rights::getAssignedRoles(Yii::app()->user->Id);				
+		if(key($role) == 'Admin'){
+			return 1;
+		}
+		else{
+			return 0;
+		}
+	}
 
 	
 

@@ -1,4 +1,3 @@
-
 <style>
 #jobDialog
 {
@@ -8,8 +7,8 @@
 </style>
 <?php
 $this->breadcrumbs=array(
-	'Batches'=>array('/courses'),
-	'Create',
+	Yii::app()->getModule('students')->fieldLabel("Students", "batch_id")=>array('/courses'),
+	Yii::t('app','Create'),
 );
 
 ?>
@@ -40,7 +39,7 @@ $this->menu=array(
 $this->beginWidget('zii.widgets.jui.CJuiDialog',array(
                 'id'=>'jobDialog',
                 'options'=>array(
-                    'title'=>Yii::t('job','Create Batches'),
+                    'title'=>Yii::app()->getModule('students')->fieldLabel("Students", "batch_id"),
                     'autoOpen'=>true,
                     'modal'=>'true',
                     'width'=>'400',
@@ -50,7 +49,7 @@ $this->beginWidget('zii.widgets.jui.CJuiDialog',array(
                 ),
                 ));
 				?>
-<?php echo $this->renderPartial('_form', array('model'=>$model,'val1'=>$_GET['val1']));
+<?php echo $this->renderPartial('_form', array('model'=>$model,'val1'=>$_GET['val1'],'academic_yr_id' =>$_GET['academic_yr_id']));
 
  ?>
 <?php $this->endWidget('zii.widgets.jui.CJuiDialog');?>

@@ -152,7 +152,7 @@ class YiiBase
 		if(self::$_app===null || $app===null)
 			self::$_app=$app;
 		else
-			throw new CException(Yii::t('yii','Yii application can only be created once.'));
+			throw new CException(Yii::t('app','Yii application can only be created once.'));
 	}
 
 	/**
@@ -195,7 +195,7 @@ class YiiBase
 			unset($config['class']);
 		}
 		else
-			throw new CException(Yii::t('yii','Object configuration must be an array containing a "class" element.'));
+			throw new CException(Yii::t('app','Object configuration must be an array containing a "class" element.'));
 
 		if(!class_exists($type,false))
 			$type=Yii::import($type,true);
@@ -284,7 +284,7 @@ class YiiBase
 					if(is_file($classFile))
 						require($classFile);
 					else
-						throw new CException(Yii::t('yii','Alias "{alias}" is invalid. Make sure it points to an existing PHP file.',array('{alias}'=>$alias)));
+						throw new CException(Yii::t('app','Alias "{alias}" is invalid. Make sure it points to an existing PHP file.',array('{alias}'=>$alias)));
 					self::$_imports[$alias]=$alias;
 				}
 				else
@@ -292,7 +292,7 @@ class YiiBase
 				return $alias;
 			}
 			else
-				throw new CException(Yii::t('yii','Alias "{alias}" is invalid. Make sure it points to an existing directory.',
+				throw new CException(Yii::t('app','Alias "{alias}" is invalid. Make sure it points to an existing directory.',
 					array('{alias}'=>$namespace)));
 		}
 
@@ -318,7 +318,7 @@ class YiiBase
 					if(is_file($path.'.php'))
 						require($path.'.php');
 					else
-						throw new CException(Yii::t('yii','Alias "{alias}" is invalid. Make sure it points to an existing PHP file.',array('{alias}'=>$alias)));
+						throw new CException(Yii::t('app','Alias "{alias}" is invalid. Make sure it points to an existing PHP file.',array('{alias}'=>$alias)));
 					self::$_imports[$alias]=$className;
 				}
 				else
@@ -343,7 +343,7 @@ class YiiBase
 			}
 		}
 		else
-			throw new CException(Yii::t('yii','Alias "{alias}" is invalid. Make sure it points to an existing directory or file.',
+			throw new CException(Yii::t('app','Alias "{alias}" is invalid. Make sure it points to an existing directory or file.',
 				array('{alias}'=>$alias)));
 	}
 

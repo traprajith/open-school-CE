@@ -17,7 +17,7 @@ function batch()
 
 echo 'Course';
 echo CHtml::dropDownList('cid','',$data,
-array('prompt'=>'-Select-',
+array('prompt'=>Yii::t('app','Select'),
 'ajax' => array(
 'type'=>'POST',
 'url'=>CController::createUrl('Weekdays/batch'),
@@ -25,11 +25,11 @@ array('prompt'=>'-Select-',
 'data'=>'js:$(this).serialize()',
 ))); 
 echo '&nbsp;&nbsp;&nbsp;';
-echo 'Batch';
+echo Yii::app()->getModule('students')->fieldLabel("Students", "batch_id");
 
 $data1 = CHtml::listData(Batches::model()->findAll(array('order'=>'name DESC')),'id','name');
  ?>
         
-		<?php echo CHtml::dropDownList('batch_id','batch_id',$data1,array('empty'=>'-Select-','onchange'=>'batch()','id'=>'batchdrop')); ?>
+		<?php echo CHtml::dropDownList('batch_id','batch_id',$data1,array('empty'=>Yii::t('app','Select'),'onchange'=>'batch()','id'=>'batchdrop')); ?>
 
 	<?php $this->endWidget(); ?>

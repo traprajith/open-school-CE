@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Configurations'=>array('index'),
+	Yii::t('app','Configurations')=>array('index'),
 	
 );
 
@@ -46,40 +46,40 @@ $this->breadcrumbs=array(
 <div class="clear"></div>
 </div>
 <div class="contentbxtop_pricng">
-<div class="pricinghhdng">Step 2: Enter You Basic Info.
-<div class="pricingh2">Your Basic Information, And Your Unique O-S Address </div>
+<div class="pricinghhdng"><?php echo Yii::t('app','Step 2: Enter You Basic Info.');?>
+<div class="pricingh2"><?php echo Yii::t('app','Your Basic Information, And Your Unique O-S Address');?> </div>
 </div>
 <div class="pricinghhdng_rht"><img src="images/showingupdation4.png" width="230" height="49"/></div>
 <div class="clear"></div>
 <div class="signbx">
 <div class="signbx_left">
 <div class="formbx">
-<h1>Setup Your First Administrator Account</h1>
-            	<div><div style="float:left; color:#D00;">*</div><div class="smltext_signup" style="float:left">Denotes required field</div></div>
+<h1><?php echo Yii::t('app','Setup Your First Administrator Account');?></h1>
+            	<div><div style="float:left; color:#D00;">*</div><div class="smltext_signup" style="float:left"><?php echo Yii::t('app','Denotes required field');?></div></div>
             	<div class="clear"></div>
 
                 						<form id="members-form" action="/osfinal/signup/index.php?r=signupstep2&amp;plan=pro" method="post">                                       											<input value="pro" name="Members[plan]" id="Members_plan" type="hidden">                                        <input value="" name="Members[activation_key]" id="Members_activation_key" type="hidden">                                        <input value="0" name="Members[activation_status]" id="Members_activation_status" type="hidden">                                    
                                         <div class="formfield">
                                         										<ul>
 											<li class="first">
-                                            <label for="Members_First Name">User  Name</label>                                            </li><li>
+                                            <label for="Members_First Name"><?php echo Yii::t('app','User  Name');?></label>                                            </li><li>
 											<?php echo $form->textField($model,'username'); ?>                                            </li>
 											<strong></strong>
                                         </ul>
                                            <div style="clear:both"></div>
 <ul>
-											<li class="first"><label for="Members_Last Name">Password</label></li>
+											<li class="first"><label for="Members_Last Name"><?php echo Yii::t('app','Password');?></label></li>
                                             <li>
 		<?php echo $form->passwordField($model,'password'); ?></li>
 		<strong></strong>
                                         </ul>
                                         <div style="clear:both"></div>
-                                        <h1>Your School Information</h1>
+                                        <h1><?php echo Yii::t('app','Your School Information');?></h1>
                                         <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-weight:bold;">
   <tbody><tr>
-    <td>        School / College Name </td>
+    <td>        <?php echo Yii::t('app','School / College Name');?></td>
     <td> <input type="text"  name="collegename" id="collegename"></td>
-    <td>School/College Address</td>
+    <td><?php echo Yii::t('app','School/College Address');?></td>
     <td><input type="text" name="address" id="address"></td>
   </tr>
     <tr>
@@ -89,12 +89,12 @@ $this->breadcrumbs=array(
       <td>&nbsp;</td>
     </tr>
     <tr>
-    <td>School/College Phone </td>
+    <td><?php echo Yii::t('app','School/College Phone');?></td>
     <td><input type="text"  name="phone" id="phone"></td>
-    <td>Student Attendance Type</td>
+    <td><?php echo Yii::t('app','Student Attendance Type');?></td>
     <td><select name="attentance" id="attentance">
-<option value="Daily" selected="selected">Daily</option>
-<option value="SubjectWise">SubjectWise</option>
+<option value="Daily" selected="selected"><?php echo Yii::t('app','Daily');?></option>
+<option value="SubjectWise"><?php echo Yii::t('app','SubjectWise');?></option>
 </select></td>
   </tr>
     <tr>
@@ -104,9 +104,9 @@ $this->breadcrumbs=array(
       <td>&nbsp;</td>
     </tr>
     <tr>
-    <td>Finance year start date</td>
+    <td><?php echo Yii::t('app','Finance year start date');?></td>
     <td> <input type="text" name="startyear" id="startyear"></td>
-    <td>Finance year end date</td>
+    <td><?php echo Yii::t('app','Finance year end date');?></td>
     <td> <input type="text" name="endyear" id="endyear"></td>
   </tr>
     <tr>
@@ -116,9 +116,9 @@ $this->breadcrumbs=array(
       <td>&nbsp;</td>
     </tr>
     <tr>
-    <td>Language</td>
+    <td><?php echo Yii::t('app','Language');?></td>
     <td> <input type="text" name="language" id="language"></td>
-    <td>Currency Type</td>
+    <td><?php echo Yii::t('app','Currency Type');?></td>
     <td> <input type="text" name="currency" id="currency"></td>
   </tr>
     <tr>
@@ -128,12 +128,12 @@ $this->breadcrumbs=array(
       <td>&nbsp;</td>
     </tr>
     <tr>
-    <td>Upload Logo</td>
+    <td><?php echo Yii::t('app','Upload Logo');?></td>
     <td><input name="" type="file" /></td>
-    <td>Network State</td>
+    <td><?php echo Yii::t('app','Network State');?></td>
     <td><select name="network" id="network">
-<option value="Online" selected="selected">Online</option>
-<option value="Offline">Offline</option>
+<option value="Online" selected="selected"><?php echo Yii::t('app','Online');?></option>
+<option value="Offline"><?php echo Yii::t('app','Offline');?></option>
 </select></td>
   </tr>
     <tr>
@@ -147,9 +147,9 @@ $this->breadcrumbs=array(
                                         </table>
 <div class="row">
 
-        <input checked="checked" type="checkbox" value="1" name="admission_number" id="admission_number"><strong>Enable Auto increment Student admission no.</strong> 
+        <input checked="checked" type="checkbox" value="1" name="admission_number" id="admission_number"><strong><?php echo Yii::t('app','Enable Auto increment Student admission no.');?></strong> 
        
-        <input checked="checked" type="checkbox" value="1" name="employee_number" id="employee_number"><strong>Enable Auto increment Employee no.</strong>
+        <input checked="checked" type="checkbox" value="1" name="employee_number" id="employee_number"><strong><?php echo Yii::t('app','Enable Auto increment Employee no.');?></strong>
         
 			</div>
 										
@@ -212,34 +212,34 @@ $this->breadcrumbs=array(
 <div class="footerlogo"><img src="images/footer_logo.png" width="137" height="164"></div>
 <div class="footerlink">
 <ul>
-<li><a style="color:#d19a02; font-size:14px; ">OS</a></li>
-<li><a href="../index.html">Home</a></li>
-<li><a href="../about_us.html">About</a></li>
-<li><a href="../for_admin.html">Features</a></li>
-<li><a href="../download.html">Downloads</a></li>
-<li><a href="../contact_us.php">Partner</a></li>
-<li><a href="../contact_us.php">Contact Us</a></li>
+<li><a style="color:#d19a02; font-size:14px; "><?php echo Yii::t('app','OS');?></a></li>
+<li><a href="../index.html"><?php echo Yii::t('app','Home');?></a></li>
+<li><a href="../about_us.html"><?php echo Yii::t('app','About');?></a></li>
+<li><a href="../for_admin.html"><?php echo Yii::t('app','Features');?></a></li>
+<li><a href="../download.html"><?php echo Yii::t('app','Downloads');?></a></li>
+<li><a href="../contact_us.php"><?php echo Yii::t('app','Partner');?></a></li>
+<li><a href="../contact_us.php"><?php echo Yii::t('app','Contact Us');?></a></li>
 </ul>
 </div>
 <div class="footerlink" style="padding-left:100px;">
 <ul>
-<li><a style="color:#d19a02; font-size:14px; ">SignUp</a></li>
-<li><a href="https://www.open-school.org/signup/">15 Day Free Trail</a></li>
-<li><a href="../pricing.html">Plans &amp; Pricing</a></li>
-<li><a href="../contact_us.php">Resellers</a></li>
-<li><a href="../contact_us.php">Non Profit</a></li>
-<li><a href="../contact_us.php">Contact Us</a></li>
+<li><a style="color:#d19a02; font-size:14px; "><?php echo Yii::t('app','SignUp');?></a></li>
+<li><a href="https://www.open-school.org/signup/"><?php echo Yii::t('app','15 Day Free Trail');?></a></li>
+<li><a href="../pricing.html"><?php echo Yii::t('app','Plans &amp; Pricing');?></a></li>
+<li><a href="../contact_us.php"><?php echo Yii::t('app','Resellers');?></a></li>
+<li><a href="../contact_us.php"><?php echo Yii::t('app','Non Profit');?></a></li>
+<li><a href="../contact_us.php"><?php echo Yii::t('app','Contact Us');?></a></li>
 
 </ul>
 </div>
 <div class="footerlink" style="padding-left:100px;">
 <ul>
-<li><a style="color:#d19a02; font-size:14px; ">Support</a></li>
-<li><a href="https://www.open-school.org/support/">Support Center</a></li>
-<li><a href="https://www.open-school.org/support/open.php">New Ticket</a></li>
-<li><a href="../contact_us.php">Contact Us</a></li>
-<li><a href="https://www.open-school.org/forum/">Forum</a></li>
-<li><a href="https://www.open-school.org/kb/">Knowledge Base</a></li>
+<li><a style="color:#d19a02; font-size:14px; "><?php echo Yii::t('app','Support');?></a></li>
+<li><a href="https://www.open-school.org/support/"><?php echo Yii::t('app','Support Center');?></a></li>
+<li><a href="https://www.open-school.org/support/open.php"><?php echo Yii::t('app','New Ticket');?></a></li>
+<li><a href="../contact_us.php"><?php echo Yii::t('app','Contact Us');?></a></li>
+<li><a href="https://www.open-school.org/forum/"><?php echo Yii::t('app','Forum');?></a></li>
+<li><a href="https://www.open-school.org/kb/"><?php echo Yii::t('app','Knowledge Base');?></a></li>
 
 </ul>
 </div>
@@ -250,10 +250,10 @@ $this->breadcrumbs=array(
 </div>-->
 <div class="sociallink" style="float:right;">
 <ul>
-<li><a style="color:#d19a02; font-size:14px; padding:0px; ">Connect</a></li>
-<li><a class="twitter" href="#">Twitter</a></li>
-<li><a class="facebook" href="#">Facebook</a></li>
-<li><a class=" youtube" href="#">Youtube</a></li>
+<li><a style="color:#d19a02; font-size:14px; padding:0px; "><?php echo Yii::t('app','Connect');?></a></li>
+<li><a class="twitter" href="#"><?php echo Yii::t('app','Twitter');?></a></li>
+<li><a class="facebook" href="#"><?php echo Yii::t('app','Facebook');?></a></li>
+<li><a class=" youtube" href="#"><?php echo Yii::t('app','Youtube');?></a></li>
 </ul>
 </div>
 

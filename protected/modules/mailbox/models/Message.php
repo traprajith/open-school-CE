@@ -44,16 +44,16 @@ class Message extends CActiveRecord
 	 */
 	public function rules()
 	{
-		$module =& Yii::app()->controller->module;
+		$module =& Yii::app()->getModule('mailbox');
 		$p = new CHtmlPurifier();
-		if(Yii::app()->controller->module->isAdmin())
+		if(Yii::app()->getModule('mailbox')->isAdmin())
 			$p->options = $module->adminHtml;
 		else
 			$p->options = $module->html;
 		return array(
 			array('text', 'required'),
 			array('created, sender_id, recipient_id', 'length', 'max'=>10),
-			array('text','filter','filter'=>array($p,'purify')),
+			//array('text','filter','filter'=>array($p,'purify')),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('message_id, conversation_id, created, sender_id, recipient_id, text, hash', 'safe', 'on'=>'search'),
@@ -78,12 +78,12 @@ class Message extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'message_id' => 'Message',
-			'conversation_id' => 'Conversation Id',
-			'created' => 'Time Stamp',
-			'sender_id' => 'Sender',
-			'recipient_id' => 'Recipient',
-			'text' => 'Text',
+			'message_id' => Yii::t('app','Message'),
+			'conversation_id' => Yii::t('app','Conversation Id'),
+			'created' => Yii::t('app','Time Stamp'),
+			'sender_id' => Yii::t('app','Sender'),
+			'recipient_id' => Yii::t('app','Recipient'),
+			'text' => Yii::t('app','Text'),
 		);
 	}
 
@@ -139,9 +139,9 @@ class Message extends CActiveRecord
 				WHERE recipient_id=:userid AND created
 			) AS ms ON(ms.conversation_id=m.conversation_id AND ms.created > m.created)
 			",
-			'condition'=>'sender_id=:userid',
+			'condition'=>'sender_id=:userid and c.bm_deleted=:deleted',
 			'order'=>"m.created DESC",
-			'params'=>array(':userid'=>$userid),
+			'params'=>array(':userid'=>$userid,':deleted'=>0),
 		));
 		return $this;
 		

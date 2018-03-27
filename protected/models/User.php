@@ -62,10 +62,11 @@ class User extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'username' => 'Username',
-			'password' => 'Password',
-			'salt' => 'Salt',
+			'id' => Yii::t("app",'ID'),
+			'username' => Yii::t("app",'Username'),
+			'password' => Yii::t("app",'Password'),
+			'salt' => Yii::t("app",'Salt'),
+			
 		);
 	}
 
@@ -84,7 +85,7 @@ class User extends CActiveRecord
 		$criteria->compare('username',$this->username,true);
 		$criteria->compare('password',$this->password,true);
 		$criteria->compare('salt',$this->salt,true);
-
+		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
@@ -190,7 +191,7 @@ class User extends CActiveRecord
 		$result=$command->queryAll();
 		return $result;
 		
-	}
+	}	
 	public function assignedtask($id)
 	{
 		$connection = Yii::app()->dbadvert;
@@ -206,4 +207,8 @@ class User extends CActiveRecord
 		return $pass->sign;
 		
 	}
+	
+		
+	
+	
 }

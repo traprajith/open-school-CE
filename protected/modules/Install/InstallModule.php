@@ -23,7 +23,7 @@ along with Open-School.  If not, see <http://www.gnu.org/licenses/>.*/
  *
  * @author Open-School team <contact@Open-School.org>
  * @link http://www.Open-School.org/
- * @copyright Copyright &copy; 2009-2012 wiwo inc.
+ * @copyright Copyright &copy; 2009-2015 wiwo inc.
  * @Matthew George,@Rajith Ramachandran,@Arun Kumar,
  * @Anupama,@Laijesh V Kumar.
  * @license http://www.Open-School.org/
@@ -34,7 +34,7 @@ class InstallModule extends CWebModule
 {
     public $structuresPath='webroot.database.schema';
     public $dataPath='webroot.database.data';
-    
+	
 	public function init()
 	{
 		// this method is called when the module is being created
@@ -59,7 +59,20 @@ class InstallModule extends CWebModule
 			return false;
 	}
 
+	public static function encrypting($string="") {
+		$hash = Yii::app()->getModule('user')->hash;
+		if ($hash=="md5")
+			return md5($string);
+		if ($hash=="sha1")
+			return sha1($string);
+		else
+			return hash($hash,$string);
+	}
+
     public function getResourceDefinition(){
         return array();
+    }
+	public function getRegdomain(){
+        return $_SERVER['SERVER_NAME'];
     }
 }

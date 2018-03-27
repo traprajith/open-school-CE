@@ -1,6 +1,4 @@
-        
-		
-<div class="panel-wrapper" id="pu" >
+<div class="" id="" >
             <?php  
 			
 			$j=0;
@@ -20,26 +18,14 @@
 				$path=Yii::app()->request->getUrl();
 			}?>
             
-            
-            
-            
-           
-    
-				 <h2 class="title">Users</h2>
-                      <h2 class="caption"><?php echo count(Employees::model()->findAll("is_deleted 	=:x", array(':x'=>0))); ?> Records</h2>
-                      <!--<div class="sd_search_area">
-    					<input name="" id="exptxtsrh" type="text" class="sd_search" value="Search Here" />
-        				<input name="" type="button" class="sd_but" /> 
-       					 <div class="clear"></div>
-        			</div>-->
-                     <div class="clear"></div>
+              <div class="clear"></div>
                      <div style="position:relative">
                      <div class="sd_links">
                      	<ul>
-                        	 <li><a href="#" id="ud_fltr">Filter Users</a></li>
+                        	 <li><a href="#" id="ud_fltr"><?php echo Yii::t('app','Filter Teachers'); ?></a></li>
                              <li>|</li>
                         	
-                            <li><a href="#" id="uloadfltr">Load Filter</a></li>
+                            <li><a href="#" id="uloadfltr"><?php echo Yii::t('app','Load Filter') ?></a></li>
                         </ul>
                         <div class="clear"></div>
                         
@@ -54,15 +40,16 @@
 									{ 
 										foreach ($data as $data1)
 										{
-											$data1->url = str_replace('employees/employees/manage&name','site/emanage&ename', $data1->url);
-											$data1->url = str_replace('employees%2Femployees%2Fmanage&name','site/emanage&ename', $data1->url);
-											$data1->url = str_replace('&name=','&ename=', $data1->url);
-											echo '<li>'.CHtml::link($data1->name, $data1->url.'&widget='.$widget,array('id'=>$data1->id)).'</li>';
+											$savedurl = CHtml::decode($data1->url);
+											$savedurl = str_replace('employees/employees/manage&name','site/emanage&ename', $savedurl);
+											$savedurl = str_replace('employees%2Femployees%2Fmanage&name','site/emanage&ename', $savedurl);
+											$savedurl = str_replace('&name=','&ename=', $savedurl);
+											echo '<li>'.CHtml::link($data1->name, $savedurl.'&widget='.$widget,array('id'=>$data1->id)).'</li>';
 										}
 									}
 									else
 									{
-										echo '<span style="color:#d30707"><i>No Saved Searches</i></span>';
+										echo '<span style="color:#d30707"><i>'.Yii::t('app','No Saved Searches').'</i></span>';
 									}
 									?>
                                     
@@ -84,15 +71,15 @@
                             <table width="55%" border="0" cellspacing="0" cellpadding="0">
                              <tr>
                                     <td width="18%">
-                        Name:</td><td><input type="text" placeholder="search" name="ename"  value="<?php echo isset($_GET['ename']) ? CHtml::encode($_GET['ename']) : '' ; ?>" />
-                        <?php  CHtml::ajaxButton("Apply",CController::createUrl('/site/emanage'), array(
+                        <?php echo Yii::t('app','Name')?>&nbsp;</td><td><input type="text" placeholder="search" name="ename"  value="<?php echo isset($_GET['ename']) ? CHtml::encode($_GET['ename']) : '' ; ?>" />
+                        <?php  CHtml::ajaxButton(Yii::t('app',"Apply"),CController::createUrl('/site/emanage'), array(
 					  
 																									'data' => 'js:$("#usersearch-form").serialize()',
 																									'update' => '#user_panel_handler',
 																									'type'=>'GET',
 																								     ),array('id'=>'user-name-test'));?>
 						</td><td>
-                      <?php  echo CHtml::ajaxButton("Apply",CController::createUrl('/site/emanage'), array(
+                      <?php  echo CHtml::ajaxButton(Yii::t('app',"Apply"),CController::createUrl('/site/emanage'), array(
 					  
 																									'data' => 'js:$("#usersearch-form").serialize()',
 																									'update' => '#user_panel_handler',
@@ -104,8 +91,8 @@
  <table width="68%" border="0" cellspacing="0" cellpadding="0">
                              <tr>
                                     <td width="34%">                  
-Employee Number:</td><td><input type="text" placeholder="search" name="employeenumber" value="<?php echo isset($_GET['employeenumber']) ? CHtml::encode($_GET['employeenumber']) : '' ; ?>" /></td><td>
-<?php  echo CHtml::ajaxButton("Apply",CController::createUrl('/site/emanage'), array(
+<?php echo Yii::t('app','Teacher No'); ?>&nbsp;</td><td><input type="text" placeholder="search" name="employeenumber" value="<?php echo isset($_GET['employeenumber']) ? CHtml::encode($_GET['employeenumber']) : '' ; ?>" /></td><td>
+<?php  echo CHtml::ajaxButton(Yii::t('app',"Apply"),CController::createUrl('/site/emanage'), array(
 																									'data' => 'js:$("#usersearch-form").serialize()',
 																									'update' => '#user_panel_handler',
 																									'type'=>'GET',
@@ -121,12 +108,12 @@ echo '<div class="sd_form_row" style="background:#F7F7F7;">
 ';  
 
 
-echo '<td>Department:</td><td>';
+echo '<td>'.Yii::t('app','Department').'&nbsp;</td><td>';
 
 $data1 = CHtml::listData(EmployeeDepartments::model()->findAll(array('order'=>'name DESC')),'id','name');
 echo CHtml::activeDropDownList($model,'employee_department_id',$data1,array('prompt'=>'Select','id'=>'employee_department_id')); ?>
 </td><td>
-<?php  echo CHtml::ajaxButton("Apply",CController::createUrl('/site/emanage'), array(
+<?php  echo CHtml::ajaxButton(Yii::t('app',"Apply"),CController::createUrl('/site/emanage'), array(
 																									'data' => 'js:$("#usersearch-form").serialize()',
 																									'update' => '#user_panel_handler',
 																									'type'=>'GET',
@@ -143,7 +130,7 @@ echo CHtml::activeDropDownList($model,'employee_department_id',$data1,array('pro
                        <div id="userfilter_action"> 
                      <div class="filter_con">
                      <div class="filterbxcntnt_inner_bot" >
-    <div class="filterbxcntnt_left" style="left:0px;"><strong>Active Filters:</strong></div>
+    <div class="filterbxcntnt_left" style="left:0px;"><strong><?php echo Yii::t('app','Active Filters:')?></strong></div>
     <div class="clear"></div>
     <div class="filterbxcntnt_right">
     <ul id="filter">
@@ -153,7 +140,7 @@ echo CHtml::activeDropDownList($model,'employee_department_id',$data1,array('pro
          <?php if(isset($_REQUEST['ename']) and $_REQUEST['ename']!=NULL)
 	{
 		$j++; ?>
-    <li>Name : <?php echo $_REQUEST['ename'];
+    <li><?php echo Yii::t('app','Name :'); echo $_REQUEST['ename'];
 	 ?>
    
 	<?php 
@@ -168,7 +155,7 @@ echo CHtml::link("", array('/site/emanage', 'ename' => '','employeenumber'=>$ad,
     <?php if(isset($_REQUEST['employeenumber']) and $_REQUEST['employeenumber']!=NULL)
     { 
 	    $j++; ?>
-    <li>Employee number : <?php echo $_REQUEST['employeenumber'];echo $name ; echo $bat;?>
+    <li><?php echo Yii::t('app','Teacher No').' :'; echo $_REQUEST['employeenumber'];echo $name ; echo $bat;?>
 	
 	<?php 
 	 echo CHtml::link("", array('/site/emanage',  'ename' => $name,'employeenumber'=>'','Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => $_REQUEST['val']));
@@ -180,7 +167,7 @@ echo CHtml::link("", array('/site/emanage', 'ename' => '','employeenumber'=>$ad,
     { 
 	   $j++;
 	?>
-    <li>Department : <?php echo EmployeeDepartments::model()->findByAttributes(array('id'=>$_REQUEST['Employees']['employee_department_id']))->name?>
+    <li><?php echo Yii::t('app','Department').' :'; echo EmployeeDepartments::model()->findByAttributes(array('id'=>$_REQUEST['Employees']['employee_department_id']))->name?>
 	
 	<?php 
 	echo CHtml::link("", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>'','widget' => $widget, 'val' => $_REQUEST['val']));
@@ -189,7 +176,7 @@ echo CHtml::link("", array('/site/emanage', 'ename' => '','employeenumber'=>$ad,
     <?php } ?>
     <?php if($j==0)
 	{
-		echo '<div style="padding-top:4px; font-size:11px;"><i>No Active Filters</i></div>';
+		echo '<div style="padding-top:4px; font-size:11px;"><i>'.Yii::t('app','No Active Filters').'</i></div>';
 	}?>
     <div class="clear"></div>
     </ul>
@@ -198,334 +185,22 @@ echo CHtml::link("", array('/site/emanage', 'ename' => '','employeenumber'=>$ad,
     </div>	
                     <div class="clear"></div>
                     </div>
-                    <div class="sd_letternav">
-                    
-                    	<ul id="letter">
-                        
-<?php if((isset($_REQUEST['val']) and $_REQUEST['val']==NULL) or (!isset($_REQUEST['val'])))
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-
-<?php 
-
-echo CHtml::link("All", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => ''));
- ?>                            
-</li>
-
-
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='A')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php 
-
-echo CHtml::link("A", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'A'));
-
- 
-
-?>                            
-</li>
-
-
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='B')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php echo CHtml::link("B", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'B')); ?>                            
-                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='C')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php echo CHtml::link("C", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'C'));  ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='D')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php echo CHtml::link("D", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'D')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='E')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link("E", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'E'));  ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='F')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php echo CHtml::link("F", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'F'));  ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='G')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link("G", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'G')); ?>                            
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='H')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link("H", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'H')); ?>  
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='I')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link("I", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'I')); ?>  
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='J')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link("J", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'J')); ?>  
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='K')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link("K", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'K')); ?>  
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='L')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link("L", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'L')); ?>  
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='M')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link("M", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'M')); ?>  
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='N')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link("N", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'N')); ?>  
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='O')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link("O", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'O')); ?>  
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='P')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link("P", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'P')); ?>  
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='Q')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link("Q", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'Q')); ?>  
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='R')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link("R", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'R')); ?>  
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='S')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link("S", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'S')); ?>  
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='T')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link("T", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'T')); ?>  
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='U')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link("U", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'U')); ?>  
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='V')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link("V", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'V')); ?>  
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='W')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link("W", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'W')); ?>  
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='X')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link("X", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'X')); ?>  
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='Y')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link("Y", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'Y')); ?>  
-</li>
-<?php if(isset($_REQUEST['val']) and $_REQUEST['val']=='Z')
-{
-	echo '<li class="active">';
-}
-else
-{
-	echo '<li>';
-}
-?>
-<?php  echo CHtml::link("Z", array('/site/emanage', 'ename' => $name,'employeenumber'=>$ad,'Employees[employee_department_id]'=>$bat,'widget' => $widget, 'val' => 'Z')); ?>  
-</li>
-
-</ul>
-
-
-                        <div class="clear"></div>
-                    </div></div>
+                    <!-- Alphabetic Sort -->
+					<?php $this->widget('application.extensions.letterFilter.LetterFilter', array(
+                        //parameters                                                
+                        'innerWrapperClass'=>'sd_letternav',
+						'containerId'=>'letter',                        
+                        'url'=>Yii::app()->createUrl('/site/emanage',array('ename'=>$_REQUEST['name'], 'employeenumber'=>$_REQUEST['employeenumber'], 'Employees[employee_department_id]'=>$_REQUEST['Employees']['employee_department_id'], 'widget'=>$_REQUEST['widget'])),
+                                                            
+                    )); ?>
+                    <!-- END Alphabetic Sort -->
+                    </div>
 				<div class="sd_tablelist">
                 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
                           <tr>
-                            <th>Name</th>
-                            <th>Employee No:</th>
-                            <th>Department</th>
+                            <th><?php echo Yii::t('app','Name');?></th>
+                            <th><?php echo Yii::t('app','Teacher No');?></th>
+                            <th><?php echo Yii::t('app','Department');?></th>
                             <!--<th>Action</th>-->
                           </tr>
                           <?php foreach($list as $list_1)

@@ -38,11 +38,11 @@ class Allotment extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('student_id, bed_no, room_no, floor, status, created', 'length', 'max'=>120),
+			array('student_id, bed_no, room_no, floor,hostel_id, status, created', 'length', 'max'=>120),
 			//array('student_id','unique'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, student_id, bed_no, room_no, floor, status, created', 'safe', 'on'=>'search'),
+			array('id, student_id, bed_no, room_no, floor,hostel_id, status, created', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,13 +63,13 @@ class Allotment extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'student_id' => 'Student',
-			'bed_no' => 'Bed No',
-			'room_no' => 'Room No',
-			'floor' => 'Floor',
-			'status' => 'Status',
-			'created' => 'Created',
+			'id' => Yii::t('app','ID'),
+			'student_id' => Yii::t('app','Student'),
+			'bed_no' => Yii::t('app','Bed No'),
+			'room_no' => Yii::t('app','Room No'),
+			'floor' => Yii::t('app','Floor'),
+			'status' => Yii::t('app','Status'),
+			'created' => Yii::t('app','Created'),
 			
 		);
 	}
@@ -97,5 +97,11 @@ class Allotment extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	public function getStudentadm()
+	{
+		$student = Students::model()->findByAttributes(array('id'=>$this->student_id));
+			return $student->first_name.' '.$student->last_name;
 	}
 }

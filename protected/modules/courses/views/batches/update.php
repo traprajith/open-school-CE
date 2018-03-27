@@ -1,8 +1,8 @@
 <?php
 $this->breadcrumbs=array(
-	'Batches'=>array('/courses'),
+	Yii::app()->getModule('students')->fieldLabel("Students", "batch_id")=>array('/courses'),
 	$model->id=>array('view','id'=>$model->id),
-	'Update',
+	Yii::t('app','Update'),
 );
 
 
@@ -12,7 +12,7 @@ $this->breadcrumbs=array(
 $this->beginWidget('zii.widgets.jui.CJuiDialog',array(
                 'id'=>'jobDialog123',
                 'options'=>array(
-                    'title'=>Yii::t('job','Update'),
+                    'title'=>Yii::t('app','Update').' '.Yii::app()->getModule('students')->fieldLabel("Students", "batch_id").' '.' : '.$model->name,
                     'autoOpen'=>true,
                     'modal'=>'true',
                     'width'=>'400',

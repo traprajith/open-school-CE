@@ -1,3 +1,14 @@
+
+<style>
+.fancybox-inner{ width:auto !important; height:auto !important;}
+.client-val-form input{ width:100% !important;  -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.fancybox-wrap{
+	 width:350px !important;	
+}
+</style>
 <!--
  * Ajax Crud Administration Form
  * EventsType *
@@ -6,20 +17,19 @@
  * @link http://reverbnation.com/spiroskabasakalis/
  * @copyright Copyright &copy; 2011-2012 Spiros Kabasakalis
  * @since 1.0
- * @ver 1.3
+ * @v
  -->
-<div id="events-type_form_con" class="client-val-form">
-    <?php if ($model->isNewRecord) : ?>    <h3 id="create_header">Create New Event Type</h3>
-    <?php  elseif (!$model->isNewRecord):  ?>    <h3 id="update_header">Update Event Type <?php  echo
-        $model->id;  ?>  </h3>
+<div id="events-type_form_con" class="client-val-form" style="max-width:400px;">
+    <?php if ($model->isNewRecord) : ?>    <h3 id="create_header"><?php echo Yii::t('app','Create New Event Type');?></h3>
+    <?php  elseif (!$model->isNewRecord):  ?>    <h3 id="update_header"><?php echo Yii::t('app','Update Event Type');?> </h3>
     <?php   endif;  ?>
-    <?php      $val_error_msg = 'Error.EventsType was not saved.';
+    <?php      $val_error_msg = Yii::t('app','Error.EventsType was not saved.');
     $val_success_message = ($model->isNewRecord) ?
-            'Event Type was created successfuly.' :
-            'Event Type  was updated successfuly.';
+            Yii::t('app','Event Type was created successfully.') :
+            Yii::t('app','Event Type  was updated successfully.');
   ?>
 
-    <div id="success-note" class="notification success png_bg"
+    <div id="success-note" class="notification success-fancy"
          style="display:none;">
         <a href="#" class="close"><img
                 src="<?php echo Yii::app()->request->baseUrl.'/js_plugins/ajaxform/images/icons/cross_grey_small.png';  ?>"
@@ -28,7 +38,7 @@
             <?php   echo $val_success_message;  ?>        </div>
     </div>
 
-    <div id="error-note" class="notification errorshow png_bg"
+    <div id="error-note" class="notification errorshow-fancy"
          style="display:none;">
         <a href="#" class="close"><img
                 src="<?php echo Yii::app()->request->baseUrl.'/js_plugins/ajaxform/images/icons/cross_grey_small.png';  ?>"
@@ -48,7 +58,7 @@
      'id'=>'events-type-form',
     //  'htmlOptions' => array('enctype' => 'multipart/form-data'),
          'action' => $actionUrl,
-     //'enableAjaxValidation'=>true,
+     'enableAjaxValidation'=>true,
       'enableClientValidation'=>true,
      'focus'=>array($model,'name'),
      'errorMessageCssClass' => 'input-notification-error  error-simple png_bg',
@@ -68,15 +78,15 @@
 
      ?>
     <?php echo $form->errorSummary($model, '
-    <div style="font-weight:bold">Please correct these errors:</div>
-    ', NULL, array('class' => 'errorsum notification errorshow png_bg')); ?>    <p class="note">Fields with <span class="required">*</span> are required.</p>
+    <div style="font-weight:bold">'.Yii::t('app','Please correct these errors:').'</div>
+    ', NULL, array('class' => 'errorsum notification errorshow-fancy')); ?>    <p class="note"> <?php echo Yii::t('app','Fields with');?> <span class="required">*</span><?php echo Yii::t('app','are required.');?></p>
 
 
     <div class="row">
             <?php echo $form->labelEx($model,'name',array('style'=>'color:#222222')); ?>
             <?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>120)); ?>
         <span id="success-EventsType_name"
-              class="hid input-notification-success  success png_bg right"></span>
+              class="hid input-notification-success  success-fancy right"></span>
         <div>
             <small></small>
         </div>
@@ -104,7 +114,7 @@
 		));
 		?>
         <span id="success-EventsType_colour_code"
-              class="hid input-notification-success  success png_bg right"></span>
+              class="hid input-notification-success  success-fancy right"></span>
         <div>
             <small></small>
         </div>
@@ -119,7 +129,7 @@
            value=" <?php echo $model->id; ?>"/>
     <?php endif; ?>
     <div class="row buttons">
-        <?php   echo CHtml::submitButton($model->isNewRecord ? 'Submit' : 'Save',array('class' =>
+        <?php   echo CHtml::submitButton($model->isNewRecord ? Yii::t('app','Submit') : Yii::t('app','Save'),array('class' =>
         'formbut')); ?>    </div>
 
   <?php  $this->endWidget(); ?></div>

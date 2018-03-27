@@ -53,7 +53,7 @@ class CalModule extends CWebModule
             'axisFormat'=>'HH(:mm)',
             'slotMinutes'=>30,
             'firstHour'=>8,     // first visible hour
-            'minTime'=>'7:30',  // start day time
+            'minTime'=>'7:00',  // start day time
             'maxTime'=>'21:00', // end day time
 
             // Cron check all events for all users
@@ -142,6 +142,6 @@ class CalModule extends CWebModule
             }
             $transaction->commit();
         }
-        else throw new CException('Database connection is not working');
+        else throw new CException(Yii::t('app','Database connection is not working'));
     }
 }

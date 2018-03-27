@@ -699,12 +699,15 @@ function Header(calendar, options) {
 		var sections = options.header;
 		if (sections) {
 			
-			element = $("<div class='caltop'><h1>Event Calendar</h1><table class='fc-header' style='width:100%;'/></div>")
+			element = $("<div class='caltop'><h1>Event Calendar</h1></div>")
 				.append(
-					$("<tr/>")
-						.append(renderSection('left'))
-						.append(renderSection('center'))
-						.append(renderSection('right'))
+					$("<table class='fc-header' style='width:100%;'/>")
+					.append(
+						$("<tr/>")
+							.append(renderSection('left'))
+							.append(renderSection('center'))
+							.append(renderSection('right'))
+					)
 				);
 			return element;
 		}
@@ -2221,7 +2224,7 @@ function BasicView(element, calendar, viewName) {
 		
 		s =
 			
-			"<table class='fc-border-separate' style='width:100%' cellspacing='0'>" +
+			"<div class='table-responsive'><table class='fc-border-separate' style='width:100%' cellspacing='0'>" +
 			"<thead>" + 
 			"<tr>";
 		for (i=0; i<colCnt; i++) {
@@ -2258,7 +2261,8 @@ function BasicView(element, calendar, viewName) {
 		}
 		s +=
 			"</tbody>" +
-			"</table>";
+			"</table>"+
+			"</div>";
 		table = $(s).appendTo(element);
 		
 		head = table.find('thead');
@@ -2810,7 +2814,7 @@ function AgendaDayView(element, calendar) {
 
 setDefaults({
 	allDaySlot: true,
-	allDayText: 'all-day',
+	allDayText: '',
 	firstHour: 6,
 	slotMinutes: 30,
 	defaultEventMinutes: 120,
@@ -3921,7 +3925,7 @@ function AgendaEventRenderer() {
 			"</div>" +
 			"</div>" +
 			"<div class='fc-event-content'>" +
-			"<div class='fc-event-title'>" +
+			"<div class=''>" +
 			htmlEscape(event.title) +
 			"</div>" +
 			"</div>" +
@@ -4600,6 +4604,7 @@ function DayEventRenderer() {
 		var rtl = opt('isRTL');
 		var i;
 		var segCnt=segs.length;
+		
 		var seg;
 		var event;
 		var url;
@@ -4616,6 +4621,7 @@ function DayEventRenderer() {
 		// calculate desired position/dimensions, create html
 		for (i=0; i<segCnt; i++) {
 			seg = segs[i];
+			
 			event = seg.event;
 			classes = ['fc-event', 'fc-event-skin', 'fc-event-hori'];
 			if (isEventDraggable(event)) {
@@ -4670,7 +4676,7 @@ function DayEventRenderer() {
 					"</span>";
 			}
 			html +=
-				"<span class='fc-event-title'>" + htmlEscape(event.title) + "</span>" +
+				"<span class=''>" + htmlEscape(event.title) + "</span>" +
 				"</div>";
 			if (seg.isEnd && isEventResizable(event)) {
 				html +=

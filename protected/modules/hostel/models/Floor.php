@@ -36,6 +36,8 @@ class Floor extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('hostel_id, floor_no, no_of_rooms', 'required'),
+			array('floor_no, no_of_rooms','numerical', 'integerOnly'=>true, 'min'=>1),
+			//array('floor_no','unique'),
 			array('hostel_id, floor_no,no_of_rooms, created', 'length', 'max'=>120),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -60,11 +62,11 @@ class Floor extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'hostel_id' => 'Hostel ID',
-			'floor_no' => 'Floor No',
-			'no_of_rooms' => 'No Of Rooms',
-			'created' => 'Created',
+			'id' => Yii::t('app','ID'),
+			'hostel_id' => Yii::t('app','Hostel Name'),
+			'floor_no' => Yii::t('app','Floor No'),
+			'no_of_rooms' => Yii::t('app','No Of Rooms'),
+			'created' => Yii::t('app','Created'),
 		);
 	}
 
@@ -95,5 +97,9 @@ class Floor extends CActiveRecord
 	{
 		$hostel=Hosteldetails::model()->findByAttributes(array('id'=>$this->hostel_id,'is_deleted'=>0));
 			return $this->floor_no.' ('.$hostel->hostel_name.')';
+	}
+	 public function getFloor()
+	{
+		
 	}
 }

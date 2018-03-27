@@ -68,7 +68,7 @@ class CDateValidator extends CValidator
 
 		if(!$valid)
 		{
-			$message=$this->message!==null?$this->message : Yii::t('yii','The format of {attribute} is invalid.');
+			$message=$this->message!==null?$this->message : Yii::t('app','The format of {attribute} is invalid.');
 			$this->addError($object,$attribute,$message);
 		}
 	}

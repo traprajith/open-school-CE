@@ -26,7 +26,7 @@ along with Open-School.  If not, see <http://www.gnu.org/licenses/>.*/
  * @link http://www.Open-School.org/
  * @copyright Copyright &copy; 2009-2012 wiwo inc.
  * @Matthew George,@Rajith Ramachandran,@Arun Kumar,
- * @Anupama,@Laijesh V Kumar,@Tanuja.
+ * @Anupama,@Laijesh V Kumar.
  * @license http://www.Open-School.org/
  */
 

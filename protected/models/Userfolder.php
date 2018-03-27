@@ -61,9 +61,9 @@ class Userfolder extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'uid' => 'Uid',
-			'foldername' => 'Foldername',
+			'id' => Yii::t("app",'ID'),
+			'uid' => Yii::t("app",'Uid'),
+			'foldername' => Yii::t("app",'Foldername'),
 		);
 	}
 

@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs=array(
-	'Employee Departments',
+	Yii::t('app','Teacher Departments'),
 );
 
 $this->menu=array(
-	array('label'=>'Create EmployeeDepartments', 'url'=>array('create')),
-	array('label'=>'Manage EmployeeDepartments', 'url'=>array('admin')),
+	array('label'=>Yii::t('app','Create TeacherDepartments'), 'url'=>array('create')),
+	array('label'=>Yii::t('app','Manage TeacherDepartments'), 'url'=>array('admin')),
 );
 ?>
 
-<h1>Employee Departments</h1>
+<h1><?php echo Yii::t('app','Teacher Departments'); ?></h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

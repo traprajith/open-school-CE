@@ -39,7 +39,7 @@ class EmployeePositions extends CActiveRecord
 			array('employee_category_id, status', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>25),
 			array('name, employee_category_id', 'required'),
-			array('name','CRegularExpressionValidator', 'pattern'=>'/^[A-Za-z_ ]+$/','message'=>"{attribute} should contain only letters."),
+			//array('name','CRegularExpressionValidator', 'pattern'=>'/^[A-Za-z_ ]+$/','message'=>"{attribute} should contain only letters."),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, employee_category_id, status', 'safe', 'on'=>'search'),
@@ -63,10 +63,10 @@ class EmployeePositions extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'employee_category_id' => 'Employee Category',
-			'status' => 'Status',
+			'id' => Yii::t("app",'ID'),
+			'name' => Yii::t("app",'Name'),
+			'employee_category_id' => Yii::t("app",'Teacher Category'),
+			'status' => Yii::t("app",'Status'),
 		);
 	}
 

@@ -39,18 +39,18 @@ class UHtml extends CHtml
 
                 $monthOptions = array(
 					'0' => ' - ',
-					'1'=> UserModule::t('January'),
-					'2'=> UserModule::t('February'),
-					'3'=> UserModule::t('March'),
-					'4'=> UserModule::t('April'),
-					'5'=> UserModule::t('May'),
-					'6'=> UserModule::t('June'),
-					'7'=> UserModule::t('July'),
-					'8'=> UserModule::t('August'),
-					'9'=> UserModule::t('September'),
-					'10'=> UserModule::t('October'),
-					'11'=> UserModule::t('November'),
-					'12'=> UserModule::t('December'),
+					'1'=> Yii::t('app','January'),
+					'2'=> Yii::t('app','February'),
+					'3'=> Yii::t('app','March'),
+					'4'=> Yii::t('app','April'),
+					'5'=> Yii::t('app','May'),
+					'6'=> Yii::t('app','June'),
+					'7'=> Yii::t('app','July'),
+					'8'=> Yii::t('app','August'),
+					'9'=> Yii::t('app','September'),
+					'10'=> Yii::t('app','October'),
+					'11'=> Yii::t('app','November'),
+					'12'=> Yii::t('app','December'),
                 );
 
                 $yearOptions = array('0'=>' - ');
@@ -123,18 +123,18 @@ class UHtml extends CHtml
 
                 $monthOptions = array(
 					'00' => ' - ',
-					'01'=> UserModule::t('January'),
-					'02'=> UserModule::t('February'),
-					'03'=> UserModule::t('March'),
-					'04'=> UserModule::t('April'),
-					'05'=> UserModule::t('May'),
-					'06'=> UserModule::t('June'),
-					'07'=> UserModule::t('July'),
-					'08'=> UserModule::t('August'),
-					'09'=> UserModule::t('September'),
-					'10'=> UserModule::t('October'),
-					'11'=> UserModule::t('November'),
-					'12'=> UserModule::t('December'),
+					'01'=> Yii::t('app','January'),
+					'02'=> Yii::t('app','February'),
+					'03'=> Yii::t('app','March'),
+					'04'=> Yii::t('app','April'),
+					'05'=> Yii::t('app','May'),
+					'06'=> Yii::t('app','June'),
+					'07'=> Yii::t('app','July'),
+					'08'=> Yii::t('app','August'),
+					'09'=> Yii::t('app','September'),
+					'10'=> Yii::t('app','October'),
+					'11'=> Yii::t('app','November'),
+					'12'=> Yii::t('app','December'),
                 );
 
                 $yearOptions = array('0000'=>' - ');

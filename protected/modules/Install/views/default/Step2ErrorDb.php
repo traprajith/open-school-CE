@@ -10,8 +10,8 @@
             <li>Username and password are correct.</li>
             <li>If database is not created, you have to create it first.</li>
         </ul>
-        <p>Note that you should not install openschool on an existing database used by other site(s).
-        Tables with same name will be dropped and you data might be lost.</p>
+        <p>Note that you should not install <?php echo Yii::app()->params['app_name']; ?> on an existing database used by other site(s).
+        Tables with same name will be dropped and your data might be lost.</p>
         <a class="btn" href="<?php echo $this->createUrl('default/step2'); ?>">Back</a>
     </fieldset>
     </div>

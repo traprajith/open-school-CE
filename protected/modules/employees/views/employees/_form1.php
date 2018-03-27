@@ -1,15 +1,25 @@
-<div class="captionWrapper">
-	<ul>
-    	<li><h2>Employee Details</h2></li>
-        <li><h2 class="cur">Employee Contact Details</h2></li>
-    </ul>
-</div>
+<style>
+.errorMessage{
+	color: #F00 !important;
+	font-size: 11px;
+}
+</style>
+
+	<?php
+        if(in_array(Yii::app()->controller->action->id,array('create2')) and Yii::app()->controller->id == 'employees')
+        {
+            $this->renderPartial('application.modules.employees.views.employees.createtab');
+        }
+        else 
+        {
+            $this->renderPartial('application.modules.employees.views.employees.updatetab'); }?>
+
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'employees-form',
-	'enableAjaxValidation'=>true,	
+	//'enableAjaxValidation'=>true,	
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="note"><?php echo Yii::t('app','Fields with'); ?> <span class="required">*</span><?php echo Yii::t('app','are required.'); ?> </p>
 <div class="formCon">
 
 <div class="formConInner">
@@ -22,14 +32,14 @@
     <?php echo $form->errorSummary($model);?>
     </div>
     <?php } ?><?php */?>
-<h3>Home Address</h3>
+<h3><?php echo Yii::t('app','Home Address'); ?></h3>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','home_address_line1')); ?>
+    <td width="135"><?php echo $form->labelEx($model,'home_address_line1'); ?>
 		</td>
     <td><?php echo $form->textField($model,'home_address_line1',array('size'=>25,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'home_address_line1'); ?></td>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','home_address_line2')); ?>
+    <td><?php echo $form->labelEx($model,'home_address_line2'); ?>
 		</td>
     <td><?php echo $form->textField($model,'home_address_line2',array('size'=>25,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'home_address_line2'); ?></td>
@@ -41,11 +51,11 @@
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','home_city')); ?>
+    <td><?php echo $form->labelEx($model,'home_city'); ?>
 		</td>
     <td><?php echo $form->textField($model,'home_city',array('size'=>25,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'home_city'); ?></td>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','home_state')); ?>
+    <td><?php echo $form->labelEx($model,'home_state'); ?>
 		</td>
     <td><?php echo $form->textField($model,'home_state',array('size'=>25,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'home_state'); ?></td>
@@ -57,11 +67,11 @@
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','home_country_id')); ?>
+    <td><?php echo $form->labelEx($model,'home_country_id'); ?>
 		</td>
-    <td><?php echo $form->dropDownList($model,'home_country_id',CHtml::listData(Countries::model()->findAll(),'id','name'),array('empty'=>'Select Country')); ?>
+    <td><?php echo $form->dropDownList($model,'home_country_id',CHtml::listData(Countries::model()->findAll(),'id','name'),array('empty'=>Yii::t('app','Select Country'))); ?>
 		<?php echo $form->error($model,'home_country_id'); ?></td>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','home_pin_code')); ?>
+    <td><?php echo $form->labelEx($model,'home_pin_code'); ?>
 		</td>
     <td><?php echo $form->textField($model,'home_pin_code',array('size'=>25,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'home_pin_code'); ?></td>
@@ -79,14 +89,14 @@
 
 <div class="formConInner">
 
-<h3>Office Address</h3>
+<h3><?php echo Yii::t('app','Office Address'); ?></h3>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','office_address_line1')); ?>
+    <td><?php echo $form->labelEx($model,'office_address_line1'); ?>
 		</td>
     <td><?php echo $form->textField($model,'office_address_line1',array('size'=>25,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'office_address_line1'); ?></td>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','office_address_line2')); ?>
+    <td><?php echo $form->labelEx($model,'office_address_line2'); ?>
 		</td>
     <td><?php echo $form->textField($model,'office_address_line2',array('size'=>25,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'office_address_line2'); ?></td>
@@ -98,11 +108,11 @@
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','office_city')); ?>
+    <td><?php echo $form->labelEx($model,'office_city'); ?>
 		</td>
     <td><?php echo $form->textField($model,'office_city',array('size'=>25,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'office_city'); ?></td>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','office_state')); ?>
+    <td><?php echo $form->labelEx($model,'office_state'); ?>
 		</td>
     <td><?php echo $form->textField($model,'office_state',array('size'=>25,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'office_state'); ?></td>
@@ -114,11 +124,11 @@
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','office_country_id')); ?>
+    <td><?php echo $form->labelEx($model,'office_country_id'); ?>
 		</td>
-    <td><?php echo $form->dropDownList($model,'office_country_id',CHtml::listData(Countries::model()->findAll(),'id','name'),array('empty'=>'Select Country')); ?>
+    <td><?php echo $form->dropDownList($model,'office_country_id',CHtml::listData(Countries::model()->findAll(),'id','name'),array('empty'=>Yii::t('app','Select Country'))); ?>
 		<?php echo $form->error($model,'office_country_id'); ?></td>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','office_pin_code')); ?>
+    <td><?php echo $form->labelEx($model,'office_pin_code'); ?>
 		</td>
     <td><?php echo $form->textField($model,'office_pin_code',array('size'=>25,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'office_pin_code'); ?></td>
@@ -131,14 +141,14 @@
 
 <div class="formConInner">
 
-    <h3>Contact Details</h3>
+    <h3><?php echo Yii::t('app','Contact Details'); ?></h3>
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','office_phone1')); ?>
+    <td><?php echo $form->labelEx($model,'office_phone1'); ?>
 		</td>
     <td><?php echo $form->textField($model,'office_phone1',array('size'=>30,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'office_phone1'); ?></td>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','office_phone2')); ?>
+    <td><?php echo $form->labelEx($model,'office_phone2'); ?>
 		</td>
     <td><?php echo $form->textField($model,'office_phone2',array('size'=>30,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'office_phone2'); ?></td>
@@ -150,11 +160,11 @@
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','mobile_phone')); ?>
+    <td><?php echo $form->labelEx($model,'mobile_phone'); ?>
 		</td>
     <td><?php echo $form->textField($model,'mobile_phone',array('size'=>30,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'mobile_phone'); ?></td>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','home_phone')); ?>
+    <td><?php echo $form->labelEx($model,'home_phone'); ?>
 		</td>
     <td><?php echo $form->textField($model,'home_phone',array('size'=>30,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'home_phone'); ?></td>
@@ -166,11 +176,7 @@
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','email')); ?>
-		</td>
-    <td><?php echo $form->textField($model,'email',array('size'=>30,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'email'); ?></td>
-    <td><?php echo $form->labelEx($model,Yii::t('employees','fax')); ?>
+    <td><?php echo $form->labelEx($model,'fax'); ?>
 		</td>
     <td><?php echo $form->textField($model,'fax',array('size'=>30,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'fax'); ?></td>
@@ -227,7 +233,7 @@
 </div><!-- form -->
 	<!-- Hidden Values Ends -->
 	<div style="padding:0px 0 0 0px; text-align:left">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Next Step »' : 'Save',array('class'=>'formbut')); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('app','Save') : Yii::t('app','Save'),array('class'=>'formbut')); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

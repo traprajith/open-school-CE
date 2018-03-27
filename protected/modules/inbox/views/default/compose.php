@@ -1,4 +1,4 @@
-<!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,400italic' rel='stylesheet' type='text/css'>-->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,400italic' rel='stylesheet' type='text/css'>
 
  <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/ck_editor/scripts/jquery-1.3.2.js"></script>
     <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/ck_editor/scripts/jquery-ui-1.7.2.custom.min.js"></script>

@@ -61,9 +61,9 @@ class StudentCategories extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id' => 'ID',
-			'name' => 'Name',
-			'is_deleted' => 'Is Deleted',
+			'id' => Yii::t("app",'ID'),
+			'name' => Yii::t("app",'Name'),
+			'is_deleted' => Yii::t("app",'Is Deleted'),
 		);
 	}
 

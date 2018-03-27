@@ -1,18 +1,18 @@
 <?php
 $this->breadcrumbs=array(
-	'Subject Names'=>array('/courses'),
+	Yii::t('app','Subject Names')=>array('/courses'),
 	$model->name=>array('view','id'=>$model->id),
-	'Update',
+	Yii::t('app','Update'),
 );
 
 $this->menu=array(
-	array('label'=>'List SubjectName', 'url'=>array('index')),
-	array('label'=>'Create SubjectName', 'url'=>array('create')),
-	array('label'=>'View SubjectName', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage SubjectName', 'url'=>array('admin')),
+	array('label'=>Yii::t('app','List SubjectName'), 'url'=>array('index')),
+	array('label'=>Yii::t('app','Create SubjectName'), 'url'=>array('create')),
+	array('label'=>Yii::t('app','View SubjectName'), 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>Yii::t('app','Manage SubjectName'), 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update SubjectName <?php echo $model->id; ?></h1>
+<h1><?php echo Yii::t('app','Update Subject Name').$model->id; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -27,11 +27,11 @@ class EmployeesController extends RController
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','Create2','update2','Manage','savesearch','DisplaySavedImage','pdf','Address','Contact','Addinfo','Remove'),
+				'actions'=>array('index','view','Create2','update2','Manage','savesearch','DisplaySavedImage','pdf','Address','Contact','Addinfo','Remove','achievements'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','batch','add'),
+				'actions'=>array('create','update','batch','add','achievements'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -54,6 +54,13 @@ class EmployeesController extends RController
 			'model'=>$this->loadModel($id),
 		));
 	}
+	
+	public function actionSubjectAsso()
+	{
+		$this->render('subjectasso',array(
+			'model'=>$this->loadModel($_REQUEST['id']),
+		));
+	}
 
 	/**
 	 * Creates a new model.
@@ -62,15 +69,15 @@ class EmployeesController extends RController
 	public function actionCreate()
 	{
 		$model=new Employees;
-
+        $roles = Rights::getAssignedRoles(Yii::app()->user->Id);
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
 
 		if(isset($_POST['Employees']))
-		{
-			
+		{	
 			$model->attributes=$_POST['Employees'];
 			$list = $_POST['Employees'];
+			
 			
 			/*
 			* Checking whether date of birth is null
@@ -88,10 +95,11 @@ class EmployeesController extends RController
 			if (($list['experience_year']&&$list['experience_year']!='0')||($list['experience_month']&&$list['experience_month']!='0')) {
 					$model->setScenario('hasExperience');
 			}
-			//if($model->save())
-			//{
 				$model->employee_number = $list['employee_number'];
-				$model->joining_date = date('Y-m-d',strtotime($list['joining_date']));
+
+				if(isset($list['joining_date']) and $list['joining_date']!=NULL){
+					$model->joining_date = date('Y-m-d',strtotime($list['joining_date']));
+				}
 				$model->first_name = $list['first_name'];
 				$model->middle_name = $list['middle_name'];
 				$model->last_name = $list['last_name'];
@@ -114,19 +122,52 @@ class EmployeesController extends RController
 				$model->mother_name = $list['mother_name'];
 				$model->husband_name = $list['husband_name'];
 				$model->blood_group = $list['blood_group'];
-				$model->nationality_id = $list['nationality_id'];
-				if($file=CUploadedFile::getInstance($model,'photo_data'))
-					 {
-					$model->photo_file_name=$file->name;
-					$model->photo_content_type=$file->type;
-					$model->photo_file_size=$file->size;
-					$model->photo_data=file_get_contents($file->tempName);
-					  }
+				$model->home_country_id = $list['home_country_id'];
+				$model->email = $list['email'];
 				
+				if($file=CUploadedFile::getInstance($model,'photo_data')){
+					$model->photo_file_name=$file->name;					
+				}
 				
+                                if($file=CUploadedFile::getInstance($model,'photo_data')){
+				$file_name = DocumentUploads::model()->getFileName($file->name);	
+				if(key($roles)!=NULL and (key($roles) == 'Admin')){						
+					$model->photo_file_name = $file_name;				
+				}
+                                }
+				$model->created_at = date('Y-m-d H:i:s'); 		
 				if($model->save())
 				{
-				$this->redirect(array('create2','id'=>$model->id));
+				//Save the profile pic to the folder	
+					if($model->photo_file_name!=NULL){
+						if(!is_dir('uploadedfiles/')){
+							mkdir('uploadedfiles/');
+						}
+						if(!is_dir('uploadedfiles/employee_profile_image/')){
+							mkdir('uploadedfiles/employee_profile_image/');
+						}
+						if(!is_dir('uploadedfiles/employee_profile_image/'.$model->id)){
+							mkdir('uploadedfiles/employee_profile_image/'.$model->id);
+						}
+						
+						//compress the image
+						$info = getimagesize($_FILES['Employees']['tmp_name']['photo_data']); 
+						if($info['mime'] == 'image/jpeg'){
+							$image = imagecreatefromjpeg($_FILES['Employees']['tmp_name']['photo_data']);
+						}elseif($info['mime'] == 'image/gif'){
+							$image = imagecreatefromgif($_FILES['Employees']['tmp_name']['photo_data']);
+						}elseif($info['mime'] == 'image/png'){
+							$image = imagecreatefrompng($_FILES['Employees']['tmp_name']['photo_data']);
+						}
+																	
+						$temp_file_name = $_FILES['Employees']['tmp_name']['photo_data'];					
+						$destination_file = 'uploadedfiles/employee_profile_image/'.$model->id.'/'.$file_name;
+						imagejpeg($image, $destination_file, 30);
+                                                
+						//add entry to document uploads for admin approve                                               
+						DocumentUploads::model()->insertData(2, $model->id, $file_name, 4);		
+					}
+					$this->redirect(array('create2','id'=>$model->id));
 				}
 			//}
 		}
@@ -150,15 +191,19 @@ class EmployeesController extends RController
 	public function actionRemove()
 	{
 		$model = Employees::model()->findByAttributes(array('id'=>$_REQUEST['id']));
-		$model->saveAttributes(array('photo_file_name'=>'','photo_data'=>''));
+		$file_name = $model->photo_file_name;	
+		$model->photo_file_name = NULL;
+		if($model->save()){
+			$path = 'uploadedfiles/employee_profile_image/'.$model->id.'/'.$file_name;
+			if(file_exists($path)){		
+				unlink($path);													
+			}
+		}
 		$this->redirect(array('update','id'=>$_REQUEST['id']));
 	}
 	public function actionCreate2()
 	{
 		$model=new Employees;
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Employees']))
 		{
@@ -184,66 +229,66 @@ class EmployeesController extends RController
 				$model->office_phone2 = $list['office_phone2'];
 				$model->mobile_phone = $list['mobile_phone'];
 				$model->home_phone = $list['home_phone'];
-				$model->email = $list['email'];
 				$model->fax = $list['fax'];
+
+				if($model->save()){				
+					$this->redirect(array('/employees/employeeDocument/create','id'=>$model->id));
 				
-				
-				$model->user_id = $list['user_id'];
-				if($model->save()){
-					
-						//adding user for current student
-						$user=new User;
-						$profile=new Profile;
-				 	    $user->username = substr(md5(uniqid(mt_rand(), true)), 0, 10);
-					    $user->email = $model->email;
-				        $user->activkey=UserModule::encrypting(microtime().$model->first_name);
-						$password = substr(md5(uniqid(mt_rand(), true)), 0, 10);
-						$user->password=UserModule::encrypting($password);
-						$user->superuser=0;
-						$user->status=1;
-						
-						if($user->save())
-						{
-							//assign role
-							$authorizer = Yii::app()->getModule("rights")->getAuthorizer();
-							$authorizer->authManager->assign('teacher', $user->id); 
-							
-							//profile
-							$profile->firstname = $model->first_name;
-							$profile->lastname = $model->last_name;
-							$profile->user_id=$user->id;
-							$profile->save();
-							
-							//saving user id to students table.
-							$model->saveAttributes(array('uid'=>$user->id));
-						
-							// For Sending SMS
-							
-							$sms_settings = SmsSettings::model()->findAll();
-							$to = '';
-							if($sms_settings[0]->is_enabled=='1' and $sms_settings[4]->is_enabled=='1'){ // Check if SMS is enabled
-								if($model->mobile_phone){
-									$to = $model->mobile_phone;	
-								}
-								if($to!=''){ //If phone number is provided, send SMS
-									$college=Configurations::model()->findByPk(1);
-									$from = $college->config_value;
-									$message = 'Welcome to '.$college->config_value;
-									SmsSettings::model()->sendSms($to,$from,$message);
-								} // End send SMS
-							} // Check if SMS is provided
-							
-							
-							UserModule::sendMail($model->email,UserModule::t("You are registered from {site_name}",array('{site_name}'=>Yii::app()->name)),UserModule::t("Please login to your account with your email id as username and password {password}",array('{password}'=>$password)));
-						}
-				
-				$this->redirect(array('view','id'=>$model->id));
 				}
 		}
 		$this->render('create2',array(
 			'model'=>$model,
 		));
 	}
+	
+	
+	
+	
+	
+	
+		public function actionCreate3()
+	{
+		$model=new Employees;
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+		 $this->performAjaxValidation($model);
+
+		if(isset($_POST['Employees']))
+		{
+			$old_model = $model->attributes; // For activity feed
+			$list = $_POST['Employees'];
+			$model =$model->findByAttributes(array('id'=>$_REQUEST['id']));				
+				$model->date_join = $list['date_join'];
+				$model->salary_date = $list['salary_date'];
+				$model->bank_name = $list['bank_name'];
+				$model->bank_acc_no = $list['bank_acc_no'];
+				$model->basic_pay = $list['basic_pay'];
+				$model->HRA = $list['HRA'];
+				$model->PF = $list['PF'];
+				$model->TDS = $list['TDS'];
+				$model->DA = $list['DA'];
+				$model->others1 = $list['others1'];
+				$model->others2 = $list['others2'];
+				$model->user_id = $list['user_id'];
+				
+			if($model->save()){
+				$this->redirect(array('view','id'=>$model->id));
+			}
+		}
+		$this->render('create3',array(
+			'model'=>$model,
+		));
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public function actionAddress()
 	{
 		$model = new Employees;
@@ -264,7 +309,18 @@ class EmployeesController extends RController
 			'model'=>$this->loadModel($_REQUEST['id']),
 		));
 	}
-		public function actionAddinfo()
+		public function actionPayslip()
+	{
+		$model = new Employees;
+		/*$this->render('address',array(
+			'model'=>$model,
+		));*/
+		$this->render('payslip',array(
+			'model'=>$this->loadModel($_REQUEST['id']),
+		));
+	}
+
+	public function actionAddinfo()
 	{
 		$model = new Employees;
 		/*$this->render('address',array(
@@ -274,7 +330,6 @@ class EmployeesController extends RController
 			'model'=>$this->loadModel($_REQUEST['id']),
 		));
 	}
-
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
@@ -283,7 +338,7 @@ class EmployeesController extends RController
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-
+                $roles = Rights::getAssignedRoles(Yii::app()->user->Id);
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 		$settings=UserSettings::model()->findByAttributes(array('user_id'=>Yii::app()->user->id));
@@ -298,22 +353,131 @@ class EmployeesController extends RController
 				$model->date_of_birth=$date2;
 		if(isset($_POST['Employees']))
 		{
+			
+			$old_model = $model->attributes; // For activity feed
+			
+			
+			
 			$model->attributes=$_POST['Employees'];
 			
 			
 			if($model->joining_date)
-			$model->joining_date = date('Y-m-d',strtotime($model->joining_date));
+				$model->joining_date = date('Y-m-d',strtotime($model->joining_date));
 			if($model->date_of_birth)
-			$model->date_of_birth = date('Y-m-d',strtotime($model->date_of_birth));
+				$model->date_of_birth = date('Y-m-d',strtotime($model->date_of_birth));
 			if($file=CUploadedFile::getInstance($model,'photo_data'))
-					 {
-					$model->photo_file_name=$file->name;
-					$model->photo_content_type=$file->type;
-					$model->photo_file_size=$file->size;
-					$model->photo_data=file_get_contents($file->tempName);
-					  }
+			{
+				$model->photo_file_name=$file->name;				
+			}
+                                                
+                        if($file=CUploadedFile::getInstance($model,'photo_data'))
+                        {
+				$file_name = DocumentUploads::model()->getFileName($file->name);	
+				if(key($roles)!=NULL and (key($roles) == 'Admin')){						
+					$model->photo_file_name = $file_name;				
+				}
+                        }
 			if($model->save())
-				$this->redirect(array('update2','id'=>$model->id));
+			{
+				//Save the profile pic to the folder	
+				if($model->photo_file_name!=NULL){
+					if(!is_dir('uploadedfiles/')){
+						mkdir('uploadedfiles/');
+					}
+					if(!is_dir('uploadedfiles/employee_profile_image/')){
+						mkdir('uploadedfiles/employee_profile_image/');
+					}
+					if(!is_dir('uploadedfiles/employee_profile_image/'.$model->id)){
+						mkdir('uploadedfiles/employee_profile_image/'.$model->id);
+					}
+					//compress the image
+					$info = getimagesize($_FILES['Employees']['tmp_name']['photo_data']); 
+					if($info['mime'] == 'image/jpeg'){
+						$image = imagecreatefromjpeg($_FILES['Employees']['tmp_name']['photo_data']);
+					}elseif($info['mime'] == 'image/gif'){
+						$image = imagecreatefromgif($_FILES['Employees']['tmp_name']['photo_data']);
+					}elseif($info['mime'] == 'image/png'){
+						$image = imagecreatefrompng($_FILES['Employees']['tmp_name']['photo_data']);
+					}
+																
+					$temp_file_name = $_FILES['Employees']['tmp_name']['photo_data'];					
+					$destination_file = 'uploadedfiles/employee_profile_image/'.$model->id.'/'.$file_name;
+					imagejpeg($image, $destination_file, 30);
+                                        
+                    //add entry to document uploads for admin approve                                               
+                    DocumentUploads::model()->insertData(2, $model->id, $file_name, 4);	
+                                        
+				}
+				
+				$results = array_diff_assoc($_POST['Employees'],$old_model); // To get the fields that are modified.
+
+				foreach($results as $key => $value)
+				{
+					if($key != 'updated_at')
+					{
+						if($key == 'gender')
+						{
+							if($value == 'F')
+							{
+								$value = 'Female';
+							}else
+							{
+								$value = 'Male';
+							}
+							if($old_model[$key] == 'F')
+							{
+								$old_model[$key] = 'Female';
+							}
+							else
+							{
+								$old_model[$key] = 'Male';
+							}
+						}
+						elseif($key == 'employee_category_id')
+						{
+							$value = EmployeeCategories::model()->findByAttributes(array('id'=>$value));
+							$value = ucfirst($value->name);
+							
+							$old_model_value = EmployeeCategories::model()->findByAttributes(array('id'=>$old_model[$key]));
+							$old_model[$key] = ucfirst($old_model_value->name);
+						}
+						elseif($key == 'employee_position_id')
+						{
+							$value = EmployeePositions::model()->findByAttributes(array('id'=>$value));
+							$value = ucfirst($value->name);
+							
+							$old_model_value = EmployeePositions::model()->findByAttributes(array('id'=>$old_model[$key]));
+							$old_model[$key] = ucfirst($old_model_value->name);
+						}
+						elseif($key == 'employee_department_id')
+						{
+							$value = EmployeeDepartments::model()->findByAttributes(array('id'=>$value));
+							$value = ucfirst($value->name);
+							
+							$old_model_value = EmployeeDepartments::model()->findByAttributes(array('id'=>$old_model[$key]));
+							$old_model[$key] = ucfirst($old_model_value->name);
+						}
+						elseif($key == 'employee_grade_id')
+						{
+							$value = EmployeeGrades::model()->findByAttributes(array('id'=>$value));
+							$value = ucfirst($value->name);
+							
+							$old_model_value = EmployeeGrades::model()->findByAttributes(array('id'=>$old_model[$key]));
+							$old_model[$key] = ucfirst($old_model_value->name);
+						}
+						elseif($key == 'home_country_id' or $key == 'country_id')
+						{
+							$value = Countries::model()->findByAttributes(array('id'=>$value));
+							$value = $value->name;
+							
+							$old_model_value = Countries::model()->findByAttributes(array('id'=>$old_model[$key]));
+							$old_model[$key] = $old_model_value->name;
+						}	
+					}
+				}	
+				//END saving to activity feed		
+				$this->redirect(array('update2','id'=>$model->id,'type'=>$_GET['type']));
+			}
 		}
 
 		$this->render('update',array(
@@ -328,9 +492,10 @@ class EmployeesController extends RController
 
 		// Uncomment the following line if AJAX validation is needed
 		 $this->performAjaxValidation($model);
-
+         
 		if(isset($_POST['Employees']))
-		{
+		{ 
+			$old_model = $model->attributes; // For activity feed
 			$list = $_POST['Employees'];
 			$model =$model->findByAttributes(array('id'=>$_REQUEST['id']));
 				
@@ -352,16 +517,21 @@ class EmployeesController extends RController
 				$model->office_phone2 = $list['office_phone2'];
 				$model->mobile_phone = $list['mobile_phone'];
 				$model->home_phone = $list['home_phone'];
-				$model->email = $list['email'];
 				$model->fax = $list['fax'];
 				
 				
 				$model->user_id = $list['user_id'];
-				$model->save();
+
 			if($model->save())
 			{
-				
-				$this->redirect(array('view','id'=>$model->id));
+                if(isset($_REQUEST['type']) and $_REQUEST['type']==1)
+                { 
+                    $this->redirect(array('/employees/employeeDocument/create','id'=>$model->id));
+                }
+                else
+                { 
+                    $this->redirect(array('view','id'=>$model->id));
+                }
 			}
 		}
 		$this->render('update2',array(
@@ -372,12 +542,15 @@ class EmployeesController extends RController
 	public function actionPdf()
     {
 		$employee = Employees::model()->findByAttributes(array('id'=>$_REQUEST['id']));
-		$employee = $employee->first_name.' '.$employee->last_name.' Profile.pdf';
-        $html2pdf = Yii::app()->ePdf->HTML2PDF();
-		$html2pdf->WriteHTML($this->renderPartial('print', array('model'=>$this->loadModel($_REQUEST['id'])), true));
-        $html2pdf->Output($employee);
- 
-        ////////////////////////////////////////////////////////////////////////////////////
+		$filename = Employees::model()->getTeachername($employee->id).' Profile.pdf';
+		Yii::app()->osPdf->generate("application.modules.employees.views.employees.print", $filename, array('model'=>$this->loadModel($_REQUEST['id'])));
+	}
+	
+	public function actionSubjectAssoPdf()
+    {
+		$employee = Employees::model()->findByAttributes(array('id'=>$_REQUEST['id']));
+		$filename = Employees::model()->getTeachername($employee->id).' Subjects.pdf';		
+		Yii::app()->osPdf->generate("application.modules.employees.views.employees.printsubjects", $filename, array('model'=>$this->loadModel($_REQUEST['id'])));
 	}
 
 	/**
@@ -397,7 +570,7 @@ class EmployeesController extends RController
 				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 		}
 		else
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+			throw new CHttpException(400,Yii::t('app','Invalid request. Please do not repeat this request again.'));
 	}
 
 	/**
@@ -442,7 +615,7 @@ class EmployeesController extends RController
 	{
 		$model=Employees::model()->findByPk($id);
 		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+			throw new CHttpException(404,Yii::t('app','The requested page does not exist.'));
 		return $model;
 	}
 
@@ -465,15 +638,15 @@ class EmployeesController extends RController
 	 * By Rajith
 	 */
 	public function actionManage()
-	 {
-		 
+	 {		 
 		$model=new Employees;
 		$criteria = new CDbCriteria;
-		$criteria->compare('is_deleted',0);
+		$criteria->condition 				= '(is_deleted=:is_deleted)';
+		$criteria->params[':is_deleted'] 	= 0; 
 		if(isset($_REQUEST['val']))
 		{
-		 $criteria->condition='(first_name LIKE :match or last_name LIKE :match or middle_name LIKE :match)';
-		 $criteria->params = array(':match' => $_REQUEST['val'].'%');
+		 $criteria->condition=$criteria->condition.' and (first_name LIKE :match or last_name LIKE :match or middle_name LIKE :match)';
+		 $criteria->params[':match'] = $_REQUEST['val'].'%';
 		}
 		if(isset($_REQUEST['name']) and $_REQUEST['name']!=NULL)
 		{
@@ -551,11 +724,11 @@ class EmployeesController extends RController
 		    $criteria->params[':blood_group'] = $_REQUEST['Employees']['blood_group'];
 		}
 		
-		if(isset($_REQUEST['Employees']['nationality_id']) and $_REQUEST['Employees']['nationality_id']!=NULL)
+		if(isset($_REQUEST['Employees']['home_country_id']) and $_REQUEST['Employees']['home_country_id']!=NULL)
 		{
-			$model->nationality_id = $_REQUEST['Employees']['nationality_id'];
-			$criteria->condition=$criteria->condition.' and '.'nationality_id = :nationality_id';
-		    $criteria->params[':nationality_id'] = $_REQUEST['Employees']['nationality_id'];
+			$model->home_country_id = $_REQUEST['Employees']['home_country_id'];
+			$criteria->condition=$criteria->condition.' and '.'home_country_id = :home_country_id';
+		    $criteria->params[':home_country_id'] = $_REQUEST['Employees']['home_country_id'];
 		}
 		
 		
@@ -644,6 +817,9 @@ class EmployeesController extends RController
 		}
 		
 		$criteria->order = 'first_name ASC';
+		//$criteria->condition ='is_deleted = :x';
+		//$criteria->params = array(':x'=>0);
+		
 		
 		$total = Employees::model()->count($criteria);
 		$pages = new CPagination($total);
@@ -651,7 +827,11 @@ class EmployeesController extends RController
         $pages->applyLimit($criteria);  // the trick is here!
 		$posts = Employees::model()->findAll($criteria);
 		
-		 
+		if(isset($_GET['print'])){			
+			$filename 	= 'print.pdf';		
+			Yii::app()->osPdf->generate("application.modules.employees.views.employees.employeepdf", $filename, array('employee'=>$posts));
+		}
+		
 		$this->render('manage',array('model'=>$model,
 		'list'=>$posts,
 		'pages' => $pages,
@@ -661,10 +841,174 @@ class EmployeesController extends RController
 	 
 	 public function actionDeletes()
 	{
+		if(Yii::app()->request->isPostRequest){		
+			$model = Employees::model()->findByAttributes(array('id'=>$_REQUEST['id']));
+			if($model->saveAttributes(array('is_deleted'=>'1')))
+			{
+				$employee_subjects=EmployeesSubjects::model()->findAllByAttributes(array('employee_id'=>$model->id));
+				$employee_electives=EmployeeElectiveSubjects::model()->findAllByAttributes(array('employee_id'=>$model->id));
+				$class_teachers=Batches::model()->findAllByAttributes(array('employee_id'=>$model->id));
+				
+				if($employee_subjects)
+				{
+					foreach($employee_subjects as $employee_subject)     // delete asociated subject allocation
+					{
+						$employee_subject->delete();
+					}
+				}
+				if($employee_electives)
+				{
+					foreach($employee_electives as $employee_elective)    // delete asociated elective allocation
+					{
+						$employee_elective->delete();
+					}
+				}
+				
+				if($class_teachers)
+				{
+					foreach($class_teachers as $class_teacher)     // delete asociated subject allocation
+					{
+						
+						$class_teacher->employee_id=0;
+						$class_teacher->save();
+					}
+				}
+			}
+
+			$this->redirect(array('/employees/employees/manage'));
+
+		}
+			
+		else
+		{
+			throw new CHttpException(404,Yii::t('app','Invalid Request.'));
+		}
 		
-		$model = Employees::model()->findByAttributes(array('id'=>$_REQUEST['id']));
-		$model->saveAttributes(array('is_deleted'=>'1'));
-		echo $val;
+	}
+	public function actionDelete_all()
+	{
+		if(Yii::app()->request->isPostRequest){			
+		$datas = $_POST['id'];		
+		 
+			foreach($datas as $data)
+			{
+				$model = Employees::model()->findByAttributes(array('id'=>$data));
+				
+				if($model->saveAttributes(array('is_deleted'=>'1'))){
+
+					$employee_subjects=EmployeesSubjects::model()->findAllByAttributes(array('employee_id'=>$model->id));
+					$employee_electives=EmployeeElectiveSubjects::model()->findAllByAttributes(array('employee_id'=>$model->id));
+					$class_teachers=Batches::model()->findAllByAttributes(array('employee_id'=>$model->id));
+					
+					if($employee_subjects)
+					{
+						foreach($employee_subjects as $employee_subject)     // delete asociated subject allocation
+						{
+							$employee_subject->delete();
+						}
+					}
+					if($employee_electives)
+					{
+						foreach($employee_electives as $employee_elective)    // delete asociated elective allocation
+						{
+							$employee_elective->delete();
+						}
+					}
+					if($class_teachers)
+					{
+						foreach($class_teachers as $class_teacher)     // delete asociated subject allocation
+						{
+							$class_teacher->employee_id=0;
+							$class_teacher->save();
+						}
+					}
+				
+				}
+			}
+			
+			echo CJSON::encode(array(
+				'status'=>'success'
+			));
+			exit;
+		}
+		else{
+			echo CJSON::encode(array(
+				'status'=>'error'
+			));
+			exit;
+		}
+	}
+	public function actionLog()
+	{
 		
+		$criteria = new CDbCriteria;
+		$criteria->order = 'date DESC';
+		$criteria->condition='user_id=:x AND user_type=:type';
+		$criteria->params = array(':x'=>$_REQUEST['id'],':type'=>2);
+		$model1 = new LogComment;
+		$total = LogComment::model()->count($criteria); // Count feeds
+		$pages = new CPagination($total);
+		$pages->setPageSize(Yii::app()->params['listPerPage']);
+		$pages->applyLimit($criteria);
+		
+		$feeds = LogComment::model()->findAll($criteria); // Get feeds
+		$this->render('log',array(
+			'model'=>$this->loadModel($_REQUEST['id']),
+			'model1'=>$model1,
+			'comments'=>$feeds,
+			'pages'=>$pages,
+			'criteria'=>$criteria,
+			
+			
+			));
+	}
+	public function actionDocument()
+	{
+		$this->render('document',array(
+			'model'=>$this->loadModel($_REQUEST['id']),
+		));
+	}
+	public function actionAttendance()
+	{
+		if(Configurations::model()->teacherAttendanceMode() != 2){
+			$model	= new Employees;
+			$this->render('attentance',array(
+				'model'=>$this->loadModel($_REQUEST['id']),
+			));
+		}
+		else{
+			$this->redirect(array('/employees/teacherSubjectAttendance', 'id'=>$_REQUEST['id']));
+		}
+	}
+	public function actionAchievements()
+	{
+		
+		$model1 = new Achievements;
+		$this->render('achievements',array(
+			'model'=>$this->loadModel($_REQUEST['id']),
+			'model1'=>$model1,
+			'comments'=>$feeds,
+			'pages'=>$pages,
+			'criteria'=>$criteria,
+			
+			
+			));
+	}
+
+	public function actionPositions(){
+
+		if(isset($_POST['employee_category_id']))
+		{
+			
+			$data=EmployeePositions::model()->findAll('employee_category_id=:x',array(':x'=>$_POST['employee_category_id']));
+		}
+		echo CHtml::tag('option', array('value' => ''), CHtml::encode(Yii::t('app','Select Position')), true);
+		$data=CHtml::listData($data,'id','name');
+		  foreach($data as $value=>$title)
+		  {
+			  echo CHtml::tag('option',
+						 array('value'=>$value),CHtml::encode($title),true);
+		  }
+
 	}
 }

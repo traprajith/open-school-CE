@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs=array(
-	'Student Additional Fields'=>array('index'),
+	Yii::t('app','Student Additional Fields')=>array('index'),
 	$model->name=>array('view','id'=>$model->id),
-	'Update',
+	Yii::t('app','Update'),
 );
 
 $this->menu=array(
-	array('label'=>'List StudentAdditionalFields', 'url'=>array('index')),
-	array('label'=>'Create StudentAdditionalFields', 'url'=>array('create')),
-	array('label'=>'View StudentAdditionalFields', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage StudentAdditionalFields', 'url'=>array('admin')),
+	array('label'=>Yii::t('app','List StudentAdditionalFields'), 'url'=>array('index')),
+	array('label'=>Yii::t('app','Create StudentAdditionalFields'), 'url'=>array('create')),
+	array('label'=>Yii::t('app','View StudentAdditionalFields'), 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>Yii::t('app','Manage StudentAdditionalFields'), 'url'=>array('admin')),
 );
 ?>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -21,7 +21,7 @@ $this->menu=array(
     </td>
     <td valign="top">
     <div class="cont_right formWrapper">
-<h1>Update StudentAdditionalFields <?php echo $model->id; ?></h1>
+<h1><?php echo Yii::t('app','Update StudentAdditionalFields'); ?> <?php echo $model->id; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
 </div>

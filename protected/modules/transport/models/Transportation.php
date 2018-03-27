@@ -39,7 +39,7 @@ class Transportation extends CActiveRecord
 			array('student_id, stop_id', 'length', 'max'=>120),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, student_id, stop_id', 'safe', 'on'=>'search'),
+			array('id, student_id, stop_id,' ,'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,8 +61,10 @@ class Transportation extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'student_id' => 'Student',
-			'stop_id' => 'Stop',
+			'student_id' =>  Yii::t('app','Student'),
+			'stop_id' =>  Yii::t('app','Stop'),
+			//'route_id' =>  Yii::t('app','route')
+			
 		);
 	}
 
@@ -80,6 +82,7 @@ class Transportation extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('student_id',$this->student_id,true);
 		$criteria->compare('stop_id',$this->stop_id,true);
+		//$criteria->compare('route_id',$this->route_id,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
