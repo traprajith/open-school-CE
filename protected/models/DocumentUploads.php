@@ -149,7 +149,11 @@ class DocumentUploads extends CActiveRecord
 		$new_file_name = '';
 		if($file_name!=NULL){
 			$value = explode('.',$file_name);
-			$extension = end($value); // Get extension of the file
+			$extension = strtolower(trim(end($value))); // Get extension of the file
+			$allowed_extensions = array('jpg','jpeg','png','gif','bmp','pdf','doc','docx','xls','xlsx','ppt','pptx','txt','csv','odt','ods','ico');
+			if(!in_array($extension,$allowed_extensions)){
+				return '';
+			}
 			$salt = DocumentUploads::model()->generateSalt(); //Get Salt
 			$new_file_name = $salt.'.'.$extension;			
 		}
